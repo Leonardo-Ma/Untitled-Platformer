@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://1sebagw1ia8u"]
+
+[sub_resource type="Resource" id="Resource_llnkq"]
+metadata/__load_path__ = "res://scripts/soundtrack_player.gd"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+script = SubResource("Resource_llnkq")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

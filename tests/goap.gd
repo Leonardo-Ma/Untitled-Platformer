@@ -1,0 +1,46 @@
+# An Autoload that ensures all goals have a matching desired condition
+# TODO Improve and expand to check matching action effects
+# TODO Consider removing hardcoded path?
+
+extends Node
+
+func _ready() -> void:
+	var actions: Array = []
+	var goals: Array = []
+
+	# Load all actions
+	var actions_dir: String = "res://scr/goap/actions"
+	actions = _load_all_scripts_in_dir(actions_dir)
+
+	# Load all goals
+	var goals_dir: String = "res://scr/goap/goals"
+	goals = _load_all_scripts_in_dir(goals_dir)
+
+	test_goal_action_consistency(goals, actions)
+	print("GOAP consistency test completed.")
+	self.queue_free()
+
+func _load_all_scripts_in_dir(dir_path: String) -> Array:
+	var result: Array = []
+	var dir: DirAccess = DirAccess.open(dir_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name: String = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".gd"):
+				var script_path: String = dir_path + "/" + file_name
+				var instance: Object = load(script_path).new()
+				result.append(instance)
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	return result
+
+func test_goal_action_consistency(_goals: Array, _actions: Array) -> void:
+	for goal: Object in _goals:
+		for key: String in goal.get_desired_state().keys():
+			var found: bool = false
+			for action: Object in _actions:
+				if action.get_effects().has(key):
+					found = true
+					break
+			assert(found, "GOAP TEST FAIL: No action effect matches desired state key '%s' for goal '%s'" % [key, goal.get_class()])

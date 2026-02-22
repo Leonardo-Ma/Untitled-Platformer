@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://chc5xw5xk36lt"]
+
+[ext_resource type="Script" uid="uid://bc20xmwfj68dg" path="res://scr/player/combat/player_healthbar.gd" id="1_opn8v"]
+[ext_resource type="Script" uid="uid://cb3xo2r1csv5r" path="res://scr/ui/player_attributes_ui.gd" id="2_w0ym6"]
+[ext_resource type="Script" uid="uid://ecw2h6kag61c" path="res://scr/player/combat/magic_controller.gd" id="3_gnwpc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byan2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efpt6"]
+bg_color = Color(0.0732916, 0.575341, 0.216761, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mgxm"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gey0t"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="PlayerInterface" type="CanvasLayer"]
+layer = 0
+
+[node name="PlayerHealthbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+z_index = 1
+offset_left = 15.0
+offset_top = 24.0
+offset_right = 451.0
+offset_bottom = 68.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_byan2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_efpt6")
+value = 60.0
+show_percentage = false
+script = ExtResource("1_opn8v")
+
+[node name="Damagebar" type="ProgressBar" parent="PlayerHealthbar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5mgxm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gey0t")
+value = 80.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="PlayerHealthbar"]
+wait_time = 0.4
+one_shot = true
+
+[node name="PlayerAttributes" type="TextEdit" parent="."]
+offset_left = 16.0
+offset_top = 257.0
+offset_right = 237.0
+offset_bottom = 501.0
+placeholder_text = "		Main Attributes:
+strenght 		: 0
+toughness 	: 0
+perception	: 0
+dexterity 		: 0
+intelligence 	: 0
+spirit 				: 0
+charisma 		: 0"
+script = ExtResource("2_w0ym6")
+
+[node name="MagicSignPressIndicator" type="Label" parent="."]
+offset_left = 869.0
+offset_top = 211.0
+offset_right = 953.0
+offset_bottom = 263.0
+script = ExtResource("3_gnwpc")
+
+[node name="Timer" type="Timer" parent="MagicSignPressIndicator"]
+one_shot = true
+
+[connection signal="timeout" from="PlayerHealthbar/Timer" to="PlayerHealthbar" method="_on_timer_timeout"]
+[connection signal="timeout" from="MagicSignPressIndicator/Timer" to="MagicSignPressIndicator" method="_on_timer_timeout"]

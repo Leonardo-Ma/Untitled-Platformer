@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AIConfig" load_steps=10 format=3 uid="uid://bpnc3ivm5a86w"]
+
+[ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://scr/goap/ai_config.gd" id="1_abc123"]
+[ext_resource type="Script" uid="uid://b7v4ao8jga5rg" path="res://scr/goap/goals/flee.gd" id="2_def456"]
+[ext_resource type="Script" uid="uid://c5rs5bpioolo8" path="res://scr/goap/goals/track_enemy.gd" id="3_ghi789"]
+[ext_resource type="Script" uid="uid://o8dqx6i7woqt" path="res://scr/goap/goals/kill_enemy.gd" id="4_jkl012"]
+[ext_resource type="Script" uid="uid://8ib48sr624k3" path="res://scr/goap/goals/wander.gd" id="5_mno345"]
+[ext_resource type="Script" uid="uid://v5kimqljxjc2" path="res://scr/goap/actions/flee_from_enemy.gd" id="6_pqr678"]
+[ext_resource type="Script" uid="uid://dycviide8g017" path="res://scr/goap/actions/goto_enemy.gd" id="7_stu901"]
+[ext_resource type="Script" uid="uid://8sv6xwujwxyk" path="res://scr/goap/actions/melee_attack.gd" id="8_vwx234"]
+[ext_resource type="Script" uid="uid://djjmno7kihjpr" path="res://scr/goap/actions/wander.gd" id="9_yza567"]
+
+[resource]
+script = ExtResource("1_abc123")
+available_actions = Array[Script]([ExtResource("6_pqr678"), ExtResource("7_stu901"), ExtResource("8_vwx234"), ExtResource("9_yza567")])
+available_goals = Array[Script]([ExtResource("2_def456"), ExtResource("3_ghi789"), ExtResource("4_jkl012"), ExtResource("5_mno345")])
