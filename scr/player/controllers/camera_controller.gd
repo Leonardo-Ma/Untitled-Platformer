@@ -2,6 +2,9 @@
 # https://www.youtube.com/watch?v=JlgZtOFMdfc&t=611s GDQuest - 3D TUTORIAL: Make a Smooth 3D Character Controller in Godot 4
 extends Node3D
 
+signal capture_mouse_requested
+signal release_mouse_requested
+
 @onready var cam_root: Node3D = $"."
 @onready var player: CharacterBody3D = $".."
 
@@ -13,12 +16,12 @@ extends Node3D
 # TODO Confirm if this should be on _input instead of _unhandled_input or _physics_process
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		release_mouse_requested.emit()
 	var player_is_using_mouse : bool = (
 		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	)
 	if event.is_action_pressed("left_click"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		capture_mouse_requested.emit()
 	if player_is_using_mouse:
 		# TODO Smooth the camera rotation (Maybe lerp()?)
 		# Handles horizontal camera rotation

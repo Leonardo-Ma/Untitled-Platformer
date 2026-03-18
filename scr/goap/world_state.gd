@@ -1,6 +1,5 @@
 # TODO For future goap usage for known world knowledge for all agents
-
-#extends Node
+extends Node
 #
 #var _state = {
 #}

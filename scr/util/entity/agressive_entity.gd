@@ -1,4 +1,4 @@
-## Generic abstract class for NPCs that take damage and attack
+## Generic abstract class for entities that take damage and attack
 @abstract class_name AgressiveEntity
 extends CharacterBody3D
 
@@ -22,7 +22,7 @@ func _ready() -> void:
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)
 	
 	health.died.connect(_on_death)
-	# Inject timer creation capability into health resource
+	# Inject timer creation capability into health resource - Dependency Injection
 	health.initialize_timer_callback(_create_timer)
 
 func _on_death() -> void:
