@@ -3,10 +3,6 @@ extends Node3D
 
 const JUMP_VELOCITY : float = 6.5
 
-@export_group("Debug")
-@export var walk_speed: float = 3.0
-@export var run_speed: float = 5.0
-
 @export var camera: Node3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -54,14 +50,14 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 		var is_running: bool = Input.is_action_pressed("run")
 		if is_running:
-			Globals.player_speed = run_speed
+			Globals.player_speed = owner.movement.run_speed
 		else:
-			Globals.player_speed = walk_speed
+			Globals.player_speed = owner.movement.walk_speed
 
 		emit_signal("move_started")
 		
 		var normalized_input: Vector2 = input_direction.normalized()
-		var speed_factor: float = Globals.player_speed / run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
+		var speed_factor: float = Globals.player_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
 		var blend_direction: Vector2 = Vector2(normalized_input.x, -normalized_input.y) * speed_factor
 		
 		emit_signal("movement_direction_changed", blend_direction)

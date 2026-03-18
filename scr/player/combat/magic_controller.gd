@@ -1,3 +1,6 @@
+# TODO Consider redo this script so each magic is actually an array property that can be 
+# easily changed like the inventory
+
 @icon("res://icons/16x16/wizard.png")
 extends Node
 

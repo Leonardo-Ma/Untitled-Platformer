@@ -7,6 +7,7 @@ signal melee_attacked()
 @export var attack : Attack
 @export var stats : EntityStats
 @export var health : Health
+@export var movement : Movement
 
 var _goap_agent: GoapAgent = null
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	assert(attack and attack.power > 0 and attack.type != null, "Attack property incorrect for " + self.name)
 	assert(stats, "Stats property incorrect for " + self.name)
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)
+	assert(movement, "Movement incorrect for " + self.name)
 	
 	health.died.connect(_on_death)
 	# Inject timer creation capability into health resource - Dependency Injection

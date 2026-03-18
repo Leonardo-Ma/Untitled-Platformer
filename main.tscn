@@ -11,11 +11,32 @@
 [ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="7_0odxb"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="8_lswn8"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/levels/tutorial.tscn" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/movement.gd" id="15_yaehf"]
 [ext_resource type="PackedScene" uid="uid://cqyfierp40fon" path="res://scr/world_asset/chests/chest.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://gp010pr274tl" path="res://scr/entity/red_mage/red_mage.tscn" id="20_ryguw"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/attack.gd" id="21_d13ii"]
 [ext_resource type="Script" uid="uid://b46orajcidbak" path="res://scr/util/entity/entity_stats.gd" id="22_1u8w0"]
 [ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://scr/util/combat/health.gd" id="23_d13ii"]
+
+[sub_resource type="Resource" id="Resource_yaehf"]
+script = ExtResource("21_d13ii")
+type = 1
+power = 40
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
+[sub_resource type="Resource" id="Resource_lswn8"]
+script = ExtResource("22_1u8w0")
+metadata/_custom_type_script = "uid://b46orajcidbak"
+
+[sub_resource type="Resource" id="Resource_a6jrf"]
+script = ExtResource("23_d13ii")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_074og"]
+script = ExtResource("15_yaehf")
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_d13ii"]
 vertices = PackedVector3Array(47.047, 0.25025, -35.535503, 46.296253, 0.25025, -35.535503, 46.046, 0.25025, -34.5345, 45.295254, 0.25025, -34.5345, 45.045002, 0.25025, -33.5335, 44.29425, 0.25025, -33.5335, 44.044003, 0.25025, -32.5325, 43.29325, 0.25025, -32.5325, 43.043003, 0.25025, -31.531502, 41.291252, 0.25025, -27.777752, 40.290253, 0.25025, -27.527502, 40.290253, 0.25025, -26.77675, 51.301254, 0.25025, -38.788754, 50.30025, 0.25025, -38.5385, 50.050003, 0.25025, -37.537502, 48.298252, 0.25025, -36.78675, 47.297253, 0.25025, -36.536503, 48.298252, 0.25025, -37.537502, 42.29225, 0.25025, -31.531502, 42.29225, 0.25025, -29.77975, 80.33025, 0.25025, -28.778751, 80.33025, 0.25025, -30.03, 79.329254, 0.25025, -30.780752, 41.291252, 0.25025, -29.529501, 80.580505, 0.25025, -12.512501, 81.33125, 0.25025, -12.512501, 81.33125, 0.25025, -15.265251, 54.054, 0.25025, -39.5395, 51.301254, 0.25025, -39.5395, 68.568504, 0.25025, -39.5395, 67.81776, 0.25025, -40.5405, 65.565506, 0.25025, -40.5405, 57.057003, 0.25025, -40.5405, 54.304253, 0.25025, -40.5405, 80.33025, 0.25025, -12.012001, 82.33225, 0.25025, -24.024002, 81.33125, 0.25025, -24.774752, 81.33125, 0.25025, -28.028002, 72.5725, 0.25025, -37.537502, 70.820755, 0.25025, -39.5395, 64.81475, 0.25025, -41.5415, 57.30725, 0.25025, -41.5415, 82.33225, 0.25025, -15.515501, 39.789753, 0.25025, -26.5265, 79.329254, 0.25025, -32.032, 73.82375, 0.25025, -37.537502, -0.5005, 0.25025, 54.554504, -0.5005, 0.25025, 55.305252, 0, 0.25025, 55.305252, 0, 0.25025, -29.529501, -0.5005, 0.25025, -29.529501, -0.75075006, 0.25025, -28.528502, -3.75375, 0.25025, -25.525501, -4.5045004, 0.25025, -25.525501, -4.7547503, 0.25025, -24.524502, 75.32526, 0.25025, 60.5605, 76.326256, 0.25025, 60.310253, 76.326256, 0.25025, 59.5595, 79.329254, 0.25025, 56.556503, 80.33025, 0.25025, 56.30625, 80.33025, 0.25025, 55.555504, 1.25125, 0.25025, -30.780752, 0.25025, 0.25025, -30.530502, -2.5025, 0.25025, -26.77675, -3.5035002, 0.25025, -26.5265, 77.327255, 0.25025, 59.309254, 77.57751, 0.25025, 58.308254, 81.33125, 0.25025, 55.305252, 81.581505, 0.25025, 54.304253, 48.298252, 0.25025, 57.557503, 48.298252, 0.25025, 58.808754, 48.79875, 0.25025, 59.309254, 50.050003, 0.25025, 59.309254, 3.0030003, 0.25025, -31.531502, 1.25125, 0.25025, -31.531502, -5.5055003, 0.25025, -24.524502, -5.5055003, 0.25025, -22.77275, 73.5735, 0.25025, 61.311253, 75.32526, 0.25025, 61.311253, 82.33225, 0.25025, 54.304253, 82.33225, 0.25025, 52.5525, 79.329254, 0.25025, -10.26025, 80.33025, 0.25025, -10.510501, 34.5345, 0.25025, -29.529501, 33.783752, 0.25025, -30.530502, 32.5325, 0.25025, -30.530502, 5.005, 0.25025, -32.5325, 3.2532501, 0.25025, -32.5325, -6.5065002, 0.25025, -22.522501, -6.5065002, 0.25025, -20.77075, -6.5065002, 0.25025, -4.25425, -6.5065002, 0.25025, -3.0030003, -5.5055003, 0.25025, -2.2522502, -5.5055003, 0.25025, 47.5475, -5.5055003, 0.25025, 48.79875, -4.5045004, 0.25025, 49.549503, 3.0030003, 0.25025, 57.30725, 3.75375, 0.25025, 58.308254, 5.005, 0.25025, 58.308254, 53.053, 0.25025, 61.311253, 53.803753, 0.25025, 62.312252, 55.055004, 0.25025, 62.312252, 71.5715, 0.25025, 62.312252, 73.32325, 0.25025, 62.312252, 83.33325, 0.25025, 52.302254, 83.33325, 0.25025, 50.550503, 78.328255, 0.25025, -8.25825, 79.329254, 0.25025, -8.5085, -2.5025, 0.25025, -28.528502, 8.008, 0.25025, -33.5335, -7.5075, 0.25025, -17.767752, -7.5075, 0.25025, -7.2572503, 79.329254, 0.25025, 58.308254, 31.781752, 0.25025, -31.531502, 29.529501, 0.25025, -31.531502, 5.2552505, 0.25025, -33.5335, -7.5075, 0.25025, -20.5205, -7.5075, 0.25025, -5.005, 41.5415, 0.25025, 57.30725, 44.29425, 0.25025, 57.30725, 44.544502, 0.25025, 56.30625, 55.80575, 0.25025, 63.31325, 58.058002, 0.25025, 63.31325, 68.568504, 0.25025, 63.31325, 71.32125, 0.25025, 63.31325, 84.33425, 0.25025, 50.30025, 84.33425, 0.25025, 47.5475, 75.32526, 0.25025, 16.5165, 76.326256, 0.25025, 16.26625, 76.326256, 0.25025, 13.5135, 1.7517501, 0.25025, 57.30725, 51.801754, 0.25025, 61.311253, 83.33325, 0.25025, 33.033, 83.33325, 0.25025, 31.781752, 81.33125, 0.25025, 30.03, 79.329254, 0.25025, 26.026001, 79.329254, 0.25025, 24.774752, 77.327255, 0.25025, 23.023, 77.327255, 0.25025, 21.771751, 75.32526, 0.25025, 20.02, 22.522501, 0.25025, -32.5325, 21.771751, 0.25025, -33.5335, 18.518501, 0.25025, -33.5335, -6.5065002, 0.25025, 43.543503, -6.5065002, 0.25025, 46.796753, 5.75575, 0.25025, 59.309254, 9.009001, 0.25025, 59.309254, 17.5175, 0.25025, 59.309254, 21.271252, 0.25025, 59.309254, 21.521502, 0.25025, 58.308254, 84.33425, 0.25025, 37.037003, 84.33425, 0.25025, 33.783752, 81.33125, 0.25025, 27.777752, 38.5385, 0.25025, -26.5265, 35.78575, 0.25025, -29.529501, 77.327255, 0.25025, -3.2532501, 78.328255, 0.25025, -3.5035002, 77.327255, 0.25025, 13.26325, 47.047, 0.25025, 56.30625, -4.5045004, 0.25025, 50.80075, 28.778751, 0.25025, -32.5325, -5.5055003, 0.25025, 2.002, -6.5065002, 0.25025, 2.2522502, -6.5065002, 0.25025, 20.02, 9.75975, 0.25025, 60.310253, 17.26725, 0.25025, 60.310253, 17.767752, 0.25025, -34.5345, 8.25825, 0.25025, -34.5345, -8.5085, 0.25025, -17.5175, -8.5085, 0.25025, -8.008, 58.808754, 0.25025, 64.314255, 68.31825, 0.25025, 64.314255, 85.33525, 0.25025, 47.297253, 85.33525, 0.25025, 37.78775, 41.291252, 0.25025, 58.308254, -7.5075, 0.25025, 42.79275, -7.5075, 0.25025, 20.27025)
@@ -26,31 +47,11 @@ agent_max_climb = 0.05
 
 [sub_resource type="GDScript" id="GDScript_ryguw"]
 
-[sub_resource type="Resource" id="Resource_2cqfq"]
-resource_local_to_scene = true
-script = ExtResource("21_d13ii")
-type = 1
-power = 20
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_yaehf"]
-resource_local_to_scene = true
-script = ExtResource("22_1u8w0")
-metadata/_custom_type_script = "uid://b46orajcidbak"
-
-[sub_resource type="Resource" id="Resource_074og"]
-resource_local_to_scene = true
-script = ExtResource("23_d13ii")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
 [sub_resource type="Resource" id="Resource_cegan"]
 resource_local_to_scene = true
 script = ExtResource("21_d13ii")
 type = 1
 power = 20
-rate = 2.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
 [sub_resource type="Resource" id="Resource_82xsv"]
@@ -64,6 +65,35 @@ script = ExtResource("23_d13ii")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_ryguw"]
+resource_local_to_scene = true
+script = ExtResource("15_yaehf")
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+
+[sub_resource type="Resource" id="Resource_d13ii"]
+resource_local_to_scene = true
+script = ExtResource("21_d13ii")
+type = 1
+power = 20
+rate = 2.0
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
+[sub_resource type="Resource" id="Resource_1u8w0"]
+resource_local_to_scene = true
+script = ExtResource("22_1u8w0")
+metadata/_custom_type_script = "uid://b46orajcidbak"
+
+[sub_resource type="Resource" id="Resource_xuqvo"]
+resource_local_to_scene = true
+script = ExtResource("23_d13ii")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_0odxb"]
+script = ExtResource("15_yaehf")
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
 [node name="Main" type="Node" unique_id=1979390252]
 script = ExtResource("1_efxa6")
@@ -134,6 +164,10 @@ offset_bottom = 74.0
 
 [node name="Player" parent="." unique_id=1389698494 instance=ExtResource("1_kek77")]
 transform = Transform3D(1.3113419e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113419e-07, 0, 1, 0)
+attack = SubResource("Resource_yaehf")
+stats = SubResource("Resource_lswn8")
+health = SubResource("Resource_a6jrf")
+movement = SubResource("Resource_074og")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1486266246]
 navigation_mesh = SubResource("NavigationMesh_d13ii")
@@ -143,15 +177,17 @@ script = SubResource("GDScript_ryguw")
 
 [node name="RedMage" parent="." unique_id=1047952853 instance=ExtResource("20_ryguw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55, 0, 5)
-attack = SubResource("Resource_2cqfq")
-stats = SubResource("Resource_yaehf")
-health = SubResource("Resource_074og")
-
-[node name="RedMage2" parent="." unique_id=567571943 instance=ExtResource("20_ryguw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 43.00673, 0, 5)
 attack = SubResource("Resource_cegan")
 stats = SubResource("Resource_82xsv")
 health = SubResource("Resource_getpj")
+movement = SubResource("Resource_ryguw")
+
+[node name="RedMage2" parent="." unique_id=567571943 instance=ExtResource("20_ryguw")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 43.00673, 0, 5)
+attack = SubResource("Resource_d13ii")
+stats = SubResource("Resource_1u8w0")
+health = SubResource("Resource_xuqvo")
+movement = SubResource("Resource_0odxb")
 
 [node name="Maps" type="Node3D" parent="." unique_id=18375261]
 

@@ -2,7 +2,7 @@
 @icon("res://icons/16x16/ui_inventory.png")
 extends Node
 
-# TODO Fix this unique reference, both UI and InventoryInterface are unique
+# TODO Check if possible to fix this unique reference, both UI and InventoryInterface are unique
 @onready var inventory_interface: Control = $"../../UI/InventoryInterface"
 
 func _ready() -> void:
