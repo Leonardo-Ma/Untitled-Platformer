@@ -10,9 +10,9 @@ signal toggle_inventory()
 
 @onready var movement_controller: Node3D = $MovementController
 
-func _ready() -> void:
-	# BUG If this doesn't call parent's ready, it doesn't connect signals properly
-	super._ready()
+# BUG If this doesn't call parent's ready, it doesn't connect signals properly
+#func _ready() -> void:
+	#super._ready()
 
 func _physics_process(delta: float) -> void:
 	interaction_handler(delta)

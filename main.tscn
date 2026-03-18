@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="7_0odxb"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="8_lswn8"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/levels/tutorial.tscn" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://cqyfierp40fon" path="res://scr/world_asset/chests/chest.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://gp010pr274tl" path="res://scr/entity/red_mage/red_mage.tscn" id="20_ryguw"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/attack.gd" id="21_d13ii"]
 [ext_resource type="Script" uid="uid://b46orajcidbak" path="res://scr/util/entity/entity_stats.gd" id="22_1u8w0"]
@@ -25,26 +26,26 @@ agent_max_climb = 0.05
 
 [sub_resource type="GDScript" id="GDScript_ryguw"]
 
-[sub_resource type="Resource" id="Resource_vivmo"]
+[sub_resource type="Resource" id="Resource_2cqfq"]
 resource_local_to_scene = true
 script = ExtResource("21_d13ii")
 type = 1
 power = 20
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_2cqfq"]
+[sub_resource type="Resource" id="Resource_yaehf"]
 resource_local_to_scene = true
 script = ExtResource("22_1u8w0")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_yaehf"]
+[sub_resource type="Resource" id="Resource_074og"]
 resource_local_to_scene = true
 script = ExtResource("23_d13ii")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="Resource" id="Resource_074og"]
+[sub_resource type="Resource" id="Resource_cegan"]
 resource_local_to_scene = true
 script = ExtResource("21_d13ii")
 type = 1
@@ -52,12 +53,12 @@ power = 20
 rate = 2.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_cegan"]
+[sub_resource type="Resource" id="Resource_82xsv"]
 resource_local_to_scene = true
 script = ExtResource("22_1u8w0")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_82xsv"]
+[sub_resource type="Resource" id="Resource_getpj"]
 resource_local_to_scene = true
 script = ExtResource("23_d13ii")
 max_health = 100
@@ -68,6 +69,7 @@ metadata/_custom_type_script = "uid://njkofl5g11k7"
 script = ExtResource("1_efxa6")
 
 [node name="UI" type="Control" parent="." unique_id=1249750598]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,6 +95,7 @@ layout_mode = 1
 script = ExtResource("5_d13ii")
 
 [node name="InventoryInterface" type="Control" parent="UI" unique_id=1935971995]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -140,16 +143,21 @@ script = SubResource("GDScript_ryguw")
 
 [node name="RedMage" parent="." unique_id=1047952853 instance=ExtResource("20_ryguw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55, 0, 5)
-attack = SubResource("Resource_vivmo")
-stats = SubResource("Resource_2cqfq")
-health = SubResource("Resource_yaehf")
+attack = SubResource("Resource_2cqfq")
+stats = SubResource("Resource_yaehf")
+health = SubResource("Resource_074og")
 
 [node name="RedMage2" parent="." unique_id=567571943 instance=ExtResource("20_ryguw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 43.00673, 0, 5)
-attack = SubResource("Resource_074og")
-stats = SubResource("Resource_cegan")
-health = SubResource("Resource_82xsv")
+attack = SubResource("Resource_cegan")
+stats = SubResource("Resource_82xsv")
+health = SubResource("Resource_getpj")
 
 [node name="Maps" type="Node3D" parent="." unique_id=18375261]
 
 [node name="Tutorial" parent="Maps" unique_id=1297917088 instance=ExtResource("15_vivmo")]
+metadata/_edit_lock_ = true
+
+[node name="Chest" parent="." unique_id=1968144271 instance=ExtResource("16_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57758975, -1.7680357)
+collision_layer = 5
