@@ -6,6 +6,7 @@ func _post_import(scene: Node) -> Node:
 	_fix_node(scene)
 	return scene
 
+
 func _fix_node(node: Node) -> void:
 	if node is MeshInstance3D and node.mesh:
 		var mesh_instance: MeshInstance3D = node
@@ -52,9 +53,7 @@ func _fix_node(node: Node) -> void:
 					for j: int in range(tangent_count):
 						var index: int = j * 4
 						var tangent: Vector3 = Vector3(
-							tangents[index],
-							tangents[index + 1],
-							tangents[index + 2]
+							tangents[index], tangents[index + 1], tangents[index + 2]
 						)
 						tangent = (normal_basis * tangent).normalized()
 						tangents[index] = tangent.x

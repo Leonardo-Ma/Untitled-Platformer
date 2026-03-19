@@ -7,17 +7,20 @@
 class_name Hurtbox
 extends Area3D
 
-func _init() -> void :
+
+func _init() -> void:
 	collision_layer = 0
-	collision_mask = 524288 # Layer 20 (It's in bits)
-	
-func _ready() -> void :
+	collision_mask = 524288  # Layer 20 (It's in bits)
+
+
+func _ready() -> void:
 	connect("area_entered", self._on_area_entered)
 
-func _on_area_entered(hitbox: Hitbox) -> void :
-	if (hitbox == null):
+
+func _on_area_entered(hitbox: Hitbox) -> void:
+	if hitbox == null:
 		return
-	
+
 	if owner.health is Health:
 		owner.health.take_damage(hitbox.owner.attack)
 	# TODO Confirm if this will ever be called

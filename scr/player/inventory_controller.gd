@@ -5,16 +5,18 @@ extends Node
 # TODO Check if possible to fix this unique reference, both UI and InventoryInterface are unique
 @onready var inventory_interface: Control = $"../../UI/InventoryInterface"
 
+
 func _ready() -> void:
 	get_parent().toggle_inventory.connect(toggle_inventory_interface)
 	inventory_interface.set_player_inventory_data(get_parent().inventory_data)
 
-	for node : Node in get_tree().get_nodes_in_group("external_inventory"):
+	for node: Node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
+
 
 func toggle_inventory_interface(external_inventory_owner: Node = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible
-	
+
 	if inventory_interface.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:

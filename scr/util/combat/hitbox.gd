@@ -4,6 +4,7 @@
 class_name Hitbox
 extends Area3D
 
+
 func _init() -> void:
 	# Layer 20 (It's in bits)
 	collision_layer = 524288
