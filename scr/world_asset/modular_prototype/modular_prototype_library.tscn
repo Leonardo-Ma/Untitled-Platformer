@@ -1,0 +1,229 @@
+[gd_scene format=3 uid="uid://b1iubwoimwu0w"]
+
+[ext_resource type="PackedScene" uid="uid://ck3cj5iramaa" path="res://scr/world_asset/modular_prototype/prototype_assets/arrow.fbx" id="1_pfmcu"]
+[ext_resource type="PackedScene" uid="uid://bcyyah8jetei2" path="res://scr/world_asset/modular_prototype/prototype_assets/box.fbx" id="2_h4dtx"]
+[ext_resource type="PackedScene" uid="uid://s31skm1aw2j1" path="res://scr/world_asset/modular_prototype/prototype_assets/coin.fbx" id="3_btm0s"]
+[ext_resource type="PackedScene" uid="uid://barxeo3dii7cg" path="res://scr/world_asset/modular_prototype/prototype_assets/cone1.fbx" id="4_lmw42"]
+[ext_resource type="PackedScene" uid="uid://c2a8kmb3liyxo" path="res://scr/world_asset/modular_prototype/prototype_assets/cone2.fbx" id="5_nidbb"]
+[ext_resource type="PackedScene" uid="uid://b148u6upi0lub" path="res://scr/world_asset/modular_prototype/prototype_assets/cone3.fbx" id="6_prx1f"]
+[ext_resource type="PackedScene" uid="uid://dvku5iev307se" path="res://scr/world_asset/modular_prototype/prototype_assets/cone4.fbx" id="7_dwk0e"]
+[ext_resource type="PackedScene" uid="uid://cxkixejlut0l0" path="res://scr/world_asset/modular_prototype/prototype_assets/cone.fbx" id="8_3f1gg"]
+[ext_resource type="PackedScene" uid="uid://cp7q17fjy03gv" path="res://scr/world_asset/modular_prototype/prototype_assets/cube4.fbx" id="9_1aya4"]
+[ext_resource type="PackedScene" uid="uid://c66i8bii13wda" path="res://scr/world_asset/modular_prototype/prototype_assets/cube5.fbx" id="10_b43vu"]
+[ext_resource type="PackedScene" uid="uid://8avfct5gjiaa" path="res://scr/world_asset/modular_prototype/prototype_assets/cube6.fbx" id="11_s5j45"]
+[ext_resource type="PackedScene" uid="uid://7vn6vivaa3n8" path="res://scr/world_asset/modular_prototype/prototype_assets/cube7.fbx" id="12_32ab8"]
+[ext_resource type="PackedScene" uid="uid://ckg6sfluochxf" path="res://scr/world_asset/modular_prototype/prototype_assets/cube8.fbx" id="13_qael3"]
+[ext_resource type="PackedScene" uid="uid://l8nv0fkl28t8" path="res://scr/world_asset/modular_prototype/prototype_assets/cube9.fbx" id="14_id00r"]
+[ext_resource type="PackedScene" uid="uid://bxrt7lsfjtrof" path="res://scr/world_asset/modular_prototype/prototype_assets/cube.fbx" id="15_qmepd"]
+[ext_resource type="PackedScene" uid="uid://8mp2oa4cu76p" path="res://scr/world_asset/modular_prototype/prototype_assets/cylinder1.fbx" id="16_1xl4x"]
+[ext_resource type="PackedScene" uid="uid://b3xl1o6tgjrns" path="res://scr/world_asset/modular_prototype/prototype_assets/cylinder2.fbx" id="17_yromt"]
+[ext_resource type="PackedScene" uid="uid://d13sbpxd0qhow" path="res://scr/world_asset/modular_prototype/prototype_assets/cylinder3.fbx" id="18_w77eh"]
+[ext_resource type="PackedScene" uid="uid://b2ruk8go3shst" path="res://scr/world_asset/modular_prototype/prototype_assets/cylinder4.fbx" id="19_1to3m"]
+[ext_resource type="PackedScene" uid="uid://yqxu0qdkbrhn" path="res://scr/world_asset/modular_prototype/prototype_assets/cylinder5.fbx" id="20_uydpq"]
+[ext_resource type="PackedScene" uid="uid://bfip6e5e45rlk" path="res://scr/world_asset/modular_prototype/prototype_assets/cylinder.fbx" id="21_hnv5u"]
+[ext_resource type="PackedScene" uid="uid://mg23bpkmmmbf" path="res://scr/world_asset/modular_prototype/prototype_assets/door1.fbx" id="22_s8nnb"]
+[ext_resource type="PackedScene" uid="uid://btax3msbyot7b" path="res://scr/world_asset/modular_prototype/prototype_assets/door2.fbx" id="23_yejak"]
+[ext_resource type="PackedScene" uid="uid://b8irxim4lto54" path="res://scr/world_asset/modular_prototype/prototype_assets/door3.fbx" id="24_khfjk"]
+[ext_resource type="PackedScene" uid="uid://bkuf58dtpjy4a" path="res://scr/world_asset/modular_prototype/prototype_assets/door.fbx" id="25_02cpy"]
+[ext_resource type="PackedScene" uid="uid://cunsxh8fokyd3" path="res://scr/world_asset/modular_prototype/prototype_assets/fence2.fbx" id="26_0w6vk"]
+[ext_resource type="PackedScene" uid="uid://rxrdrmqfxdn0" path="res://scr/world_asset/modular_prototype/prototype_assets/fence3.fbx" id="27_fvdor"]
+[ext_resource type="PackedScene" uid="uid://b0bf28d6pniwa" path="res://scr/world_asset/modular_prototype/prototype_assets/fence edge.fbx" id="28_21sk1"]
+[ext_resource type="PackedScene" uid="uid://b1fyp602t1641" path="res://scr/world_asset/modular_prototype/prototype_assets/fence wood.fbx" id="29_kbdfp"]
+[ext_resource type="PackedScene" uid="uid://50w4qdsgh8nn" path="res://scr/world_asset/modular_prototype/prototype_assets/fence.fbx" id="30_y5gr0"]
+[ext_resource type="PackedScene" uid="uid://baykmcxh4txog" path="res://scr/world_asset/modular_prototype/prototype_assets/ground1.fbx" id="31_mpmag"]
+[ext_resource type="PackedScene" uid="uid://crtavsos2rnmj" path="res://scr/world_asset/modular_prototype/prototype_assets/ground corner.fbx" id="32_k4er2"]
+[ext_resource type="PackedScene" uid="uid://ct1hfxcg3vg7p" path="res://scr/world_asset/modular_prototype/prototype_assets/ground.fbx" id="33_bwhe1"]
+[ext_resource type="PackedScene" uid="uid://gkq4al0ufkpx" path="res://scr/world_asset/modular_prototype/prototype_assets/key.fbx" id="34_bj2m6"]
+[ext_resource type="PackedScene" uid="uid://vm58d1gbkpds" path="res://scr/world_asset/modular_prototype/prototype_assets/ladder1.fbx" id="35_avbk3"]
+[ext_resource type="PackedScene" uid="uid://bxrw716aemmq4" path="res://scr/world_asset/modular_prototype/prototype_assets/ladder.fbx" id="36_fnbur"]
+[ext_resource type="PackedScene" uid="uid://d03c2gelg2ggb" path="res://scr/world_asset/modular_prototype/prototype_assets/pillar1.fbx" id="37_c8pkm"]
+[ext_resource type="PackedScene" uid="uid://bek55y14kdn6w" path="res://scr/world_asset/modular_prototype/prototype_assets/pillar2.fbx" id="38_njiqm"]
+[ext_resource type="PackedScene" uid="uid://byqmy4o8mulf2" path="res://scr/world_asset/modular_prototype/prototype_assets/pillar3.fbx" id="39_sox27"]
+[ext_resource type="PackedScene" uid="uid://cu8ad45n4vose" path="res://scr/world_asset/modular_prototype/prototype_assets/pillar4.fbx" id="40_20ffx"]
+[ext_resource type="PackedScene" uid="uid://btouhh76swcda" path="res://scr/world_asset/modular_prototype/prototype_assets/pillar.fbx" id="41_bkwos"]
+[ext_resource type="PackedScene" uid="uid://c2yxd6dd3exqr" path="res://scr/world_asset/modular_prototype/prototype_assets/railing edge.fbx" id="42_edimr"]
+[ext_resource type="PackedScene" uid="uid://ctqaqtet2pu88" path="res://scr/world_asset/modular_prototype/prototype_assets/railing.fbx" id="43_wylyh"]
+[ext_resource type="PackedScene" uid="uid://brganfuu2xsb0" path="res://scr/world_asset/modular_prototype/prototype_assets/ramp1.fbx" id="44_dw30x"]
+[ext_resource type="PackedScene" uid="uid://p8anwuch0myi" path="res://scr/world_asset/modular_prototype/prototype_assets/ramp.fbx" id="45_n3tpg"]
+[ext_resource type="PackedScene" uid="uid://xcilcedcmoci" path="res://scr/world_asset/modular_prototype/prototype_assets/sphere1.fbx" id="46_h7ph0"]
+[ext_resource type="PackedScene" uid="uid://b0bswuog56yoi" path="res://scr/world_asset/modular_prototype/prototype_assets/sphere2.fbx" id="47_7dagc"]
+[ext_resource type="PackedScene" uid="uid://dwsl7j4bbawwa" path="res://scr/world_asset/modular_prototype/prototype_assets/sphere.fbx" id="48_y2ave"]
+[ext_resource type="PackedScene" uid="uid://dmudmyupwycq" path="res://scr/world_asset/modular_prototype/prototype_assets/spike.fbx" id="49_rcgac"]
+[ext_resource type="PackedScene" uid="uid://c2vr2msooeyyc" path="res://scr/world_asset/modular_prototype/prototype_assets/spikes big.fbx" id="50_mbgp8"]
+[ext_resource type="PackedScene" uid="uid://dqccgewxaluu" path="res://scr/world_asset/modular_prototype/prototype_assets/spikes small.fbx" id="51_nk87i"]
+[ext_resource type="PackedScene" uid="uid://dlvwkxawknykl" path="res://scr/world_asset/modular_prototype/prototype_assets/stairs1.fbx" id="52_8jeum"]
+[ext_resource type="PackedScene" uid="uid://brphytq47uiwa" path="res://scr/world_asset/modular_prototype/prototype_assets/stairs2.fbx" id="53_15fkg"]
+[ext_resource type="PackedScene" uid="uid://jvsssabv3jwj" path="res://scr/world_asset/modular_prototype/prototype_assets/stairs corner1.fbx" id="54_00g2t"]
+[ext_resource type="PackedScene" uid="uid://lvrshhaeuicq" path="res://scr/world_asset/modular_prototype/prototype_assets/stairs corner.fbx" id="55_h2tuu"]
+[ext_resource type="PackedScene" uid="uid://dypqk4xr03lvp" path="res://scr/world_asset/modular_prototype/prototype_assets/stairs.fbx" id="56_nh6j1"]
+[ext_resource type="PackedScene" uid="uid://cofe0kdj8hwu" path="res://scr/world_asset/modular_prototype/prototype_assets/toggle switch.fbx" id="57_3bw1f"]
+[ext_resource type="PackedScene" uid="uid://thsdxjrh6e5q" path="res://scr/world_asset/modular_prototype/prototype_assets/torus.fbx" id="58_y2y5g"]
+[ext_resource type="PackedScene" uid="uid://b17o1ylnac3kt" path="res://scr/world_asset/modular_prototype/prototype_assets/wall1.fbx" id="59_v8erv"]
+[ext_resource type="PackedScene" uid="uid://bocjfdx4dxxkm" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner1.fbx" id="60_kaake"]
+[ext_resource type="PackedScene" uid="uid://c7xya75e8qmlv" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner4.fbx" id="61_7obg7"]
+[ext_resource type="PackedScene" uid="uid://5xub1ldao6ar" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner bottom1.fbx" id="62_ie68k"]
+[ext_resource type="PackedScene" uid="uid://cso4mqmyee2ag" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner bottom2.fbx" id="63_32oxb"]
+[ext_resource type="PackedScene" uid="uid://bva0dk0eho620" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner bottom.fbx" id="64_qhfqq"]
+[ext_resource type="PackedScene" uid="uid://d6fqb57t8sur" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner top1.fbx" id="65_3updk"]
+[ext_resource type="PackedScene" uid="uid://bat7iqc6s6oa3" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner top.fbx" id="66_81y2c"]
+[ext_resource type="PackedScene" uid="uid://610kytbrojnt" path="res://scr/world_asset/modular_prototype/prototype_assets/wall corner.fbx" id="67_v3gga"]
+[ext_resource type="PackedScene" uid="uid://bq8lltgki0716" path="res://scr/world_asset/modular_prototype/prototype_assets/wall door1.fbx" id="68_6ofg5"]
+[ext_resource type="PackedScene" uid="uid://deq62lblxlki2" path="res://scr/world_asset/modular_prototype/prototype_assets/wall door2.fbx" id="69_sng7k"]
+[ext_resource type="PackedScene" uid="uid://bjuk4jlfbi714" path="res://scr/world_asset/modular_prototype/prototype_assets/wall door.fbx" id="70_j2uqd"]
+[ext_resource type="PackedScene" uid="uid://dli5husy03wmh" path="res://scr/world_asset/modular_prototype/prototype_assets/wall window1.fbx" id="71_34rqw"]
+[ext_resource type="PackedScene" uid="uid://by610xp4m8hat" path="res://scr/world_asset/modular_prototype/prototype_assets/wall window.fbx" id="72_0avse"]
+[ext_resource type="PackedScene" uid="uid://dep4no50comx4" path="res://scr/world_asset/modular_prototype/prototype_assets/wall.fbx" id="73_u5xcs"]
+[ext_resource type="PackedScene" uid="uid://cq2ihxevipacu" path="res://scr/world_asset/modular_prototype/prototype_assets/window1.fbx" id="74_4oi4o"]
+[ext_resource type="PackedScene" uid="uid://07htsws1txdt" path="res://scr/world_asset/modular_prototype/prototype_assets/window.fbx" id="75_34ou8"]
+
+[node name="ModularPrototypeLibrary" type="Node3D" unique_id=1549851189]
+
+[node name="arrow" parent="." unique_id=512961276 instance=ExtResource("1_pfmcu")]
+
+[node name="box" parent="." unique_id=2086312495 instance=ExtResource("2_h4dtx")]
+
+[node name="coin" parent="." unique_id=352232083 instance=ExtResource("3_btm0s")]
+
+[node name="cone1" parent="." unique_id=728568756 instance=ExtResource("4_lmw42")]
+
+[node name="cone2" parent="." unique_id=283760770 instance=ExtResource("5_nidbb")]
+
+[node name="cone3" parent="." unique_id=1501077669 instance=ExtResource("6_prx1f")]
+
+[node name="cone4" parent="." unique_id=14962466 instance=ExtResource("7_dwk0e")]
+
+[node name="cone" parent="." unique_id=62319912 instance=ExtResource("8_3f1gg")]
+
+[node name="cube4" parent="." unique_id=587510570 instance=ExtResource("9_1aya4")]
+
+[node name="cube5" parent="." unique_id=1185961767 instance=ExtResource("10_b43vu")]
+
+[node name="cube6" parent="." unique_id=96048125 instance=ExtResource("11_s5j45")]
+
+[node name="cube7" parent="." unique_id=62400640 instance=ExtResource("12_32ab8")]
+
+[node name="cube8" parent="." unique_id=1869468407 instance=ExtResource("13_qael3")]
+
+[node name="cube9" parent="." unique_id=1046413375 instance=ExtResource("14_id00r")]
+
+[node name="cube" parent="." unique_id=398070606 instance=ExtResource("15_qmepd")]
+
+[node name="cylinder1" parent="." unique_id=108791434 instance=ExtResource("16_1xl4x")]
+
+[node name="cylinder2" parent="." unique_id=2066842278 instance=ExtResource("17_yromt")]
+
+[node name="cylinder3" parent="." unique_id=1081294525 instance=ExtResource("18_w77eh")]
+
+[node name="cylinder4" parent="." unique_id=683358709 instance=ExtResource("19_1to3m")]
+
+[node name="cylinder5" parent="." unique_id=2023557259 instance=ExtResource("20_uydpq")]
+
+[node name="cylinder" parent="." unique_id=1116724722 instance=ExtResource("21_hnv5u")]
+
+[node name="door1" parent="." unique_id=1655776428 instance=ExtResource("22_s8nnb")]
+
+[node name="door2" parent="." unique_id=1258635705 instance=ExtResource("23_yejak")]
+
+[node name="door3" parent="." unique_id=668776202 instance=ExtResource("24_khfjk")]
+
+[node name="door" parent="." unique_id=329890740 instance=ExtResource("25_02cpy")]
+
+[node name="fence2" parent="." unique_id=1638803450 instance=ExtResource("26_0w6vk")]
+
+[node name="fence3" parent="." unique_id=2079292488 instance=ExtResource("27_fvdor")]
+
+[node name="fence edge" parent="." unique_id=956091619 instance=ExtResource("28_21sk1")]
+
+[node name="fence wood" parent="." unique_id=1948086008 instance=ExtResource("29_kbdfp")]
+
+[node name="fence" parent="." unique_id=1833868734 instance=ExtResource("30_y5gr0")]
+
+[node name="ground1" parent="." unique_id=1279173154 instance=ExtResource("31_mpmag")]
+
+[node name="ground corner" parent="." unique_id=1444683185 instance=ExtResource("32_k4er2")]
+
+[node name="ground" parent="." unique_id=11535553 instance=ExtResource("33_bwhe1")]
+
+[node name="key" parent="." unique_id=1303443937 instance=ExtResource("34_bj2m6")]
+
+[node name="ladder1" parent="." unique_id=1267347030 instance=ExtResource("35_avbk3")]
+
+[node name="ladder" parent="." unique_id=1874002172 instance=ExtResource("36_fnbur")]
+
+[node name="pillar1" parent="." unique_id=1543575593 instance=ExtResource("37_c8pkm")]
+
+[node name="pillar2" parent="." unique_id=629306321 instance=ExtResource("38_njiqm")]
+
+[node name="pillar3" parent="." unique_id=1694954912 instance=ExtResource("39_sox27")]
+
+[node name="pillar4" parent="." unique_id=1555448480 instance=ExtResource("40_20ffx")]
+
+[node name="pillar" parent="." unique_id=727193092 instance=ExtResource("41_bkwos")]
+
+[node name="railing edge" parent="." unique_id=390820794 instance=ExtResource("42_edimr")]
+
+[node name="railing" parent="." unique_id=1261228439 instance=ExtResource("43_wylyh")]
+
+[node name="ramp1" parent="." unique_id=496255697 instance=ExtResource("44_dw30x")]
+
+[node name="ramp" parent="." unique_id=1778563686 instance=ExtResource("45_n3tpg")]
+
+[node name="sphere1" parent="." unique_id=1083224701 instance=ExtResource("46_h7ph0")]
+
+[node name="sphere2" parent="." unique_id=445741233 instance=ExtResource("47_7dagc")]
+
+[node name="sphere" parent="." unique_id=705016442 instance=ExtResource("48_y2ave")]
+
+[node name="spike" parent="." unique_id=563201848 instance=ExtResource("49_rcgac")]
+
+[node name="spikes big" parent="." unique_id=1274499219 instance=ExtResource("50_mbgp8")]
+
+[node name="spikes small" parent="." unique_id=681163558 instance=ExtResource("51_nk87i")]
+
+[node name="stairs1" parent="." unique_id=260471904 instance=ExtResource("52_8jeum")]
+
+[node name="stairs2" parent="." unique_id=388278385 instance=ExtResource("53_15fkg")]
+
+[node name="stairs corner1" parent="." unique_id=1498587688 instance=ExtResource("54_00g2t")]
+
+[node name="stairs corner" parent="." unique_id=1311974822 instance=ExtResource("55_h2tuu")]
+
+[node name="stairs" parent="." unique_id=143063216 instance=ExtResource("56_nh6j1")]
+
+[node name="toggle switch" parent="." unique_id=1237049348 instance=ExtResource("57_3bw1f")]
+
+[node name="torus" parent="." unique_id=1887125861 instance=ExtResource("58_y2y5g")]
+
+[node name="wall1" parent="." unique_id=554825392 instance=ExtResource("59_v8erv")]
+
+[node name="wall corner1" parent="." unique_id=330570493 instance=ExtResource("60_kaake")]
+
+[node name="wall corner4" parent="." unique_id=890537844 instance=ExtResource("61_7obg7")]
+
+[node name="wall corner bottom1" parent="." unique_id=1490298836 instance=ExtResource("62_ie68k")]
+
+[node name="wall corner bottom2" parent="." unique_id=846184843 instance=ExtResource("63_32oxb")]
+
+[node name="wall corner bottom" parent="." unique_id=118188488 instance=ExtResource("64_qhfqq")]
+
+[node name="wall corner top1" parent="." unique_id=1241795561 instance=ExtResource("65_3updk")]
+
+[node name="wall corner top" parent="." unique_id=825678053 instance=ExtResource("66_81y2c")]
+
+[node name="wall corner" parent="." unique_id=127711391 instance=ExtResource("67_v3gga")]
+
+[node name="wall door1" parent="." unique_id=222326896 instance=ExtResource("68_6ofg5")]
+
+[node name="wall door2" parent="." unique_id=63606037 instance=ExtResource("69_sng7k")]
+
+[node name="wall door" parent="." unique_id=256117146 instance=ExtResource("70_j2uqd")]
+
+[node name="wall window1" parent="." unique_id=221827288 instance=ExtResource("71_34rqw")]
+
+[node name="wall window" parent="." unique_id=1890810699 instance=ExtResource("72_0avse")]
+
+[node name="wall" parent="." unique_id=1912845282 instance=ExtResource("73_u5xcs")]
+
+[node name="window1" parent="." unique_id=475286123 instance=ExtResource("74_4oi4o")]
+
+[node name="window" parent="." unique_id=1784706032 instance=ExtResource("75_34ou8")]

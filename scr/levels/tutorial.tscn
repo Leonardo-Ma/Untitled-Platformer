@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dvyt2mgm7c8vo"]
 
+[ext_resource type="MeshLibrary" uid="uid://cexgsapuu1nx6" path="res://scr/world_asset/modular_prototype/modular_prototype.meshlib" id="1_gpks2"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_hy25h"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hy25h"]
@@ -17,7 +19,7 @@ mesh = SubResource("BoxMesh_hy25h")
 shape = SubResource("ConvexPolygonShape3D_hy25h")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1663593836]
-transform = Transform3D(-4.146434e-07, -0.9999999, -1.3996647e-06, -9.485935, 4.371138e-08, 0, -3.6249276e-14, -8.742276e-08, 16.010298, -14.164097, 3.9713821, 0)
+transform = Transform3D(-4.146434e-07, -0.9999999, -1.3996647e-06, -9.485934, 4.3711378e-08, 0, -3.6249273e-14, -8.7422755e-08, 16.010296, -14.164097, 3.9713821, 0)
 mesh = SubResource("BoxMesh_hy25h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=692447375]
@@ -42,3 +44,10 @@ mesh = SubResource("BoxMesh_hy25h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D" unique_id=1227652909]
 shape = SubResource("ConvexPolygonShape3D_hy25h")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=847111304]
+mesh_library = ExtResource("1_gpks2")
+data = {
+"cells": PackedInt32Array(3, 65529, 0, 1, 65526, 9, 2, 65528, 196608, 0, 65528, 196608, 65533, 65528, 196676, 4, 65529, 196641, 6, 65528, 196609, 4, 65528, 196610)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
