@@ -10,6 +10,7 @@ extends Resource
 @export_category("GOAP Goals")
 @export var available_goals: Array[Script] = []
 
+
 ## Creates action instances from the configured scripts
 func create_actions() -> Array[GoapAction]:
 	var actions: Array[GoapAction] = []
@@ -20,11 +21,14 @@ func create_actions() -> Array[GoapAction]:
 				actions.append(instance)
 				#print_debug("AIConfig: Loaded action '%s'" % instance.get_custom_class_name())
 			else:
-				push_error("AIConfig: Script '%s' is not a GoapAction!" % action_script.resource_path)
-	
+				push_error(
+					"AIConfig: Script '%s' is not a GoapAction!" % action_script.resource_path
+				)
+
 	if actions.is_empty():
 		push_error("AIConfig: No valid actions created!")
 	return actions
+
 
 ## Creates goal instances from the configured scripts
 func create_goals() -> Array[GoapGoal]:
@@ -37,7 +41,7 @@ func create_goals() -> Array[GoapGoal]:
 				#print_debug("AIConfig: Loaded goal '%s'" % instance.get_custom_class_name())
 			else:
 				push_error("AIConfig: Script '%s' is not a GoapGoal!" % goal_script.resource_path)
-	
+
 	if goals.is_empty():
 		push_error("AIConfig: No valid goals created!")
 	return goals

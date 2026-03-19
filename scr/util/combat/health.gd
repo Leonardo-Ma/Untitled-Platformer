@@ -7,7 +7,7 @@ extends Resource
 signal invulnerability_changed(active: bool)
 signal max_health_changed(new_max_health: int)
 signal damaged(attack: Attack)
-signal died()
+signal died
 
 @export var max_health: int:
 	set(val):
@@ -27,24 +27,27 @@ var _regen_tick_rate: float = 0.5  # Regenerate every 0.5 seconds
 var _regen_delay: float = 30.0  # Seconds to wait after damage before regenerating
 var _waiting_for_regen_delay: bool = false
 
+
 func take_damage(attack: Attack) -> void:
 	if invulnerable:
 		return
-	
+
 	damaged.emit(attack)
 	health -= attack.power
 	enable_invulnerability(1)
 	stop_regeneration()  # Stop any active regen and reset delay
 	schedule_regeneration()
-	
+
 	if health <= 0:
 		died.emit()
+
 
 ## Called by entity during _ready() to inject timer dependency
 ## Used to avoid _process
 func initialize_timer_callback(callback: Callable) -> void:
 	_timer_callback = callback
 	start_regeneration()
+
 
 #region Invulnerability
 func enable_invulnerability(duration: float = 0.0) -> void:
@@ -54,45 +57,53 @@ func enable_invulnerability(duration: float = 0.0) -> void:
 		# Ask the entity to create a timer
 		_timer_callback.call(duration, disable_invulnerability)
 
+
 func disable_invulnerability() -> void:
 	invulnerable = false
 	invulnerability_changed.emit(false)
+
+
 #endregion
+
 
 #region Health Regeneration
 ## Schedule regeneration to start after delay
 func schedule_regeneration() -> void:
 	if not _can_regenerate():
 		return
-	
+
 	if not _waiting_for_regen_delay:
 		_waiting_for_regen_delay = true
 		_timer_callback.call(_regen_delay, start_regeneration)
 
+
 func start_regeneration() -> void:
 	_waiting_for_regen_delay = false
-	
+
 	if not _can_regenerate() or _is_regenerating:
 		return
-	
+
 	_is_regenerating = true
 	_timer_callback.call(_regen_tick_rate, apply_regeneration_tick)
+
 
 func stop_regeneration() -> void:
 	_is_regenerating = false
 	_waiting_for_regen_delay = false
 
+
 func apply_regeneration_tick() -> void:
 	if health >= max_health:
 		_is_regenerating = false
 		return
-	
+
 	health += int(health_regen * _regen_tick_rate)
-	
+
 	if health < max_health and health_regen > 0:
 		_timer_callback.call(_regen_tick_rate, apply_regeneration_tick)
 	else:
 		_is_regenerating = false
+
 
 func _can_regenerate() -> bool:
 	return health_regen > 0 and _timer_callback.is_valid() and health < max_health

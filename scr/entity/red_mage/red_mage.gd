@@ -5,8 +5,9 @@ extends AgressiveEntity
 
 @onready var navigation_controller: Node = $NavigationController
 
-@onready var agent : GoapAgent = GoapAgent.new()
+@onready var agent: GoapAgent = GoapAgent.new()
 @onready var goap_controller: RedMageMemory = $GoapController
+
 
 func _ready() -> void:
 	# BUG If this doesn't call parent's ready, it doesn't connect signals properly
@@ -17,7 +18,7 @@ func _ready() -> void:
 	agent.init(self, goals, goap_controller, actions)
 
 	add_child(agent)
-	
+
 	register_goap_agent(agent)
 	# Disable navigation as goap will enable it when tracking
 	navigation_controller.set_physics_process(false)

@@ -4,10 +4,11 @@
 extends Resource
 class_name ItemData
 
-@export var name : String = ""
-@export_multiline var description : String = ""
+@export var name: String = ""
+@export_multiline var description: String = ""
 @export var stack_size: int = 1
-@export var texture : AtlasTexture
+@export var texture: AtlasTexture
+
 
 func is_stackable() -> bool:
 	return self.stack_size != 1

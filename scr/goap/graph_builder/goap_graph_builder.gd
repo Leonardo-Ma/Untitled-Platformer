@@ -7,17 +7,18 @@ var _actions: Array[GoapAction] = []
 var _last_modification_times: Dictionary = {}
 var _update_timer: Timer
 
+
 func _ready() -> void:
 	# Ensure this node processes even when paused
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
+
 	# Configure GraphEdit
 	right_disconnects = true
 	scroll_offset = Vector2(50, 50)
 	zoom = 1.0
 	minimap_enabled = true
 	show_grid = true
-	
+
 	if OS.is_debug_build():
 		_update_timer = Timer.new()
 		_update_timer.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -25,13 +26,14 @@ func _ready() -> void:
 		_update_timer.timeout.connect(_check_for_updates)
 		add_child(_update_timer)
 		_update_timer.start()
-	
+
 	_load_goap_elements()
 	_build_graph()
 
+
 func _check_for_updates() -> void:
 	var needs_rebuild: bool = false
-	
+
 	for dir_path: String in ["res://scr/goap/goals", "res://scr/goap/actions"]:
 		var dir: DirAccess = DirAccess.open(dir_path)
 		if dir:
@@ -41,15 +43,19 @@ func _check_for_updates() -> void:
 				if file_name.ends_with(".gd"):
 					var file_path: String = dir_path + "/" + file_name
 					var mod_time: int = FileAccess.get_modified_time(file_path)
-					
-					if not _last_modification_times.has(file_path) or _last_modification_times[file_path] != mod_time:
+
+					if (
+						not _last_modification_times.has(file_path)
+						or _last_modification_times[file_path] != mod_time
+					):
 						_last_modification_times[file_path] = mod_time
 						needs_rebuild = true
 				file_name = dir.get_next()
 			dir.list_dir_end()
-	
+
 	if needs_rebuild:
 		_rebuild_graph()
+
 
 func _rebuild_graph() -> void:
 	# Clear existing nodes
@@ -57,17 +63,19 @@ func _rebuild_graph() -> void:
 		if child is GraphNode:
 			remove_child(child)
 			child.queue_free()
-	
+
 	clear_connections()
 	_load_goap_elements()
 	_build_graph()
 
+
 func _load_goap_elements() -> void:
 	var goals_dir: String = "res://scr/goap/goals"
 	_goals = _load_all_goals(goals_dir)
-	
+
 	var actions_dir: String = "res://scr/goap/actions"
 	_actions = _load_all_actions(actions_dir)
+
 
 func _load_all_goals(dir_path: String) -> Array[GoapGoal]:
 	var result: Array[GoapGoal] = []
@@ -87,6 +95,7 @@ func _load_all_goals(dir_path: String) -> Array[GoapGoal]:
 		dir.list_dir_end()
 	return result
 
+
 func _load_all_actions(dir_path: String) -> Array[GoapAction]:
 	var result: Array[GoapAction] = []
 	var dir: DirAccess = DirAccess.open(dir_path)
@@ -105,10 +114,11 @@ func _load_all_actions(dir_path: String) -> Array[GoapAction]:
 		dir.list_dir_end()
 	return result
 
+
 func _build_graph() -> void:
 	var y_offset: int = 0
 	var goal_nodes: Dictionary = {}
-	
+
 	for i: int in range(_goals.size()):
 		var goal: GoapGoal = _goals[i]
 		var node: GraphNode = _create_goal_node(goal, i)
@@ -116,45 +126,47 @@ func _build_graph() -> void:
 		y_offset += 150
 		add_child(node)
 		goal_nodes[goal] = node.name
-	
+
 	var action_x_offset: int = 400
 	y_offset = 0
-	
+
 	for i: int in range(_actions.size()):
 		var action: GoapAction = _actions[i]
 		var node: GraphNode = _create_action_node(action, i)
 		node.position_offset = Vector2(action_x_offset, y_offset)
 		y_offset += 150
 		add_child(node)
-		
+
 		_connect_action_to_goals(action, node.name, goal_nodes)
+
 
 func _create_goal_node(goal: GoapGoal, index: int) -> GraphNode:
 	var node: GraphNode = GraphNode.new()
 	node.name = "Goal_%d" % index
 	node.title = goal.get_custom_class_name()
-	
+
 	var vbox: VBoxContainer = VBoxContainer.new()
-	
+
 	var priority_label: Label = Label.new()
 	priority_label.text = "Priority: %d" % goal.priority()
 	vbox.add_child(priority_label)
-	
+
 	var state_label: Label = Label.new()
 	state_label.text = "Desired State:"
 	vbox.add_child(state_label)
-	
+
 	for key: String in goal.get_desired_state().keys():
 		var key_label: Label = Label.new()
 		key_label.text = "  %s: %s" % [key, goal.get_desired_state()[key]]
 		vbox.add_child(key_label)
-	
+
 	node.add_child(vbox)
-	
+
 	# Set slots for connections (right side only for goals)
 	node.set_slot(0, false, 0, Color.WHITE, true, 0, Color.GREEN)
-	
+
 	return node
+
 
 func _create_action_node(action: GoapAction, index: int) -> GraphNode:
 	var node: GraphNode = GraphNode.new()
@@ -190,12 +202,15 @@ func _create_action_node(action: GoapAction, index: int) -> GraphNode:
 
 	return node
 
-func _connect_action_to_goals(action: GoapAction, action_node_name: String, goal_nodes: Dictionary) -> void:
+
+func _connect_action_to_goals(
+	action: GoapAction, action_node_name: String, goal_nodes: Dictionary
+) -> void:
 	var action_effects: Dictionary = action.get_effects()
 
 	for goal: GoapGoal in _goals:
 		var desired_state: Dictionary = goal.get_desired_state()
-		
+
 		# Check if action's effects satisfy any of the goal's desired state
 		for key: Variant in desired_state.keys():
 			if action_effects.has(key) and action_effects[key] == desired_state[key]:

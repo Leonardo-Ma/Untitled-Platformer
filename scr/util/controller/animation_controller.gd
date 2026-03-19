@@ -1,7 +1,7 @@
 extends Node
 
 #######################################
-## Entity animation controller 
+## Entity animation controller
 ## To be attached to AnimationTree
 #######################################
 
@@ -10,6 +10,7 @@ extends Node
 @onready var health: Health = entity.health
 
 @onready var navigation_controller: Node = $"../NavigationController"
+
 
 func _ready() -> void:
 	assert(self, "Animation tree not defined by " + owner.name)
@@ -25,28 +26,36 @@ func _ready() -> void:
 	health.damaged.connect(_on_damaged)
 	health.died.connect(_on_death)
 
-func _on_move_started(is_running : bool) -> void:
+
+func _on_move_started(is_running: bool) -> void:
 	self.set("parameters/moving/transition_request", "moving")
 	self.set("parameters/is_running/blend_amount", int(is_running))
 
+
 func _on_move_stopped() -> void:
 	self.set("parameters/moving/transition_request", "idle")
+
 
 func _on_jumped() -> void:
 	self.set("parameters/in_air_state/transition_request", "air")
 	self.set("parameters/is_jumping/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
+
 func _on_in_air() -> void:
 	self.set("parameters/in_air_state/transition_request", "air")
 
+
 func _on_landed() -> void:
 	self.set("parameters/in_air_state/transition_request", "ground")
-	
+
+
 func _on_attack() -> void:
 	self.set("parameters/ground_attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	
-func _on_damaged(_attack : Attack = null) -> void:
+
+
+func _on_damaged(_attack: Attack = null) -> void:
 	self.set("parameters/is_damaged/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	
+
+
 func _on_death() -> void:
 	self.set("parameters/is_alive/transition_request", "dead")
