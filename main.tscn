@@ -113,7 +113,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MainMenu" parent="UI/Menu" unique_id=916052406 instance=ExtResource("2_82xsv")]
-visible = false
 layout_mode = 0
 
 [node name="OptionsMenu" parent="UI/Menu" unique_id=1927096750 instance=ExtResource("3_getpj")]
@@ -163,7 +162,7 @@ offset_bottom = 74.0
 [node name="World" parent="." unique_id=1123589125 instance=ExtResource("2_dg77c")]
 
 [node name="Player" parent="." unique_id=1389698494 instance=ExtResource("1_kek77")]
-transform = Transform3D(1.3113419e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113419e-07, 0, 1, 0)
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, 0.5, 0)
 attack = SubResource("Resource_yaehf")
 stats = SubResource("Resource_lswn8")
 health = SubResource("Resource_a6jrf")

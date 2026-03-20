@@ -1,35 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://hoe3n468xged"]
+[gd_scene format=3 uid="uid://hoe3n468xged"]
 
-[ext_resource type="Script" uid="uid://dw4fpml34e0ic" path="res://scr/ui/menu/main_menu.gd" id="1_o5at2"]
+[ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://scr/ui/base_theme.tres" id="1_de5sf"]
+[ext_resource type="Script" uid="uid://btijgca3wb05d" path="res://scr/ui/menu/button_container_animation.gd" id="3_sco6b"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=2050596146]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_o5at2")
+theme = ExtResource("1_de5sf")
+script = ExtResource("3_sco6b")
 
-[node name="ButtonContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 489.0
-offset_top = 153.0
-offset_right = 559.0
-offset_bottom = 254.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=134787431]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1151.0
+offset_bottom = 648.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ButtonContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=807367449]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="Play" type="Button" parent="ButtonContainer/VBoxContainer"]
+[node name="Continue" type="Button" parent="CenterContainer/VBoxContainer" unique_id=876373735]
 layout_mode = 2
-text = "Play	"
+text = "Continue"
 
-[node name="Options" type="Button" parent="ButtonContainer/VBoxContainer"]
+[node name="New Game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2029598721]
+layout_mode = 2
+text = "New Game"
+
+[node name="Options" type="Button" parent="CenterContainer/VBoxContainer" unique_id=927844332]
 layout_mode = 2
 text = "Options"
 
-[node name="Quit" type="Button" parent="ButtonContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1120257838]
 layout_mode = 2
 text = "Quit"
