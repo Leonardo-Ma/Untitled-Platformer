@@ -1,6 +1,48 @@
+# This will block a commit due to format or certain checks
+# Will also automatically fix as unstaged change when possible
+
+exclude: |
+  (?x)^(
+    \.godot/|
+    \.import/|
+    (^|/)build/|
+    addons/|
+    .*\.png$|
+    .*\.jpg$|
+    .*\.jpeg$|
+    .*\.glb$|
+    .*\.ogg$|
+    .*\.wav$
+  )
+
 repos:
   - repo: https://github.com/Scony/godot-gdscript-toolkit
     rev: 4.5.0
     hooks:
-      - id: gdformat
-        exclude: ^(addons/|\.godot/|build/)
+      - id: gdformat # Check gdscript format
+        files: \.gd$
+        args: [--line-length=150]
+      - id: gdlint
+        files: \.gd$
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: detect-private-key # Detect the presence of private keys
+      - id: check-added-large-files # Check for files that are larger than a threshold
+        args: ['--maxkb=5120']
+      - id: check-merge-conflict # Check for files that contain merge conflict strings
+      - id: check-yaml
+        files: \.ya?ml$
+      - id: check-json
+        files: \.json$
+      - id: pretty-format-json # Sort and ident keys
+        files: \.json$
+      - id: trailing-whitespace # Trims trailing whitespace
+        files: \.(gd|md|json|ya?ml)$
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer # Ensure that files ends with newline
+      - id: check-vcs-permalinks # Ensure that links to vcs websites are permalinks
+      - id: check-case-conflict # Check for files that would conflict in case-insensitive filesystems
+      - id: check-illegal-windows-names # Check for files that cannot be created on Windows
+      - id: check-symlinks # Checks for symlinks which do not point to anything
