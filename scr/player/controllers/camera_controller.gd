@@ -5,12 +5,12 @@ extends Node3D
 signal capture_mouse_requested
 signal release_mouse_requested
 
-@onready var cam_root: Node3D = $"."
-@onready var player: CharacterBody3D = $".."
-
 @export_group("Camera")
 @export_range(0.0, 1.0, 0.1) var horizontal_sensibility: float = 0.2
 @export_range(0.0, 1.0, 0.1) var vertical_sensibility: float = 0.2
+
+@onready var cam_root: Node3D = $"."
+@onready var player: CharacterBody3D = $".."
 
 
 # Handle camera x and y movement
@@ -18,9 +18,7 @@ signal release_mouse_requested
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		release_mouse_requested.emit()
-	var player_is_using_mouse: bool = (
-		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
-	)
+	var player_is_using_mouse: bool = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("left_click"):
 		capture_mouse_requested.emit()
 	if player_is_using_mouse:

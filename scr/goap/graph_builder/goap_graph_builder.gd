@@ -1,6 +1,5 @@
-extends GraphEdit
-
 class_name GoapGraphBuilder
+extends GraphEdit
 
 var _goals: Array[GoapGoal] = []
 var _actions: Array[GoapAction] = []
@@ -44,10 +43,7 @@ func _check_for_updates() -> void:
 					var file_path: String = dir_path + "/" + file_name
 					var mod_time: int = FileAccess.get_modified_time(file_path)
 
-					if (
-						not _last_modification_times.has(file_path)
-						or _last_modification_times[file_path] != mod_time
-					):
+					if not _last_modification_times.has(file_path) or _last_modification_times[file_path] != mod_time:
 						_last_modification_times[file_path] = mod_time
 						needs_rebuild = true
 				file_name = dir.get_next()
@@ -203,9 +199,7 @@ func _create_action_node(action: GoapAction, index: int) -> GraphNode:
 	return node
 
 
-func _connect_action_to_goals(
-	action: GoapAction, action_node_name: String, goal_nodes: Dictionary
-) -> void:
+func _connect_action_to_goals(action: GoapAction, action_node_name: String, goal_nodes: Dictionary) -> void:
 	var action_effects: Dictionary = action.get_effects()
 
 	for goal: GoapGoal in _goals:

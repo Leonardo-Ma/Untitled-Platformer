@@ -1,10 +1,8 @@
 ## Interface class
 ## This is attached to goap controller node
 ## Controls the npc specific blackboard
-@abstract
+@abstract class_name GoapMemory
 extends Node
-
-class_name GoapMemory
 
 var _actor: Node = null
 var _blackboard: Dictionary = {}

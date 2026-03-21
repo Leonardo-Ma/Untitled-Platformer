@@ -22,6 +22,4 @@ func _physics_process(_delta: float) -> void:
 		running = "Running"
 	else:
 		running = "Not running"
-	Globals.player_state = (
-		is_damaged + " \n " + in_air + " \n " + jumping + " \n " + running + " \n "
-	)
+	Globals.player_state = (is_damaged + " \n " + in_air + " \n " + jumping + " \n " + running + " \n ")

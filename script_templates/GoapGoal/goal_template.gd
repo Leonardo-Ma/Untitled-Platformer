@@ -1,6 +1,5 @@
-extends GoapGoal
-
 class_name GoalName
+extends GoapGoal
 
 
 func get_custom_class_name() -> String:

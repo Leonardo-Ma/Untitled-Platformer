@@ -12,10 +12,7 @@ extends Node
 
 func _ready() -> void:
 	assert(animation_tree, "Animation tree not defined by " + self.name)
-	assert(
-		attack and attack.power > 0 and attack.type != null,
-		"Attack property incorrect for " + self.name
-	)
+	assert(attack and attack.power > 0 and attack.type != null, "Attack property incorrect for " + self.name)
 
 
 func _on_animation_tree_animation_finished(_anim_name: StringName) -> void:

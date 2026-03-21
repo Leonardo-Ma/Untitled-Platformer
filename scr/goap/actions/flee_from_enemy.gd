@@ -1,26 +1,26 @@
+class_name FleeFromEnemy
 extends GoapAction
 
-class_name FleeFromEnemy
 
-func get_custom_class_name() -> String: 
+func get_custom_class_name() -> String:
 	return "FleeFromEnemy"
+
 
 func is_valid(_blackboard: Dictionary) -> bool:
 	return _blackboard.get("low_health", false) == true
 
+
 func get_cost(_blackboard: Dictionary) -> int:
 	return 1
 
+
 func get_preconditions() -> Dictionary:
-	return {
-		"enemy_nearby": true,
-		"low_health": true
-	}
+	return {"enemy_nearby": true, "low_health": true}
+
 
 func get_effects() -> Dictionary:
-	return {
-		"enemy_nearby": false
-	}
+	return {"enemy_nearby": false}
+
 
 func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	var enemy_position: Vector3 = _blackboard.get("enemy_position", Vector3.ZERO)
@@ -31,12 +31,12 @@ func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	var flee_direction: Vector3 = (actor_position - enemy_position).normalized()
 	var flee_distance: float = 15.0
 	var flee_target: Vector3 = actor_position + flee_direction * flee_distance
-	
+
 	_actor.navigation_controller.set_physics_process(true)
 	_actor.navigation_controller.update_target_location(flee_target)
-	
+
 	if not enemy_nearby:
 		_actor.navigation_controller.set_physics_process(false)
 		return true
-	
+
 	return false

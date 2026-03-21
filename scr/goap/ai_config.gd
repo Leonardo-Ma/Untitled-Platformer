@@ -21,9 +21,7 @@ func create_actions() -> Array[GoapAction]:
 				actions.append(instance)
 				#print_debug("AIConfig: Loaded action '%s'" % instance.get_custom_class_name())
 			else:
-				push_error(
-					"AIConfig: Script '%s' is not a GoapAction!" % action_script.resource_path
-				)
+				push_error("AIConfig: Script '%s' is not a GoapAction!" % action_script.resource_path)
 
 	if actions.is_empty():
 		push_error("AIConfig: No valid actions created!")

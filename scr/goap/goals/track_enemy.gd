@@ -1,6 +1,5 @@
-extends GoapGoal
-
 class_name TrackEnemy
+extends GoapGoal
 
 
 func get_custom_class_name() -> String:
@@ -8,10 +7,7 @@ func get_custom_class_name() -> String:
 
 
 func is_valid(_blackboard: Dictionary) -> bool:
-	return (
-		_blackboard.get("enemy_in_melee_range", false) == false
-		and _blackboard.get("low_health", false) == false
-	)
+	return _blackboard.get("enemy_in_melee_range", false) == false and _blackboard.get("low_health", false) == false
 
 
 func priority() -> int:
