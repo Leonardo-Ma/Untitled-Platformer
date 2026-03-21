@@ -1,14 +1,5 @@
 extends Node
 
-@onready var player_state: String
-@onready var player_speed: float = 3.0
-@onready var player: CharacterBody3D = (
-	get_tree().get_root().get_node_or_null("/root/Main/Player") as CharacterBody3D
-)
-@onready var player_animation_tree: AnimationTree = (
-	get_tree().get_root().get_node_or_null("/root/Main/Player/AnimationTree") as AnimationTree
-)
-
 var player_health: Health
 var player_max_health: float
 
@@ -23,6 +14,10 @@ var player_health_regen: float
 #get:
 #return player_mana
 
+@onready var player_state: String
+@onready var player_speed: float = 3.0
+@onready var player: CharacterBody3D = get_tree().get_root().get_node_or_null("/root/Main/Player") as CharacterBody3D
+@onready var player_animation_tree: AnimationTree = get_tree().get_root().get_node_or_null("/root/Main/Player/AnimationTree") as AnimationTree
 # TODO Either use this a global source of truth or a new GlobalInputController autoload
 @onready var mouse_mode: Input
 

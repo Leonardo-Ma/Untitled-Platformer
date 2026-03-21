@@ -2,7 +2,7 @@
 
 This style guide is separated into three parts: code rules, other file rules, and guidelines for git.
 
-The style rules are intended to increase readability of the source code for humans that will read the written code. The most important rule of all is: Use common sense. 
+The style rules are intended to increase readability of the source code for humans that will read the written code. The most important rule of all is: Use common sense.
 
 ## Code style rules
 
@@ -20,10 +20,10 @@ The style rules are intended to increase readability of the source code for huma
   math), e used in `catch` blocks as the exception name. Other
   variables in loops and elsewhere need to be named with actually
   descriptive variable names.
-  
+
 - Similarly, some very common abbreviations are used in the code,
   and can (and should) thus be used when naming variables. These are
-  however *rare* exceptions, not the rule. The allowed abbreviations 
+  however *rare* exceptions, not the rule. The allowed abbreviations
   are listed below. No other abbreviation should be used.
   - `min` - `max` - `pos` - `rot` - `str`
   - `rect` (when related to class names and variables holding instances of those classes)
@@ -31,9 +31,9 @@ The style rules are intended to increase readability of the source code for huma
 
 - Variables and functions are `camelCase`. Classes are `PascalCase`. Constants are `UPPER_SNAKE_CASE`. Enums are `UPPERCASE`
 
-- Files inside `/scr` and Godot related are snake_case. 
+- Files inside `/scr` and Godot related are snake_case.
 - - Only exception: [ScriptTemplates](https://docs.godotengine.org/en/stable/tutorials/scripting/creating_script_templates.html)
-- - 
+- -
 
 - Start comments with a capital letter, unless it is a commented out
   code block or a keyword.
@@ -46,8 +46,8 @@ The style rules are intended to increase readability of the source code for huma
   actually need post increment.
 
 - Ternary operators (`condition ? exprIfTrue : exprIfFalse`) can be used instead of `if ... else`
-  statements as long as they are kept readable. 
-  
+  statements as long as they are kept readable.
+
 - Single line variables (and properties) can be next to each other
   without a blank line. Other variables and class elements should have
   a blank line separating them.
@@ -96,7 +96,7 @@ The style rules are intended to increase readability of the source code for huma
   against negative health bugs.
 
 - Separation of concerns should be used.
-  
+
 - When writing conditions checking booleans, don't explicitly write
   out `true` or `false` (unless the variable is nullable in which case
   the explicit compare is required). So write code like this: `if
@@ -242,7 +242,7 @@ When doing changes that impact existing gameplay or add new gameplay
 additional considerations regarding playability and understandability
 need to be taken into account.
 
-- When changing an existing mechanic that has tutorials, tooltips, help 
+- When changing an existing mechanic that has tutorials, tooltips, help
   menu entries or other explanations, you must also update those texts
   so that how we explain the game to the player doesn't get out of sync.
   This is because if a gameplay changing PR is accepted it may take multiple

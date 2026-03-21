@@ -1,7 +1,5 @@
-@abstract
+@abstract class_name GoapAction
 extends Node
-
-class_name GoapAction
 
 @abstract func get_custom_class_name() -> String
 

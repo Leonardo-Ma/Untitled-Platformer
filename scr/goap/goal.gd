@@ -1,7 +1,5 @@
-@abstract
+@abstract class_name GoapGoal
 extends Node
-
-class_name GoapGoal
 
 
 func get_custom_class_name() -> String:

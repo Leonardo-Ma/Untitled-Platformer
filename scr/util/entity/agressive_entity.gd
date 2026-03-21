@@ -19,10 +19,7 @@ var _goap_agent: GoapAgent = null
 func _ready() -> void:
 	assert(hitbox, "Hitbox incorrect for " + self.name)
 	assert(hurtbox, "Hurtbox incorrect for " + self.name)
-	assert(
-		attack and attack.power > 0 and attack.type != null,
-		"Attack property incorrect for " + self.name
-	)
+	assert(attack and attack.power > 0 and attack.type != null, "Attack property incorrect for " + self.name)
 	assert(stats, "Stats property incorrect for " + self.name)
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)
 	assert(movement, "Movement incorrect for " + self.name)

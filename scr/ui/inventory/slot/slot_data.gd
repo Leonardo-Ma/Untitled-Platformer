@@ -1,7 +1,7 @@
-extends Resource
 ## @tutorial(Godot 4 - RPG Inventory System From Scratch DevLogLogan): [url]https://youtu.be/V79YabQZC1s?si=050Ix8SRjkIwotWi&t=170[/url]
 ## [img]res://documentation/inventory/inventory_component.png[/img]
 class_name ItemGroupData
+extends Resource
 
 @export var item_data: ItemData
 # TODO Check this max hardcoded amount is valid for debugging purposes, should be max item_data.stack_size
@@ -10,11 +10,7 @@ class_name ItemGroupData
 
 
 func can_merge_with(other_item_group_data: ItemGroupData) -> bool:
-	return (
-		item_data == other_item_group_data.item_data
-		and item_data.is_stackable()
-		and quantity < item_data.stack_size
-	)
+	return item_data == other_item_group_data.item_data and item_data.is_stackable() and quantity < item_data.stack_size
 
 
 func can_fully_merge_with(other_item_group_data: ItemGroupData) -> bool:
@@ -22,10 +18,7 @@ func can_fully_merge_with(other_item_group_data: ItemGroupData) -> bool:
 
 
 func can_stack_with(other_item_group_data: ItemGroupData) -> bool:
-	return (
-		item_data == other_item_group_data.item_data
-		and quantity + other_item_group_data.quantity <= item_data.stack_size
-	)
+	return item_data == other_item_group_data.item_data and quantity + other_item_group_data.quantity <= item_data.stack_size
 
 
 func fully_merge_with(other_item_group_data: ItemGroupData) -> void:

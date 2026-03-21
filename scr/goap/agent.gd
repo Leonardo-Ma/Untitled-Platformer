@@ -5,9 +5,10 @@
 ## As good practice, I suggest leaving it isolated like
 ## this, so it makes re-use easy and it doesn't get tied
 ## to unrelated implementation details (movement, collisions, etc)
+class_name GoapAgent
 extends Node
 
-class_name GoapAgent
+const GOAL_SWITCH_DELAY: float = 0.1
 
 var _goals: Array[GoapGoal]
 var _current_goal: GoapGoal
@@ -21,7 +22,6 @@ var _goap_memory: GoapMemory
 var _action_planner: GoapActionPlanner
 
 var _goal_switch_cooldown: float = 0.0
-const GOAL_SWITCH_DELAY: float = 0.1
 
 
 # For ever frame, is current goal still highest priority?
@@ -51,9 +51,7 @@ func _process(delta: float) -> void:
 		_follow_plan(_current_plan, delta, _goap_memory.get_blackboard())
 
 
-func init(
-	actor: Node, goals: Array[GoapGoal], goap_memory: GoapMemory, actions: Array[GoapAction]
-) -> void:
+func init(actor: Node, goals: Array[GoapGoal], goap_memory: GoapMemory, actions: Array[GoapAction]) -> void:
 	_goap_memory = goap_memory
 	_goap_memory.init(actor)
 	_goals = goals
@@ -73,10 +71,7 @@ func _get_best_goal() -> GoapGoal:
 	var highest_priority: GoapGoal = null
 
 	for goal: GoapGoal in _goals:
-		if (
-			goal.is_valid(_goap_memory.get_blackboard())
-			and (highest_priority == null or goal.priority() > highest_priority.priority())
-		):
+		if goal.is_valid(_goap_memory.get_blackboard()) and (highest_priority == null or goal.priority() > highest_priority.priority()):
 			highest_priority = goal
 
 	return highest_priority
@@ -90,9 +85,7 @@ func _get_best_goal() -> GoapGoal:
 func _follow_plan(plan: Array[GoapAction], delta: float, _blackboard: Dictionary) -> void:
 	if plan.size() == 0:
 		return
-	var is_step_complete: bool = plan[_current_plan_step].perform(
-		_goap_memory._actor, delta, _blackboard
-	)
+	var is_step_complete: bool = plan[_current_plan_step].perform(_goap_memory._actor, delta, _blackboard)
 
 	if is_step_complete and _current_plan_step < plan.size() - 1:
 		_current_plan_step += 1

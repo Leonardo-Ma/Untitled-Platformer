@@ -1,7 +1,6 @@
 # TODO Consider transforming into a resource
-extends GoapMemory
-
 class_name RedMageMemory
+extends GoapMemory
 
 const HEALTH_LOW_THRESHOLD: float = 0.3
 

@@ -1,6 +1,14 @@
 @icon("res://icons/16x16/character_move.png")
 extends Node3D
 
+# These signals go to animation controller
+signal move_started(is_running: bool)
+signal move_stopped
+signal movement_direction_changed(direction: Vector2, is_running: bool)
+signal jumped
+signal in_air
+signal landed
+
 const JUMP_VELOCITY: float = 6.5
 
 @export var camera: Node3D
@@ -10,14 +18,6 @@ var _movement_enabled: bool = true
 var _disable_timer: float = 0.0
 
 @onready var magic_controller: Node = $"../MagicController"
-
-# These signals go to animation controller
-signal move_started(is_running: bool)
-signal move_stopped
-signal movement_direction_changed(direction: Vector2, is_running: bool)
-signal jumped
-signal in_air
-signal landed
 
 
 func _ready() -> void:
@@ -50,9 +50,7 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 	var input_direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
 	if input_direction.length() > 0:
-		var direction: Vector3 = (
-			(body.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-		)
+		var direction: Vector3 = (body.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 
 		var is_running: bool = Input.is_action_pressed("run")
 		if is_running:
@@ -64,9 +62,7 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 		var normalized_input: Vector2 = input_direction.normalized()
 		var speed_factor: float = Globals.player_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
-		var blend_direction: Vector2 = (
-			Vector2(normalized_input.x, -normalized_input.y) * speed_factor
-		)
+		var blend_direction: Vector2 = Vector2(normalized_input.x, -normalized_input.y) * speed_factor
 
 		emit_signal("movement_direction_changed", blend_direction)
 

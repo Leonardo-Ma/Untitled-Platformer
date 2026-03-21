@@ -1,5 +1,5 @@
-extends Node
 class_name GoapActionPlanner
+extends Node
 
 var _actions: Array[GoapAction] = []
 
@@ -17,9 +17,7 @@ func set_actions(actions: Array[GoapAction]) -> void:
 func get_plan(goal: GoapGoal, blackboard: Dictionary) -> Array[GoapAction]:
 	var desired_state: Dictionary = goal.get_desired_state().duplicate()
 	if desired_state.is_empty():
-		push_warning(
-			"GoapActionPlanner: Goal '%s' has no desired state!" % goal.get_custom_class_name()
-		)
+		push_warning("GoapActionPlanner: Goal '%s' has no desired state!" % goal.get_custom_class_name())
 		return []
 
 	if _actions.is_empty():

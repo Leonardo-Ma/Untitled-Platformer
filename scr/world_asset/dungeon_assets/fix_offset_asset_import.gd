@@ -52,9 +52,7 @@ func _fix_node(node: Node) -> void:
 					var tangent_count: int = tangents.size() / 4
 					for j: int in range(tangent_count):
 						var index: int = j * 4
-						var tangent: Vector3 = Vector3(
-							tangents[index], tangents[index + 1], tangents[index + 2]
-						)
+						var tangent: Vector3 = Vector3(tangents[index], tangents[index + 1], tangents[index + 2])
 						tangent = (normal_basis * tangent).normalized()
 						tangents[index] = tangent.x
 						tangents[index + 1] = tangent.y

@@ -1,12 +1,13 @@
 # https://www.youtube.com/watch?v=f90ieBOoIYQ DashNothing - How to Make a Great Health Bar in Godot 4 | Let's Godot
 extends ProgressBar
 
+var health: float = 0.0:
+	set = _set_health
+
 @onready var timer: Timer = $Timer
 @onready var damagebar: ProgressBar = $Damagebar
 @onready var health_resource: Health = Globals.player_health
 # BUG There's a delay between hit and healthbar (green) update
-var health: float = 0.0:
-	set = _set_health
 
 
 func _ready() -> void:

@@ -14,11 +14,11 @@ signal died
 		max_health = val
 		max_health_changed.emit(max_health)
 		health = max_health
+@export_range(0, 9999, 0.01, "suffix:health/second") var health_regen: float
+
 var health: int = max_health:
 	set(val):
 		health = clamp(val, 0, max_health)
-
-@export_range(0, 9999, 0.01, "suffix:health/second") var health_regen: float
 
 var invulnerable: bool = false
 var _timer_callback: Callable  # Reference to entity's timer creation method

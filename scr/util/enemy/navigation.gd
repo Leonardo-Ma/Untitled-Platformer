@@ -11,14 +11,10 @@ signal move_stopped
 func _physics_process(_delta: float) -> void:
 	var current_location: Vector3 = owner.global_transform.origin
 	var next_location: Vector3 = navigation_agent.get_next_path_position()
-	var new_velocity: Vector3 = (
-		(next_location - current_location).normalized() * owner.movement.run_speed
-	)
+	var new_velocity: Vector3 = (next_location - current_location).normalized() * owner.movement.run_speed
 
 	owner.velocity = owner.velocity.move_toward(new_velocity, 0.25)
-	owner.look_at(
-		Vector3(next_location.x, owner.global_position.y, next_location.z), Vector3.UP, true
-	)
+	owner.look_at(Vector3(next_location.x, owner.global_position.y, next_location.z), Vector3.UP, true)
 
 	navigation_agent.set_velocity(new_velocity)
 

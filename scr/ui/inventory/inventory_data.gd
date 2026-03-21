@@ -1,5 +1,5 @@
-extends Resource
 class_name InventoryData
+extends Resource
 
 signal inventory_updated(inventory_data: InventoryData)
 signal inventory_interact(inventory_data: InventoryData, index: int, button: int)
@@ -14,8 +14,7 @@ func grabbed_item_group_data(index: int) -> ItemGroupData:
 		item_group_datas[index] = null
 		inventory_updated.emit(self)
 		return item_group_data
-	else:
-		return null
+	return null
 
 
 func drop_item_group_data(grabbed_item_group_data: ItemGroupData, index: int) -> ItemGroupData:
@@ -26,9 +25,7 @@ func drop_item_group_data(grabbed_item_group_data: ItemGroupData, index: int) ->
 		if item_group_data and item_group_data.can_stack_with(grabbed_item_group_data):
 			item_group_data.fully_merge_with(grabbed_item_group_data)
 		else:
-			var quantity_difference: int = (
-				item_group_data.item_data.stack_size - item_group_data.quantity
-			)
+			var quantity_difference: int = item_group_data.item_data.stack_size - item_group_data.quantity
 			item_group_data.quantity += quantity_difference
 			grabbed_item_group_data.quantity -= quantity_difference
 			return_item_group_data = grabbed_item_group_data
@@ -40,9 +37,7 @@ func drop_item_group_data(grabbed_item_group_data: ItemGroupData, index: int) ->
 	return return_item_group_data
 
 
-func drop_single_item_group_data(
-	grabbed_item_group_data: ItemGroupData, index: int
-) -> ItemGroupData:
+func drop_single_item_group_data(grabbed_item_group_data: ItemGroupData, index: int) -> ItemGroupData:
 	var item_group_data: ItemGroupData = item_group_datas[index]
 
 	if not item_group_data:
@@ -54,8 +49,7 @@ func drop_single_item_group_data(
 
 	if grabbed_item_group_data.quantity > 0:
 		return grabbed_item_group_data
-	else:
-		return null
+	return null
 
 
 func on_slot_clicked(index: int, button: int) -> void:

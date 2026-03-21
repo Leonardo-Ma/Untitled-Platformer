@@ -1,6 +1,5 @@
-extends GoapMemory
-
 class_name EntityNameMemory
+extends GoapMemory
 
 
 func init(actor: Node) -> void:

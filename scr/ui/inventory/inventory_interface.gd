@@ -46,15 +46,11 @@ func on_inventory_interact(inventory_data: InventoryData, index: int, button: in
 		[null, MOUSE_BUTTON_LEFT]:
 			grabbed_item_group_data = inventory_data.grabbed_item_group_data(index)
 		[_, MOUSE_BUTTON_LEFT]:  # If we have something
-			grabbed_item_group_data = inventory_data.drop_item_group_data(
-				grabbed_item_group_data, index
-			)
+			grabbed_item_group_data = inventory_data.drop_item_group_data(grabbed_item_group_data, index)
 		[null, MOUSE_BUTTON_RIGHT]:
 			pass  # Use item
 		[_, MOUSE_BUTTON_RIGHT]:  # If we have something
-			grabbed_item_group_data = inventory_data.drop_single_item_group_data(
-				grabbed_item_group_data, index
-			)
+			grabbed_item_group_data = inventory_data.drop_single_item_group_data(grabbed_item_group_data, index)
 
 	update_grabbed_slot()
 

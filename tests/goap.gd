@@ -46,10 +46,4 @@ func test_goal_action_consistency(_goals: Array, _actions: Array) -> void:
 				if action.get_effects().has(key):
 					found = true
 					break
-			assert(
-				found,
-				(
-					"GOAP TEST FAIL: No action effect matches desired state key '%s' for goal '%s'"
-					% [key, goal.get_class()]
-				)
-			)
+			assert(found, "GOAP TEST FAIL: No action effect matches desired state key '%s' for goal '%s'" % [key, goal.get_class()])
