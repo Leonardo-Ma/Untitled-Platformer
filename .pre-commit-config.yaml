@@ -15,7 +15,13 @@ exclude: |
     .*\.wav$
   )
 
+
 repos:
+  - repo: https://github.com/qoomon/git-conventional-commits
+    rev: v2.7.2
+    hooks:
+      - id: conventional-commits
+
   - repo: https://github.com/Scony/godot-gdscript-toolkit
     rev: 4.5.0
     hooks:
