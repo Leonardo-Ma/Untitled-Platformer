@@ -17,6 +17,35 @@ exclude: |
 
 
 repos:
+  - repo: local
+    hooks:
+      - id: git-cliff-check
+        name: Check changelog is up to date
+        entry: bash -c 'git diff --exit-code -- CHANGELOG.md'
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+      - id: git-cliff-commit-msg
+        name: Update changelog from commit message
+        entry: >-
+          bash -c '
+          commit_msg_file="${1}";
+          if [ -f "$commit_msg_file" ]; then
+            commit_msg="$(cat "$commit_msg_file")";
+            if [ -n "$commit_msg" ]; then
+              git-cliff --with-commit "$commit_msg" -o CHANGELOG.md -u;
+              if ! git diff --quiet -- CHANGELOG.md; then
+                echo "CHANGELOG.md updated. Please stage it and commit again." >&2;
+                exit 1;
+              fi;
+            fi;
+          fi
+          ' --
+        language: system
+        pass_filenames: true
+        always_run: true
+        stages: [commit-msg]
+
   - repo: https://github.com/qoomon/git-conventional-commits
     rev: v2.7.2
     hooks:

@@ -14,7 +14,7 @@ convention:
   - Build    # Affect build components like build tool, ci pipeline, dependencies, project version...
   - Ci       # Changes to CI configuration files and scripts
   - Ops      # Affect operational components like infrastructure, deployment, backup, recovery, ...
-  commitScopes: [ui, hud, input, player, combat, inventory, ai, goap, npc, animation, audio, vfx, gfx, shaders, rendering, physics, navigation, level, world, assets, localization, save, networking, tools, editor, addons, docs, tests, build, ci]
+  commitScopes: [deps, pr, pull, ui, hud, input, player, combat, inventory, ai, goap, npc, animation, audio, vfx, gfx, shaders, rendering, physics, navigation, level, world, assets, localization, save, networking, tools, editor, addons, docs, tests, build, ci]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
   commitTypes:
@@ -22,7 +22,7 @@ changelog:
   - Fix
   - Perf
   includeInvalidCommits: true
-  commitScopes: [ui, hud, input, player, combat, inventory, ai, goap, npc, animation, audio, vfx, gfx, shaders, rendering, physics, navigation, level, world, assets, localization, save, networking, tools, editor, addons, docs, tests, build, ci]
+  commitScopes: [deps, pr, pull, ui, hud, input, player, combat, inventory, ai, goap, npc, animation, audio, vfx, gfx, shaders, rendering, physics, navigation, level, world, assets, localization, save, networking, tools, editor, addons, docs, tests, build, ci]
   commitIgnoreRegexPattern: "^WIP "
   headlines:
     Feat: Features
