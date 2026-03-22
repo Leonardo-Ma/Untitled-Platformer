@@ -1,11 +1,56 @@
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits)](https://conventionalcommits.org)
-[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
-[![git-cliff - Git Changelog Generator](https://img.shields.io/badge/git--cliff-friendly-brightgreen)](https://git-cliff.org/)
+<div align="center">
+<h1> <b> <i> Space toilet </b> </i> </h1>
 
+[![Conventional Commits][conventional_commits_badge]][conventional_commits_url]
+[![Pre-commit][pre_commit_badge]][pre_commit_url]
+[![git-cliff - Git Changelog Generator][git_cliff_badge]][git_cliff_url]
 
-[![CI](https://github.com/Leonardo-Ma/Space-Toilet/actions/workflows/ci.yml/badge.svg)](https://github.com/Leonardo-Ma/Space-Toilet/actions/workflows/ci.yml)
+[![CI][ci_badge]][ci_url]
+[![GitHub release][github_release_badge]](#)
 
-## Development
+[ci_badge]: https://github.com/Leonardo-Ma/Space-Toilet/actions/workflows/ci.yml/badge.svg
+[ci_url]: https://github.com/Leonardo-Ma/Space-Toilet/actions/workflows/ci.yml
+
+[github_release_badge]: https://img.shields.io/github/v/release/leonardo-ma/Space-Toilet
+<!----------------------------->
+<!-- For future reference -->
+<h3>
+  <a href="#Summary">Summary</a> |
+  <a href="#how-to-use">How To Use</a> |
+  <a href="#download">Download</a> |
+  <a href="#developing">Developing</a> |
+  <a href="#contributing">Contributing</a> |
+  <a href="#changelog">Changelog</a> |
+  <a href="#contact">Contact</a> |
+</h3>
+</div>
+<!----------------------------->
+
+# Developing
+### For auto formatter on commit to work ([.pre-commit-config.yaml](.pre-commit-config.yaml)):
+
+Dependencies:
+- [python](https://www.python.org/)
+- [pipx](https://github.com/pypa/pipx)
+- [gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit)
+- [pre-commit](https://github.com/pre-commit/pre-commit)
+
+```bash
+pipx install gdtoolkit pre-commit
+pipx ensurepath
+pre-commit install
+```
+
+### For auto changelog using git-cliff:
+
+Dependencies:
+- [pre-commit](https://github.com/pre-commit/pre-commit)
+- [rust](https://rust-lang.org/tools/install/)
+- [git-cliff](https://github.com/orhun/git-cliff)
+
+```bash
+pre-commit install --hook-type commit-msg --hook-type pre-push
+```
 
 Refer to this configuration: [Conventional Commit configuration](git-conventional-commits.yaml)
 
@@ -27,26 +72,11 @@ Closes #42
 Co-author: JohnDoe
 ```
 
-### For auto formatter on commit to work (.pre-commit-config.yaml):
+[conventional_commits_badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?style=for-the-badge&logo=conventionalcommits
+[conventional_commits_url]: https://conventionalcommits.org
 
-Dependencies:
-- [python](https://www.python.org/)
-- [pipx](https://github.com/pypa/pipx)
-- [gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit)
-- [pre-commit](https://github.com/pre-commit/pre-commit)
+[pre_commit_badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge&logo=pre-commit&logoColor=white
+[pre_commit_url]: https://pre-commit.com/
 
-```bash
-pip install gdtoolkit pre-commit
-pre-commit install
-```
-
-### For auto changelog using git-cliff:
-
-Dependencies:
-- [pre-commit](https://github.com/pre-commit/pre-commit)
-- [rust](https://rust-lang.org/tools/install/)
-- [git-cliff](https://github.com/orhun/git-cliff)
-
-```bash
-- pre-commit install --hook-type pre-push
-```
+[git_cliff_badge]: https://img.shields.io/badge/git--cliff-friendly-brightgreen?style=for-the-badge
+[git_cliff_url]: https://git-cliff.org/
