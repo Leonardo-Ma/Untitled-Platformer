@@ -2,6 +2,7 @@
 @abstract class_name AgressiveEntity
 extends CharacterBody3D
 
+@warning_ignore("unused_signal")
 signal melee_attacked
 
 @export var attack: Attack

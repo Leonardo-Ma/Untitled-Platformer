@@ -4,6 +4,7 @@
 @abstract class_name GoapMemory
 extends Node
 
+@warning_ignore("unused_private_class_variable")
 var _actor: Node = null
 var _blackboard: Dictionary = {}
 

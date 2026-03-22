@@ -14,7 +14,7 @@ extends Resource
 ## Creates action instances from the configured scripts
 func create_actions() -> Array[GoapAction]:
 	var actions: Array[GoapAction] = []
-	for action_script in available_actions:
+	for action_script: Script in available_actions:
 		if action_script and action_script.can_instantiate():
 			var instance: Variant = action_script.new()
 			if instance is GoapAction:
@@ -31,7 +31,7 @@ func create_actions() -> Array[GoapAction]:
 ## Creates goal instances from the configured scripts
 func create_goals() -> Array[GoapGoal]:
 	var goals: Array[GoapGoal] = []
-	for goal_script in available_goals:
+	for goal_script: Script in available_goals:
 		if goal_script and goal_script.can_instantiate():
 			var instance: Variant = goal_script.new()
 			if instance is GoapGoal:

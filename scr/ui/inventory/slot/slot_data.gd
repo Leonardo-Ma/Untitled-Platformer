@@ -26,7 +26,7 @@ func fully_merge_with(other_item_group_data: ItemGroupData) -> void:
 
 
 func create_single_item_group_data() -> ItemGroupData:
-	var new_item_group_data := duplicate()
+	var new_item_group_data: ItemGroupData = duplicate()
 	new_item_group_data.quantity = 1
 	quantity -= 1
 	return new_item_group_data
