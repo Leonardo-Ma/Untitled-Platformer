@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" format=3 uid="uid://be5kfmdwueww0"]
 
-[ext_resource type="Texture2D" uid="uid://q2e5nec2a1aw" path="res://scr/ui/fantasy_ui_borders/PNG/Default/Transparent center/panel-transparent-center-027.png" id="1_h6174"]
+[ext_resource type="Texture2D" uid="uid://bauqnh1hxj3g0" path="res://scr/ui/fantasy_ui_borders/PNG/Default/Border/panel-border-027.png" id="1_h6174"]
 
 [resource]
 texture = ExtResource("1_h6174")

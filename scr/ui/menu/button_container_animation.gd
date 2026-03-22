@@ -1,19 +1,23 @@
 extends Control
 
 
-func _ready():
-	var buttons = find_children("*", "Button", true, false)
+func _ready() -> void:
+	var buttons: Array = find_children("*", "Button", true, false)
 
-	for button in buttons:
+	for button: Button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
 		button.mouse_exited.connect(_on_exit.bind(button))
 
 
-func _on_hover(button):
-	var tween = create_tween()
+func _on_hover(button: Button) -> void:
+	var tween: Tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.05, 1.05), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
-func _on_exit(button):
-	var tween = create_tween()
+func _on_exit(button: Button) -> void:
+	var tween: Tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
+func _on_new_game_pressed() -> void:
+	pass  # Replace with function body.

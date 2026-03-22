@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dlvcb7vmtq1lo"]
 
 [ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://scr/main.gd" id="1_b18bd"]
-[ext_resource type="PackedScene" uid="uid://hoe3n468xged" path="res://scr/ui/menu/main_menu.tscn" id="2_8sfv0"]
 [ext_resource type="PackedScene" uid="uid://ca6513dw5vqcw" path="res://scr/ui/menu/options_menu.tscn" id="3_1p1te"]
 [ext_resource type="PackedScene" uid="uid://ceqteh34sypae" path="res://scr/debug/debug_interface.tscn" id="4_y13nm"]
 [ext_resource type="Script" uid="uid://c7sw8byvmjy03" path="res://scr/debug/debug_interface.gd" id="5_jrxgm"]
@@ -47,31 +46,31 @@ agent_max_climb = 0.05
 
 [sub_resource type="GDScript" id="GDScript_ryguw"]
 
-[sub_resource type="Resource" id="Resource_rt07p"]
+[sub_resource type="Resource" id="Resource_bqaqr"]
 resource_local_to_scene = true
 script = ExtResource("11_xf1me")
 type = 1
 power = 20
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_ep556"]
+[sub_resource type="Resource" id="Resource_b18bd"]
 resource_local_to_scene = true
 script = ExtResource("12_m7oqh")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_p0li6"]
+[sub_resource type="Resource" id="Resource_8sfv0"]
 resource_local_to_scene = true
 script = ExtResource("13_u3kqt")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="Resource" id="Resource_01oxu"]
+[sub_resource type="Resource" id="Resource_1p1te"]
 resource_local_to_scene = true
 script = ExtResource("14_nvx4t")
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
-[sub_resource type="Resource" id="Resource_x4ngf"]
+[sub_resource type="Resource" id="Resource_y13nm"]
 resource_local_to_scene = true
 script = ExtResource("11_xf1me")
 type = 1
@@ -79,12 +78,12 @@ power = 20
 rate = 2.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_skg7j"]
+[sub_resource type="Resource" id="Resource_jrxgm"]
 resource_local_to_scene = true
 script = ExtResource("12_m7oqh")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_gaxyp"]
+[sub_resource type="Resource" id="Resource_hy815"]
 resource_local_to_scene = true
 script = ExtResource("13_u3kqt")
 max_health = 100
@@ -111,9 +110,6 @@ grow_vertical = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="MainMenu" parent="UI/Menu" unique_id=916052406 instance=ExtResource("2_8sfv0")]
-layout_mode = 0
 
 [node name="OptionsMenu" parent="UI/Menu" unique_id=1927096750 instance=ExtResource("3_1p1te")]
 visible = false
@@ -176,16 +172,16 @@ script = SubResource("GDScript_ryguw")
 
 [node name="RedMage" parent="." unique_id=1047952853 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55, 0, 5)
-attack = SubResource("Resource_rt07p")
-stats = SubResource("Resource_ep556")
-health = SubResource("Resource_p0li6")
-movement = SubResource("Resource_01oxu")
+attack = SubResource("Resource_bqaqr")
+stats = SubResource("Resource_b18bd")
+health = SubResource("Resource_8sfv0")
+movement = SubResource("Resource_1p1te")
 
 [node name="RedMage2" parent="." unique_id=567571943 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 43.00673, 0, 5)
-attack = SubResource("Resource_x4ngf")
-stats = SubResource("Resource_skg7j")
-health = SubResource("Resource_gaxyp")
+attack = SubResource("Resource_y13nm")
+stats = SubResource("Resource_jrxgm")
+health = SubResource("Resource_hy815")
 movement = SubResource("Resource_0odxb")
 
 [node name="Maps" type="Node3D" parent="." unique_id=18375261]
