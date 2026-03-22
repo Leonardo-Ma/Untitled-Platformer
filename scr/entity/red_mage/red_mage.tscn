@@ -642,9 +642,6 @@ size = Vector3(1, 1.4, 0.562427)
 height = 1.47117
 radius = 0.3
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2snhj"]
-viewport_path = NodePath("EntityDebugAboveHead")
-
 [node name="RedMage" type="CharacterBody3D" unique_id=280064195]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
@@ -1191,11 +1188,6 @@ script = ExtResource("10_8mugj")
 
 [node name="NavigationController" type="Node" parent="." unique_id=1608642422]
 script = ExtResource("11_8mugj")
-
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=294798631]
-transform = Transform3D(0.41032273, 0, 0, 0, 0.19771847, 0, 0, 0, 1, 0, 2.2887402, 0)
-texture_filter = 0
-texture = SubResource("ViewportTexture_2snhj")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=2037298063]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.9496033, 0)

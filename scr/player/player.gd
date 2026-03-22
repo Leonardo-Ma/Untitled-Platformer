@@ -17,6 +17,8 @@ signal toggle_inventory
 
 
 func _ready() -> void:
+	Globals.player = self
+
 	input_controller.inventory_toggled.connect(_on_inventory_toggled)
 	input_controller.interact_requested.connect(_on_interact_requested)
 	input_controller.attack_pressed.connect(_on_attack_pressed)

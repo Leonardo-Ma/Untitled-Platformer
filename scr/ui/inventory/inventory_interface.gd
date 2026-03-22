@@ -10,7 +10,7 @@ var external_inventory_owner: Node
 
 
 func _physics_process(_delta: float) -> void:
-	if grabbed_slot.visible:
+	if is_instance_valid(grabbed_slot) and grabbed_slot.visible:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(5, 5)
 
 

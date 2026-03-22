@@ -22,6 +22,9 @@ func init(actor: Node) -> void:
 
 func update_blackboard() -> void:
 	# TODO Change this to be dynamic instead of player
+	if Globals.player == null or Globals.player_health == null:
+		return
+
 	var enemy_pos: Vector3 = Globals.player.global_position
 	var actor_pos: Vector3 = _actor.global_position
 	var distance: float = actor_pos.distance_to(enemy_pos)

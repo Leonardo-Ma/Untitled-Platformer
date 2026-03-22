@@ -4,13 +4,22 @@ extends ProgressBar
 var health: float = 0.0:
 	set = _set_health
 
+var health_resource: Health
+
 @onready var timer: Timer = $Timer
 @onready var damagebar: ProgressBar = $Damagebar
-@onready var health_resource: Health = Globals.player_health
 # BUG There's a delay between hit and healthbar (green) update
 
 
 func _ready() -> void:
+	if Globals.player_health != null:
+		_on_player_initialized()
+	else:
+		Globals.player_initialized.connect(_on_player_initialized)
+
+
+func _on_player_initialized() -> void:
+	health_resource = Globals.player_health
 	health_resource.damaged.connect(_on_damaged)
 	health_resource.died.connect(_on_death)
 

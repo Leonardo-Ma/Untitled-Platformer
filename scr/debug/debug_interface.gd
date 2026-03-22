@@ -6,6 +6,8 @@ extends Control
 
 
 func _physics_process(_delta: float) -> void:
+	if Globals.player_animation_tree == null:
+		return
 	var animation_tree: AnimationTree = Globals.player_animation_tree
 	var is_damaged: String = "Not damaged"
 

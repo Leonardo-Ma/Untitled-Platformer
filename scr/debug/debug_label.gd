@@ -9,8 +9,9 @@ func _process(_delta: float) -> void:
 	self.text += "FPS: %s\n" % Engine.get_frames_per_second()
 	self.text += "Move Speed: %.1f\n" % Globals.player_speed if Globals.player else ""
 	self.text += "Position: %.1v\n" % Globals.player.global_position if Globals.player else ""
-	self.text += "Player health: %.2f\n" % Globals.player_health.health
-	self.text += "Invulnerable: %s\n" % ("YES" if Globals.player_health.invulnerable else "NO")
+	if Globals.player_health:
+		self.text += "Player health: %.2f\n" % Globals.player_health.health
+		self.text += "Invulnerable: %s\n" % ("YES" if Globals.player_health.invulnerable else "NO")
 	self.text += event_text + "\n"
 
 

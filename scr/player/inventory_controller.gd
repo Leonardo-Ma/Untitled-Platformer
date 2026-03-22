@@ -2,11 +2,21 @@
 @icon("res://icons/16x16/ui_inventory.png")
 extends Node
 
-# TODO Check if possible to fix this unique reference, both UI and InventoryInterface are unique
-@onready var inventory_interface: Control = $"../../UI/InventoryInterface"
+var inventory_interface: Control
 
 
 func _ready() -> void:
+	# Give the tree a moment to set up in case the UI is instantiated later or below the player
+	call_deferred("_setup_inventory")
+
+
+func _setup_inventory() -> void:
+	inventory_interface = get_tree().get_root().find_child("InventoryInterface", true, false) as Control
+
+	if inventory_interface == null:
+		push_error("InventoryInterface not found in the scene tree.")
+		return
+
 	get_parent().toggle_inventory.connect(toggle_inventory_interface)
 	inventory_interface.set_player_inventory_data(get_parent().inventory_data)
 
@@ -15,6 +25,9 @@ func _ready() -> void:
 
 
 func toggle_inventory_interface(external_inventory_owner: Node = null) -> void:
+	if not is_instance_valid(inventory_interface):
+		return
+
 	inventory_interface.visible = not inventory_interface.visible
 
 	if inventory_interface.visible:
