@@ -6,9 +6,9 @@ extends Control
 
 
 func _physics_process(_delta: float) -> void:
-	if Globals.player_animation_tree == null:
+	if PlayerGlobals.player_animation_tree == null:
 		return
-	var animation_tree: AnimationTree = Globals.player_animation_tree
+	var animation_tree: AnimationTree = PlayerGlobals.player_animation_tree
 	var is_damaged: String = "Not damaged"
 
 	if animation_tree.get("parameters/is_damaged/active"):
@@ -24,4 +24,4 @@ func _physics_process(_delta: float) -> void:
 		running = "Running"
 	else:
 		running = "Not running"
-	Globals.player_state = (is_damaged + " \n " + in_air + " \n " + jumping + " \n " + running + " \n ")
+	PlayerGlobals.player_state = (is_damaged + " \n " + in_air + " \n " + jumping + " \n " + running + " \n ")

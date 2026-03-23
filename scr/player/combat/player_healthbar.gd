@@ -12,14 +12,14 @@ var health_resource: Health
 
 
 func _ready() -> void:
-	if Globals.player_health != null:
+	if PlayerGlobals.player_health != null:
 		_on_player_initialized()
 	else:
-		Globals.player_initialized.connect(_on_player_initialized)
+		PlayerGlobals.player_initialized.connect(_on_player_initialized)
 
 
 func _on_player_initialized() -> void:
-	health_resource = Globals.player_health
+	health_resource = PlayerGlobals.player_health
 	health_resource.damaged.connect(_on_damaged)
 	health_resource.died.connect(_on_death)
 

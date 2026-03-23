@@ -44,8 +44,8 @@ func movement_logic(body: CharacterBody3D) -> void:
 	if not _movement_enabled:
 		emit_signal("move_stopped")
 		emit_signal("movement_direction_changed", Vector2.ZERO)
-		body.velocity.x = move_toward(body.velocity.x, 0, Globals.player_speed)
-		body.velocity.z = move_toward(body.velocity.z, 0, Globals.player_speed)
+		body.velocity.x = move_toward(body.velocity.x, 0, PlayerGlobals.player_speed)
+		body.velocity.z = move_toward(body.velocity.z, 0, PlayerGlobals.player_speed)
 		return
 
 	var input_direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
@@ -54,14 +54,14 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 		var is_running: bool = Input.is_action_pressed("run")
 		if is_running:
-			Globals.player_speed = owner.movement.run_speed
+			PlayerGlobals.player_speed = owner.movement.run_speed
 		else:
-			Globals.player_speed = owner.movement.walk_speed
+			PlayerGlobals.player_speed = owner.movement.walk_speed
 
 		emit_signal("move_started")
 
 		var normalized_input: Vector2 = input_direction.normalized()
-		var speed_factor: float = Globals.player_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
+		var speed_factor: float = PlayerGlobals.player_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
 		var blend_direction: Vector2 = Vector2(normalized_input.x, -normalized_input.y) * speed_factor
 
 		emit_signal("movement_direction_changed", blend_direction)
@@ -70,13 +70,13 @@ func movement_logic(body: CharacterBody3D) -> void:
 		#if direction.length() > 0.01:
 		#armature.look_at(armature.global_transform.origin + direction, Vector3.UP)
 
-		body.velocity.x = direction.x * Globals.player_speed
-		body.velocity.z = direction.z * Globals.player_speed
+		body.velocity.x = direction.x * PlayerGlobals.player_speed
+		body.velocity.z = direction.z * PlayerGlobals.player_speed
 	else:
 		emit_signal("move_stopped")
 		emit_signal("movement_direction_changed", Vector2.ZERO)
-		body.velocity.x = move_toward(body.velocity.x, 0, Globals.player_speed)
-		body.velocity.z = move_toward(body.velocity.z, 0, Globals.player_speed)
+		body.velocity.x = move_toward(body.velocity.x, 0, PlayerGlobals.player_speed)
+		body.velocity.z = move_toward(body.velocity.z, 0, PlayerGlobals.player_speed)
 
 
 func jump_air_logic(body: CharacterBody3D, delta: float) -> void:

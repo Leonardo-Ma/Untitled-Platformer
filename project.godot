@@ -24,7 +24,7 @@ config/icon="res://scr/icon.svg"
 
 PauseManager="*res://scr/util/autoload/pause_manager.gd"
 Attributes="*res://scr/util/autoload/player_attributes.gd"
-Globals="*res://scr/util/autoload/globals.gd"
+PlayerGlobals="*res://scr/util/autoload/player_globals.gd"
 GoapWorldState="*uid://clan8pwdcjgaj"
 HitStopManager="*res://scr/util/autoload/hit_stop_manager.gd"
 TestGoapConsistency="*res://tests/goap.gd"

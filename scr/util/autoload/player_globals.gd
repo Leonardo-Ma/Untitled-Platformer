@@ -1,3 +1,4 @@
+# TODO Remove this from autoload, all references should be directly from player node
 extends Node
 
 signal player_initialized
