@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://dlvcb7vmtq1lo"]
 
 [ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://scr/main.gd" id="1_b18bd"]
-[ext_resource type="PackedScene" uid="uid://ca6513dw5vqcw" path="res://scr/ui/menu/options_menu.tscn" id="3_1p1te"]
-[ext_resource type="PackedScene" uid="uid://ceqteh34sypae" path="res://scr/debug/debug_interface.tscn" id="4_y13nm"]
-[ext_resource type="Script" uid="uid://c7sw8byvmjy03" path="res://scr/debug/debug_interface.gd" id="5_jrxgm"]
-[ext_resource type="Script" uid="uid://d10lqh3g14fa3" path="res://scr/ui/inventory/inventory_interface.gd" id="6_hy815"]
-[ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="7_i25bo"]
-[ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="8_pd4w6"]
+[ext_resource type="PackedScene" uid="uid://cwgqh61gpa36j" path="res://scr/ui/ui.tscn" id="2_bx4na"]
 [ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="9_pguyi"]
 [ext_resource type="PackedScene" uid="uid://jnyl85jruo36" path="res://scr/player/player.tscn" id="10_kuwt1"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/attack.gd" id="11_xf1me"]
@@ -46,31 +41,31 @@ agent_max_climb = 0.05
 
 [sub_resource type="GDScript" id="GDScript_ryguw"]
 
-[sub_resource type="Resource" id="Resource_bqaqr"]
+[sub_resource type="Resource" id="Resource_b18bd"]
 resource_local_to_scene = true
 script = ExtResource("11_xf1me")
 type = 1
 power = 20
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_b18bd"]
+[sub_resource type="Resource" id="Resource_8sfv0"]
 resource_local_to_scene = true
 script = ExtResource("12_m7oqh")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_8sfv0"]
+[sub_resource type="Resource" id="Resource_1p1te"]
 resource_local_to_scene = true
 script = ExtResource("13_u3kqt")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="Resource" id="Resource_1p1te"]
+[sub_resource type="Resource" id="Resource_y13nm"]
 resource_local_to_scene = true
 script = ExtResource("14_nvx4t")
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
-[sub_resource type="Resource" id="Resource_y13nm"]
+[sub_resource type="Resource" id="Resource_jrxgm"]
 resource_local_to_scene = true
 script = ExtResource("11_xf1me")
 type = 1
@@ -78,12 +73,12 @@ power = 20
 rate = 2.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_jrxgm"]
+[sub_resource type="Resource" id="Resource_hy815"]
 resource_local_to_scene = true
 script = ExtResource("12_m7oqh")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_hy815"]
+[sub_resource type="Resource" id="Resource_i25bo"]
 resource_local_to_scene = true
 script = ExtResource("13_u3kqt")
 max_health = 100
@@ -97,63 +92,8 @@ metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 [node name="Main" type="Node" unique_id=1979390252]
 script = ExtResource("1_b18bd")
 
-[node name="UI" type="Control" parent="." unique_id=1249750598]
+[node name="UI" parent="." unique_id=670172270 instance=ExtResource("2_bx4na")]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Menu" type="Control" parent="UI" unique_id=184760959]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="OptionsMenu" parent="UI/Menu" unique_id=1927096750 instance=ExtResource("3_1p1te")]
-visible = false
-layout_mode = 0
-
-[node name="DebugInterface" parent="UI" unique_id=982140176 instance=ExtResource("4_y13nm")]
-layout_mode = 1
-script = ExtResource("5_jrxgm")
-
-[node name="InventoryInterface" type="Control" parent="UI" unique_id=1935971995]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_hy815")
-
-[node name="PlayerInventory" parent="UI/InventoryInterface" unique_id=966469676 instance=ExtResource("7_i25bo")]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 26.0
-offset_bottom = 26.0
-
-[node name="ExternalInventory" parent="UI/InventoryInterface" unique_id=867183225 instance=ExtResource("7_i25bo")]
-visible = false
-layout_mode = 0
-offset_left = 638.0
-offset_top = 260.0
-offset_right = 654.0
-offset_bottom = 276.0
-
-[node name="GrabbedSlot" parent="UI/InventoryInterface" unique_id=1191228211 instance=ExtResource("8_pd4w6")]
-visible = false
-modulate = Color(1, 1, 1, 0.447059)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 74.0
-offset_bottom = 74.0
 
 [node name="World" parent="." unique_id=1123589125 instance=ExtResource("9_pguyi")]
 
@@ -172,16 +112,16 @@ script = SubResource("GDScript_ryguw")
 
 [node name="RedMage" parent="." unique_id=1047952853 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55, 0, 5)
-attack = SubResource("Resource_bqaqr")
-stats = SubResource("Resource_b18bd")
-health = SubResource("Resource_8sfv0")
-movement = SubResource("Resource_1p1te")
+attack = SubResource("Resource_b18bd")
+stats = SubResource("Resource_8sfv0")
+health = SubResource("Resource_1p1te")
+movement = SubResource("Resource_y13nm")
 
 [node name="RedMage2" parent="." unique_id=567571943 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 43.00673, 0, 5)
-attack = SubResource("Resource_y13nm")
-stats = SubResource("Resource_jrxgm")
-health = SubResource("Resource_hy815")
+attack = SubResource("Resource_jrxgm")
+stats = SubResource("Resource_hy815")
+health = SubResource("Resource_i25bo")
 movement = SubResource("Resource_0odxb")
 
 [node name="Maps" type="Node3D" parent="." unique_id=18375261]

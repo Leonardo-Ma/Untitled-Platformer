@@ -1,41 +1,116 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvn5rt4f7qtgm"]
+[gd_scene format=3 uid="uid://cwgqh61gpa36j"]
 
-[ext_resource type="PackedScene" uid="uid://hoe3n468xged" path="res://scr/ui/menu/main_menu.tscn" id="1_gycre"]
-[ext_resource type="PackedScene" uid="uid://ca6513dw5vqcw" path="res://scr/ui/menu/options_menu.tscn" id="2_pa1oa"]
+[ext_resource type="Script" uid="uid://c10yskt3kpl6e" path="res://scr/ui/ui.gd" id="1_dakun"]
 [ext_resource type="PackedScene" uid="uid://ceqteh34sypae" path="res://scr/debug/debug_interface.tscn" id="4_bi8hs"]
 [ext_resource type="Script" uid="uid://c7sw8byvmjy03" path="res://scr/debug/debug_interface.gd" id="5_hrmpd"]
+[ext_resource type="Script" uid="uid://bc20xmwfj68dg" path="res://scr/player/combat/player_healthbar.gd" id="6_oa3wp"]
 [ext_resource type="Script" uid="uid://d10lqh3g14fa3" path="res://scr/ui/inventory/inventory_interface.gd" id="6_x7jpl"]
+[ext_resource type="Script" uid="uid://cb3xo2r1csv5r" path="res://scr/ui/player_attributes_ui.gd" id="7_dakun"]
 [ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="7_os0ka"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="8_diyc5"]
 
-[node name="UI" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrxgm"]
+bg_color = Color(0.0732916, 0.575341, 0.216761, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hy815"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i25bo"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="UI" type="CanvasLayer" unique_id=670172270]
+script = ExtResource("1_dakun")
+
+[node name="Menus" type="Control" parent="." unique_id=1869155300]
+editor_description = "The menus will be instantiated as child of this node (Main menu, options, pause...)"
 layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HUD" type="Control" parent="." unique_id=230341265]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PlayerHealthbar" type="ProgressBar" parent="HUD" unique_id=2144022768]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_left = 15.0
+offset_top = 24.0
+offset_right = 451.0
+offset_bottom = 68.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_y13nm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jrxgm")
+value = 60.0
+show_percentage = false
+script = ExtResource("6_oa3wp")
+
+[node name="Damagebar" type="ProgressBar" parent="HUD/PlayerHealthbar" unique_id=2030583683]
+z_index = -1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hy815")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i25bo")
+value = 80.0
+show_percentage = false
 
-[node name="Menu" type="Control" parent="."]
+[node name="Timer" type="Timer" parent="HUD/PlayerHealthbar" unique_id=1905704136]
+wait_time = 0.4
+one_shot = true
+
+[node name="PlayerAttributes" type="TextEdit" parent="HUD" unique_id=663808551]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 257.0
+offset_right = 237.0
+offset_bottom = 501.0
+placeholder_text = "		Main Attributes:
+strenght 		: 0
+toughness 	: 0
+perception	: 0
+dexterity 		: 0
+intelligence 	: 0
+spirit 				: 0
+charisma 		: 0"
+script = ExtResource("7_dakun")
+
+[node name="MagicSignPressIndicator" type="Label" parent="HUD" unique_id=1705632769]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 211.0
+offset_right = 953.0
+offset_bottom = 263.0
+
+[node name="Timer" type="Timer" parent="HUD/MagicSignPressIndicator" unique_id=1974374760]
+one_shot = true
+
+[node name="Overlays" type="Control" parent="." unique_id=320646206]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MainMenu" parent="Menu" instance=ExtResource("1_gycre")]
-visible = false
-layout_mode = 0
-
-[node name="OptionsMenu" parent="Menu" instance=ExtResource("2_pa1oa")]
-visible = false
-layout_mode = 0
-
-[node name="DebugInterface" parent="." instance=ExtResource("4_bi8hs")]
-layout_mode = 1
+[node name="DebugInterface" parent="." unique_id=1832192178 instance=ExtResource("4_bi8hs")]
 script = ExtResource("5_hrmpd")
 
-[node name="InventoryInterface" type="Control" parent="."]
+[node name="InventoryInterface" type="Control" parent="." unique_id=1284807984]
+unique_name_in_owner = true
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,14 +118,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_x7jpl")
 
-[node name="PlayerInventory" parent="InventoryInterface" instance=ExtResource("7_os0ka")]
+[node name="PlayerInventory" parent="InventoryInterface" unique_id=1667052696 instance=ExtResource("7_os0ka")]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 26.0
 offset_bottom = 26.0
 
-[node name="ExternalInventory" parent="InventoryInterface" instance=ExtResource("7_os0ka")]
+[node name="ExternalInventory" parent="InventoryInterface" unique_id=1945647487 instance=ExtResource("7_os0ka")]
 visible = false
 layout_mode = 0
 offset_left = 638.0
@@ -58,7 +133,7 @@ offset_top = 260.0
 offset_right = 654.0
 offset_bottom = 276.0
 
-[node name="GrabbedSlot" parent="InventoryInterface" instance=ExtResource("8_diyc5")]
+[node name="GrabbedSlot" parent="InventoryInterface" unique_id=1900480317 instance=ExtResource("8_diyc5")]
 visible = false
 modulate = Color(1, 1, 1, 0.447059)
 self_modulate = Color(1, 1, 1, 0)
@@ -67,3 +142,6 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 74.0
 offset_bottom = 74.0
+
+[connection signal="timeout" from="HUD/PlayerHealthbar/Timer" to="HUD/PlayerHealthbar" method="_on_timer_timeout"]
+[connection signal="timeout" from="HUD/MagicSignPressIndicator/Timer" to="HUD/MagicSignPressIndicator" method="_on_timer_timeout"]
