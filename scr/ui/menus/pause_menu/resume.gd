@@ -10,4 +10,4 @@ func _on_pressed() -> void:
 	if UIManager.instance:
 		UIManager.instance.on_game_started()
 	else:
-		printerr("CRITICAL ERROR: UIManager.instance is null! Make sure ui.gd is attached to the UI CanvasLayer.")
+		printerr("CRITICAL ERROR: UIManager.instance is null!")

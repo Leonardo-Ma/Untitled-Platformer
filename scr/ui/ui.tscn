@@ -13,10 +13,12 @@
 script = ExtResource("1_dakun")
 
 [node name="DebugInterface" parent="." unique_id=1832192178 instance=ExtResource("4_bi8hs")]
+z_index = 99
 script = ExtResource("5_hrmpd")
 
 [node name="InventoryInterface" type="Control" parent="." unique_id=1284807984]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +28,7 @@ grow_vertical = 2
 script = ExtResource("6_x7jpl")
 
 [node name="PlayerInventory" parent="InventoryInterface" unique_id=1667052696 instance=ExtResource("7_os0ka")]
+visible = false
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
@@ -52,11 +55,14 @@ offset_bottom = 74.0
 
 [node name="HUD" parent="." unique_id=1333227325 instance=ExtResource("3_dakun")]
 unique_name_in_owner = true
+z_index = 1
 
 [node name="Overlays" type="Control" parent="." unique_id=320646206]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Menus" parent="." unique_id=217563089 instance=ExtResource("2_dakun")]
+z_index = 100

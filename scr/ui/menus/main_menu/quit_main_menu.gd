@@ -5,9 +5,13 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 
-# TODO Study this better
 func _on_pressed() -> void:
+	get_tree().paused = true
+
+	# TODO Study this better
+	# Safely access the UIManager via its static instance
 	if UIManager.instance:
-		UIManager.instance.on_game_started()
+		print("Found UIManager, starting game...")
+		UIManager.instance.on_game_paused()
 	else:
 		printerr("CRITICAL ERROR: UIManager.instance is null! Make sure ui.gd is attached to the UI CanvasLayer.")
