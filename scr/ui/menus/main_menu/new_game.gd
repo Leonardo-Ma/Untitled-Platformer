@@ -1,7 +1,17 @@
 extends Button
 
 
-# TODO Remove this from signal gui and do it from code only
+func _ready() -> void:
+	pressed.connect(_on_pressed)
+
+
 func _on_pressed() -> void:
-	var main_scene: PackedScene = load(UiManager.MAIN_SCENE_PATH)
-	get_tree().change_scene_to_packed(main_scene)
+	get_tree().paused = false
+
+	# TODO Study this better
+	# Safely access the UIManager via its static instance
+	if UIManager.instance:
+		print("Found UIManager, starting game...")
+		UIManager.instance.on_game_started()
+	else:
+		printerr("CRITICAL ERROR: UIManager.instance is null! Make sure ui.gd is attached to the UI CanvasLayer.")

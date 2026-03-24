@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceqteh34sypae"]
+[gd_scene format=3 uid="uid://ceqteh34sypae"]
 
 [ext_resource type="Script" uid="uid://c6lqd8lydwydg" path="res://scr/debug/debug_label.gd" id="1_2eafd"]
 
-[node name="DebugInterface" type="Control"]
+[node name="DebugInterface" type="Control" unique_id=1005611581]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,15 +10,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="Control" parent="." unique_id=1637148222]
+anchors_preset = 0
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1718362949]
+layout_mode = 0
 offset_left = 887.0
 offset_top = 2.0
 offset_right = 1150.0
 offset_bottom = 232.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=1294854035]
 layout_mode = 0
 offset_right = 132.0
 offset_bottom = 57.0

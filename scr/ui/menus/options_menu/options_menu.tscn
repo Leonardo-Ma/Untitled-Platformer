@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://ca6513dw5vqcw"]
 
-[ext_resource type="Script" uid="uid://b4f1vdh0xkgs" path="res://scr/ui/menus/options_menu/options_menu.gd" id="1_pbaxl"]
-
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" unique_id=514167819]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_pbaxl")
 
-[node name="ButtonContainer" type="MarginContainer" parent="."]
+[node name="ButtonContainer" type="MarginContainer" parent="." unique_id=359031866]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,15 +16,13 @@ offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ButtonContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonContainer" unique_id=932411684]
 layout_mode = 2
 
-[node name="Volume" type="Button" parent="ButtonContainer/VBoxContainer"]
+[node name="Volume" type="Button" parent="ButtonContainer/VBoxContainer" unique_id=493797329]
 layout_mode = 2
 text = "Volume"
 
-[node name="Return" type="Button" parent="ButtonContainer/VBoxContainer"]
+[node name="Return" type="Button" parent="ButtonContainer/VBoxContainer" unique_id=1784691640]
 layout_mode = 2
 text = "Return"
-
-[connection signal="pressed" from="ButtonContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://ujv84xenekf7"]
+
+[ext_resource type="Script" uid="uid://btijgca3wb05d" path="res://scr/ui/button_animation.gd" id="1_6ceeu"]
+[ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://scr/ui/base_theme.tres" id="2_163ch"]
+[ext_resource type="Texture2D" uid="uid://c23qrp6k3kbl8" path="res://scr/ui/main_menu_background/menu_background_space_placeholder.png" id="3_cwpl0"]
+[ext_resource type="Script" uid="uid://b8xklo3ubuprp" path="res://scr/ui/menus/main_menu/new_game.gd" id="4_rygc3"]
+[ext_resource type="Script" uid="uid://dfo4jdqyttoed" path="res://scr/ui/menus/main_menu/options.gd" id="6_163ch"]
+
+[node name="Menus" type="Control" unique_id=217563089]
+editor_description = "The menus will be instantiated as child of this node (Main menu, options, pause...)"
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ceeu")
+
+[node name="MainMenu" type="Control" parent="." unique_id=711931792]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_163ch")
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=637559921]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -280.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cwpl0")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=601083287]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 440.0
+offset_right = -440.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 132)
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer" unique_id=1532420393]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Space Toilet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="MainMenu/VBoxContainer" unique_id=989462944]
+layout_mode = 2
+text = "Continue"
+
+[node name="New Game" type="Button" parent="MainMenu/VBoxContainer" unique_id=358169924]
+layout_mode = 2
+text = "New Game"
+script = ExtResource("4_rygc3")
+
+[node name="Options" type="Button" parent="MainMenu/VBoxContainer" unique_id=2781512]
+layout_mode = 2
+text = "Options"
+script = ExtResource("6_163ch")
+
+[node name="Quit" type="Button" parent="MainMenu/VBoxContainer" unique_id=756654779]
+layout_mode = 2
+text = "Quit"
