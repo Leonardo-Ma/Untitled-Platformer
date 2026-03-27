@@ -10,19 +10,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="Control" parent="." unique_id=1637148222]
-anchors_preset = 0
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=1133947674]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.693
+anchor_right = 0.92700005
+anchor_bottom = 0.41700003
+offset_left = -0.040039063
+offset_right = 0.4399414
+offset_bottom = -0.24002075
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1718362949]
-layout_mode = 0
-offset_left = 887.0
-offset_top = 2.0
-offset_right = 1150.0
-offset_bottom = 232.0
+[node name="Panel" type="Panel" parent="AspectRatioContainer" unique_id=1718362949]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=1294854035]
+[node name="Label" type="Label" parent="AspectRatioContainer/Panel" unique_id=1294854035]
 layout_mode = 0
-offset_right = 132.0
-offset_bottom = 57.0
-text = "State: "
+offset_right = 263.0
+offset_bottom = 292.0
+text = "States:
+x
+x
+x
+x
+FPS: 
+Move Speed: 
+Position:
+Player health:
+Invulnerable:
+Key press:"
 script = ExtResource("1_2eafd")
+
+[node name="HSeparator" type="HSeparator" parent="AspectRatioContainer/Panel" unique_id=1297407731]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 123.0
+offset_right = 300.0
+offset_bottom = 134.0

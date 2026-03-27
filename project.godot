@@ -59,9 +59,11 @@ folder_colors={
 "res://scr/player/": "yellow",
 "res://scr/player/combat/": "gray",
 "res://scr/sound/": "blue",
+"res://scr/terrain/": "orange",
 "res://scr/ui/": "green",
 "res://scr/util/": "gray",
-"res://scr/world_asset/": "orange"
+"res://scr/world_asset/": "orange",
+"res://scr/world_map/": "orange"
 }
 
 [filesystem]

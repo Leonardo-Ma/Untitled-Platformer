@@ -10,6 +10,7 @@ static var instance: UIManager
 @onready var inventory_interface: Control = $InventoryInterface
 
 
+# TODO Study this better, it is a 'locally declared singleton' globally accessible
 func _enter_tree() -> void:
 	instance = self
 

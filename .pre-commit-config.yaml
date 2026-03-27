@@ -3,11 +3,11 @@
 
 exclude: |
   (?x)^(
-    \.md/|
     \.godot/|
     \.import/|
     (^|/)build/|
     addons/|
+    .*\.mtlx$|
     .*\.png$|
     .*\.jpg$|
     .*\.jpeg$|
