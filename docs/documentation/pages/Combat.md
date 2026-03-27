@@ -1,0 +1,4 @@
+- Dodge:
+	- Player dodge, based on ?dexterity?, after leveled enough becomes a quick teleport instead, leaving an afterimage behind
+- Enemies have a random delay between attacks to avoid same pattern
+-

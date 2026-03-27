@@ -1,0 +1,6 @@
+- TECHNICAL:
+	- Every pressed key adds to a string, when 'execute magic' is pressed, it checks for a match that will fire the magic skill
+	- Study 'Match' statement in godot:
+		- https://youtu.be/cdPfpPEn6D8?si=9orueBiX7YaOhHRj&t=653
+- Consider:
+	- You need to either be taught or find in dungeons/exploring for specific spells (Written in Kanji) that when approached prompt a new combination of keys that conjure a spell. The more you use it, the faster and stronger it becomes.

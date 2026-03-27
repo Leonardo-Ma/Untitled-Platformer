@@ -1,0 +1,6 @@
+- Consider:
+	- Map doesn't automatically open upon exploration, need to level cartography that is automatically leveled upon exploration. It increases details on map.
+-
+- When opening the map, the player opens the paper on hands, and it doesn't pause the game, like in farcry 2 https://youtu.be/gWNXGfXOrro?si=YxL7e18s4FA7nVr8&t=3245
+-
+- When in a higher level area than the character, the player will loudly say "I feel I shouldn't be here".

@@ -3,6 +3,7 @@
 
 exclude: |
   (?x)^(
+    \.md/|
     \.godot/|
     \.import/|
     (^|/)build/|

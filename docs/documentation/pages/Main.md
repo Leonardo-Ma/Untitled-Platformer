@@ -1,0 +1,46 @@
+- [[Learning]]
+- Rules:
+	- Signals:
+		- Write down rule so signals are only called from code, never from GUI
+	- Default text/style:
+		- "If you can see this, this is a bug!"
+- GUI:
+	- Godot Control Node (UI) Masterclass: https://www.youtube.com/watch?v=5Hog6a0EYa0
+	- Everything needs anchors (Work for any resolution) and anchor points (Reference for resolution)
+	- Every menu needs a focused button/control... (So it can work with console controllers)
+	- [[GUI]]
+	- Main Menu:
+		- There should be a minimum space between title text and buttons
+	- Pause:
+		- Remember to
+			- pause_mode = Node.PAUSE_MODE_PROCESS
+	- Consider the use of symbols + words where it makes sense, so it doesn't rely on a specific language
+- Ambience:
+	- https://www.youtube.com/watch?v=lxzWJdYnwLQ
+- [[Goap]]
+- [[Combat]]
+- Future:
+	- Consider Keybinding:
+	  collapsed:: true
+		- You can use both hands at same time,
+			- Q + LMB = left hand first attack ; Q + RMB left hand second attack
+			- E + LMB ; E + RMB...
+			- Ex: Left mouse hold uses a hook, right mouse uses a wand magic attack
+	- [[Magic]]
+	- [[Enemy AI & systemic mechanics]]
+	- [[Map]]
+	- [[Quests]]
+	- [[Boss]]
+	- Roadmap
+	-
+-
+- [[Misc Mechanics]]
+-
+- Very far future:
+	- Trailer:
+		- A very long 'movie-like' of the game, presenting most mechanics, large scale battles, attacking settlements, completing quests...
+		- 'I used to be an adventurer like you' [He has an arrow on his knee], player stares his knee, draws an arrow to the other knee... [Cuts to him fleeing the scene being pursued]
+	- Check if possible to embed the godot engine inside the game, so the player can create both maps and new mechanics from within the game itself
+	- Search for youtubers that post content of games of same genre and offer keys and ask for opinion
+	-
+	- Consider adding a Business Source License if going 'open source' Maybe [FCL-1.0-ALv2](https://github.com/keygen-sh/fcl.dev/blob/master/FCL-1.0-MIT.md)
