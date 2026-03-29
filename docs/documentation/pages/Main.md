@@ -44,4 +44,11 @@
 	- Check if possible to embed the godot engine inside the game, so the player can create both maps and new mechanics from within the game itself
 	- Search for youtubers that post content of games of same genre and offer keys and ask for opinion
 	-
-	- Consider adding a Business Source License if going 'open source' Maybe [FCL-1.0-ALv2](https://github.com/keygen-sh/fcl.dev/blob/master/FCL-1.0-MIT.md)
+	- Study:
+		- Embed a version system that uses releases tags that can be changed on main menu, that downloads the build of that version and changes to it.
+	-
+	- Licenses:
+		- Consider adding a Business Source License if going 'open source' Maybe [FCL-1.0-ALv2](https://github.com/keygen-sh/fcl.dev/blob/master/FCL-1.0-MIT.md)
+		- Consider usage of [reuse-tool](https://github.com/fsfe/reuse-tool) to license each file individually
+	- Move code to codeberg and mirror on gitlab
+	-

@@ -1,10 +1,27 @@
 # Code Style Guide
+Inspired by [Thrive's Code Style](https://github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.md)
+
+Objectives [Godot's GDScript style guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html)
+
 
 This style guide is separated into three parts: code rules, other file rules, and guidelines for git.
 
 The style rules are intended to increase readability of the source code for humans that will read the written code. The most important rule of all is: Use common sense.
 
 ## Code style rules
+
+-  | Type          | Convention   | Example                      |
+   |---------------|--------------|------------------------------|
+   | File names    | snake_case   | yaml_parser.gd               |
+   | Class names   | PascalCase   | class_name YAMLParser        |
+   | Node names    | PascalCase   | Camera3D, Player             |
+   | Functions     | snake_case   | func load_level():           |
+   | Variables     | snake_case   | var particle_effect          |
+   | Signals       | snake_case   | signal door_opened           |
+   | Constants     | CONSTANT_CASE| const MAX_SPEED = 200        |
+   | Enum names    | PascalCase   | enum Element                 |
+   | Enum members  | CONSTANT_CASE| {EARTH, WATER, AIR, FIRE}    |
+---
 
 - Indentation is 4 spaces. Continued statements are indented one level
   higher.
@@ -29,18 +46,13 @@ The style rules are intended to increase readability of the source code for huma
   - `rect` (when related to class names and variables holding instances of those classes)
   - `tech` (short for technology)
 
-- Variables and functions are `camelCase`. Classes are `PascalCase`. Constants are `UPPER_SNAKE_CASE`. Enums are `UPPERCASE`
 
 - Files inside `/scr` and Godot related are snake_case.
 - - Only exception: [ScriptTemplates](https://docs.godotengine.org/en/stable/tutorials/scripting/creating_script_templates.html)
 - -
 
-- Start comments with a capital letter, unless it is a commented out
+- Start comments with a space and capital letter, unless it is a commented out
   code block or a keyword.
-
-- Empty lines are encouraged between blocks of code to improve
-  readability. Blank space is your friend, not your enemy. Separate
-  out logically different parts of a method with blank lines.
 
 - Use preincrement (`++i`) in loops and other cases, unless you
   actually need post increment.
@@ -69,7 +81,7 @@ The style rules are intended to increase readability of the source code for huma
 - Avoid globals. Especially in object trees where you can easily
   enough pass the reference along.
 
--- Do not use `string.Format` with a translated format string, as
+- Do not use `string.Format` with a translated format string, as
   translation mistakes can crash the game in that case. Instead either
   use `LocalizedString`, `LocalizedStringBuilder`, or
   `StringUtils.FormatSafe`. Those ways will automatically catch
@@ -86,7 +98,7 @@ The style rules are intended to increase readability of the source code for huma
   the start and return early with an error if the inputs are not
   valid.
 
--- Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
+- Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
   and then reading the value separate because `TryGetValue` is faster.
 
 - Defensive programming is recommended. The idea is to write code that
@@ -112,23 +124,9 @@ The style rules are intended to increase readability of the source code for huma
 
 ## Godot usage
 
-- GUIs need to be usable with the mouse and a controller. See
-  [making_guis.md](making_guis.md).
+- Specific GUI: [gui_guide.md](gui_guide.md)
 
-- Do not use Control offsets to try to position elements, that's not good
-  Godot usage. Use proper parent container and min size instead.
-
-- For spacing elements use either a spacer (that has a visual
-  appearance) or for invisible space use an empty Control with rect
-  `minsize` set to the amount of blank you want.
-
-- Don't use text in the GUI with leading or trailing spaces to add
-  padding, see previous bullet instead.
-
-- Node names should not contain spaces, instead use PascalCase naming.
-
-- For connecting signals, use `nameof` to refer to methods whenever possible
-  to reduce the chance of mistakes when methods are renamed.
+- For connecting signals, use `nameof` to refer to methods whenever possible to reduce the chance of mistakes when methods are renamed.
 
 - When destroying child Nodes or Controls take care to detach them
   first, in cases that having them hang around for one more frame
@@ -165,41 +163,9 @@ The style rules are intended to increase readability of the source code for huma
   are not initialized in the Godot editor. This needs especial care
   when a class type is directly attached to a Godot scene.
 
-- We have rewritten several controls to workaround Godot bugs or limitations,
-  and add custom features. All these rewritten/customized controls are placed
-  in `res://src/gui_common/`. Currently there are `CustomCheckBox`,
-  `TopLevelContainer`, `CustomWindow`, `CustomConfirmationDialog`, `ErrorDialog`,
-  `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
-  `TweakedColourPicker`. Consider using these custom types rather than the
-  built-in types to ensure consistency across the GUI.
-
 - When you are instantiating a custom Control in Godot, use
-  `Instance Child Scene` if it has a corresponding scene (.tscn) file; If it
-  doesn't, add a corresponding built-in Control and use `Attach Script`.
-  An alternative is to locate the scene or script file in `FileSystem` panel
-  (by default on the bottom-left corner) and drag it to the proper position.
-
-- Using built-in `Popup` is not recommended since a custom one tailored
-  for the game already exist but for posterity similar rules in
-  the above point still stands. In addition, don't use `Popup.Popup_`,
-  instead prefer to use `Popup.Show` or `Popup.ShowModal`, only if those
-  don't work then you can consider using `Popup.Popup_`.
-
-- When using fonts, don't directly load the .ttf file with an embedded
-  font in a scene file. Instead create a label settings in
-  `src/gui_common/fonts` folder and use that. This is needed because
-  fonts need to have settings like fallback fonts set, for example
-  Chinese. All fonts should be TrueType (`.ttf`) and stored in
-  `assets/fonts`. For variable weight fonts the variants created from
-  the font should be placed in `assets/fonts/variants`. For buttons
-  that cannot use label settings, it is preferrably to just set a
-  theme font size override, but when really needed the override font
-  can be set, but care needs to be taken that this points to a proper
-  font. For variable weight fonts only the variants should be used and
-  not the base font directly.
-
-- All images used in the GUI should have mipmaps on in the import
-  options.
+  `Instance Child Scene` if it has a corresponding scene (.tscn) file; If it doesn't, add a corresponding built-in Control and use `Attach Script`.
+  An alternative is to locate the scene or script file in `FileSystem` panel (by default on the bottom-left corner) and drag it to the proper position.
 
 Other recommended approaches
 ----------------------------
@@ -214,26 +180,9 @@ Other recommended approaches
 Other files
 -----------
 
-- Simulation configuration JSON files should be named using snake_case.
-
-- JSON files need to be formatted with jsonlint. There is a CI check
-  that will complain if they aren't. This is a part of the formatting
-  check script.
-
-- New JSON files should prefer PascalCase keys. Existing JSON files
-  should stick to what other parts of that file use.
-
-- Registry items (for example organelles) should use camelCase for their
-  internal names (IRegistryType.InternalName), and not snake_case.
-  Otherwise other names that follow the internal names will violate other
-  naming conventions.
-
 - Do not use `<br>` in markdown unless it is a table where line breaks
   need to be tightly controlled. Use blank lines instead of
   `<br>`. Also don't use `<hr>` use `---` instead.
-
-- For translations see the specific instructions in
-  [working_with_translations.md](working_with_translations.md)
 
 Gameplay changes
 ----------------

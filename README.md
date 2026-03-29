@@ -72,6 +72,11 @@ Closes #42
 Co-author: JohnDoe
 ```
 
+# Credits
+See [ATTRIBUTION.md](ATTRIBUTION.md).
+
+
+<!------------------------------------------------------------->
 [conventional_commits_badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?style=for-the-badge&logo=conventionalcommits
 [conventional_commits_url]: https://conventionalcommits.org
 

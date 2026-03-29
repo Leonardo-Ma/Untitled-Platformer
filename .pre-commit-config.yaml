@@ -16,6 +16,14 @@ exclude: |
     .*\.wav$
   )
 
+default_install_hook_types:
+- pre-commit
+- commit-msg
+- pre-push
+
+default_stages: [pre-commit]
+
+fail_fast: true # Prevent partial execution
 
 repos:
   - repo: local
@@ -26,6 +34,7 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-push]
+
       - id: git-cliff-commit-msg
         name: Update changelog from commit message
         entry: >-
@@ -51,14 +60,18 @@ repos:
     rev: v2.7.2
     hooks:
       - id: conventional-commits
+    stages: [commit-msg]
+
 
   - repo: https://github.com/Scony/godot-gdscript-toolkit
     rev: 4.5.0
     hooks:
-      - id: gdformat # Check gdscript format
+      - id: gdformat
+        name: Check gdscript format
         files: \.gd$
         args: [--line-length=150]
       - id: gdlint
+        name: Lint gdscript
         files: \.gd$
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
