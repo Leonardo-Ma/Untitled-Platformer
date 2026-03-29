@@ -20,13 +20,19 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=1000
 config/icon="res://scr/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://plxel2xf671u"
+
 [autoload]
 
 PauseManager="*res://scr/util/autoload/pause_manager.gd"
 GameEvents="*res://scr/util/autoload/game_events.gd"
+SoundManager="*uid://c6aviitsw1wa"
 GoapWorldState="*uid://clan8pwdcjgaj"
 HitStopManager="*res://scr/util/autoload/hit_stop_manager.gd"
 TestGoapConsistency="*res://tests/goap.gd"
+TestAudio="*uid://cxi4v122jd7b6"
 GraphBuilder="*res://scr/util/autoload/goap_graph_builder.gd"
 
 [debug]

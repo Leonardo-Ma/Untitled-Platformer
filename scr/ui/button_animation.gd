@@ -9,7 +9,24 @@ func _ready() -> void:
 		button.mouse_exited.connect(_on_exit.bind(button))
 
 
+func _on_pressed(_button: Button) -> void:
+	(
+		SoundManager
+		. play_sound(
+			preload("res://scr/common/audio/ui/ui_sfx_set/switch1.wav"),
+			SoundManager.SoundCategory.UI,
+		)
+	)
+
+
 func _on_hover(button: Button) -> void:
+	(
+		SoundManager
+		. play_sound(
+			preload("res://scr/common/audio/ui/ui_sfx_set/rollover3.wav"),
+			SoundManager.SoundCategory.UI,
+		)
+	)
 	var tween: Tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.05, 1.05), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
@@ -20,4 +37,4 @@ func _on_exit(button: Button) -> void:
 
 
 func _on_new_game_pressed() -> void:
-	pass  # Replace with function body.
+	pass
