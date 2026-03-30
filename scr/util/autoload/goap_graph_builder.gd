@@ -8,13 +8,12 @@ var visualizer_window: Window = null
 
 
 func _ready() -> void:
-	# Only enable in debug builds
 	if OS.is_debug_build():
 		set_process_input(true)
 
 
 func _input(event: InputEvent) -> void:
-	# Toggle visualizer with F9 key (or any key you prefer)
+	# Toggle visualizer with F9 key
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F9:
 		toggle_visualizer()
 

@@ -23,8 +23,9 @@ func _get_health_resource(target: Node) -> Resource:
 	if "health" in target and target.health is Resource:  # Health is a Resource
 		return target.health
 
-	# If the target is a StatModifierManager, check its parent
-	if target is StatModifierManager and "health" in target.get_parent():
+	# TODO Add assert
+	# If the target is a StatusManager, check its parent
+	if target is StatusManager and "health" in target.get_parent():
 		var parent = target.get_parent()
 		if parent.health is Resource:
 			return parent.health

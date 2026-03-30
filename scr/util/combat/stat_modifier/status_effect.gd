@@ -14,11 +14,11 @@ enum StackMode {
 	# Extends existing time
 	ADD_DURATION,
 }
-enum EffectType { BUFF, DEBUFF, NEUTRAL }
+enum StatusType { BUFF, DEBUFF, NEUTRAL }
 
 @export var id: StringName = &""
 @export var name: String = ""
-@export var type: EffectType = EffectType.NEUTRAL
+@export var type: StatusType = StatusType.NEUTRAL
 @export var tags: Array[StringName] = []
 
 @export_group("Behavior")

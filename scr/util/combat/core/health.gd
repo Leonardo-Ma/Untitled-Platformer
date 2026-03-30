@@ -34,7 +34,7 @@ func take_damage(attack: Attack) -> void:
 
 	damaged.emit(attack)
 	health -= attack.power
-	enable_invulnerability(1)
+	enable_invulnerability(1.0)
 	stop_regeneration()  # Stop any active regen and reset delay
 	schedule_regeneration()
 

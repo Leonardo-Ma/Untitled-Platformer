@@ -6,6 +6,9 @@ extends Label3D
 
 
 func _process(_delta: float) -> void:
+	if not self.visible:
+		return
+
 	var is_damaged: String = "Not damaged"
 
 	if animation_tree.get("parameters/is_damaged/active"):

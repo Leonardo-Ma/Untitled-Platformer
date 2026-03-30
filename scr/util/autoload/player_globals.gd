@@ -25,7 +25,6 @@ var player: CharacterBody3D:
 var player_animation_tree: AnimationTree
 
 @onready var player_state: String
-@onready var player_speed: float = 3.0
 # TODO Either use this a global source of truth or a new GlobalInputController autoload
 @onready var mouse_mode: Input
 

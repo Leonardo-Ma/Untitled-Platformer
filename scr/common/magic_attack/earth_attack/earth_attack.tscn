@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bw6dx6bco0mlb" path="res://scr/util/combat/core/magic_attack.gd" id="1_b74e0"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="2_30drg"]
 [ext_resource type="Script" uid="uid://csig12422io62" path="res://scr/util/combat/core/hitbox.gd" id="3_ifof7"]
+[ext_resource type="Script" uid="uid://rpbdsks54nbp" path="res://scr/util/combat/stat_modifier/status_manager.gd" id="5_lhxbr"]
 
 [sub_resource type="Resource" id="Resource_lhxbr"]
 script = ExtResource("2_30drg")
@@ -43,16 +44,16 @@ transitions = ["Start", "Forward", SubResource("AnimationNodeStateMachineTransit
 radius = 0.7368164
 height = 4.115967
 
-[node name="EarthAttack" type="Node3D"]
+[node name="EarthAttack" type="Node3D" unique_id=222011227]
 script = ExtResource("1_b74e0")
 attack = SubResource("Resource_lhxbr")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1054007385]
 root_node = NodePath("../Collection")
 tree_root = SubResource("AnimationNodeStateMachine_32wxu")
 anim_player = NodePath("../Collection/AnimationPlayer")
 
-[node name="Collection" parent="." instance=ExtResource("1_1niac")]
+[node name="Collection" parent="." unique_id=2098016846 instance=ExtResource("1_1niac")]
 
 [node name="big_stone_1" parent="Collection" index="0"]
 transform = Transform3D(0.67053014, 0.026396502, -0.025455656, -0.004581048, 1.9540601, 0.4500916, 0.013799593, -0.63393223, 1.3863219, 0, 0, 0)
@@ -85,16 +86,22 @@ transform = Transform3D(0.22150594, 0, 0, 0, 0.22150594, 0, 0, 0, 0.22150594, 0,
 transform = Transform3D(0.22150594, 0, 0, 0, 0.22150594, 0, 0, 0, 0.22150594, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="Collection" index="14"]
-autoplay = "Animation"
+autoplay = &"Animation"
 
-[node name="Hitbox" type="Area3D" parent="."]
+[node name="Hitbox" type="Area3D" parent="." unique_id=1851980205]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.11796749)
 script = ExtResource("3_ifof7")
 metadata/_custom_type_script = "uid://csig12422io62"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=513542576]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 6.254165e-08, -2.4595518)
 shape = SubResource("CapsuleShape3D_30drg")
+
+[node name="StatusManager" type="Node" parent="." unique_id=2142409274]
+unique_name_in_owner = true
+script = ExtResource("5_lhxbr")
+metadata/_custom_type_script = "uid://rpbdsks54nbp"
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 

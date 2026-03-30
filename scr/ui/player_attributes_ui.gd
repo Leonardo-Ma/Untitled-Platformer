@@ -7,9 +7,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("open_attributes"):
 		self.visible = not self.visible
 
-	# Optimization: No need to reconstruct the string every frame if the UI is hidden
 	if not self.visible:
 		return
+
 	# TODO Improve this, should be dynamic
 	self.text = (
 		"\t\tMain Attributes:"

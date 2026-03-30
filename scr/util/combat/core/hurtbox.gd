@@ -25,12 +25,12 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 		var attack_used: Attack = hitbox.owner.attack
 		owner.health.take_damage(attack_used)
 
-		# TODO Consider if should be an assert for attacker's StatModifierManager
-		# Allow the attacker's StatModifierManager (if present) to react to dealing damage
-		var attacker = hitbox.owner
-		if attacker and attacker.has_node("StatModifierManager"):
-			var damage_dealt: float = float(attack_used.power)
-			attacker.get_node("StatModifierManager").dispatch_event(&"on_damage_dealt", {"damage": damage_dealt})
+		var attacker: Node = hitbox.owner
+		assert(attacker != null, "Hitbox owner cannot be null on damage.")
+		assert(attacker.has_node("%StatusManager"), "Attacker " + attacker.name + " missing StatusManager.")
+
+		var damage_dealt: float = float(attack_used.power)
+		attacker.get_node("%StatusManager").dispatch_event(&"on_damage_dealt", {"damage": damage_dealt})
 
 	# TODO Confirm if this will ever be called
 	else:

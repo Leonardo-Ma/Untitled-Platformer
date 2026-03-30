@@ -15,6 +15,7 @@ const CAST_FREEZE_DURATION: float = 1.0
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	# TODO Change this to a combination of keys + execute magic key
 	if event.is_action("magic_z"):
 		cast_started.emit(CAST_FREEZE_DURATION)
 

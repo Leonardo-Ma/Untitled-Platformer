@@ -9,9 +9,7 @@ extends AgressiveEntity
 @onready var goap_controller: RedMageMemory = $GoapController
 
 
-func _ready() -> void:
-	# BUG If this doesn't call parent's ready, it doesn't connect signals properly
-	super._ready()
+func _entity_ready() -> void:
 	assert(ai_config, "GOAP Not properly configured for " + self.name)
 	var goals: Array[GoapGoal] = ai_config.create_goals()
 	var actions: Array[GoapAction] = ai_config.create_actions()

@@ -1,9 +1,13 @@
 # TODO Create parent general magic attack class
+# TODO Maybe a general test for asserts? It only checks when spell is cast (instanced)
 ## This is used to force the use of inherited animation player and to free after finished
 class_name GroundedEarthAttack
 extends Node
 
 @export var attack: Attack
+@onready var status_manager: StatusManager = %StatusManager
+@onready var hitbox: Hitbox = %Hitbox
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 # Took me 2 days to understand this :(
 # https://docs.godotengine.org/en/stable/tutorials/animation/animation_tree.html#statemachine-travel
@@ -13,6 +17,8 @@ extends Node
 func _ready() -> void:
 	assert(animation_tree, "Animation tree not defined by " + self.name)
 	assert(attack and attack.power > 0 and attack.type != null, "Attack property incorrect for " + self.name)
+	assert(status_manager, "status_manager not defined (or not unique) by " + self.name)
+	assert(hitbox, "hitbox not defined (or not unique) by " + self.name)
 
 
 func _on_animation_tree_animation_finished(_anim_name: StringName) -> void:

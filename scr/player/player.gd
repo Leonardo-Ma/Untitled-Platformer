@@ -6,22 +6,22 @@ signal toggle_inventory
 @export_group("Inventory")
 @export var inventory_data: InventoryData
 
-@onready var interact_ray: RayCast3D = $InteractRay
+@onready var interact_ray: RayCast3D = %InteractRay
 
-@onready var movement_controller: Node3D = $Controllers/MovementController
-@onready var input_controller: Node = $Controllers/InputController
-
-# BUG If this doesn't call parent's ready, it doesn't connect signals properly
-#func _ready() -> void:
-#super._ready()
+@onready var movement_controller: Node3D = %MovementController
+@onready var input_controller: Node = %InputController
 
 
-func _ready() -> void:
+func _entity_ready() -> void:
 	PlayerGlobals.player = self
 
 	input_controller.inventory_toggled.connect(_on_inventory_toggled)
 	input_controller.interact_requested.connect(_on_interact_requested)
 	input_controller.attack_pressed.connect(_on_attack_pressed)
+
+
+func _requires_goap() -> bool:
+	return false
 
 
 func _physics_process(delta: float) -> void:
