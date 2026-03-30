@@ -1,23 +1,30 @@
 extends TextEdit
 
+@onready var player: CharacterBody3D = $"../../../Player"
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("open_attributes"):
 		self.visible = not self.visible
+
+	# Optimization: No need to reconstruct the string every frame if the UI is hidden
+	if not self.visible:
+		return
+	# TODO Improve this, should be dynamic
 	self.text = (
 		"\t\tMain Attributes:"
-		+ "\nstrenght :"
-		+ str(Attributes.strenght)
+		+ "\nstrength :"
+		+ str(player.stats.get_stat(StatTypes.Type.STRENGTH))
 		+ "\nconstitution :"
-		+ str(Attributes.constitution)
+		+ str(player.stats.get_stat(StatTypes.Type.CONSTITUTION))
 		+ "\nperception :"
-		+ str(Attributes.perception)
+		+ str(player.stats.get_stat(StatTypes.Type.PERCEPTION))
 		+ "\ndexterity :"
-		+ str(Attributes.dexterity)
+		+ str(player.stats.get_stat(StatTypes.Type.DEXTERITY))
 		+ "\nintelligence :"
-		+ str(Attributes.intelligence)
+		+ str(player.stats.get_stat(StatTypes.Type.INTELLIGENCE))
 		+ "\nspirit :"
-		+ str(Attributes.spirit)
+		+ str(player.stats.get_stat(StatTypes.Type.SPIRIT))
 		+ "\ncharisma :"
-		+ str(Attributes.charisma)
+		+ str(player.stats.get_stat(StatTypes.Type.CHARISMA))
 	)

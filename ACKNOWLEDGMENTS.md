@@ -1,4 +1,4 @@
-# Attribution
+# Acknowledgments
 ## Tools used
 #### Godot
 Source: [godotengine.org](https://godotengine.org/)  

@@ -11,7 +11,7 @@ const EARTH_ATTACK: PackedScene = preload("uid://ch4rskg6ravmg")
 const CAST_FREEZE_DURATION: float = 1.0
 
 #@onready var timer: Timer = $Timer
-@onready var camera: Node3D = $"../CamRoot"
+@onready var cam_root: Node3D = %CamRoot
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

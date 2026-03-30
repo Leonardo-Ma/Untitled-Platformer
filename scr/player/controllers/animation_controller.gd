@@ -4,11 +4,10 @@ extends Node
 ## Player animation controller
 ## To be attached to AnimationTree
 #######################################
-
-@onready var movement_controller: Node3D = $"../MovementController"
+@onready var movement_controller: Node3D = $"../Controllers/MovementController"
 @onready var player: CharacterBody3D = $".."
 @onready var health: Health = player.health
-@onready var magic_controller: Node = $"../MagicController"
+@onready var magic_controller: Node = $"../Controllers/MagicController"
 
 
 func _ready() -> void:

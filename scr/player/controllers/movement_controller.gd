@@ -17,7 +17,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _movement_enabled: bool = true
 var _disable_timer: float = 0.0
 
-@onready var magic_controller: Node = $"../MagicController"
+@onready var magic_controller: Node = %MagicController
 
 
 func _ready() -> void:

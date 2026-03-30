@@ -17,6 +17,7 @@ func _physics_process(_delta: float) -> void:
 func set_player_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	player_inventory.set_inventory_data(inventory_data)
+	player_inventory.show()
 
 
 func set_external_inventory(_external_inventory_owner: Node) -> void:

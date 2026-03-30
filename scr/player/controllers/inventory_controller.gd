@@ -12,16 +12,16 @@ func _ready() -> void:
 
 func _setup_inventory() -> void:
 	inventory_interface = get_tree().get_root().find_child("InventoryInterface", true, false) as Control
+	assert(inventory_interface, "InventoryInterface not found in the scene tree.")
 
-	if inventory_interface == null:
-		push_error("InventoryInterface not found in the scene tree.")
-		return
+	var player: Node = get_owner()
 
-	get_parent().toggle_inventory.connect(toggle_inventory_interface)
-	inventory_interface.set_player_inventory_data(get_parent().inventory_data)
+	player.connect("toggle_inventory", toggle_inventory_interface)
+
+	inventory_interface.set_player_inventory_data(player.get("inventory_data"))
 
 	for node: Node in get_tree().get_nodes_in_group("external_inventory"):
-		node.toggle_inventory.connect(toggle_inventory_interface)
+		node.connect("toggle_inventory", toggle_inventory_interface)
 
 
 func toggle_inventory_interface(external_inventory_owner: Node = null) -> void:

@@ -5,7 +5,7 @@ signal inventory_toggled
 signal interact_requested
 signal attack_pressed
 
-@onready var camera_controller: Node = $"../CamRoot"
+@onready var camera_controller: Node = $"../../CamRoot"
 
 
 func _ready() -> void:

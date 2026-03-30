@@ -42,7 +42,7 @@ func on_game_started() -> void:
 	menus.visible = false
 	hud.visible = true
 	overlays.visible = true
-	inventory_interface.visible = true
+	inventory_interface.visible = false
 
 	# Ensure the tree plays
 	get_tree().paused = false

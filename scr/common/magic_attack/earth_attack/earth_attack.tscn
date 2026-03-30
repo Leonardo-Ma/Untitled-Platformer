@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch4rskg6ravmg"]
+[gd_scene format=3 uid="uid://ch4rskg6ravmg"]
 
 [ext_resource type="PackedScene" uid="uid://ctxcogjr4ujib" path="res://scr/common/magic_attack/earth_attack/earth_bending_attack.glb" id="1_1niac"]
-[ext_resource type="Script" uid="uid://bw6dx6bco0mlb" path="res://scr/util/combat/magic_attack.gd" id="1_b74e0"]
-[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/attack.gd" id="2_30drg"]
-[ext_resource type="Script" uid="uid://csig12422io62" path="res://scr/util/combat/hitbox.gd" id="3_ifof7"]
+[ext_resource type="Script" uid="uid://bw6dx6bco0mlb" path="res://scr/util/combat/core/magic_attack.gd" id="1_b74e0"]
+[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="2_30drg"]
+[ext_resource type="Script" uid="uid://csig12422io62" path="res://scr/util/combat/core/hitbox.gd" id="3_ifof7"]
 
 [sub_resource type="Resource" id="Resource_lhxbr"]
 script = ExtResource("2_30drg")

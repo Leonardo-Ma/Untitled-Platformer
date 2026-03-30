@@ -60,7 +60,7 @@ repos:
     rev: v2.7.2
     hooks:
       - id: conventional-commits
-    stages: [commit-msg]
+        stages: [commit-msg]
 
 
   - repo: https://github.com/Scony/godot-gdscript-toolkit

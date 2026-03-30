@@ -8,8 +8,8 @@ signal toggle_inventory
 
 @onready var interact_ray: RayCast3D = $InteractRay
 
-@onready var movement_controller: Node3D = $MovementController
-@onready var input_controller: Node = $InputController
+@onready var movement_controller: Node3D = $Controllers/MovementController
+@onready var input_controller: Node = $Controllers/InputController
 
 # BUG If this doesn't call parent's ready, it doesn't connect signals properly
 #func _ready() -> void:
