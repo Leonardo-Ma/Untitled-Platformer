@@ -1,4 +1,5 @@
 # https://www.youtube.com/watch?v=EP5AYllgHy8 Godot 4.0 Third Person Controller Tutorial ( 2023 )
+class_name PlayerEntity
 extends AgressiveEntity
 
 signal toggle_inventory
@@ -13,7 +14,8 @@ signal toggle_inventory
 
 
 func _entity_ready() -> void:
-	PlayerGlobals.player = self
+	add_to_group("players")
+	GameEvents.player_spawned.emit(self)
 
 	input_controller.inventory_toggled.connect(_on_inventory_toggled)
 	input_controller.interact_requested.connect(_on_interact_requested)

@@ -8,25 +8,34 @@ var health_resource: Health
 
 @onready var timer: Timer = $Timer
 @onready var damagebar: ProgressBar = $Damagebar
-# BUG There's a delay between hit and healthbar (green) update
 
 
 func _ready() -> void:
-	if PlayerGlobals.player_health != null:
-		_on_player_initialized()
-	else:
-		PlayerGlobals.player_initialized.connect(_on_player_initialized)
+	GameEvents.player_spawned.connect(_on_player_spawned)
+
+	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	if not players.is_empty():
+		_on_player_spawned(players[0])
 
 
-func _on_player_initialized() -> void:
-	health_resource = PlayerGlobals.player_health
+func _on_player_spawned(player: Node) -> void:
+	if health_resource != null:
+		return
+
+	var player_entity: AgressiveEntity = player as AgressiveEntity
+	if player_entity == null or player_entity.health == null:
+		return
+
+	health_resource = player_entity.health
 	health_resource.damaged.connect(_on_damaged)
 	health_resource.died.connect(_on_death)
 
-	# Initialize health bars
-	health = health_resource.health
+	# Initialize health bars in proper order to avoid clamping constraints
 	max_value = health_resource.max_health
 	damagebar.max_value = health_resource.max_health
+
+	# Explicitly call _set_health setter or do it dynamically via self
+	self.health = health_resource.health
 
 
 func _set_health(new_health: float) -> void:
@@ -43,7 +52,7 @@ func _set_health(new_health: float) -> void:
 
 
 func _on_damaged(_attack: Attack) -> void:
-	health = health_resource.health
+	self.health = health_resource.health
 
 
 func _on_death() -> void:

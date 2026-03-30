@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://dbv6ox0nun76t" path="res://scr/ui/ui.gd" id="1_dakun"]
 [ext_resource type="PackedScene" uid="uid://ujv84xenekf7" path="res://scr/ui/menus/menus.tscn" id="2_dakun"]
 [ext_resource type="PackedScene" uid="uid://l8tfyp2lpc7o" path="res://scr/ui/hud/hud.tscn" id="3_dakun"]
-[ext_resource type="PackedScene" uid="uid://ceqteh34sypae" path="res://scr/debug/debug_interface.tscn" id="4_bi8hs"]
-[ext_resource type="Script" uid="uid://c7sw8byvmjy03" path="res://scr/debug/debug_interface.gd" id="5_hrmpd"]
+[ext_resource type="PackedScene" uid="uid://ceqteh34sypae" path="res://scr/ui/debug/debug_interface.tscn" id="4_bi8hs"]
 [ext_resource type="Script" uid="uid://d10lqh3g14fa3" path="res://scr/ui/inventory/inventory_interface.gd" id="6_x7jpl"]
 [ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="7_os0ka"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="8_diyc5"]
@@ -14,7 +13,6 @@ script = ExtResource("1_dakun")
 
 [node name="DebugInterface" parent="." unique_id=1832192178 instance=ExtResource("4_bi8hs")]
 z_index = 99
-script = ExtResource("5_hrmpd")
 
 [node name="Overlays" type="Control" parent="." unique_id=320646206]
 z_index = 1

@@ -21,11 +21,17 @@ func init(actor: Node) -> void:
 
 
 func update_blackboard() -> void:
-	# TODO Change this to be dynamic instead of player
-	if PlayerGlobals.player == null or PlayerGlobals.player_health == null:
+	# BUG AI always knows player's position
+	# TODO Replace this with detection system (Area3D zone)?
+	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	if players.is_empty():
 		return
 
-	var enemy_pos: Vector3 = PlayerGlobals.player.global_position
+	var current_player: Node = players[0]
+	assert(current_player != null, "Player node in group is null.")
+	assert(current_player.get("health") != null, "Target player must have a valid Health resource.")
+
+	var enemy_pos: Vector3 = current_player.global_position
 	var actor_pos: Vector3 = _actor.global_position
 	var distance: float = actor_pos.distance_to(enemy_pos)
 
@@ -34,7 +40,7 @@ func update_blackboard() -> void:
 	var in_melee_range: bool = distance <= 1.2
 	var enemy_nearby: bool = distance < 15
 
-	var enemy_alive: bool = PlayerGlobals.player_health.health > 0
+	var enemy_alive: bool = current_player.get("health").get("health") > 0
 	var in_combat: bool = in_melee_range and enemy_alive
 
 	var low_health: bool = false

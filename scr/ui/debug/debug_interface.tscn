@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://ceqteh34sypae"]
+
+[ext_resource type="Script" uid="uid://c6lqd8lydwydg" path="res://scr/ui/debug/debug_label.gd" id="1_2eafd"]
+
+[node name="DebugInterface" type="Control" unique_id=1005611581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1801278865]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.68200004
+anchor_top = 0.026
+anchor_right = 0.961
+anchor_bottom = 0.657
+offset_left = 0.039916992
+offset_top = 0.27999878
+offset_right = -0.080078125
+offset_bottom = -0.040008545
+grow_horizontal = 0
+theme_override_constants/margin_left = 0
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1718362949]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Panel" unique_id=1294854035]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.5
+offset_right = 131.5
+offset_bottom = 292.0
+grow_horizontal = 2
+text = "States:
+x
+x
+x
+x
+FPS: 
+Move Speed: 
+Position:
+Player health:
+Invulnerable:
+Key press:"
+script = ExtResource("1_2eafd")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel" unique_id=1297407731]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 123.0
+offset_right = 341.0
+offset_bottom = 134.0

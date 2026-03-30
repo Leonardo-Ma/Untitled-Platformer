@@ -23,7 +23,7 @@ config/icon="res://scr/icon.svg"
 [autoload]
 
 PauseManager="*res://scr/util/autoload/pause_manager.gd"
-PlayerGlobals="*res://scr/util/autoload/player_globals.gd"
+GameEvents="*res://scr/util/autoload/game_events.gd"
 GoapWorldState="*uid://clan8pwdcjgaj"
 HitStopManager="*res://scr/util/autoload/hit_stop_manager.gd"
 TestGoapConsistency="*res://tests/goap.gd"
@@ -51,7 +51,6 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", 
 folder_colors={
 "res://icons/": "green",
 "res://scr/common/animations/": "yellow",
-"res://scr/debug/": "gray",
 "res://scr/documentation/": "gray",
 "res://scr/entity/": "yellow",
 "res://scr/goap/": "pink",
@@ -60,6 +59,7 @@ folder_colors={
 "res://scr/sound/": "blue",
 "res://scr/terrain/": "orange",
 "res://scr/ui/": "green",
+"res://scr/ui/debug/": "gray",
 "res://scr/util/": "gray",
 "res://scr/world_asset/": "orange",
 "res://scr/world_map/": "orange"
