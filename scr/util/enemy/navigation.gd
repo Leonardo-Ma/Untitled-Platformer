@@ -9,6 +9,10 @@ signal move_stopped
 
 
 func _physics_process(_delta: float) -> void:
+	if navigation_agent.is_navigation_finished():
+		stop()
+		return
+
 	var current_location: Vector3 = owner.global_transform.origin
 	var next_location: Vector3 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector3 = (next_location - current_location).normalized() * owner.movement.run_speed
@@ -23,7 +27,17 @@ func update_target_location(target_location: Vector3) -> void:
 	navigation_agent.target_position = target_location
 
 
+func stop() -> void:
+	set_physics_process(false)
+	owner.velocity = Vector3.ZERO
+	navigation_agent.set_velocity(Vector3.ZERO)
+	move_stopped.emit()
+
+
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	if not is_physics_processing():
+		return
+
 	owner.velocity = owner.velocity.move_toward(safe_velocity, 0.25)
 	owner.move_and_slide()
 	emit_signal("move_started", owner.movement.run_speed)

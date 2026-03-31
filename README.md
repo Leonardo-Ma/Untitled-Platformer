@@ -73,7 +73,7 @@ Co-author: JohnDoe
 ```
 
 # Credits
-See [ATTRIBUTION.md](ATTRIBUTION.md).
+See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md).
 
 
 <!------------------------------------------------------------->

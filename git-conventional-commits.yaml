@@ -28,7 +28,7 @@ changelog:
     Feat: Features
     Fix: Bug Fixes
     Perf: Performance Improvements
-    breakingChange: BREAKING CHANGES
+    BreakingChange: BREAKING CHANGES
   commitUrl: https://github.com/Leonardo-Ma/Space-Toilet/commit/%commit%
   commitRangeUrl: https://github.com/Leonardo-Ma/Space-Toilet/compare/%from%...%to%?diff=split
   issueRegexPattern: "#[0-9]+"

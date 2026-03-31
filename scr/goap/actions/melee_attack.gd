@@ -2,7 +2,7 @@ class_name MeleeAttack
 extends GoapAction
 
 var _attack_cooldown: float = 0.7
-var _elapsed: float = 0.0
+var _last_attack_time: int = 0
 
 
 func get_custom_class_name() -> String:
@@ -28,11 +28,12 @@ func get_effects() -> Dictionary:
 func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	# TODO This just zeroes the velocity, need to find better way
 	_actor.navigation_controller.navigation_agent.set_velocity(Vector3.ZERO)
-	_elapsed += _delta
 
-	if _elapsed >= _attack_cooldown:
+	var current_time: int = Time.get_ticks_msec()
+
+	if current_time - _last_attack_time >= int(_attack_cooldown * 1000.0):
 		_actor.melee_attacked.emit()
 		print("attacked")
-		_elapsed = 0.0
+		_last_attack_time = current_time
 		return true
 	return false

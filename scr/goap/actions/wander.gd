@@ -6,7 +6,7 @@ const WANDER_COOLDOWN: float = 2.0
 var _wander_timer: float = 0.0
 var _wander_duration: float = 5.0
 var _wander_target_set: bool = false
-var _wander_cooldown: float = 0.0
+var _last_wander_end_time: int = 0
 
 
 func get_custom_class_name() -> String:
@@ -31,9 +31,13 @@ func get_effects() -> Dictionary:
 
 func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	var actor_position: Vector3 = _blackboard.get("position", _actor.global_position)
+	var current_time: int = Time.get_ticks_msec()
 
-	if _wander_cooldown > 0.0:
-		_wander_cooldown -= _delta
+	if current_time - _last_wander_end_time < int(WANDER_COOLDOWN * 1000.0):
+		if _wander_target_set:
+			_actor.navigation_controller.stop()
+			_wander_target_set = false
+			_wander_timer = 0.0
 		return false
 
 	if not _wander_target_set or _wander_timer >= _wander_duration:
@@ -48,9 +52,10 @@ func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	_wander_timer += _delta
 
 	if _wander_timer >= _wander_duration:
+		_last_wander_end_time = current_time
+		_actor.navigation_controller.stop()
 		_wander_target_set = false
 		_wander_timer = 0.0
-		_wander_cooldown = WANDER_COOLDOWN
 		return true
 
 	return false
