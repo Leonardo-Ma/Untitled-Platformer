@@ -50,7 +50,7 @@ layout_mode = 2
 text = "Options"
 script = ExtResource("3_pmc0i")
 
-[node name="Quit Main Menu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1385652931]
+[node name="Quit_Main_Menu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1385652931]
 layout_mode = 2
 text = "Quit to Main Menu"
 script = ExtResource("4_qmph6")

@@ -5,13 +5,6 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 
+# TODO Implement quit to main menu
 func _on_pressed() -> void:
-	get_tree().paused = true
-
-	# TODO Study this better
-	# Safely access the UIManager via its static instance
-	if UIManager.instance:
-		print("Found UIManager, starting game...")
-		UIManager.instance.on_game_paused()
-	else:
-		printerr("CRITICAL ERROR: UIManager.instance is null! Make sure ui.gd is attached to the UI CanvasLayer.")
+	pass

@@ -25,8 +25,9 @@ func detect(owner_node: Node3D, target: Node3D) -> DetectionResult:
 	var target_pos: Vector3 = target.global_position
 	target_pos.y = owner_node.global_position.y  # Only check horizontal angle
 	var to_target: Vector3 = (target_pos - owner_node.global_position).normalized()
-	# Assuming -Z is forward for standard Godot 3D rotation
-	var forward: Vector3 = -owner_node.global_transform.basis.z
+	# In Godot -Z is typically forward, but the navigation script uses atan2(x, z)
+	# which aligns the +Z axis with the movement direction. Therefore, +Z is forward.
+	var forward: Vector3 = owner_node.global_transform.basis.z
 	forward.y = 0.0
 	forward = forward.normalized()
 

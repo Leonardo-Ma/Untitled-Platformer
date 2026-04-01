@@ -13,18 +13,23 @@ Source: [git-cliff.org](https://git-cliff.org/)
 License: [Apache License Version 2.0](https://github.com/orhun/git-cliff/blob/main/LICENSE-APACHE) / [MIT](https://github.com/orhun/git-cliff/blob/main/LICENSE-MIT).  
 
 #### Pre-commit
-Source: [pre-commit.com](https://pre-commit.com/)
+Source: [pre-commit.com](https://pre-commit.com/)  
 License: [MIT License](https://github.com/pre-commit/pre-commit?tab=MIT-1-ov-file)
 
+#### Mesh 2 Motion
+Source: [mesh2motion.org](https://mesh2motion.org/)  
+License: [MIT License](https://github.com/Mesh2Motion/mesh2motion-app?tab=License-1-ov-file)
 
 
 #### Visual Studio Code
 Source: [github: vscode](https://github.com/microsoft/vscode)  
 License: [MIT License](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)
 
-## Assets used
-####
-
+## Assets
+#### Quaternius (Animations, characters and props)
+Source: [quaternius.com](https://quaternius.com)
+License: [CC0 - Quaternius FAQ](https://quaternius.com/faq.html)
+Support: [Quaternius Patreon](https://www.patreon.com/quaternius)
 
 ## Important knowledge
 ### These places have been heavily used for learning or inspiration

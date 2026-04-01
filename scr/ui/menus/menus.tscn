@@ -20,6 +20,3 @@ layout_mode = 1
 [node name="PauseMenu" parent="." unique_id=2117240021 instance=ExtResource("6_rygc3")]
 visible = false
 layout_mode = 1
-
-[editable path="MainMenu"]
-[editable path="PauseMenu"]
