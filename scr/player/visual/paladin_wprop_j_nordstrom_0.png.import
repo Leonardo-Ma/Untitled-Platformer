@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtqdyw8hxhgln"
-path.s3tc="res://.godot/imported/Ground103_1K-PNG_Roughness.png-0a1a3d9c651384737546fc5aea79a9a6.s3tc.ctex"
+uid="uid://dnvtoib4sre8f"
+path.s3tc="res://.godot/imported/paladin_wprop_j_nordstrom_0.png-3a59ffabca5ce0ae1c63af6d1485070f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "08dad13d18a3ee6dc4be544f4a8a7e42"
+}
 
 [deps]
 
-source_file="res://scr/terrain/textures/dirt_ground_ground103/Ground103_1K-PNG_Roughness.png"
-dest_files=["res://.godot/imported/Ground103_1K-PNG_Roughness.png-0a1a3d9c651384737546fc5aea79a9a6.s3tc.ctex"]
+source_file="res://scr/player/visual/paladin_wprop_j_nordstrom_0.png"
+dest_files=["res://.godot/imported/paladin_wprop_j_nordstrom_0.png-3a59ffabca5ce0ae1c63af6d1485070f.s3tc.ctex"]
 
 [params]
 

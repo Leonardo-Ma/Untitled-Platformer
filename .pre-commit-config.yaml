@@ -39,6 +39,8 @@ repos:
               [^/]+$|
               \.github/|
               .*/ROADMAP\.md$
+              \.docs/documentation/|
+              \script_templates/|
           )
       - id: git-cliff-check
         name: Check changelog is up to date

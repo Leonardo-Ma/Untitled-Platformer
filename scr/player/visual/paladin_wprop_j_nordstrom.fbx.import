@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://llfqhe5i6tes"
-path="res://.godot/imported/Paladin WProp J Nordstrom.fbx-a70c86c3fb9e93564a6461b49c725ebe.scn"
+path="res://.godot/imported/paladin_wprop_j_nordstrom.fbx-b77e744dbde1beaa92eea8230e104b33.scn"
 
 [deps]
 
-source_file="res://scr/player/visual/Paladin WProp J Nordstrom.fbx"
-dest_files=["res://.godot/imported/Paladin WProp J Nordstrom.fbx-a70c86c3fb9e93564a6461b49c725ebe.scn"]
+source_file="res://scr/player/visual/paladin_wprop_j_nordstrom.fbx"
+dest_files=["res://.godot/imported/paladin_wprop_j_nordstrom.fbx-b77e744dbde1beaa92eea8230e104b33.scn"]
 
 [params]
 

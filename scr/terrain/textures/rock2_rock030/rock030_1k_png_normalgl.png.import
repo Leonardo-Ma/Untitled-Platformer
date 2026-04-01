@@ -2,30 +2,31 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyj3a3lvkxsau"
-path="res://.godot/imported/Preview.png-4401f5fcf35aa6ef5b9379572740a25f.ctex"
+uid="uid://du18v58qtv7xh"
+path.s3tc="res://.godot/imported/rock030_1k_png_normalgl.png-e03541bdd055039a9b1a6387cf95c4be.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://scr/ui/fantasy_ui_borders/Preview.png"
-dest_files=["res://.godot/imported/Preview.png-4401f5fcf35aa6ef5b9379572740a25f.ctex"]
+source_file="res://scr/terrain/textures/rock2_rock030/rock030_1k_png_normalgl.png"
+dest_files=["res://.godot/imported/rock030_1k_png_normalgl.png-e03541bdd055039a9b1a6387cf95c4be.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
