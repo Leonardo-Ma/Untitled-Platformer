@@ -1,7 +1,8 @@
 extends Label3D
 
-@onready var animation_tree: AnimationTree = $"../AnimationTree"
-@onready var goap_controller: RedMageMemory = $"../GoapController"
+@onready var animation_tree: AnimationTree = %AnimationTree
+@onready var goap_controller: RedMageMemory = %GoapController
+
 @onready var label_text: String
 
 

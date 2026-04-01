@@ -22,7 +22,7 @@ func _on_player_spawned(player: Node) -> void:
 	if health_resource != null:
 		return
 
-	var player_entity: AgressiveEntity = player as AgressiveEntity
+	var player_entity: AggressiveEntity = player as AggressiveEntity
 	if player_entity == null or player_entity.health == null:
 		return
 

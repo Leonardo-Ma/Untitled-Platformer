@@ -34,4 +34,4 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 
 	# TODO Confirm if this will ever be called
 	else:
-		push_error("Health not properly configured for " + owner.name)
+		assert(false, "Health not properly configured for " + owner.name)

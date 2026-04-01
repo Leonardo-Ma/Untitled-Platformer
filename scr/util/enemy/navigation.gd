@@ -5,7 +5,21 @@ extends Node
 signal move_started
 signal move_stopped
 
-@onready var navigation_agent: NavigationAgent3D = $"../NavigationAgent3D"
+@onready var navigation_agent: NavigationAgent3D = (
+	owner.get_node("NavigationAgent3D") if owner.has_node("NavigationAgent3D") else get_parent().get_node("NavigationAgent3D")
+)
+
+
+func _ready() -> void:
+	assert(navigation_agent != null, "NavigationAgent3D is missing for Navigation node in " + owner.name)
+
+	if not navigation_agent.velocity_computed.is_connected(_on_navigation_agent_3d_velocity_computed):
+		navigation_agent.velocity_computed.connect(_on_navigation_agent_3d_velocity_computed)
+	if not navigation_agent.target_reached.is_connected(_on_navigation_agent_3d_target_reached):
+		navigation_agent.target_reached.connect(_on_navigation_agent_3d_target_reached)
+
+	# Start disabled by default for GOAP to control
+	set_physics_process(false)
 
 
 func _physics_process(_delta: float) -> void:
@@ -13,24 +27,33 @@ func _physics_process(_delta: float) -> void:
 		stop()
 		return
 
-	var current_location: Vector3 = owner.global_transform.origin
+	var current_location: Vector3 = owner.global_position
 	var next_location: Vector3 = navigation_agent.get_next_path_position()
-	var new_velocity: Vector3 = (next_location - current_location).normalized() * owner.movement.run_speed
 
-	owner.velocity = owner.velocity.move_toward(new_velocity, 0.25)
-	owner.look_at(Vector3(next_location.x, owner.global_position.y, next_location.z), Vector3.UP, true)
+	var direction: Vector3 = current_location.direction_to(next_location)
+	direction.y = 0.0
+	direction = direction.normalized()
+
+	var new_velocity: Vector3 = direction * owner.movement.run_speed
+
+	if direction.length_squared() > 0.001:
+		var target_rotation_y: float = atan2(direction.x, direction.z)
+		owner.rotation.y = lerp_angle(owner.rotation.y, target_rotation_y, 0.15)  # smooth rotation is usually better
 
 	navigation_agent.set_velocity(new_velocity)
 
 
 func update_target_location(target_location: Vector3) -> void:
-	navigation_agent.target_position = target_location
+	if not navigation_agent.target_position.is_equal_approx(target_location):
+		navigation_agent.target_position = target_location
 
 
 func stop() -> void:
 	set_physics_process(false)
-	owner.velocity = Vector3.ZERO
-	navigation_agent.set_velocity(Vector3.ZERO)
+	if owner != null and "velocity" in owner:
+		owner.velocity = Vector3.ZERO
+	if navigation_agent != null:
+		navigation_agent.set_velocity(Vector3.ZERO)
 	move_stopped.emit()
 
 
@@ -38,11 +61,16 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_physics_processing():
 		return
 
-	owner.velocity = owner.velocity.move_toward(safe_velocity, 0.25)
-	owner.move_and_slide()
-	emit_signal("move_started", owner.movement.run_speed)
+	if owner != null:
+		owner.velocity = safe_velocity
+		owner.move_and_slide()
+		if "movement" in owner:
+			move_started.emit(owner.movement.run_speed)
+		else:
+			move_started.emit()
 
 
 func _on_navigation_agent_3d_target_reached() -> void:
-	owner.velocity = Vector3.ZERO
+	if owner != null and "velocity" in owner:
+		owner.velocity = Vector3.ZERO
 	move_stopped.emit()

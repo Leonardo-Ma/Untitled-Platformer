@@ -1,3 +1,4 @@
+# TODO Consider changing this to resource?
 ## Interface class
 ## This is attached to goap controller node
 ## Controls the npc specific blackboard
@@ -17,3 +18,7 @@ var _blackboard: Dictionary = {}
 
 func get_blackboard() -> Dictionary:
 	return _blackboard
+
+
+func get_actor() -> Node:
+	return _actor

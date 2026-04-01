@@ -1,5 +1,5 @@
 ## Generic abstract class for entities that take damage and attack
-@abstract class_name AgressiveEntity
+@abstract class_name AggressiveEntity
 extends CharacterBody3D
 
 @warning_ignore("unused_signal")
@@ -9,6 +9,10 @@ signal melee_attacked
 @export var health: Health
 @export var movement: Movement
 @export var stats: EntityStats
+
+@export_group("Perception System")
+@export var perception_config: PerceptionConfig
+@export var debug_perception: bool = false
 
 var _goap_agent: GoapAgent = null
 

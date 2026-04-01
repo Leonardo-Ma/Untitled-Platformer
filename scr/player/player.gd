@@ -1,6 +1,6 @@
 # https://www.youtube.com/watch?v=EP5AYllgHy8 Godot 4.0 Third Person Controller Tutorial ( 2023 )
 class_name PlayerEntity
-extends AgressiveEntity
+extends AggressiveEntity
 
 signal toggle_inventory
 

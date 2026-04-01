@@ -1,5 +1,4 @@
 extends Node
-
 #######################################
 ## Entity animation controller
 ## To be attached to AnimationTree
@@ -9,7 +8,7 @@ extends Node
 @onready var entity: CharacterBody3D = $".."
 @onready var health: Health = entity.health
 
-@onready var navigation_controller: Node = $"../NavigationController"
+@onready var navigation_controller: Node = %NavigationController
 
 
 func _ready() -> void:

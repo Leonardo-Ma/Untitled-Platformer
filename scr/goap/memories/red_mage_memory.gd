@@ -3,6 +3,8 @@ class_name RedMageMemory
 extends GoapMemory
 
 const HEALTH_LOW_THRESHOLD: float = 0.3
+const MELEE_RANGE_SQUARED: float = 1.44  # 1.2 * 1.2
+const NEARBY_RANGE_SQUARED: float = 225.0  # 15.0 * 15.0
 
 
 func init(actor: Node) -> void:
@@ -20,33 +22,70 @@ func init(actor: Node) -> void:
 	}
 
 
+func _get_health() -> Variant:
+	if _actor.has_method("get_health"):
+		return _actor.get_health()
+
+	if "health" in _actor:
+		return _actor.get("health")
+
+	return null
+
+
+func _get_health_percentage() -> float:
+	var health: Variant = _get_health()
+	if health == null:
+		return 1.0
+	return health.health / health.max_health
+
+
+func _is_low_health() -> bool:
+	return _get_health_percentage() <= HEALTH_LOW_THRESHOLD
+
+
 func update_blackboard() -> void:
-	# BUG AI always knows player's position
-	# TODO Replace this with detection system (Area3D zone)?
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
-	if players.is_empty():
+	if not is_instance_valid(_actor):
 		return
 
-	var current_player: Node = players[0]
-	assert(current_player != null, "Player node in group is null.")
-	assert(current_player.get("health") != null, "Target player must have a valid Health resource.")
+	var perception: PerceptionSystem = _actor.get("perception_system")
+	if not perception:
+		return
 
-	var enemy_pos: Vector3 = current_player.global_position
+	var best_target_data: KnownEntityData = perception.get_best_target_data()
+
 	var actor_pos: Vector3 = _actor.global_position
-	var distance: float = actor_pos.distance_to(enemy_pos)
+
+	if not best_target_data:
+		_blackboard["position"] = actor_pos
+		_blackboard["enemy_in_melee_range"] = false
+		_blackboard["enemy_nearby"] = false
+		_blackboard["enemy_alive"] = false
+		_blackboard["in_combat"] = false
+		_blackboard["low_health"] = _is_low_health()
+		_blackboard["is_wandering"] = false
+		return
+
+	var current_player: Node3D = best_target_data.entity
+	assert(current_player != null, "Target entity is missing from target data")
+	assert("health" in current_player and current_player.health != null, "Target player must have a valid Health resource.")
+
+	var current_time: float = Time.get_ticks_msec() / 1000.0
+	var enemy_pos: Vector3 = best_target_data.last_known_position
+
+	# If active line of sight (seen in the last 0.5 seconds), track exactly
+	# Prevents tracking stutter caused by the perception update interval rate
+	if current_time - best_target_data.last_detection_time < 0.5:
+		enemy_pos = current_player.global_position
+
+	var distance_squared: float = actor_pos.distance_squared_to(enemy_pos)
 
 	# BUG In order for this to work it has to be same
 	# target desired distance of NavigationAgent3D
-	var in_melee_range: bool = distance <= 1.2
-	var enemy_nearby: bool = distance < 15
+	var in_melee_range: bool = distance_squared <= MELEE_RANGE_SQUARED
+	var enemy_nearby: bool = distance_squared < NEARBY_RANGE_SQUARED
 
-	var enemy_alive: bool = current_player.get("health").get("health") > 0
+	var enemy_alive: bool = current_player.health.health > 0.0
 	var in_combat: bool = in_melee_range and enemy_alive
-
-	var low_health: bool = false
-	if _actor.health:
-		var health_percentage: float = _actor.health.health / _actor.health.max_health
-		low_health = health_percentage <= HEALTH_LOW_THRESHOLD
 
 	_blackboard["enemy_position"] = enemy_pos
 	_blackboard["position"] = actor_pos
@@ -54,4 +93,5 @@ func update_blackboard() -> void:
 	_blackboard["enemy_nearby"] = enemy_nearby
 	_blackboard["enemy_alive"] = enemy_alive
 	_blackboard["in_combat"] = in_combat
-	_blackboard["low_health"] = low_health
+	_blackboard["low_health"] = _is_low_health()
+	_blackboard["is_wandering"] = false

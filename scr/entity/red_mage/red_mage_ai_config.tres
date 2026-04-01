@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AIConfig" load_steps=10 format=3 uid="uid://bpnc3ivm5a86w"]
+[gd_resource type="Resource" script_class="AIConfig" format=3 uid="uid://bpnc3ivm5a86w"]
 
 [ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://scr/goap/ai_config.gd" id="1_abc123"]
 [ext_resource type="Script" uid="uid://b7v4ao8jga5rg" path="res://scr/goap/goals/flee.gd" id="2_def456"]
