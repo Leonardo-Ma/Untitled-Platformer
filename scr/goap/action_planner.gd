@@ -58,6 +58,8 @@ func get_plan(goal: GoapGoal, blackboard: Dictionary) -> Array[GoapAction]:
 func _verify_plan(plan: Array[GoapAction], initial_blackboard: Dictionary, goal_state: Dictionary) -> bool:
 	var state: Dictionary = initial_blackboard.duplicate()
 	for action: GoapAction in plan:
+		if not action.is_valid(state):
+			return false
 		var preconditions: Dictionary = action.get_preconditions()
 		for key: String in preconditions:
 			if not state.has(key) or state.get(key) != preconditions[key]:

@@ -24,28 +24,49 @@ func _process(delta: float) -> void:
 	_goap_memory.update_blackboard()
 	_goal_switch_cooldown -= delta
 
-	var goal: GoapGoal = _get_best_goal()
-
-	# No valid new best goal found, skip planning
-	if goal == null:
-		return
-
 	var blackboard: Dictionary = _goap_memory.get_blackboard()
 	var needs_new_plan: bool = false
+
+	# Validate current plan step
+	if _current_plan != null and not _current_plan.is_empty() and _current_plan_step < _current_plan.size():
+		var current_action: GoapAction = _current_plan[_current_plan_step]
+		if not current_action.is_valid(blackboard):
+			_current_goal = null
+			_current_plan = []
+			_current_plan_step = 0
+			needs_new_plan = true
+
+	var goal: GoapGoal = _get_best_goal()
+	if goal == null:
+		return
 
 	if _current_goal == null or _current_plan == null or _current_plan.is_empty():
 		needs_new_plan = true
 	elif _goal_switch_cooldown <= 0.0 and goal.priority() > _current_goal.priority():
 		needs_new_plan = true
-	elif _current_plan_step < _current_plan.size() and not _current_plan[_current_plan_step].is_valid(blackboard):
-		needs_new_plan = true
 
 	if needs_new_plan:
-		var new_plan: Array[GoapAction] = _action_planner.get_plan(goal, blackboard)
+		var new_plan: Array[GoapAction] = []
+		var valid_goal: GoapGoal = null
 
-		# Only switch if a valid plan is found
+		var sorted_goals: Array = _goals.duplicate()
+		sorted_goals.sort_custom(func(a: GoapGoal, b: GoapGoal) -> bool: return a.priority() > b.priority())
+
+		for potential_goal: GoapGoal in sorted_goals:
+			if potential_goal.is_valid(blackboard):
+				# When searching simply for a better priority goal, don't downgrade
+				if _current_goal != null and _current_plan != null and not _current_plan.is_empty() and _goal_switch_cooldown > 0.0:
+					if potential_goal.priority() <= _current_goal.priority():
+						continue
+
+				var potential_plan: Array[GoapAction] = _action_planner.get_plan(potential_goal, blackboard)
+				if potential_plan != null and not potential_plan.is_empty():
+					new_plan = potential_plan
+					valid_goal = potential_goal
+					break
+
 		if new_plan != null and not new_plan.is_empty():
-			_current_goal = goal
+			_current_goal = valid_goal
 			_current_plan = new_plan
 			_current_plan_step = 0
 			_goal_switch_cooldown = GOAL_SWITCH_DELAY
