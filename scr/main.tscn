@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://scr/util/combat/core/health.gd" id="13_u3kqt"]
 [ext_resource type="Script" uid="uid://dbndw8p05yam7" path="res://addons/terrain_3d/utils/terrain_3d_objects.gd" id="14_1p1te"]
 [ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="14_nvx4t"]
+[ext_resource type="PackedScene" uid="uid://dfbmmvo54fbmk" path="res://scr/entity/knight/knight.tscn" id="14_o5q5n"]
 [ext_resource type="PackedScene" uid="uid://gp010pr274tl" path="res://scr/entity/red_mage/red_mage.tscn" id="15_mwpnk"]
 [ext_resource type="PackedScene" uid="uid://cqyfierp40fon" path="res://scr/world_asset/chests/chest.tscn" id="17_ha2kd"]
 
@@ -44,98 +45,117 @@ agent_max_climb = 0.05
 
 [sub_resource type="GDScript" id="GDScript_ryguw"]
 
-[sub_resource type="Resource" id="Resource_vmhdc"]
+[sub_resource type="Resource" id="Resource_52hli"]
 resource_local_to_scene = true
 script = ExtResource("11_xf1me")
 type = 1
 power = 20
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_o5q5n"]
-resource_local_to_scene = true
-script = ExtResource("13_u3kqt")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_52hli"]
-resource_local_to_scene = true
-script = ExtResource("14_nvx4t")
-metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
 [sub_resource type="Resource" id="Resource_bqaqr"]
 resource_local_to_scene = true
-script = ExtResource("12_m7oqh")
-metadata/_custom_type_script = "uid://b46orajcidbak"
+script = ExtResource("13_u3kqt")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
 
 [sub_resource type="Resource" id="Resource_b18bd"]
 resource_local_to_scene = true
-script = ExtResource("11_xf1me")
-type = 1
-power = 20
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
+script = ExtResource("14_nvx4t")
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
 [sub_resource type="Resource" id="Resource_8sfv0"]
 resource_local_to_scene = true
-script = ExtResource("13_u3kqt")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
+script = ExtResource("12_m7oqh")
+metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [sub_resource type="Resource" id="Resource_1p1te"]
 resource_local_to_scene = true
-script = ExtResource("14_nvx4t")
-metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+script = ExtResource("11_xf1me")
+type = 1
+power = 20
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
 [sub_resource type="Resource" id="Resource_y13nm"]
 resource_local_to_scene = true
-script = ExtResource("12_m7oqh")
-metadata/_custom_type_script = "uid://b46orajcidbak"
+script = ExtResource("13_u3kqt")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
 
 [sub_resource type="Resource" id="Resource_jrxgm"]
 resource_local_to_scene = true
-script = ExtResource("11_xf1me")
-type = 1
-power = 20
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_hy815"]
-resource_local_to_scene = true
-script = ExtResource("13_u3kqt")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_i25bo"]
-resource_local_to_scene = true
 script = ExtResource("14_nvx4t")
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
-[sub_resource type="Resource" id="Resource_pd4w6"]
+[sub_resource type="Resource" id="Resource_hy815"]
 resource_local_to_scene = true
 script = ExtResource("12_m7oqh")
 metadata/_custom_type_script = "uid://b46orajcidbak"
 
-[sub_resource type="Resource" id="Resource_pguyi"]
+[sub_resource type="Resource" id="Resource_i25bo"]
 resource_local_to_scene = true
 script = ExtResource("11_xf1me")
 type = 1
 power = 20
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_kuwt1"]
+[sub_resource type="Resource" id="Resource_pd4w6"]
 resource_local_to_scene = true
 script = ExtResource("13_u3kqt")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="Resource" id="Resource_xf1me"]
+[sub_resource type="Resource" id="Resource_pguyi"]
 resource_local_to_scene = true
 script = ExtResource("14_nvx4t")
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
+[sub_resource type="Resource" id="Resource_kuwt1"]
+resource_local_to_scene = true
+script = ExtResource("12_m7oqh")
+metadata/_custom_type_script = "uid://b46orajcidbak"
+
+[sub_resource type="Resource" id="Resource_xf1me"]
+resource_local_to_scene = true
+script = ExtResource("11_xf1me")
+type = 1
+power = 20
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
 [sub_resource type="Resource" id="Resource_m7oqh"]
+resource_local_to_scene = true
+script = ExtResource("13_u3kqt")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_u3kqt"]
+resource_local_to_scene = true
+script = ExtResource("14_nvx4t")
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+
+[sub_resource type="Resource" id="Resource_nvx4t"]
+resource_local_to_scene = true
+script = ExtResource("12_m7oqh")
+metadata/_custom_type_script = "uid://b46orajcidbak"
+
+[sub_resource type="Resource" id="Resource_mwpnk"]
+resource_local_to_scene = true
+script = ExtResource("11_xf1me")
+type = 1
+power = 20
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
+[sub_resource type="Resource" id="Resource_mt7qb"]
+resource_local_to_scene = true
+script = ExtResource("13_u3kqt")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_ha2kd"]
 resource_local_to_scene = true
 script = ExtResource("12_m7oqh")
 metadata/_custom_type_script = "uid://b46orajcidbak"
@@ -171,31 +191,31 @@ script = SubResource("GDScript_ryguw")
 
 [node name="RedMage" parent="." unique_id=1047952853 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.125954, 0, 5)
-attack = SubResource("Resource_vmhdc")
-health = SubResource("Resource_o5q5n")
-movement = SubResource("Resource_52hli")
-stats = SubResource("Resource_bqaqr")
+attack = SubResource("Resource_52hli")
+health = SubResource("Resource_bqaqr")
+movement = SubResource("Resource_b18bd")
+stats = SubResource("Resource_8sfv0")
 
 [node name="RedMage2" parent="." unique_id=280064195 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 14.50013, 0, 5)
-attack = SubResource("Resource_b18bd")
-health = SubResource("Resource_8sfv0")
-movement = SubResource("Resource_1p1te")
-stats = SubResource("Resource_y13nm")
+attack = SubResource("Resource_1p1te")
+health = SubResource("Resource_y13nm")
+movement = SubResource("Resource_jrxgm")
+stats = SubResource("Resource_hy815")
 
 [node name="RedMage3" parent="." unique_id=1226039173 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.2750587, 0, 5)
-attack = SubResource("Resource_jrxgm")
-health = SubResource("Resource_hy815")
-movement = SubResource("Resource_i25bo")
-stats = SubResource("Resource_pd4w6")
+attack = SubResource("Resource_i25bo")
+health = SubResource("Resource_pd4w6")
+movement = SubResource("Resource_pguyi")
+stats = SubResource("Resource_kuwt1")
 
 [node name="RedMage4" parent="." unique_id=1979426465 instance=ExtResource("15_mwpnk")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.2750587, 0, 0.3108673)
-attack = SubResource("Resource_pguyi")
-health = SubResource("Resource_kuwt1")
-movement = SubResource("Resource_xf1me")
-stats = SubResource("Resource_m7oqh")
+attack = SubResource("Resource_xf1me")
+health = SubResource("Resource_m7oqh")
+movement = SubResource("Resource_u3kqt")
+stats = SubResource("Resource_nvx4t")
 
 [node name="Terrain3DObjects" type="Node3D" parent="." unique_id=367727128]
 script = ExtResource("14_1p1te")
@@ -204,3 +224,9 @@ metadata/_custom_type_script = "uid://dbndw8p05yam7"
 [node name="Chest" parent="Terrain3DObjects" unique_id=1968144271 instance=ExtResource("17_ha2kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57758975, -1.7680357)
 collision_layer = 5
+
+[node name="RedMage5" parent="." unique_id=1394254789 instance=ExtResource("14_o5q5n")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.4018426, 0.15252411, 1.163348)
+attack = SubResource("Resource_mwpnk")
+health = SubResource("Resource_mt7qb")
+stats = SubResource("Resource_ha2kd")

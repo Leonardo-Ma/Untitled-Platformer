@@ -26,10 +26,7 @@ Source: [github: vscode](https://github.com/microsoft/vscode)
 License: [MIT License](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)
 
 ## Assets
-#### Quaternius (Animations, characters and props)
-Source: [quaternius.com](https://quaternius.com)
-License: [CC0 - Quaternius FAQ](https://quaternius.com/faq.html)
-Support: [Quaternius Patreon](https://www.patreon.com/quaternius)
+####
 
 ## Important knowledge
 ### These places have been heavily used for learning or inspiration

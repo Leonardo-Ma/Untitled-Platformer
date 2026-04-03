@@ -1,13 +1,14 @@
-extends Node
-
 #######################################
 ## Player animation controller
 ## To be attached to AnimationTree
+## This acts as a signal listener for other nodes to change animation
 #######################################
-@onready var movement_controller: Node3D = $"../Controllers/MovementController"
+extends Node
+
 @onready var player: CharacterBody3D = $".."
 @onready var health: Health = player.health
-@onready var magic_controller: Node = $"../Controllers/MagicController"
+@onready var movement_controller: Node3D = %MovementController
+@onready var magic_controller: Node = %MagicController
 
 
 func _ready() -> void:
