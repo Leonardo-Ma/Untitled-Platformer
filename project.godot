@@ -44,20 +44,19 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://icons/": "green",
-"res://scr/common/animations/": "yellow",
+"res://scr/common/animation/": "yellow",
 "res://scr/documentation/": "gray",
 "res://scr/entity/": "yellow",
 "res://scr/goap/": "pink",
 "res://scr/player/": "yellow",
 "res://scr/player/combat/": "gray",
 "res://scr/sound/": "blue",
-"res://scr/terrain/": "orange",
 "res://scr/ui/": "green",
 "res://scr/ui/debug/": "gray",
 "res://scr/util/": "gray",
