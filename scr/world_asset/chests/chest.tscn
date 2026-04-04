@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqyfierp40fon"]
 
-[ext_resource type="PackedScene" uid="uid://dn75eha84ej3" path="res://scr/world_asset/wooden_chest/wood_chest.tscn" id="1_ygk82"]
+[ext_resource type="PackedScene" uid="uid://dn75eha84ej3" path="res://scr/world_asset/chests/wooden_chest/wood_chest.tscn" id="1_ygk82"]
 [ext_resource type="Script" uid="uid://c7es5fm4ul4me" path="res://scr/ui/inventory/slot/slot_data.gd" id="2_onrc2"]
 [ext_resource type="Script" uid="uid://dixv6abqosbqr" path="res://scr/world_asset/chests/chest.gd" id="2_qlmq6"]
 [ext_resource type="Script" uid="uid://bxaefcxgic3xp" path="res://scr/ui/inventory/item/item_data.gd" id="3_toe6m"]

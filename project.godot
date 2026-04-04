@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Space Toilet"
 run/main_scene="uid://dlvcb7vmtq1lo"
 config/features=PackedStringArray("4.6", "Forward Plus")
-run/max_fps=240
+run/max_fps=1000
 config/icon="res://scr/icon.svg"
 
 [autoload]

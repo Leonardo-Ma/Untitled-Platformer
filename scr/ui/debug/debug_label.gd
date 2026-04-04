@@ -62,6 +62,12 @@ func _get_performance_text() -> String:
 
 	var draw_calls: int = int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
 	output += "Draw Calls: %d\n\n" % draw_calls
+	var objects = Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME)
+	output += "objects: %d\n" % objects
+	var physics_objects = Performance.get_monitor(Performance.PHYSICS_3D_ACTIVE_OBJECTS)
+	output += "physics_objects: %d\n" % physics_objects
+	var cpu_time = Performance.get_monitor(Performance.TIME_PROCESS) * 1000
+	output += "cpu_time: %d\n" % cpu_time
 	return output
 
 
