@@ -22,10 +22,10 @@ func _process(_delta: float) -> void:
 	#label_text += str(values) + "\n"
 
 	label_text += "Current goal: "
-	if owner.agent._current_goal:
-		label_text += str(owner.agent._current_goal.name) + "\n"
+	if owner.goap_agent._current_goal:
+		label_text += str(owner.goap_agent._current_goal.name) + "\n"
 
-	if owner.agent._current_goal:
-		label_text += "Current goal: " + owner.agent._current_goal.get_custom_class_name()
+	if owner.goap_agent._current_goal:
+		label_text += "Current goal: " + owner.goap_agent._current_goal.get_custom_class_name()
 
 	self.text = label_text

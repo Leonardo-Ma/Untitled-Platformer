@@ -5,59 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="9_pguyi"]
 [ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="10_kuwt1"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/world_asset/tutorial.tscn" id="11_bx4na"]
-[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="11_xf1me"]
-[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://scr/util/entity/entity_stats.gd" id="12_m7oqh"]
-[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://scr/util/combat/core/health.gd" id="13_u3kqt"]
-[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="14_nvx4t"]
-[ext_resource type="PackedScene" uid="uid://dfbmmvo54fbmk" path="res://scr/entity/knight/knight.tscn" id="14_o5q5n"]
+[ext_resource type="PackedScene" uid="uid://c56qwxi1bjc7i" path="res://scr/entity/knight/knight.tscn" id="12_ahl4q"]
 [ext_resource type="PackedScene" uid="uid://cqyfierp40fon" path="res://scr/world_asset/chests/chest.tscn" id="17_ha2kd"]
 
-[sub_resource type="Resource" id="Resource_yaehf"]
-script = ExtResource("11_xf1me")
-type = 1
-power = 40
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_a6jrf"]
-script = ExtResource("13_u3kqt")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_074og"]
-script = ExtResource("14_nvx4t")
-walk_speed = 5.0
-run_speed = 7.0
-metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
-
-[sub_resource type="Resource" id="Resource_lswn8"]
-script = ExtResource("12_m7oqh")
-metadata/_custom_type_script = "uid://b46orajcidbak"
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_d13ii"]
-agent_height = 2.0
-agent_max_climb = 0.05
-
 [sub_resource type="GDScript" id="GDScript_ryguw"]
-
-[sub_resource type="Resource" id="Resource_bx4na"]
-resource_local_to_scene = true
-script = ExtResource("11_xf1me")
-type = 1
-power = 20
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_ahl4q"]
-resource_local_to_scene = true
-script = ExtResource("13_u3kqt")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_vmhdc"]
-resource_local_to_scene = true
-script = ExtResource("12_m7oqh")
-metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [node name="Main" type="Node" unique_id=1979390252]
 script = ExtResource("1_b18bd")
@@ -69,26 +20,16 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." unique_id=1389698494 instance=ExtResource("10_kuwt1")]
 unique_name_in_owner = true
-transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, -0.30633038, 0)
-attack = SubResource("Resource_yaehf")
-health = SubResource("Resource_a6jrf")
-movement = SubResource("Resource_074og")
-stats = SubResource("Resource_lswn8")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1486266246]
-navigation_mesh = SubResource("NavigationMesh_d13ii")
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, 0, 0)
 
 [node name="NavigationController" type="Node" parent="." unique_id=143498668]
 script = SubResource("GDScript_ryguw")
-
-[node name="Knight" parent="." unique_id=1394254789 instance=ExtResource("14_o5q5n")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.4018426, -0.3132277, 1.163348)
-attack = SubResource("Resource_bx4na")
-health = SubResource("Resource_ahl4q")
-stats = SubResource("Resource_vmhdc")
 
 [node name="Chest" parent="." unique_id=1968144271 instance=ExtResource("17_ha2kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57758975, -1.7680357)
 collision_layer = 5
 
 [node name="Tutorial" parent="." unique_id=1297917088 instance=ExtResource("11_bx4na")]
+
+[node name="Knight" parent="." unique_id=280064195 instance=ExtResource("12_ahl4q")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.8048892, 0.37658852, 1.6113853)

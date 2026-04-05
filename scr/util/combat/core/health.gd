@@ -1,6 +1,7 @@
-## For entities other than player
-
 @icon("res://icons/16x16/heart.png")
+
+# TODO Use this for player as well?
+## For entities other than player
 class_name Health
 extends Resource
 
