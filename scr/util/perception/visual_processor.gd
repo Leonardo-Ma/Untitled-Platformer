@@ -13,7 +13,7 @@ func detect(owner_node: Node3D, target: Node3D) -> DetectionResult:
 	var result: DetectionResult = DetectionResult.new()
 
 	var distance_squared: float = owner_node.global_position.distance_squared_to(target.global_position)
-	var range_squared: float = config.range * config.range
+	var range_squared: float = config.visual_range * config.visual_range
 
 	if distance_squared > range_squared:
 		return result
@@ -85,7 +85,7 @@ func _calculate_stealth_penalty(target: Node3D) -> float:
 
 
 func _calculate_detection_chance(distance: float, angle: float, stealth: float) -> float:
-	var distance_factor: float = 1.0 - (distance / config.range)
+	var distance_factor: float = 1.0 - (distance / config.visual_range)
 	var angle_factor: float = 1.0 - (abs(angle) / (config.field_of_view / 2.0))
 	var base_chance: float = (
 		(distance_factor * config.distance_weight + angle_factor * config.angle_weight) / (config.distance_weight + config.angle_weight)

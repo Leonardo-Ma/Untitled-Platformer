@@ -15,7 +15,7 @@ func _ready() -> void:
 	_mesh_instance = MeshInstance3D.new()
 	_mesh_instance.mesh = _immediate_mesh
 
-	var material := StandardMaterial3D.new()
+	var material: StandardMaterial3D = StandardMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.vertex_color_use_as_albedo = true
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA

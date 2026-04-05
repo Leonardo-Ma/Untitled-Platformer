@@ -66,107 +66,25 @@ available_goals = Array[Script]([ExtResource("12_wr5es"), ExtResource("13_vibof"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wefi8"]
 height = 2.0947266
 
-[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_py1fg"]
+[sub_resource type="Animation" id="Animation_bnvtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u2sm2"]
-animation = &"rig_medium_general/Hit_B"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_we42k"]
-animation = &"rig_medium_general/Death_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ooae8"]
-animation = &"rig_medium_movement_basic/Jump_Idle"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bpwly"]
-filters = ["%Visual/../Hitbox/CollisionShape3D:disabled", "../Hitbox/CollisionShape3D:disabled", "Armature/Skeleton3D:mixamorig_Head", "Armature/Skeleton3D:mixamorig_HeadTop_End", "Armature/Skeleton3D:mixamorig_LeftArm", "Armature/Skeleton3D:mixamorig_LeftForeArm", "Armature/Skeleton3D:mixamorig_LeftHand", "Armature/Skeleton3D:mixamorig_LeftHandIndex1", "Armature/Skeleton3D:mixamorig_LeftHandIndex2", "Armature/Skeleton3D:mixamorig_LeftHandIndex3", "Armature/Skeleton3D:mixamorig_LeftHandIndex4", "Armature/Skeleton3D:mixamorig_LeftHandMiddle1", "Armature/Skeleton3D:mixamorig_LeftHandMiddle2", "Armature/Skeleton3D:mixamorig_LeftHandMiddle3", "Armature/Skeleton3D:mixamorig_LeftHandMiddle4", "Armature/Skeleton3D:mixamorig_LeftHandPinky1", "Armature/Skeleton3D:mixamorig_LeftHandPinky2", "Armature/Skeleton3D:mixamorig_LeftHandPinky3", "Armature/Skeleton3D:mixamorig_LeftHandPinky4", "Armature/Skeleton3D:mixamorig_LeftHandRing1", "Armature/Skeleton3D:mixamorig_LeftHandRing2", "Armature/Skeleton3D:mixamorig_LeftHandRing3", "Armature/Skeleton3D:mixamorig_LeftHandRing4", "Armature/Skeleton3D:mixamorig_LeftHandThumb1", "Armature/Skeleton3D:mixamorig_LeftHandThumb2", "Armature/Skeleton3D:mixamorig_LeftHandThumb3", "Armature/Skeleton3D:mixamorig_LeftHandThumb4", "Armature/Skeleton3D:mixamorig_LeftShoulder", "Armature/Skeleton3D:mixamorig_Neck", "Armature/Skeleton3D:mixamorig_RightArm", "Armature/Skeleton3D:mixamorig_RightForeArm", "Armature/Skeleton3D:mixamorig_RightHand", "Armature/Skeleton3D:mixamorig_RightHandIndex1", "Armature/Skeleton3D:mixamorig_RightHandIndex2", "Armature/Skeleton3D:mixamorig_RightHandIndex3", "Armature/Skeleton3D:mixamorig_RightHandIndex4", "Armature/Skeleton3D:mixamorig_RightHandMiddle1", "Armature/Skeleton3D:mixamorig_RightHandMiddle2", "Armature/Skeleton3D:mixamorig_RightHandMiddle3", "Armature/Skeleton3D:mixamorig_RightHandMiddle4", "Armature/Skeleton3D:mixamorig_RightHandPinky1", "Armature/Skeleton3D:mixamorig_RightHandPinky2", "Armature/Skeleton3D:mixamorig_RightHandPinky3", "Armature/Skeleton3D:mixamorig_RightHandPinky4", "Armature/Skeleton3D:mixamorig_RightHandRing1", "Armature/Skeleton3D:mixamorig_RightHandRing2", "Armature/Skeleton3D:mixamorig_RightHandRing3", "Armature/Skeleton3D:mixamorig_RightHandRing4", "Armature/Skeleton3D:mixamorig_RightHandThumb1", "Armature/Skeleton3D:mixamorig_RightHandThumb2", "Armature/Skeleton3D:mixamorig_RightHandThumb3", "Armature/Skeleton3D:mixamorig_RightHandThumb4", "Armature/Skeleton3D:mixamorig_RightShoulder", "Armature/Skeleton3D:mixamorig_Spine1", "Armature/Skeleton3D:mixamorig_Spine2"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cde0d"]
-animation = &"rig_medium_general/Idle_A"
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_tw3sg"]
-input_0/name = "ground"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "air"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_syyu3"]
-input_0/name = "dead"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "damaged"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_awwfw"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nel44"]
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_46rpc"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wid51"]
-animation = &"rig_medium_movement_basic/Jump_Start"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kq587"]
-animation = &"rig_medium_combatmelee/Melee_1H_Attack_Slice_Diagonal"
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_yjf6j"]
-input_0/name = "idle"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "moving"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_chdv5"]
-animation = &"rig_medium_movement_basic/Running_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1f3u7"]
-animation = &"rig_medium_movement_basic/Walking_A"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cft7q"]
-graph_offset = Vector2(-822.55835, -84.43581)
-nodes/output/position = Vector2(520, 380)
-nodes/damaged/node = SubResource("AnimationNodeAnimation_u2sm2")
-nodes/damaged/position = Vector2(-180, 860)
-nodes/death/node = SubResource("AnimationNodeAnimation_we42k")
-nodes/death/position = Vector2(-180, 660)
-nodes/fall/node = SubResource("AnimationNodeAnimation_ooae8")
-nodes/fall/position = Vector2(-600, 460)
-nodes/ground_attack/node = SubResource("AnimationNodeOneShot_bpwly")
-nodes/ground_attack/position = Vector2(-100, 40)
-nodes/melee_attack/node = SubResource("AnimationNodeAnimation_kq587")
-nodes/melee_attack/position = Vector2(-600, 260)
-nodes/idle/node = SubResource("AnimationNodeAnimation_cde0d")
-nodes/idle/position = Vector2(-680, -100)
-nodes/in_air_state/node = SubResource("AnimationNodeTransition_tw3sg")
-nodes/in_air_state/position = Vector2(140, 200)
-nodes/is_alive/node = SubResource("AnimationNodeTransition_syyu3")
-nodes/is_alive/position = Vector2(200, 500)
-nodes/is_damaged/node = SubResource("AnimationNodeOneShot_awwfw")
-nodes/is_damaged/position = Vector2(360, 360)
-nodes/is_jumping/node = SubResource("AnimationNodeOneShot_nel44")
-nodes/is_jumping/position = Vector2(-100, 320)
-nodes/is_running/node = SubResource("AnimationNodeBlend2_46rpc")
-nodes/is_running/position = Vector2(-740, 160)
-nodes/jump/node = SubResource("AnimationNodeAnimation_wid51")
-nodes/jump/position = Vector2(-600, 660)
-nodes/moving/node = SubResource("AnimationNodeTransition_yjf6j")
-nodes/moving/position = Vector2(-360, -60)
-nodes/run/node = SubResource("AnimationNodeAnimation_chdv5")
-nodes/run/position = Vector2(-1120, 340)
-nodes/walk/node = SubResource("AnimationNodeAnimation_1f3u7")
-nodes/walk/position = Vector2(-1140, 140)
-nodes/Blend3/node = SubResource("AnimationNodeBlend3_py1fg")
-nodes/Blend3/position = Vector2(492.22476, 216.9211)
-node_connections = [&"output", 0, &"is_damaged", &"ground_attack", 0, &"moving", &"ground_attack", 1, &"melee_attack", &"in_air_state", 0, &"ground_attack", &"in_air_state", 1, &"is_jumping", &"is_alive", 0, &"death", &"is_alive", 1, &"damaged", &"is_damaged", 0, &"in_air_state", &"is_damaged", 1, &"is_alive", &"is_jumping", 0, &"fall", &"is_jumping", 1, &"jump", &"is_running", 0, &"walk", &"is_running", 1, &"run", &"moving", 0, &"idle", &"moving", 1, &"is_running"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bceom"]
+_data = {
+&"RESET": SubResource("Animation_bnvtc")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bfx7"]
 size = Vector3(1, 1.4, 0.562427)
@@ -192,35 +110,15 @@ ai_config = SubResource("Resource_f7hab")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94727004, 0)
 shape = SubResource("CapsuleShape3D_wefi8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=51873094]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=369935479]
 unique_name_in_owner = true
 root_node = NodePath("../Visual")
+libraries/ = SubResource("AnimationLibrary_bceom")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2041410835]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=905057315]
 unique_name_in_owner = true
 root_node = NodePath("%Visual")
-tree_root = SubResource("AnimationNodeBlendTree_cft7q")
 anim_player = NodePath("../AnimationPlayer")
-parameters/ground_attack/active = false
-parameters/ground_attack/internal_active = false
-parameters/ground_attack/request = 0
-parameters/in_air_state/current_state = "ground"
-parameters/in_air_state/transition_request = ""
-parameters/in_air_state/current_index = 0
-parameters/is_alive/current_state = "damaged"
-parameters/is_alive/transition_request = ""
-parameters/is_alive/current_index = 1
-parameters/is_damaged/active = false
-parameters/is_damaged/internal_active = false
-parameters/is_damaged/request = 0
-parameters/is_jumping/active = false
-parameters/is_jumping/internal_active = false
-parameters/is_jumping/request = 0
-parameters/is_running/blend_amount = 0.0
-parameters/moving/current_state = "idle"
-parameters/moving/transition_request = ""
-parameters/moving/current_index = 0
-parameters/Blend3/blend_amount = 0.0
 script = ExtResource("9_mgujy")
 
 [node name="Visual" type="Node3D" parent="." unique_id=977755737]

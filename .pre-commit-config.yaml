@@ -24,8 +24,6 @@ default_install_hook_types:
 
 default_stages: [pre-commit]
 
-fail_fast: true # Prevent partial execution
-
 repos:
   - repo: local
     hooks:
@@ -111,3 +109,9 @@ repos:
       - id: check-case-conflict # Check for files that would conflict in case-insensitive filesystems
       - id: check-illegal-windows-names # Check for files that cannot be created on Windows
       - id: check-symlinks # Checks for symlinks which do not point to anything
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        exclude: \.tscn$
