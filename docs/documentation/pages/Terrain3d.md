@@ -7,7 +7,7 @@
 		- Save in new folder (scr/terrain/textures/<name_of_texture>) > Unzip only Color + Displacement/height/depth + NormalGl + Roughtness
 		- Select one by one and check if import menu matches the other textures
 		- Top menu with terrain3d selected > Terrain3d > Pack textures
-- For making roads, use spray (v) with strenght 100%
+- For making roads, use spray (v) with strength 100%
 -
 - If performance becomes an issue:
 	- https://terrain3d.readthedocs.io/en/stable/docs/tips_technical.html#performance

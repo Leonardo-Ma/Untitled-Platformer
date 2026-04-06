@@ -35,13 +35,12 @@ Unreleased (No git tag) didn't follow proper commits good practices considering 
 Dependencies:
 - [python](https://www.python.org/)
 - [pipx](https://github.com/pypa/pipx)
-- [gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit)
 - [pre-commit](https://github.com/pre-commit/pre-commit)
 
 ```bash
-pipx install gdtoolkit pre-commit
+pipx install pre-commit
 pipx ensurepath
-pre-commit install
+pre-commit install --install-hooks
 ```
 
 ### For auto changelog using git-cliff:

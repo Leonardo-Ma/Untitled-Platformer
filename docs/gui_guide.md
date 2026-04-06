@@ -19,7 +19,7 @@
   Chinese. All fonts should be TrueType (`.ttf`) and stored in
   `assets/fonts`. For variable weight fonts the variants created from
   the font should be placed in `assets/fonts/variants`. For buttons
-  that cannot use label settings, it is preferrably to just set a
+  that cannot use label settings, it is preferably to just set a
   theme font size override, but when really needed the override font
   can be set, but care needs to be taken that this points to a proper
   font. For variable weight fonts only the variants should be used and
