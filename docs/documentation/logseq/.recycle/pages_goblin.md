@@ -1,5 +1,0 @@
-hitbox::
-
-- healthcomponent::
-- hurtbox::
--

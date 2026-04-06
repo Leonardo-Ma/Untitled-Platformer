@@ -1,7 +1,0 @@
-- https://www.youtube.com/watch?v=WezMZrk32M4 - The Game Dev Success Ladder with Chris Zukowski
--
-- Create dev related videos:
-	- Title: The fun way to fix game performance
-		- [Profiling, checking function fps impact...] *{RED} NO*
-		- Hundreds of enemies on screen firing magic {GREEN} YES
-		- Rest of the video is an example on how to profile your game on godot

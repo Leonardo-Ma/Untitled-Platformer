@@ -1,5 +1,0 @@
-Hitbox::
-
-- Hurtbox::
-- health::
--

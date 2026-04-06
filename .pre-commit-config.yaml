@@ -8,6 +8,7 @@ exclude: |
     .*\.import$|
     (^|/)build/|
     addons/|
+    docs/documentation/logseq/|
     .*\.mtlx$|
     .*\.png$|
     .*\.jpg$|
@@ -114,4 +115,4 @@ repos:
     rev: v2.4.1
     hooks:
       - id: codespell
-        exclude: \.tscn$
+        exclude: \.(tscn|tres|res)$

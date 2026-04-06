@@ -1,2 +1,0 @@
-- Reference the var of get_node instead of using on on _process or _physics_process
-	- @onready var getnode ($..)
