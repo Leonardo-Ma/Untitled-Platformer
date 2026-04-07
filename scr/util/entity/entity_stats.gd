@@ -5,6 +5,8 @@
 class_name EntityStats
 extends Resource
 
+signal stats_changed
+
 @export var base_stats: Dictionary[StatTypes.Type, float] = {}
 
 
@@ -14,3 +16,4 @@ func get_stat(stat: StatTypes.Type) -> float:
 
 func set_stat(stat: StatTypes.Type, value: float) -> void:
 	base_stats[stat] = value
+	stats_changed.emit()

@@ -64,7 +64,6 @@ func _test_subsystems_exist() -> void:
 		"SoundManager.music is not a MusicController instance",
 	)
 
-	# Check CombatPrioritySoundController
 	assert(
 		SoundManager.combat != null,
 		"SoundManager.combat is null - CombatPrioritySoundController not created",
