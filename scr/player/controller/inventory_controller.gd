@@ -2,6 +2,8 @@
 @icon("res://icons/16x16/ui_inventory.png")
 extends Node
 
+signal inventory_toggled
+
 var inventory_interface: Control
 
 
@@ -14,11 +16,10 @@ func _setup_inventory() -> void:
 	inventory_interface = get_tree().get_root().find_child("InventoryInterface", true, false) as Control
 	assert(inventory_interface, "InventoryInterface not found in the scene tree.")
 
-	var player: Node = get_owner()
+	# Open/close
+	self.inventory_toggled.connect(toggle_inventory_interface)
 
-	player.connect("toggle_inventory", toggle_inventory_interface)
-
-	inventory_interface.set_player_inventory_data(player.get("inventory_data"))
+	inventory_interface.set_player_inventory_data(owner.inventory_data)
 
 	for node: Node in get_tree().get_nodes_in_group("external_inventory"):
 		node.connect("toggle_inventory", toggle_inventory_interface)

@@ -13,6 +13,7 @@ signal melee_attacked
 @export var health: Health
 @export var movement: Movement
 @export var stats: EntityStats
+@export var inventory_data: InventoryData
 
 @export_category("Perception System")
 @export var perception_config: PerceptionConfig
