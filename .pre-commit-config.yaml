@@ -36,8 +36,7 @@ repos:
         exclude: |
           (?x)^(
               [^/]+$|
-              \.github/|
-              .*/ROADMAP\.md$
+              .*/ROADMAP\.md$|
               \.docs/documentation/|
               \script_templates/|
           )

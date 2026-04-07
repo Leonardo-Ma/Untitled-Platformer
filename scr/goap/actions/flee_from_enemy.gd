@@ -22,6 +22,8 @@ func get_effects() -> Dictionary:
 	return {"enemy_nearby": false}
 
 
+# TODO Define actor to use run speed
+# This needs to be changed with navigation agent 3d: _on_navigation_agent_3d_velocity_computed
 func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	var enemy_position: Vector3 = _blackboard.get("enemy_position", Vector3.ZERO)
 	var actor_position: Vector3 = _blackboard.get("position", _actor.global_position)

@@ -2,7 +2,7 @@ class_name SoundPool
 extends Node
 
 # Max simultaneous sounds
-const CATEGORY_LIMITS = {
+const CATEGORY_LIMITS: Dictionary = {
 	SoundManager.SoundCategory.MUSIC: 1,
 	SoundManager.SoundCategory.SFX: 10,
 	SoundManager.SoundCategory.AMBIENT: 4,
@@ -10,8 +10,8 @@ const CATEGORY_LIMITS = {
 	SoundManager.SoundCategory.VOICE: 5,
 }
 
-# Audio buses (match these to your Godot Audio tab setup)
-const BUSES = {
+# Audio buses (match these to Audio tab setup)
+const BUSES: Dictionary = {
 	SoundManager.SoundCategory.MUSIC: "Music",
 	SoundManager.SoundCategory.SFX: "SFX",
 	SoundManager.SoundCategory.AMBIENT: "Ambient",
@@ -30,19 +30,19 @@ func _ready() -> void:
 
 
 func _setup_pools() -> void:
-	for category in CATEGORY_LIMITS:
-		_pools[category] = []
-		_active_players[category] = []
+	for category: int in CATEGORY_LIMITS:
+		_pools[category] = [] as Array[Node]
+		_active_players[category] = [] as Array[Node]
 
-		var limit = CATEGORY_LIMITS[category]
-		for i in range(limit):
-			var player = _create_player_for_category(category)
+		var limit: int = CATEGORY_LIMITS[category]
+		for i: int in range(limit):
+			var player: Node = _create_player_for_category(category)
 			add_child(player)
 			_pools[category].append(player)
 
 
+# Return type is Node (common parent of both AudioStreamPlayer and AudioStreamPlayer2D)
 func _create_player_for_category(category: int) -> Node:
-	# Return type is Node (common parent of both AudioStreamPlayer and AudioStreamPlayer2D)
 	var player: Node
 
 	# Use 2D players for positional sounds
@@ -52,59 +52,48 @@ func _create_player_for_category(category: int) -> Node:
 		_:  # MUSIC, UI
 			player = AudioStreamPlayer.new()
 
-	# Set bus - need to use set() since Node doesn't have .bus property
 	player.set("bus", BUSES[category])
 	return player
 
 
-# Main playback function
-func play_sound(sound: AudioStream, category: int, position: Vector2 = Vector2.ZERO) -> AudioStreamPlayer:
-	# Return type can be AudioStreamPlayer since both types support the same methods
-	var player = _get_available_player(category)
-	if not player:
-		# Pool exhausted - optionally replace oldest
+func play_sound(sound: AudioStream, category: int, position: Vector2 = Vector2.ZERO) -> Variant:
+	var player: Variant = _get_available_player(category)
+	if player == null:
 		player = _replace_oldest_sound(category)
-		if not player:
+		if player == null:
 			return null
 
-	# Disconnect any existing finished signals (important for recycled players)
 	if player.finished.is_connected(_on_sound_finished):
 		player.finished.disconnect(_on_sound_finished)
 
-	# Configure the player
 	player.stream = sound
 	player.pitch_scale = 1.0
 	player.stream_paused = false  # Reset paused state
 
-	# Set position for 2D players
 	if player is AudioStreamPlayer2D and position != Vector2.ZERO:
 		(player as AudioStreamPlayer2D).global_position = position
 
-	# Play and track
 	player.play()
-	_active_players[category].append(player)
+	_active_players[category].append(player as Node)
 
-	# Connect finished signal (use ONE_SHOT to auto-disconnect after firing)
 	player.finished.connect(_on_sound_finished.bind(player, category), CONNECT_ONE_SHOT)
 
 	return player
 
 
-func _get_available_player(category: int):
+func _get_available_player(category: int) -> Variant:
 	# Return type is inferred (will be AudioStreamPlayer or AudioStreamPlayer2D)
 	if _pools[category].is_empty():
 		return null
 	return _pools[category].pop_back()
 
 
-func _replace_oldest_sound(category: int):
+func _replace_oldest_sound(category: int) -> Variant:
 	if _active_players[category].is_empty():
 		return null
 
-	# Stop and recycle the oldest active sound
-	var oldest = _active_players[category].pop_front()
+	var oldest: Variant = _active_players[category].pop_front()
 
-	# Disconnect signals before recycling
 	if oldest.finished.is_connected(_on_sound_finished):
 		oldest.finished.disconnect(_on_sound_finished)
 
@@ -113,22 +102,19 @@ func _replace_oldest_sound(category: int):
 	return oldest
 
 
-func _on_sound_finished(player, category: int) -> void:
-	# Remove from active
-	var idx = _active_players[category].find(player)
+func _on_sound_finished(player: Variant, category: int) -> void:
+	var idx: int = _active_players[category].find(player as Node)
 	if idx != -1:
 		_active_players[category].remove_at(idx)
 
-	# Return to pool
 	player.stream = null
-	_pools[category].append(player)
+	_pools[category].append(player as Node)
 
 	# Note: Signal already auto-disconnected due to CONNECT_ONE_SHOT
 
 
-# Category control
 func pause_category(category: int, paused: bool) -> void:
-	for player in _active_players[category]:
+	for player: Variant in _active_players[category]:
 		if paused:
 			player.stream_paused = true
 		else:
@@ -136,18 +122,16 @@ func pause_category(category: int, paused: bool) -> void:
 
 
 func stop_category(category: int) -> void:
-	for player in _active_players[category]:
-		# Disconnect signals before stopping
+	for player: Variant in _active_players[category]:
 		if player.finished.is_connected(_on_sound_finished):
 			player.finished.disconnect(_on_sound_finished)
 
 		player.stop()
 		player.stream = null
-		_pools[category].append(player)
+		_pools[category].append(player as Node)
 	_active_players[category].clear()
 
 
-# Utility
 func get_active_sound_count(category: int) -> int:
 	return _active_players[category].size()
 

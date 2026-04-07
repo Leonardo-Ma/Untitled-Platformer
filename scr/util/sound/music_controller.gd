@@ -12,7 +12,7 @@ enum MusicState {
 }
 
 # TODO Change this to use uid
-var music_library := {
+var music_library: Dictionary = {
 	MusicState.EXPLORATION: preload("uid://d30ibn7723bcm"),  # src/common/audio/music/the_last_encounter_collection/tle_digital_loop_long
 	#MusicState.COMBAT: preload("res://audio/music/combat.ogg"),
 	#MusicState.DUNGEON: preload("res://audio/music/dungeon.ogg"),
@@ -21,12 +21,10 @@ var music_library := {
 	#MusicState.NIGHT: preload("res://audio/music/night.ogg"),
 }
 
-# Public properties
 var current_state: MusicState = MusicState.EXPLORATION
 var current_track: AudioStream
 var is_playing: bool = false
 
-# Private variables
 var _current_player: AudioStreamPlayer
 var _fade_tween: Tween
 var _transition_cooldown: bool = false
@@ -56,7 +54,7 @@ func play(track: AudioStream, fade_duration: float = 1.0) -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 
-	var new_player = AudioStreamPlayer.new()
+	var new_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	new_player.bus = "Music"
 	new_player.stream = track
 	new_player.volume_db = -80  # Start silent
@@ -86,9 +84,9 @@ func change_state(new_state: MusicState, immediate: bool = false) -> void:
 		stop()
 		return
 
-	var track = music_library.get(new_state)
+	var track: AudioStream = music_library.get(new_state)
 	if track:
-		var fade_duration = 0.0 if immediate else _crossfade_duration
+		var fade_duration: float = 0.0 if immediate else _crossfade_duration
 		play(track, fade_duration)
 
 		# Prevent state change spam

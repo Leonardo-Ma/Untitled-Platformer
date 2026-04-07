@@ -29,6 +29,8 @@ func get_effects() -> Dictionary:
 	return {"is_wandering": true}
 
 
+# TODO Define actor to use walk speed
+# This needs to be changed with navigation agent 3d: _on_navigation_agent_3d_velocity_computed
 func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	var actor_position: Vector3 = _blackboard.get("position", _actor.global_position)
 	var current_time: int = Time.get_ticks_msec()

@@ -1,5 +1,6 @@
 # If this is used by GOAP, it will be disabled and enabled depending on current action
 # https://www.youtube.com/watch?v=-juhGgA076E DevLogLogan Godot 4 3D - AI Pathfinding/Navigation
+# TODO Maybe assert instead of if != null?
 extends Node
 
 signal move_started
@@ -57,6 +58,7 @@ func stop() -> void:
 	move_stopped.emit()
 
 
+# TODO Change run_speed to use a variable that is defined by goap action instead
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_physics_processing():
 		return

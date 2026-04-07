@@ -59,13 +59,13 @@ func stop_music(fade_duration: float = 1.0) -> void:
 
 # Volume control
 func set_category_volume(category: SoundCategory, volume_db: float) -> void:
-	var bus_name = _get_bus_for_category(category)
+	var bus_name: String = _get_bus_for_category(category)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), volume_db)
 	_save_volume_settings()
 
 
 func get_category_volume(category: SoundCategory) -> float:
-	var bus_name = _get_bus_for_category(category)
+	var bus_name: String = _get_bus_for_category(category)
 	return AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name))
 
 
@@ -104,18 +104,18 @@ func _get_bus_for_category(category: SoundCategory) -> String:
 
 
 func _load_volume_settings() -> void:
-	var config = ConfigFile.new()
+	var config: ConfigFile = ConfigFile.new()
 	if config.load("user://audio_settings.cfg") == OK:
-		for category in SoundCategory.values():
-			var bus = _get_bus_for_category(category)
-			var volume = config.get_value("volumes", bus, 0.0)
+		for category: int in SoundCategory.values():
+			var bus: String = _get_bus_for_category(category)
+			var volume: float = config.get_value("volumes", bus, 0.0)
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), volume)
 
 
 func _save_volume_settings() -> void:
-	var config = ConfigFile.new()
-	for category in SoundCategory.values():
-		var bus = _get_bus_for_category(category)
-		var volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus))
+	var config: ConfigFile = ConfigFile.new()
+	for category: int in SoundCategory.values():
+		var bus: String = _get_bus_for_category(category)
+		var volume: float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus))
 		config.set_value("volumes", bus, volume)
 	config.save("user://audio_settings.cfg")

@@ -78,23 +78,23 @@ func _test_subsystems_exist() -> void:
 
 
 func _test_audio_buses() -> void:
-	var required_buses = ["Master", "Music", "SFX", "Ambient", "UI", "Voice"]
+	var required_buses: Array[String] = ["Master", "Music", "SFX", "Ambient", "UI", "Voice"]
 
-	var bus_indices := {}
+	var bus_indices: Dictionary = {}
 
 	# Build lookup from AudioServer
-	for i in range(AudioServer.get_bus_count()):
-		var name = AudioServer.get_bus_name(i)
-		bus_indices[name] = i
+	for i: int in range(AudioServer.get_bus_count()):
+		var bus_name: String = AudioServer.get_bus_name(i)
+		bus_indices[bus_name] = i
 
 	# Validate existence + mute state
-	for bus_name in required_buses:
+	for bus_name: String in required_buses:
 		assert(
 			bus_name in bus_indices,
 			"Audio bus '%s' not found! Check your AudioBusLayout (uid://plxel2xf671u)" % bus_name,
 		)
 
-		var idx = bus_indices[bus_name]
+		var idx: int = bus_indices[bus_name]
 
 		assert(
 			not AudioServer.is_bus_mute(idx),
@@ -102,8 +102,8 @@ func _test_audio_buses() -> void:
 		)
 
 	# Validate routing (Music -> Master)
-	var music_idx = bus_indices["Music"]
-	var send = AudioServer.get_bus_send(music_idx)
+	var music_idx: int = bus_indices["Music"]
+	var send: String = AudioServer.get_bus_send(music_idx)
 
 	assert(
 		send == "Master",
@@ -114,10 +114,10 @@ func _test_audio_buses() -> void:
 
 
 func _test_soundpool_categories() -> void:
-	var pool = SoundManager.pool
+	var pool: SoundPool = SoundManager.pool
 
 	# Check category limits exist
-	var expected_categories = [
+	var expected_categories: Array[int] = [
 		SoundManager.SoundCategory.MUSIC,
 		SoundManager.SoundCategory.SFX,
 		SoundManager.SoundCategory.AMBIENT,
@@ -125,13 +125,13 @@ func _test_soundpool_categories() -> void:
 		SoundManager.SoundCategory.VOICE,
 	]
 
-	for category in expected_categories:
+	for category: int in expected_categories:
 		assert(
 			pool.CATEGORY_LIMITS.has(category),
 			"SoundPool missing CATEGORY_LIMITS for category %d" % category,
 		)
 
-		var limit = pool.CATEGORY_LIMITS[category]
+		var limit: int = pool.CATEGORY_LIMITS[category]
 		assert(
 			limit > 0,
 			"Category %d has invalid limit: %d" % [category, limit],
@@ -152,77 +152,68 @@ func _test_soundpool_categories() -> void:
 
 
 func _test_music_system() -> void:
-	var music = SoundManager.music
+	var music: MusicController = SoundManager.music
 
-	# Check music state enum exists
 	assert(
-		MusicController.MusicState != null,
-		"MusicController.MusicState enum not accessible",
+		music.MusicState != null,
+		"MusicState enum not accessible",
 	)
 
-	# Check music library has entries (even if empty)
 	assert(
 		music.music_library != null,
-		"MusicController.music_library is null",
+		"music.music_library is null",
 	)
 
-	# Verify music player was created
 	assert(
 		music._current_player != null,
-		"MusicController._current_player not created",
+		"music._current_player not created",
 	)
+
 	assert(
 		music._current_player.bus == "Music",
 		"Music player not assigned to Music bus",
 	)
 
-	# Test volume control
-	var test_volume = -15.0
+	var test_volume: float = -15.0
 	music.set_volume(test_volume)
-	var actual_volume = music._current_player.volume_db
+	var actual_volume: float = music._current_player.volume_db
 	assert(
 		abs(actual_volume - test_volume) < 0.1,
 		"Music volume not updating properly",
 	)
 
-	# Reset volume to default
 	music.set_volume(-10.0)
 
 	print("✅ Test 5: MusicController functional")
 
 
 func _test_combat_system() -> void:
-	var combat = SoundManager.combat
+	var combat: CombatPrioritySoundController = SoundManager.combat
 
-	# Check priority enum exists
 	assert(
-		CombatPrioritySoundController.Priority != null,
-		"CombatPrioritySoundController.Priority enum not accessible",
+		combat.Priority != null,
+		"combat priority enum not accessible",
 	)
 
-	# Check priority values
 	assert(
-		CombatPrioritySoundController.Priority.LOW == 0,
+		combat.Priority.LOW == 0,
 		"Priority.LOW should be 0",
 	)
 	assert(
-		CombatPrioritySoundController.Priority.ULTIMATE == 4,
+		combat.Priority.ULTIMATE == 4,
 		"Priority.ULTIMATE should be 4",
 	)
 
-	# Verify initialize was called
 	assert(
 		combat._sound_pool != null,
 		"CombatPrioritySoundController not initialized with SoundPool reference",
 	)
 
-	# Check active sounds array exists
 	assert(
 		combat._active_sounds != null,
 		"CombatPrioritySoundController._active_sounds not initialized",
 	)
 
-	# Test max active sounds setting
 	assert(
 		combat._max_active_sounds > 0,
 		"CombatPrioritySoundController._max_active_sounds not set",
@@ -233,7 +224,7 @@ func _test_combat_system() -> void:
 
 func _test_volume_controls() -> void:
 	# Test get/set for each category
-	var categories = [
+	var categories: Array[Dictionary] = [
 		{"enum": SoundManager.SoundCategory.MUSIC, "bus": "Music"},
 		{"enum": SoundManager.SoundCategory.SFX, "bus": "SFX"},
 		{"enum": SoundManager.SoundCategory.AMBIENT, "bus": "Ambient"},
@@ -241,12 +232,12 @@ func _test_volume_controls() -> void:
 		{"enum": SoundManager.SoundCategory.VOICE, "bus": "Voice"},
 	]
 
-	for cat in categories:
-		var original_volume = SoundManager.get_category_volume(cat.enum)
-		var test_volume = -20.0
+	for cat: Dictionary in categories:
+		var original_volume: float = SoundManager.get_category_volume(cat.enum)
+		var test_volume: float = -20.0
 
 		SoundManager.set_category_volume(cat.enum, test_volume)
-		var new_volume = SoundManager.get_category_volume(cat.enum)
+		var new_volume: float = SoundManager.get_category_volume(cat.enum)
 
 		assert(
 			abs(new_volume - test_volume) < 0.1,
@@ -258,7 +249,7 @@ func _test_volume_controls() -> void:
 
 	# Test mute/unmute
 	SoundManager.mute_all()
-	var master_idx = AudioServer.get_bus_index("Master")
+	var master_idx: int = AudioServer.get_bus_index("Master")
 	assert(
 		AudioServer.is_bus_mute(master_idx),
 		"mute_all() didn't mute Master bus",
@@ -270,4 +261,6 @@ func _test_volume_controls() -> void:
 		"unmute_all() didn't unmute Master bus",
 	)
 
-	print("✅ Test 7: Volume controls working correctly")
+	print(
+		"✅ Test 7: Volume controls working correctly",
+	)
