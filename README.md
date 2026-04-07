@@ -85,5 +85,5 @@ See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md).
 [pre_commit_badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge&logo=pre-commit&logoColor=white
 [pre_commit_url]: https://pre-commit.com/
 
-[git_cliff_badge]: https://img.shields.io/badge/git--cliff-friendly-brightgreen?style=for-the-badge
+[git_cliff_badge]: https://img.shields.io/badge/git--cliff-enabled-brightgreen?style=for-the-badge
 [git_cliff_url]: https://git-cliff.org/

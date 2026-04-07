@@ -8,18 +8,17 @@ License: [MIT License](https://github.com/godotengine/godot/blob/master/LICENSE.
 Source: [git-scm.com](https://git-scm.com)  
 License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
 
-#### Git Cliff
-Source: [git-cliff.org](https://git-cliff.org/)  
-License: [Apache License Version 2.0](https://github.com/orhun/git-cliff/blob/main/LICENSE-APACHE) / [MIT](https://github.com/orhun/git-cliff/blob/main/LICENSE-MIT).  
+#### Drawio
+Source: [drawio.com](https://www.drawio.com/)  
+License: [Apache 2.0](https://github.com/jgraph/drawio?tab=Apache-2.0-1-ov-file)
 
 #### Pre-commit
 Source: [pre-commit.com](https://pre-commit.com/)  
 License: [MIT License](https://github.com/pre-commit/pre-commit?tab=MIT-1-ov-file)
 
-#### Mesh 2 Motion
-Source: [mesh2motion.org](https://mesh2motion.org/)  
-License: [MIT License](https://github.com/Mesh2Motion/mesh2motion-app?tab=License-1-ov-file)
-
+#### Git Cliff
+Source: [git-cliff.org](https://git-cliff.org/)  
+License: [Apache License Version 2.0](https://github.com/orhun/git-cliff/blob/main/LICENSE-APACHE) / [MIT](https://github.com/orhun/git-cliff/blob/main/LICENSE-MIT).  
 
 #### Visual Studio Code
 Source: [github: vscode](https://github.com/microsoft/vscode)  
@@ -29,7 +28,7 @@ License: [MIT License](https://github.com/microsoft/vscode/blob/main/LICENSE.txt
 ####
 
 ## Important knowledge
-### These places have been heavily used for learning or inspiration
+### These places have been heavily used for learning or served as inspiration
 
 #### Documentation
 https://docs.godotengine.org/en/stable/index.html
@@ -63,7 +62,9 @@ https://www.youtube.com/@stayathomedev
 
 https://www.youtube.com/@Gwizz1027
 
-#### Other projects or templates that were either used or as inspiration
+https://www.youtube.com/@IndieGameClinic
+
+#### Other projects or templates that were either used or served as inspiration
 
 https://codeberg.org/dulvui/99managers-futsal-edition
 
