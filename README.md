@@ -29,6 +29,10 @@
 # Notes
 Unreleased (No git tag) didn't follow proper commits good practices considering the amount of constant spread changes that would end up with thousands of small commits.
 
+# Modular approach and future proofing
+####
+
+
 # Developing
 ### For auto formatter on commit to work ([.pre-commit-config.yaml](.pre-commit-config.yaml)):
 
