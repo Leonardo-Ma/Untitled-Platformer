@@ -1,3 +1,4 @@
+# TODO Refactor to EnemyInRange
 class_name TrackEnemy
 extends GoapGoal
 

@@ -124,6 +124,12 @@ The style rules are intended to increase readability of the source code for huma
 
 ## Godot usage
 
+- **Mesh Deduplication**: When editing a map or scene, any unique mesh MUST be extracted and saved as an external `.tres` or `.res` resource file. Do not duplicate inline mesh data inside `.tscn` files. All nodes using the same mesh must load the exact same external resource file.
+
+- **Code Regions**: Use Godot's `#region Region Name` and `#endregion` tags to logically group together long blocks of related functions or variables where it makes sense.
+
+- **Component/Resource Icons**: Use `@icon("res://icons/16x16/...")` for components and resources to make them explicitly identifiable in Godot's Scene tree and FileSystem.
+
 - Specific GUI: [gui_guide.md](gui_guide.md)
 
 - **Scene Unique Nodes (`%`)**: For components that represent core functionality of a scene (like `Hitbox`, `Hurtbox`, `StatusManager`, or main UI containers), set and use them as unique.

@@ -1,0 +1,39 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://qg0hyw8f1xr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbdnl"]
+resource_name = "grey"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.43529418, 0.49019614, 0.6156863, 1)
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6o8tm"]
+_surfaces = [{
+"aabb": AABB(0, -0.0210619, 0, 0.0210619, 0.0210619, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"name": "grey",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AYqsPAAAAAAAAAAAAYqsPAGKrLwAAAAAAAAAAAGKrLwAAAAAAAAAAAAAAAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "Plane_921"
+_surfaces = [{
+"aabb": AABB(0, -0.0210619, 0, 0.0210619, 0.0210619, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"material": SubResource("StandardMaterial3D_hbdnl"),
+"name": "grey",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AYqsPAAAAAAAAAAAAYqsPAGKrLwAAAAAAAAAAAGKrLwAAAAAAAAAAAAAAAAAAAAA/3//f////z//f/9/////P/9//3////8//3//f////z8=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6o8tm")
