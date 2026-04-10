@@ -34,6 +34,7 @@ HitStopManager="*res://scr/util/autoload/hit_stop_manager.gd"
 TestGoapConsistency="*res://tests/goap.gd"
 TestAudio="*uid://cxi4v122jd7b6"
 GraphBuilder="*res://scr/util/autoload/goap_graph_builder.gd"
+CheckpointManager="*uid://cimfiv457vauf"
 
 [debug]
 

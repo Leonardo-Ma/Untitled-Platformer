@@ -98,6 +98,9 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 		_coyote_timer = COYOTE_TIME
 		emit_signal("landed")
 
+	if not _movement_enabled:
+		return
+
 	if Input.is_action_just_pressed("jump") and _coyote_timer > 0.0:
 		emit_signal("jumped")
 		body.velocity.y = JUMP_VELOCITY
@@ -107,4 +110,5 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 
 func disable_movement(duration: float) -> void:
 	_movement_enabled = false
-	_disable_timer = duration
+	if duration > _disable_timer:
+		_disable_timer = duration

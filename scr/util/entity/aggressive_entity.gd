@@ -87,6 +87,8 @@ func _requires_goap() -> bool:
 	return true
 
 
+# TODO Disable navigation for GOAP, disable player controller
+# Maybe transform into abstract method? Player already overrides this
 func _on_death() -> void:
 	print_debug(str(self.name) + " is dead, Jim!")
 

@@ -28,6 +28,7 @@ func _on_player_spawned(player: Node) -> void:
 
 	health_resource = player_entity.health
 	health_resource.damaged.connect(_on_damaged)
+	health_resource.health_changed.connect(_on_health_changed)
 	health_resource.died.connect(_on_death)
 
 	# Initialize health bars in proper order to avoid clamping constraints
@@ -55,8 +56,13 @@ func _on_damaged(_attack: Attack) -> void:
 	self.health = health_resource.health
 
 
+func _on_health_changed(new_health: int) -> void:
+	self.health = new_health
+
+
+# TODO Maybe add a 'broken' shape bar style when dead?
 func _on_death() -> void:
-	queue_free()
+	self.health = 0.0
 
 
 func _on_timer_timeout() -> void:

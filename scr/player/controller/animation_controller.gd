@@ -23,6 +23,7 @@ func _ready() -> void:
 	player.melee_attacked.connect(_on_melee_attack)
 	health.damaged.connect(_on_damaged)
 	health.died.connect(_on_death)
+	health.revived.connect(_on_revived)
 
 
 # Only if multiple idle animations (Need to create new connection in tree)
@@ -67,6 +68,11 @@ func _on_damaged(_attack: Attack) -> void:
 
 func _on_death() -> void:
 	self.set("parameters/is_alive/transition_request", "dead")
+
+
+# TODO Add new revive animation and state
+func _on_revived() -> void:
+	self.set("parameters/is_alive/transition_request", "alive")
 
 
 func _validate_animation_parameters() -> void:

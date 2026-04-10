@@ -27,7 +27,8 @@ func _ready() -> void:
 
 ## For actions that may disable movement such as being pushed by knockback
 func disable_movement(duration: float) -> void:
-	_disable_timer = duration
+	if duration > _disable_timer:
+		_disable_timer = duration
 	move_stopped.emit()
 
 

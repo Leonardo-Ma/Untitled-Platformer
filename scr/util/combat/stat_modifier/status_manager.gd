@@ -67,6 +67,17 @@ func dispatch_event(event_name: StringName, data: Dictionary) -> void:
 	event_dispatched.emit(event_name, data)
 
 
+func clear_temporary_statuses() -> void:
+	var keys_to_remove: Array[StringName] = []
+	for key: StringName in _active_statuses:
+		var active: ActiveStatusEffect = _active_statuses[key]
+		if active.status not in permanent_statuses:
+			keys_to_remove.append(key)
+
+	for key: StringName in keys_to_remove:
+		remove_status(key)
+
+
 # --- Stat Pipeline ---
 
 

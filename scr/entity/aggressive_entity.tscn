@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bclk4k6dj18ue" path="res://scr/util/controller/animation_controller.gd" id="9_mgujy"]
 [ext_resource type="Script" uid="uid://8sv6xwujwxyk" path="res://scr/goap/actions/melee_attack.gd" id="10_6lul4"]
 [ext_resource type="Script" uid="uid://cjc0pv560qqv1" path="res://scr/goap/memories/red_mage_memory.gd" id="10_iuege"]
-[ext_resource type="Script" uid="uid://bccasf1g707qk" path="res://scr/util/enemy/navigation.gd" id="11_6lul4"]
+[ext_resource type="Script" uid="uid://bccasf1g707qk" path="res://scr/util/entity/navigation.gd" id="11_6lul4"]
 [ext_resource type="Script" uid="uid://djjmno7kihjpr" path="res://scr/goap/actions/wander.gd" id="11_27k0l"]
 [ext_resource type="Script" uid="uid://r2b3ysikxov0" path="res://scr/util/perception/perception_system.gd" id="12_27k0l"]
 [ext_resource type="Script" uid="uid://b7v4ao8jga5rg" path="res://scr/goap/goals/flee.gd" id="12_wr5es"]
@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://o8dqx6i7woqt" path="res://scr/goap/goals/kill_enemy.gd" id="14_ysgtx"]
 [ext_resource type="Script" uid="uid://8ib48sr624k3" path="res://scr/goap/goals/wander.gd" id="15_8mjma"]
 [ext_resource type="Script" uid="uid://wqopxvagomo6" path="res://scr/util/combat/core/hurtbox.gd" id="15_ysgtx"]
-[ext_resource type="Script" uid="uid://cpnmaicmyhwd6" path="res://scr/util/enemy/entity_debug_label.gd" id="16_8mjma"]
+[ext_resource type="Script" uid="uid://cpnmaicmyhwd6" path="res://scr/util/entity/entity_debug_label.gd" id="16_8mjma"]
 [ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://scr/goap/ai_config.gd" id="16_ametv"]
 [ext_resource type="Script" uid="uid://bll0orhps41m6" path="res://scr/util/controller/knockback_controller.gd" id="21_bceom"]
 

@@ -1,14 +1,14 @@
 @icon("res://icons/16x16/heart.png")
 
-# TODO Use this for player as well?
-## For entities other than player
 class_name Health
 extends Resource
 
 signal invulnerability_changed(active: bool)
 signal max_health_changed(new_max_health: int)
+signal health_changed(new_health: int)
 signal damaged(attack: Attack)
 signal died
+signal revived
 
 @export var max_health: int:
 	set(val):
@@ -19,7 +19,10 @@ signal died
 
 var health: int = max_health:
 	set(val):
+		var prev: int = health
 		health = clamp(val, 0, max_health)
+		if health != prev:
+			health_changed.emit(health)
 
 var invulnerable: bool = false
 var _timer_callback: Callable  # Reference to entity's timer creation method
@@ -42,6 +45,18 @@ func take_damage(attack: Attack) -> void:
 
 	if health <= 0:
 		died.emit()
+
+
+# Revived warns HUD
+func reset() -> void:
+	var was_dead: bool = health <= 0
+	health = max_health
+	if was_dead:
+		revived.emit()
+	stop_regeneration()
+	disable_invulnerability()
+	_waiting_for_regen_delay = false
+	start_regeneration()
 
 
 ## Called by entity during _ready() to inject timer dependency
