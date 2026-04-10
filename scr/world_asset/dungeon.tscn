@@ -1,13 +1,16 @@
 [gd_scene format=4 uid="uid://bn8k2rqhlq6nf"]
 
-[ext_resource type="ArrayMesh" uid="uid://dr6lpo255th1q" path="res://scr/world_asset/dungeon_assets/meshes/floor_002.tres" id="1_kpf77"]
-[ext_resource type="ArrayMesh" uid="uid://qg0hyw8f1xr" path="res://scr/world_asset/dungeon_assets/meshes/floor_001.tres" id="2_fekt5"]
+[ext_resource type="MeshLibrary" uid="uid://b73gxi8hvl7se" path="res://scr/world_asset/dungeon_assets/mesh_library/tiles.meshlib" id="1_fekt5"]
 [ext_resource type="ArrayMesh" uid="uid://b7wauquydj40k" path="res://scr/world_asset/dungeon_assets/meshes/brick_wall_001.tres" id="3_dhjrq"]
 [ext_resource type="ArrayMesh" uid="uid://clxiq3vvpsxql" path="res://scr/world_asset/dungeon_assets/meshes/barrel_001.tres" id="3_f7plw"]
 [ext_resource type="ArrayMesh" uid="uid://bduf3ad71475q" path="res://scr/world_asset/dungeon_assets/meshes/pillar_001.tres" id="4_cr444"]
+[ext_resource type="Script" uid="uid://cr8xagow33vaj" path="res://scr/util/combat/core/hazard.gd" id="5_f7plw"]
+[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="6_cr444"]
+[ext_resource type="Script" uid="uid://csig12422io62" path="res://scr/util/combat/core/hitbox.gd" id="7_f7plw"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_flat_floor"]
-size = Vector3(33.93338, 1, 24.936768)
+[sub_resource type="NavigationMesh" id="NavigationMesh_dhjrq"]
+vertices = PackedVector3Array(-3.5530949, 0.37780982, -3.5530949, -3.5530949, 0.37780982, 15.446905, 33.446907, 0.37780982, 15.446905, 33.446907, 0.37780982, -3.5530949)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dhjrq"]
 size = Vector3(0.1895576, 0.0031255183, 0.06125243)
@@ -17,9 +20,6 @@ size = Vector3(0.008948197, 0.008948197, 0.030889511)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f7plw"]
 radius = 0.6904297
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cr444"]
-size = Vector3(0.0044581713, 0.005268793, 0.0054528257)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gjmle"]
 resource_name = "beige"
@@ -601,8 +601,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pccpq")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f7plw"]
-size = Vector3(0.017099548, 0.017099548, 0.0077169295)
+[sub_resource type="Resource" id="Resource_voiec"]
+script = ExtResource("6_cr444")
+type = 1
+power = 30
+knockback_force = 1.0
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fi4i5"]
 _surfaces = [{
@@ -636,771 +640,143 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fi4i5")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_f7plw"]
+size = Vector3(0.017099548, 0.017099548, 0.0077169295)
+
 [node name="Dungeon" type="Node3D" unique_id=1676076375]
 
-[node name="Floor" type="StaticBody3D" parent="." unique_id=765789133]
-
-[node name="FloorCollision" type="CollisionShape3D" parent="Floor" unique_id=1851071094]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.105679, -0.5, 1.8450432)
-shape = SubResource("BoxShape3D_flat_floor")
-
-[node name="FloorTiles" type="Node3D" parent="Floor" unique_id=652682059]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.105679, -0.5, 1.8450432)
-
-[node name="AlternatingTile" type="MeshInstance3D" parent="Floor/FloorTiles" unique_id=1983482654]
-transform = Transform3D(1, -8.4703295e-22, 7.105428e-15, 8.4703295e-22, 0.99999994, 7.1054274e-15, -1.4210854e-14, -7.1054274e-15, 0.99999994, -11.105679, 0.5, -1.8450432)
-skeleton = NodePath("../..")
-
-[node name="Floor_02_01" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=300000002]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.2000003, 1.7763112e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_02" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1280903843]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 6.2000003, 2.9309888e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_03" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1038386239]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 6.2000003, 8.881733e-16, -7.4504927e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_04" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1623544545]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.200001, 1.7762773e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_05" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1278511288]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.200001, -2.8244083e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_06" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1298375041]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.200001, -2.8244087e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_07" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1479676991]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, 8.881699e-16, -7.450436e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_08" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=334664330]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, 2.9309884e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_09" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1111770958]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.2000003, -5.66658e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_10" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1259020736]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.200001, -8.5087516e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_11" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=642919759]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 6.2000003, -5.5955254e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_12" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=41156696]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 6.2000003, -2.7533541e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_13" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1840538033]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.200001, -5.66658e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_14" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=95582632]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.200001, -8.5087516e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_15" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=439689129]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, -5.5955254e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_16" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=415625308]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, -2.7533545e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_17" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1178375004]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.7999997, 1.776379e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_18" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=903668307]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.7999992, -2.8244076e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_19" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=214430078]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, 8.8818e-16, -7.450606e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_20" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=837207705]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, 2.930989e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_21" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=990544993]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.2000003, 1.7763451e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_22" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1618980001]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.2000012, -2.824408e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_23" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=396782742]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, 8.8817667e-16, -7.4505495e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_24" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=164818132]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, 2.9309888e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_25" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=190231734]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.7999997, -5.6665793e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_26" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=2111502992]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.7999992, -8.508751e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_27" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1399585054]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, -5.5955247e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_28" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1107387932]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, -2.7533534e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_29" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1475852302]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.2000003, -5.6665793e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_30" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1633562339]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.2000012, -8.508751e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_31" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=821330082]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, -5.5955247e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_32" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1055974503]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, -2.7533538e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_33" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=86860614]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.2, 1.7761757e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_34" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=213353515]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.2, -2.8244097e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_35" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=199538545]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, 8.8815973e-16, -7.4502653e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_36" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=214180203]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, 2.9309874e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_37" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=585336379]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.2, 1.7761418e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_38" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=4983122]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.2, -2.82441e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_39" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=759413643]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, 8.8815634e-16, -7.4502085e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_40" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=409088213]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, 2.930987e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_41" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=561533555]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.2, -5.6665813e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_42" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1093350854]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.2, -8.508753e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_43" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1559049403]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, -5.5955268e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_44" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1708680783]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, -2.7533555e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_45" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=90839448]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.2, -5.6665813e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_46" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=757274546]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.2, -8.508753e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_47" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=295013343]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, -5.5955268e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_48" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1928811268]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, -2.7533558e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_49" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=936233579]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.200001, 1.7762434e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_50" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=988013125]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.200001, -2.824409e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_51" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=698038213]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, 8.881665e-16, -7.450379e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_52" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=221696701]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, 2.930988e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_53" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=980660162]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.2, 1.7762096e-16, 0.0999999)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_54" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=901714851]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.2, -2.8244093e-14, 4.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_55" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1173294958]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, 8.881631e-16, -7.450322e-09)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_56" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1275277796]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, 2.9309878e-14, -4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_57" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=2007462891]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.200001, -5.6665806e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_58" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=871409374]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.200001, -8.508752e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_59" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1483043138]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, -5.595526e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_60" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=715679013]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, -2.7533548e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_61" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=598133042]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.2, -5.6665806e-14, 8.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_62" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1993522631]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.2, -8.508752e-14, 12.1)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_63" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=1440336414]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, -5.595526e-14, 8)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="Floor_02_64" type="MeshInstance3D" parent="Floor/FloorTiles/AlternatingTile" unique_id=567655620]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, -2.7533551e-14, 4)
-mesh = ExtResource("1_kpf77")
-skeleton = NodePath("")
-
-[node name="CleanTile" type="MeshInstance3D" parent="Floor/FloorTiles" unique_id=848457610]
-transform = Transform3D(1, -8.4703295e-22, 7.105428e-15, 8.4703295e-22, 0.99999994, 7.1054274e-15, -1.4210854e-14, -7.1054274e-15, 0.99999994, -11.105679, 0.5, -1.8450432)
-skeleton = NodePath("../..")
-
-[node name="Floor_01_01" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=300000012]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.2, 1.509903e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_02" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1057046115]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.2000003, -1.3322683e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_03" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1954141884]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, -8.583453e-20, -1.1920929e-05, 100, 8.742277e-06, 100, 1.1920929e-05, 10.199999, 1.5099026e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_04" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=108531874]
-transform = Transform3D(100, 7.105427e-13, 3.8624702e-19, -8.470331e-20, -1.1920927e-05, 100.000015, 1.4210856e-12, -100.000015, -1.1920927e-05, 6.200001, -1.2772006e-13, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_05" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1814338238]
-transform = Transform3D(100, 7.105426e-13, 1.6940662e-19, -8.470331e-20, -1.1920929e-05, 100, 1.4210856e-12, -100, -1.1920929e-05, 6.2000003, 1.5276666e-14, -1.9000002)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_06" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=278905375]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.200001, -1.33226865e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_07" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1876454651]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, -1.40332285e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_08" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1289641220]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, 1.4388484e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_09" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1753616818]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.2, -4.17444e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_10" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1141054966]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 6.2000003, -7.016611e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_11" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=918603143]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 6.2000003, -7.0876654e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_12" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=333471284]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 6.2000003, -4.245494e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_13" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1680448335]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.199999, -4.1744403e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_14" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=595357722]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 10.200001, -7.016611e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_15" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=32417551]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, -7.0876654e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_16" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=735252169]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 10.200001, -4.2454945e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_17" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=671984465]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.8000002, 1.5099037e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_18" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1723466481]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.7999997, -1.3322676e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_19" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=135697341]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, -1.4033218e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_20" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=2073412119]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, 1.4388494e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_21" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1997863969]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.1999993, 1.5099033e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_22" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1522247619]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.2000003, -1.332268e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_23" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1582601742]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, -1.4033222e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_24" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1994572132]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, 1.4388491e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_25" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1943925608]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.8000002, -4.1744393e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_26" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=63013685]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, -1.7999997, -7.01661e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_27" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1263719997]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, -7.087665e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_28" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1333596100]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, -1.7999997, -4.2454935e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_29" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1343004115]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.1999993, -4.1744396e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_30" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1522047269]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 2.2000003, -7.01661e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_31" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1262001030]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, -7.087665e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_32" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1449119259]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 2.2000003, -4.2454938e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_33" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=832638401]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.199999, 1.5099016e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_34" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1657523629]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.199999, 1.509902e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_35" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=148302242]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.2, -1.3322697e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_36" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=201027160]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, -1.4033239e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_37" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=753474950]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, 1.4388474e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_38" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=609818877]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.199999, 1.5099013e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_39" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=521793866]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.2, -1.33227e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_40" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1084943113]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, -1.4033242e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_41" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1136983160]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, 1.438847e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_42" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=676649526]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.199999, -4.1744413e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_43" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1704749867]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 22.2, -7.016612e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_44" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1956881826]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, -7.087667e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_45" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1924113890]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 22.2, -4.2454955e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_46" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1019228561]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.199999, -4.1744416e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_47" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=753115144]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 26.2, -7.016612e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_48" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1093986615]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, -7.087667e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_49" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1534621218]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 26.2, -4.2454958e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_50" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1792905741]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.199999, 1.5099023e-14, -2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_51" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=147865998]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.200001, -1.332269e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_52" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=400432153]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, -1.4033232e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_53" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=2109686315]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, 1.4388481e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_54" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1839747556]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 9.91761, -9.73687e-15, 1.4953413)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_55" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1126443453]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.2, -1.3322693e-14, 2)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_56" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=13453344]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, -1.4033235e-14, 2.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_57" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1679019297]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, 1.4388478e-14, -1.9000001)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_58" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=2072906898]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.199999, -4.1744406e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_59" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=514810016]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 14.200001, -7.0166115e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_60" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=357088043]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, -7.087666e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_61" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1115491559]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 14.200001, -4.2454948e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_62" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1886301441]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.199999, -4.174441e-14, 6)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_63" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=377394444]
-transform = Transform3D(-100.000015, 8.742277e-06, 1.0421607e-12, 2.2585688e-20, -1.192093e-05, 100.00001, 8.742277e-06, 100.00001, 1.192093e-05, 18.2, -7.0166115e-14, 10)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_64" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=1123895587]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, -7.087666e-14, 10.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
-
-[node name="Floor_01_65" type="MeshInstance3D" parent="Floor/FloorTiles/CleanTile" unique_id=2019800609]
-transform = Transform3D(100, 7.105428e-13, 1.6940659e-19, -8.470331e-20, -1.1920928e-05, 99.99999, 1.4210855e-12, -99.99999, -1.1920928e-05, 18.2, -4.245495e-14, 6.1)
-mesh = ExtResource("2_fekt5")
-skeleton = NodePath("")
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1158209114]
+navigation_mesh = SubResource("NavigationMesh_dhjrq")
+
+[node name="Floor" type="GridMap" parent="NavigationRegion3D" unique_id=1890218270]
+mesh_library = ExtResource("1_fekt5")
+cell_center_y = false
+collision_layer = 3
+collision_mask = 3
+bake_navigation = true
+data = {
+"cells": PackedInt32Array(65534, 1, 0, 65534, 0, 0, 65534, 65535, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 65534, 2, 0, 65534, 3, 0, 65534, 4, 0, 65534, 5, 0, 65534, 6, 0, 65535, 65535, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 65535, 4, 0, 65535, 5, 0, 65535, 6, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 3, 65534, 0, 3, 65535, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 3, 5, 0, 3, 6, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 4, 5, 0, 4, 6, 0, 5, 65534, 0, 5, 65535, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 5, 5, 0, 5, 6, 0, 6, 65534, 0, 6, 65535, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 6, 5, 0, 6, 6, 0, 7, 65534, 0, 7, 65535, 0, 7, 0, 0, 7, 1, 0, 7, 2, 0, 7, 3, 0, 7, 4, 0, 7, 5, 0, 7, 6, 0, 8, 65534, 0, 8, 65535, 0, 8, 0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8, 5, 0, 8, 6, 0, 9, 65534, 0, 9, 65535, 0, 9, 0, 0, 9, 1, 0, 9, 2, 0, 9, 3, 0, 9, 4, 0, 9, 5, 0, 9, 6, 0, 10, 65534, 0, 10, 65535, 0, 10, 0, 0, 10, 1, 0, 10, 2, 0, 10, 3, 0, 10, 4, 0, 10, 5, 0, 10, 6, 0, 11, 65534, 0, 11, 65535, 0, 11, 0, 0, 11, 1, 0, 11, 2, 0, 11, 3, 0, 11, 4, 0, 11, 5, 0, 11, 6, 0, 12, 65534, 0, 12, 65535, 0, 12, 0, 0, 12, 1, 0, 12, 2, 0, 12, 3, 0, 12, 4, 0, 12, 5, 0, 12, 6, 0, 13, 65534, 0, 13, 65535, 0, 13, 0, 0, 13, 1, 0, 13, 2, 0, 13, 3, 0, 13, 4, 0, 13, 5, 0, 13, 6, 0, 14, 65534, 0, 14, 65535, 0, 14, 0, 0, 14, 1, 0, 14, 2, 0, 14, 3, 0, 14, 4, 0, 14, 5, 0, 14, 6, 0, 15, 65534, 0, 15, 65535, 0, 15, 0, 0, 15, 1, 0, 15, 2, 0, 15, 3, 0, 15, 4, 0, 15, 5, 0, 15, 6, 0, 16, 65534, 0, 16, 65535, 0, 16, 0, 0, 16, 1, 0, 16, 2, 0, 16, 3, 0, 16, 4, 0, 16, 5, 0, 16, 6, 0, 65534, 7, 0, 65535, 7, 0, 0, 7, 0, 1, 7, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 0, 6, 7, 0, 7, 7, 0, 8, 7, 0, 9, 7, 0, 10, 7, 0, 11, 7, 0, 12, 7, 0, 13, 7, 0, 14, 7, 0, 15, 7, 0, 16, 7, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Ceiling" type="GridMap" parent="NavigationRegion3D" unique_id=977811073]
+mesh_library = ExtResource("1_fekt5")
+cell_size = Vector3(1, 1, 1)
+collision_layer = 3
+collision_mask = 3
+bake_navigation = true
+data = {
+"cells": PackedInt32Array(458748, 65532, 655361, 458748, 65533, 655361, 458748, 65534, 655361, 458748, 65535, 655361, 458748, 0, 655361, 458748, 1, 655361, 458748, 2, 655361, 458748, 3, 655361, 458748, 4, 655361, 458748, 5, 655361, 458748, 6, 655361, 458748, 7, 655361, 458748, 8, 655361, 458748, 9, 655361, 458748, 10, 655361, 458748, 11, 655361, 458748, 12, 655361, 458748, 13, 655361, 458748, 14, 655361, 458748, 15, 655361, 458749, 65532, 655361, 458749, 65533, 655361, 458749, 65534, 655361, 458749, 65535, 655361, 458749, 0, 655361, 458749, 1, 655361, 458749, 2, 655361, 458749, 3, 655361, 458749, 4, 655361, 458749, 5, 655361, 458749, 6, 655361, 458749, 7, 655361, 458749, 8, 655361, 458749, 9, 655361, 458749, 10, 655361, 458749, 11, 655361, 458749, 12, 655361, 458749, 13, 655361, 458749, 14, 655361, 458749, 15, 655361, 458750, 65532, 655361, 458750, 65533, 655361, 458750, 65534, 655361, 458750, 65535, 655361, 458750, 0, 655361, 458750, 1, 655361, 458750, 2, 655361, 458750, 3, 655361, 458750, 4, 655361, 458750, 5, 655361, 458750, 6, 655361, 458750, 7, 655361, 458750, 8, 655361, 458750, 9, 655361, 458750, 10, 655361, 458750, 11, 655361, 458750, 12, 655361, 458750, 13, 655361, 458750, 14, 655361, 458750, 15, 655361, 458751, 65532, 655361, 458751, 65533, 655361, 458751, 65534, 655361, 458751, 65535, 655361, 458751, 0, 655361, 458751, 1, 655361, 458751, 2, 655361, 458751, 3, 655361, 458751, 4, 655361, 458751, 5, 655361, 458751, 6, 655361, 458751, 7, 655361, 458751, 8, 655361, 458751, 9, 655361, 458751, 10, 655361, 458751, 11, 655361, 458751, 12, 655361, 458751, 13, 655361, 458751, 14, 655361, 458751, 15, 655361, 393216, 65532, 655361, 393216, 65533, 655361, 393216, 65534, 655361, 393216, 65535, 655361, 393216, 0, 655361, 393216, 1, 655361, 393216, 2, 655361, 393216, 3, 655361, 393216, 4, 655361, 393216, 5, 655361, 393216, 6, 655361, 393216, 7, 655361, 393216, 8, 655361, 393216, 9, 655361, 393216, 10, 655361, 393216, 11, 655361, 393216, 12, 655361, 393216, 13, 655361, 393216, 14, 655361, 393216, 15, 655361, 393217, 65532, 655361, 393217, 65533, 655361, 393217, 65534, 655361, 393217, 65535, 655361, 393217, 0, 655361, 393217, 1, 655361, 393217, 2, 655361, 393217, 3, 655361, 393217, 4, 655361, 393217, 5, 655361, 393217, 6, 655361, 393217, 7, 655361, 393217, 8, 655361, 393217, 9, 655361, 393217, 10, 655361, 393217, 11, 655361, 393217, 12, 655361, 393217, 13, 655361, 393217, 14, 655361, 393217, 15, 655361, 393218, 65532, 655361, 393218, 65533, 655361, 393218, 65534, 655361, 393218, 65535, 655361, 393218, 0, 655361, 393218, 1, 655361, 393218, 2, 655361, 393218, 3, 655361, 393218, 4, 655361, 393218, 5, 655361, 393218, 6, 655361, 393218, 7, 655361, 393218, 8, 655361, 393218, 9, 655361, 393218, 10, 655361, 393218, 11, 655361, 393218, 12, 655361, 393218, 13, 655361, 393218, 14, 655361, 393218, 15, 655361, 393219, 65532, 655361, 393219, 65533, 655361, 393219, 65534, 655361, 393219, 65535, 655361, 393219, 0, 655361, 393219, 1, 655361, 393219, 2, 655361, 393219, 3, 655361, 393219, 4, 655361, 393219, 5, 655361, 393219, 6, 655361, 393219, 7, 655361, 393219, 8, 655361, 393219, 9, 655361, 393219, 10, 655361, 393219, 11, 655361, 393219, 12, 655361, 393219, 13, 655361, 393219, 14, 655361, 393219, 15, 655361, 393220, 65532, 655361, 393220, 65533, 655361, 393220, 65534, 655361, 393220, 65535, 655361, 393220, 0, 655361, 393220, 1, 655361, 393220, 2, 655361, 393220, 3, 655361, 393220, 4, 655361, 393220, 5, 655361, 393220, 6, 655361, 393220, 7, 655361, 393220, 8, 655361, 393220, 9, 655361, 393220, 10, 655361, 393220, 11, 655361, 393220, 12, 655361, 393220, 13, 655361, 393220, 14, 655361, 393220, 15, 655361, 393221, 65532, 655361, 393221, 65533, 655361, 393221, 65534, 655361, 393221, 65535, 655361, 393221, 0, 655361, 393221, 1, 655361, 393221, 2, 655361, 393221, 3, 655361, 393221, 4, 655361, 393221, 5, 655361, 393221, 6, 655361, 393221, 7, 655361, 393221, 8, 655361, 393221, 9, 655361, 393221, 10, 655361, 393221, 11, 655361, 393221, 12, 655361, 393221, 13, 655361, 393221, 14, 655361, 393221, 15, 655361, 393222, 65532, 655361, 393222, 65533, 655361, 393222, 65534, 655361, 393222, 65535, 655361, 393222, 0, 655361, 393222, 1, 655361, 393222, 2, 655361, 393222, 3, 655361, 393222, 4, 655361, 393222, 5, 655361, 393222, 6, 655361, 393222, 7, 655361, 393222, 8, 655361, 393222, 9, 655361, 393222, 10, 655361, 393222, 11, 655361, 393222, 12, 655361, 393222, 13, 655361, 393222, 14, 655361, 393222, 15, 655361, 393223, 65532, 655361, 393223, 65533, 655361, 393223, 65534, 655361, 393223, 65535, 655361, 393223, 0, 655361, 393223, 1, 655361, 393223, 2, 655361, 393223, 3, 655361, 393223, 4, 655361, 393223, 5, 655361, 393223, 6, 655361, 393223, 7, 655361, 393223, 8, 655361, 393223, 9, 655361, 393223, 10, 655361, 393223, 11, 655361, 393223, 12, 655361, 393223, 13, 655361, 393223, 14, 655361, 393223, 15, 655361, 393224, 65532, 655361, 393224, 65533, 655361, 393224, 65534, 655361, 393224, 65535, 655361, 393224, 0, 655361, 393224, 1, 655361, 393224, 2, 655361, 393224, 3, 655361, 393224, 4, 655361, 393224, 5, 655361, 393224, 6, 655361, 393224, 7, 655361, 393224, 8, 655361, 393224, 9, 655361, 393224, 10, 655361, 393224, 11, 655361, 393224, 12, 655361, 393224, 13, 655361, 393224, 14, 655361, 393224, 15, 655361, 393225, 65532, 655361, 393225, 65533, 655361, 393225, 65534, 655361, 393225, 65535, 655361, 393225, 0, 655361, 393225, 1, 655361, 393225, 2, 655361, 393225, 3, 655361, 393225, 4, 655361, 393225, 5, 655361, 393225, 6, 655361, 393225, 7, 655361, 393225, 8, 655361, 393225, 9, 655361, 393225, 10, 655361, 393225, 11, 655361, 393225, 12, 655361, 393225, 13, 655361, 393225, 14, 655361, 393225, 15, 655361, 393226, 65532, 655361, 393226, 65533, 655361, 393226, 65534, 655361, 393226, 65535, 655361, 393226, 0, 655361, 393226, 1, 655361, 393226, 2, 655361, 393226, 3, 655361, 393226, 4, 655361, 393226, 5, 655361, 393226, 6, 655361, 393226, 7, 655361, 393226, 8, 655361, 393226, 9, 655361, 393226, 10, 655361, 393226, 11, 655361, 393226, 12, 655361, 393226, 13, 655361, 393226, 14, 655361, 393226, 15, 655361, 393227, 65532, 655361, 393227, 65533, 655361, 393227, 65534, 655361, 393227, 65535, 655361, 393227, 0, 655361, 393227, 1, 655361, 393227, 2, 655361, 393227, 3, 655361, 393227, 4, 655361, 393227, 5, 655361, 393227, 6, 655361, 393227, 7, 655361, 393227, 8, 655361, 393227, 9, 655361, 393227, 10, 655361, 393227, 11, 655361, 393227, 12, 655361, 393227, 13, 655361, 393227, 14, 655361, 393227, 15, 655361, 393228, 65532, 655361, 393228, 65533, 655361, 393228, 65534, 655361, 393228, 65535, 655361, 393228, 0, 655361, 393228, 1, 655361, 393228, 2, 655361, 393228, 3, 655361, 393228, 4, 655361, 393228, 5, 655361, 393228, 6, 655361, 393228, 7, 655361, 393228, 8, 655361, 393228, 9, 655361, 393228, 10, 655361, 393228, 11, 655361, 393228, 12, 655361, 393228, 13, 655361, 393228, 14, 655361, 393228, 15, 655361, 393229, 65532, 655361, 393229, 65533, 655361, 393229, 65534, 655361, 393229, 65535, 655361, 393229, 0, 655361, 393229, 1, 655361, 393229, 2, 655361, 393229, 3, 655361, 393229, 4, 655361, 393229, 5, 655361, 393229, 6, 655361, 393229, 7, 655361, 393229, 8, 655361, 393229, 9, 655361, 393229, 10, 655361, 393229, 11, 655361, 393229, 12, 655361, 393229, 13, 655361, 393229, 14, 655361, 393229, 15, 655361, 393230, 65532, 655361, 393230, 65533, 655361, 393230, 65534, 655361, 393230, 65535, 655361, 393230, 0, 655361, 393230, 1, 655361, 393230, 2, 655361, 393230, 3, 655361, 393230, 4, 655361, 393230, 5, 655361, 393230, 6, 655361, 393230, 7, 655361, 393230, 8, 655361, 393230, 9, 655361, 393230, 10, 655361, 393230, 11, 655361, 393230, 12, 655361, 393230, 13, 655361, 393230, 14, 655361, 393230, 15, 655361, 393231, 65532, 655361, 393231, 65533, 655361, 393231, 65534, 655361, 393231, 65535, 655361, 393231, 0, 655361, 393231, 1, 655361, 393231, 2, 655361, 393231, 3, 655361, 393231, 4, 655361, 393231, 5, 655361, 393231, 6, 655361, 393231, 7, 655361, 393231, 8, 655361, 393231, 9, 655361, 393231, 10, 655361, 393231, 11, 655361, 393231, 12, 655361, 393231, 13, 655361, 393231, 14, 655361, 393231, 15, 655361, 393232, 65532, 655361, 393232, 65533, 655361, 393232, 65534, 655361, 393232, 65535, 655361, 393232, 0, 655361, 393232, 1, 655361, 393232, 2, 655361, 393232, 3, 655361, 393232, 4, 655361, 393232, 5, 655361, 393232, 6, 655361, 393232, 7, 655361, 393232, 8, 655361, 393232, 9, 655361, 393232, 10, 655361, 393232, 11, 655361, 393232, 12, 655361, 393232, 13, 655361, 393232, 14, 655361, 393232, 15, 655361, 393233, 65532, 655361, 393233, 65533, 655361, 393233, 65534, 655361, 393233, 65535, 655361, 393233, 0, 655361, 393233, 1, 655361, 393233, 2, 655361, 393233, 3, 655361, 393233, 4, 655361, 393233, 5, 655361, 393233, 6, 655361, 393233, 7, 655361, 393233, 8, 655361, 393233, 9, 655361, 393233, 10, 655361, 393233, 11, 655361, 393233, 12, 655361, 393233, 13, 655361, 393233, 14, 655361, 393233, 15, 655361, 393234, 65532, 655361, 393234, 65533, 655361, 393234, 65534, 655361, 393234, 65535, 655361, 393234, 0, 655361, 393234, 1, 655361, 393234, 2, 655361, 393234, 3, 655361, 393234, 4, 655361, 393234, 5, 655361, 393234, 6, 655361, 393234, 7, 655361, 393234, 8, 655361, 393234, 9, 655361, 393234, 10, 655361, 393234, 11, 655361, 393234, 12, 655361, 393234, 13, 655361, 393234, 14, 655361, 393234, 15, 655361, 393235, 65532, 655361, 393235, 65533, 655361, 393235, 65534, 655361, 393235, 65535, 655361, 393235, 0, 655361, 393235, 1, 655361, 393235, 2, 655361, 393235, 3, 655361, 393235, 4, 655361, 393235, 5, 655361, 393235, 6, 655361, 393235, 7, 655361, 393235, 8, 655361, 393235, 9, 655361, 393235, 10, 655361, 393235, 11, 655361, 393235, 12, 655361, 393235, 13, 655361, 393235, 14, 655361, 393235, 15, 655361, 393236, 65532, 655361, 393236, 65533, 655361, 393236, 65534, 655361, 393236, 65535, 655361, 393236, 0, 655361, 393236, 1, 655361, 393236, 2, 655361, 393236, 3, 655361, 393236, 4, 655361, 393236, 5, 655361, 393236, 6, 655361, 393236, 7, 655361, 393236, 8, 655361, 393236, 9, 655361, 393236, 10, 655361, 393236, 11, 655361, 393236, 12, 655361, 393236, 13, 655361, 393236, 14, 655361, 393236, 15, 655361, 393237, 65532, 655361, 393237, 65533, 655361, 393237, 65534, 655361, 393237, 65535, 655361, 393237, 0, 655361, 393237, 1, 655361, 393237, 2, 655361, 393237, 3, 655361, 393237, 4, 655361, 393237, 5, 655361, 393237, 6, 655361, 393237, 7, 655361, 393237, 8, 655361, 393237, 9, 655361, 393237, 10, 655361, 393237, 11, 655361, 393237, 12, 655361, 393237, 13, 655361, 393237, 14, 655361, 393237, 15, 655361, 393238, 65532, 655361, 393238, 65533, 655361, 393238, 65534, 655361, 393238, 65535, 655361, 393238, 0, 655361, 393238, 1, 655361, 393238, 2, 655361, 393238, 3, 655361, 393238, 4, 655361, 393238, 5, 655361, 393238, 6, 655361, 393238, 7, 655361, 393238, 8, 655361, 393238, 9, 655361, 393238, 10, 655361, 393238, 11, 655361, 393238, 12, 655361, 393238, 13, 655361, 393238, 14, 655361, 393238, 15, 655361, 393239, 65532, 655361, 393239, 65533, 655361, 393239, 65534, 655361, 393239, 65535, 655361, 393239, 0, 655361, 393239, 1, 655361, 393239, 2, 655361, 393239, 3, 655361, 393239, 4, 655361, 393239, 5, 655361, 393239, 6, 655361, 393239, 7, 655361, 393239, 8, 655361, 393239, 9, 655361, 393239, 10, 655361, 393239, 11, 655361, 393239, 12, 655361, 393239, 13, 655361, 393239, 14, 655361, 393239, 15, 655361, 393240, 65532, 655361, 393240, 65533, 655361, 393240, 65534, 655361, 393240, 65535, 655361, 393240, 0, 655361, 393240, 1, 655361, 393240, 2, 655361, 393240, 3, 655361, 393240, 4, 655361, 393240, 5, 655361, 393240, 6, 655361, 393240, 7, 655361, 393240, 8, 655361, 393240, 9, 655361, 393240, 10, 655361, 393240, 11, 655361, 393240, 12, 655361, 393240, 13, 655361, 393240, 14, 655361, 393240, 15, 655361, 393241, 65532, 655361, 393241, 65533, 655361, 393241, 65534, 655361, 393241, 65535, 655361, 393241, 0, 655361, 393241, 1, 655361, 393241, 2, 655361, 393241, 3, 655361, 393241, 4, 655361, 393241, 5, 655361, 393241, 6, 655361, 393241, 7, 655361, 393241, 8, 655361, 393241, 9, 655361, 393241, 10, 655361, 393241, 11, 655361, 393241, 12, 655361, 393241, 13, 655361, 393241, 14, 655361, 393241, 15, 655361, 393242, 65532, 655361, 393242, 65533, 655361, 393242, 65534, 655361, 393242, 65535, 655361, 393242, 0, 655361, 393242, 1, 655361, 393242, 2, 655361, 393242, 3, 655361, 393242, 4, 655361, 393242, 5, 655361, 393242, 6, 655361, 393242, 7, 655361, 393242, 8, 655361, 393242, 9, 655361, 393242, 10, 655361, 393242, 11, 655361, 393242, 12, 655361, 393242, 13, 655361, 393242, 14, 655361, 393242, 15, 655361, 393243, 65532, 655361, 393243, 65533, 655361, 393243, 65534, 655361, 393243, 65535, 655361, 393243, 0, 655361, 393243, 1, 655361, 393243, 2, 655361, 393243, 3, 655361, 393243, 4, 655361, 393243, 5, 655361, 393243, 6, 655361, 393243, 7, 655361, 393243, 8, 655361, 393243, 9, 655361, 393243, 10, 655361, 393243, 11, 655361, 393243, 12, 655361, 393243, 13, 655361, 393243, 14, 655361, 393243, 15, 655361, 393244, 65532, 655361, 393244, 65533, 655361, 393244, 65534, 655361, 393244, 65535, 655361, 393244, 0, 655361, 393244, 1, 655361, 393244, 2, 655361, 393244, 3, 655361, 393244, 4, 655361, 393244, 5, 655361, 393244, 6, 655361, 393244, 7, 655361, 393244, 8, 655361, 393244, 9, 655361, 393244, 10, 655361, 393244, 11, 655361, 393244, 12, 655361, 393244, 13, 655361, 393244, 14, 655361, 393244, 15, 655361, 393245, 65532, 655361, 393245, 65533, 655361, 393245, 65534, 655361, 393245, 65535, 655361, 393245, 0, 655361, 393245, 1, 655361, 393245, 2, 655361, 393245, 3, 655361, 393245, 4, 655361, 393245, 5, 655361, 393245, 6, 655361, 393245, 7, 655361, 393245, 8, 655361, 393245, 9, 655361, 393245, 10, 655361, 393245, 11, 655361, 393245, 12, 655361, 393245, 13, 655361, 393245, 14, 655361, 393245, 15, 655361, 393246, 65532, 655361, 393246, 65533, 655361, 393246, 65534, 655361, 393246, 65535, 655361, 393246, 0, 655361, 393246, 1, 655361, 393246, 2, 655361, 393246, 3, 655361, 393246, 4, 655361, 393246, 5, 655361, 393246, 6, 655361, 393246, 7, 655361, 393246, 8, 655361, 393246, 9, 655361, 393246, 10, 655361, 393246, 11, 655361, 393246, 12, 655361, 393246, 13, 655361, 393246, 14, 655361, 393246, 15, 655361, 393247, 65532, 655361, 393247, 65533, 655361, 393247, 65534, 655361, 393247, 65535, 655361, 393247, 0, 655361, 393247, 1, 655361, 393247, 2, 655361, 393247, 3, 655361, 393247, 4, 655361, 393247, 5, 655361, 393247, 6, 655361, 393247, 7, 655361, 393247, 8, 655361, 393247, 9, 655361, 393247, 10, 655361, 393247, 11, 655361, 393247, 12, 655361, 393247, 13, 655361, 393247, 14, 655361, 393247, 15, 655361, 393248, 65532, 655361, 393248, 65533, 655361, 393248, 65534, 655361, 393248, 65535, 655361, 393248, 0, 655361, 393248, 1, 655361, 393248, 2, 655361, 393248, 3, 655361, 393248, 4, 655361, 393248, 5, 655361, 393248, 6, 655361, 393248, 7, 655361, 393248, 8, 655361, 393248, 9, 655361, 393248, 10, 655361, 393248, 11, 655361, 393248, 12, 655361, 393248, 13, 655361, 393248, 14, 655361, 393248, 15, 655361, 393249, 65532, 655361, 393249, 65533, 655361, 393249, 65534, 655361, 393249, 65535, 655361, 393249, 0, 655361, 393249, 1, 655361, 393249, 2, 655361, 393249, 3, 655361, 393249, 4, 655361, 393249, 5, 655361, 393249, 6, 655361, 393249, 7, 655361, 393249, 8, 655361, 393249, 9, 655361, 393249, 10, 655361, 393249, 11, 655361, 393249, 12, 655361, 393249, 13, 655361, 393249, 14, 655361, 393249, 15, 655361)
+}
+metadata/_editor_floor_ = Vector3(0, -6, 0)
 
 [node name="Walls" type="Node3D" parent="." unique_id=885531893]
 
 [node name="WallWest" type="StaticBody3D" parent="Walls" unique_id=1201378512]
-transform = Transform3D(1.498133, 0, 0, 0, 1, 0, 0, 0, 1, 11.491081, 0, -3.012)
+transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, -4.094588, 0.028295994, -4.2071943)
+metadata/_edit_group_ = true
 
 [node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallWest" unique_id=227644457]
-transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, -9.472458, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallWest" unique_id=420765177]
-transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, 0, 3, 0)
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
 shape = SubResource("BoxShape3D_dhjrq")
-metadata/_edit_lock_ = true
 
-[node name="WallSouth" type="StaticBody3D" parent="Walls" unique_id=696969602]
-transform = Transform3D(-3.4619422e-08, 0, -1, 0, 1, 0, 0.792, 0, -4.371139e-08, -3.5089188, 0, 4.988)
+[node name="WallWest2" type="StaticBody3D" parent="Walls" unique_id=758345532]
+transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, 14.905413, 0.028295994, -4.2071943)
+metadata/_edit_group_ = true
 
-[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallSouth" unique_id=1033103125]
-transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, -9.472458, 0, 0)
+[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallWest2" unique_id=540741672]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallSouth" unique_id=570996425]
-transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, 0, 3, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallWest2" unique_id=389002413]
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
 shape = SubResource("BoxShape3D_dhjrq")
-metadata/_edit_lock_ = true
 
-[node name="WallEast" type="StaticBody3D" parent="Walls" unique_id=1817339591]
-transform = Transform3D(1.498133, 0, 0, 0, 1, 0, 0, 0, 1, 11.491081, 0, 11.988)
+[node name="WallWest4" type="StaticBody3D" parent="Walls" unique_id=1102946417]
+transform = Transform3D(-4.589696e-06, 0, 105, 0, 105, 0, -105, 0, -4.589696e-06, -4.0945873, 0.028295994, 15.792806)
+metadata/_edit_group_ = true
 
-[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallEast" unique_id=1037131459]
-transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, -9.472458, 0, 0)
+[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallWest4" unique_id=751597142]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallEast" unique_id=2095446237]
-transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, 0, 3, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallWest4" unique_id=1353994548]
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
 shape = SubResource("BoxShape3D_dhjrq")
-metadata/_edit_lock_ = true
+
+[node name="WallEast2" type="StaticBody3D" parent="Walls" unique_id=1293319383]
+transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, -4.094588, 0.028295994, 15.792806)
+metadata/_edit_group_ = true
+
+[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallEast2" unique_id=1033220365]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("3_dhjrq")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallEast2" unique_id=1191037643]
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
+shape = SubResource("BoxShape3D_dhjrq")
+
+[node name="WallEast6" type="StaticBody3D" parent="Walls" unique_id=894674823]
+transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, 14.905413, 0.028295994, 15.792806)
+metadata/_edit_group_ = true
+
+[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallEast6" unique_id=2085990709]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("3_dhjrq")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallEast6" unique_id=931717610]
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
+shape = SubResource("BoxShape3D_dhjrq")
 
 [node name="Pillars" type="Node3D" parent="." unique_id=1885493808]
 
 [node name="Pillar_01_01" type="StaticBody3D" parent="Pillars" unique_id=618070127]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393597, -0.06217909, 11.225624)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393597, -0.06217909, 14.459145)
+metadata/_edit_group_ = true
 
 [node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_01" unique_id=1461540125]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
 mesh = ExtResource("4_cr444")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_01" unique_id=872052545]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
 shape = SubResource("BoxShape3D_qlb32")
-metadata/_edit_lock_ = true
 
 [node name="Pillar_01_02" type="StaticBody3D" parent="Pillars" unique_id=1415062395]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393597, -0.06217909, -2.774376)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393595, -0.06217909, -3.0100603)
+metadata/_edit_group_ = true
 
 [node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_02" unique_id=968709355]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
 mesh = ExtResource("4_cr444")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_02" unique_id=1886477028]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
 shape = SubResource("BoxShape3D_qlb32")
-metadata/_edit_lock_ = true
-
-[node name="Pillar_01_03" type="StaticBody3D" parent="Pillars" unique_id=478586409]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 27.053822, -0.06217909, 11.225624)
-
-[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_03" unique_id=487519435]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
-mesh = ExtResource("4_cr444")
-skeleton = NodePath("")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_03" unique_id=10229174]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
-shape = SubResource("BoxShape3D_qlb32")
-metadata/_edit_lock_ = true
 
 [node name="Pillar_01_04" type="StaticBody3D" parent="Pillars" unique_id=782556257]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 27.053822, -0.06217909, -2.774376)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 13.053822, -0.06217909, 4.225624)
+metadata/_edit_group_ = true
 
 [node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_04" unique_id=311626887]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
 mesh = ExtResource("4_cr444")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_04" unique_id=1452091031]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
 shape = SubResource("BoxShape3D_qlb32")
-metadata/_edit_lock_ = true
 
 [node name="Props" type="Node3D" parent="." unique_id=536212436]
 
@@ -1424,19 +800,10 @@ metadata/_edit_lock_ = true
 
 [node name="Skulls" type="Node3D" parent="Props" unique_id=2017701350]
 
-[node name="Skull_01_01" type="RigidBody3D" parent="Props/Skulls" unique_id=797996616]
-transform = Transform3D(-0.9953393, 0.08388029, -0.047580224, -0.02175283, -0.67596114, -0.7366162, -0.09394996, -0.732148, 0.67463523, 9.281874, 0.33073997, 3.246619)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Skulls/Skull_01_01" unique_id=1869826874]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-shape = SubResource("BoxShape3D_cr444")
-metadata/_edit_lock_ = true
-
-[node name="skull_003" type="MeshInstance3D" parent="Props/Skulls/Skull_01_01" unique_id=589913318]
-transform = Transform3D(100, 7.4505806e-07, 7.4505806e-07, -7.4505806e-07, 100, 0, -7.4505806e-07, -5.551115e-15, 100, 0, 0.0013695247, -0.0008928627)
+[node name="skull_01" type="MeshInstance3D" parent="Props/Skulls" unique_id=589913318]
+transform = Transform3D(-99.53393, 8.388028, -4.7580233, -2.175282, -67.596115, -73.66162, -9.394996, -73.2148, 67.463524, 9.282031, 0.33047193, 3.245014)
 mesh = SubResource("ArrayMesh_voiec")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
 
 [node name="Candles" type="Node3D" parent="Props" unique_id=701999041]
 
@@ -1471,7 +838,8 @@ metadata/_edit_lock_ = true
 [node name="Boxes" type="Node3D" parent="Props" unique_id=1400603203]
 
 [node name="Box_01_01" type="RigidBody3D" parent="Props/Boxes" unique_id=1553390737]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8.033779, 0.31361967, -1.6196201)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 23.79384, 0.31361967, -1.6196201)
+mass = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxes/Box_01_01" unique_id=702527930]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
@@ -1532,15 +900,48 @@ skeleton = NodePath("")
 
 [node name="Spikes" type="Node3D" parent="Traps" unique_id=1052531009]
 
-[node name="Spike_001_01" type="StaticBody3D" parent="Traps/Spikes" unique_id=2008138720]
+[node name="Spikes_01" type="StaticBody3D" parent="Traps/Spikes" unique_id=2008138720]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 8.967434, 0.38613796, 3.0494943)
+script = ExtResource("5_f7plw")
+attack = SubResource("Resource_voiec")
+metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Traps/Spikes/Spike_001_01" unique_id=1947290585]
-shape = SubResource("BoxShape3D_f7plw")
-metadata/_edit_lock_ = true
-
-[node name="Spikes_001" type="MeshInstance3D" parent="Traps/Spikes/Spike_001_01" unique_id=783269283]
+[node name="Spikes_01" type="MeshInstance3D" parent="Traps/Spikes/Spikes_01" unique_id=783269283]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 1.4210855e-14, 1.0000001, -0.010604061, 0.010304058, -0.0038613789)
 mesh = SubResource("ArrayMesh_cr444")
 skeleton = NodePath("")
-metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traps/Spikes/Spikes_01" unique_id=1947290585]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, -2.842171e-14, 0, 2.842171e-14, 1.0000002, 0, 0, 0)
+shape = SubResource("BoxShape3D_f7plw")
+
+[node name="Hitbox" type="Area3D" parent="Traps/Spikes/Spikes_01" unique_id=987871974]
+script = ExtResource("7_f7plw")
+metadata/_custom_type_script = "uid://csig12422io62"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traps/Spikes/Spikes_01/Hitbox" unique_id=1602717141]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, -2.842171e-14, 0, 2.842171e-14, 1.0000002, 0, 0, 0)
+shape = SubResource("BoxShape3D_f7plw")
+
+[node name="Spikes_02" type="StaticBody3D" parent="Traps/Spikes" unique_id=1865305757]
+transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 8.967434, 0.38613796, 9.516478)
+script = ExtResource("5_f7plw")
+attack = SubResource("Resource_voiec")
+metadata/_edit_group_ = true
+
+[node name="Spikes_01" type="MeshInstance3D" parent="Traps/Spikes/Spikes_02" unique_id=1523183227]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 1.4210855e-14, 1.0000001, -0.010604061, 0.010304058, -0.0038613789)
+mesh = SubResource("ArrayMesh_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traps/Spikes/Spikes_02" unique_id=750714924]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, -2.842171e-14, 0, 2.842171e-14, 1.0000002, 0, 0, 0)
+shape = SubResource("BoxShape3D_f7plw")
+
+[node name="Hitbox" type="Area3D" parent="Traps/Spikes/Spikes_02" unique_id=463530131]
+script = ExtResource("7_f7plw")
+metadata/_custom_type_script = "uid://csig12422io62"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traps/Spikes/Spikes_02/Hitbox" unique_id=347263163]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, -2.842171e-14, 0, 2.842171e-14, 1.0000002, 0, 0, 0)
+shape = SubResource("BoxShape3D_f7plw")

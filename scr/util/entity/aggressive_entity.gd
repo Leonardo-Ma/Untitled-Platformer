@@ -17,6 +17,7 @@ signal melee_attacked
 
 @export_category("Perception System")
 @export var perception_config: PerceptionConfig
+@export var target_groups: Array[String] = ["players"]
 @export var debug_perception: bool = false
 
 @export_category("AI System")

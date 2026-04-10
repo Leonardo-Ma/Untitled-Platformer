@@ -6,6 +6,12 @@ extends Area3D
 
 
 func _init() -> void:
-	# Layer 20 (It's in bits)
-	collision_layer = 524288
+	collision_layer = 524288  # Layer 20 (It's in bits)
 	collision_mask = 0
+
+
+func on_hit_connected(damage_dealt: float) -> void:
+	var attacker: Node = owner
+	var status_manager: Node = attacker.get_node_or_null("%StatusManager")
+	if status_manager != null:
+		status_manager.dispatch_event(&"on_damage_dealt", {"damage": damage_dealt})

@@ -40,13 +40,13 @@ https://www.gdquest.com/
 #### Youtube channels
 https://www.youtube.com/@Gdquest
 
-https://www.youtube.com/@cashewolddew
-
-https://www.youtube.com/@GMTK
-
 https://www.youtube.com/@Brackeys
 
 https://www.youtube.com/@Bitlytic
+
+https://www.youtube.com/@cashewolddew
+
+https://www.youtube.com/@GMTK
 
 https://www.youtube.com/@dev-worm
 

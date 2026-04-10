@@ -4,8 +4,6 @@ extends Node
 
 signal perception_updated(detections: Array)
 
-@export var target_groups: Array[String] = ["players"]
-
 var debug_mode: bool = false
 
 var config: PerceptionConfig
@@ -53,7 +51,7 @@ func _process(_delta: float) -> void:
 func _process_perception() -> void:
 	var current_detections: Array[DetectionResult] = []
 
-	for group: String in target_groups:
+	for group: String in owner.target_groups:
 		var all_targets: Array[Node] = get_tree().get_nodes_in_group(group)
 		for target: Node in all_targets:
 			if target == _owner_node or not is_instance_valid(target) or not target is Node3D:

@@ -5,7 +5,7 @@ extends Node
 signal statuses_changed
 signal event_dispatched(event_name: StringName, data: Dictionary)
 
-@export_group("Statuses")
+@export_category("Statuses")
 ## Statuses that are permanent/innate (like passives or racial bonuses)
 @export var permanent_statuses: Array[StatusEffect] = []
 ## Statuses that are applied temporarily at the start (e.g., starting with a timed buff)
