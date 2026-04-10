@@ -32,7 +32,8 @@ var _waiting_for_regen_delay: bool = false
 func take_damage(attack: Attack) -> void:
 	if invulnerable:
 		return
-
+	if attack.hitkill:
+		health = 0
 	health -= attack.power
 	damaged.emit(attack)
 	enable_invulnerability(1.0)

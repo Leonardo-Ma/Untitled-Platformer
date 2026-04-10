@@ -11,3 +11,5 @@ extends Resource
 @export_range(-99, 99, 0.1, "suffix:meters") var knockback_force: float
 @export_range(0.1, 999, 0.1, "suffix:Seconds/attack") var rate: float = 1
 #@export var attack_position: Vector2
+
+@export var hitkill: bool

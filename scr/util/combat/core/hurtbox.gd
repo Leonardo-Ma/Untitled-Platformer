@@ -22,7 +22,6 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 	if owner.health is Health:
 		var attacker: Node = hitbox.get_parent()
 		var attack_used: Attack = attacker.attack
-
 		owner.health.take_damage(attack_used)
 
 		hitbox.on_hit_connected(float(attack_used.power))
