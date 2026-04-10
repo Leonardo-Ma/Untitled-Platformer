@@ -15,22 +15,45 @@
 <!----------------------------->
 <!-- For future reference -->
 <h3>
-  <a href="#Summary">Summary</a> |
-  <a href="#how-to-use">How To Use</a> |
-  <a href="#download">Download</a> |
+  <a href="#summary">Summary</a> |
   <a href="#developing">Developing</a> |
-  <a href="#contributing">Contributing</a> |
-  <a href="#changelog">Changelog</a> |
-  <a href="#contact">Contact</a> |
+  <a href="#acknowledgments">Acknowledgments</a> |
 </h3>
 </div>
 <!----------------------------->
 
-# Notes
-Unreleased (No git tag) didn't follow proper commits good practices considering the amount of constant spread changes that would end up with thousands of small commits.
+# Summary
+This was my first minigame, also to be partially used as a mechanics and architectural template for future ones.
 
-# Modular approach and future proofing
-####
+It's a simple 3d low poly plataformer.  
+Features:  
+- AI (GOAP and detection system)
+- Inventory
+- Status modifier (Used by buff/debuff/equipment)
+- Jump cutting, coyote time, knockback
+- Situational music and audio
+- Basic UI (Main menu, Pause, debug, hud)
+- Barebones magic system
+To implement:
+- Checkpoints
+- Loot (Equipment)
+- Skills (Double jump, hook, dash, feather fall)
+- Saving system
+- In-game roadmap
+- Collectibles
+- Stamina
+- UI menu settings, overlay
+- Spawn and entity management system
+- Achievements
+- Faction and relationship system
+- Combat and peace stances (Different sound, visual and animation)
+- In-game diary (For player notes)
+- In-game wiki
+- Analytics and statistics
+
+Uses modular approach for future proofing, relying heavily on composition and inheritance when appropriate. Any complex system is documented in `docs/diagrams/core.drawio.png`.
+
+Uses conventional commit messages that are fed into git-cliff to auto generate changelog. Has a few CI checks locally and on github and gitlab, has a few unit tests. Strictly follows recommended [code style guidelines](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html) and file naming.
 
 
 # Developing
@@ -78,8 +101,8 @@ Closes #42
 Co-author: JohnDoe
 ```
 
-# Credits
-See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md).
+# Acknowledgments
+Refer to [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md).
 
 
 <!------------------------------------------------------------->
