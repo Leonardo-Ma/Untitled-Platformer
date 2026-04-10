@@ -605,7 +605,7 @@ shadow_mesh = SubResource("ArrayMesh_pccpq")
 script = ExtResource("6_cr444")
 type = 1
 power = 30
-knockback_force = 1.0
+knockback_force = 10.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fi4i5"]

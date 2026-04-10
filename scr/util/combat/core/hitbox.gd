@@ -10,6 +10,8 @@ func _init() -> void:
 	collision_mask = 0
 
 
+# TODO Remove this status manager event on damage dealt and swap for respective different type treatment
+# like: acid or fire doing DoT damage
 func on_hit_connected(damage_dealt: float) -> void:
 	var attacker: Node = owner
 	var status_manager: Node = attacker.get_node_or_null("%StatusManager")

@@ -5,6 +5,8 @@
 class_name Hurtbox
 extends Area3D
 
+signal knockback_received(knockback_velocity: Vector3)
+
 
 func _init() -> void:
 	collision_layer = 0
@@ -19,9 +21,16 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 	if hitbox == null:
 		return
 
-	if owner.health is Health:
-		var attacker: Node = hitbox.get_parent()
-		var attack_used: Attack = attacker.attack
-		owner.health.take_damage(attack_used)
+	var attacker: Node = hitbox.get_parent()
+	var attack_used: Attack = attacker.attack
+	owner.health.take_damage(attack_used)
 
-		hitbox.on_hit_connected(float(attack_used.power))
+	hitbox.on_hit_connected(float(attack_used.power))
+
+	if attack_used.knockback_force > 0:
+		var direction: Vector3 = owner.global_position.direction_to(hitbox.owner.global_position)
+		direction.y = 0
+		# TODO Consider passing this as Attack parameter? (knockback bool push/pull)
+		# Invert direction to push away
+		var knockback_velocity: Vector3 = -direction.normalized() * attack_used.knockback_force
+		knockback_received.emit(knockback_velocity)

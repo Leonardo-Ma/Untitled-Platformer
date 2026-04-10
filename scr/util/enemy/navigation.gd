@@ -6,6 +6,8 @@ extends Node
 signal move_started
 signal move_stopped
 
+var _disable_timer: float = 0.0
+
 @onready var navigation_agent: NavigationAgent3D = (
 	owner.get_node("NavigationAgent3D") if owner.has_node("NavigationAgent3D") else get_parent().get_node("NavigationAgent3D")
 )
@@ -23,7 +25,17 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func _physics_process(_delta: float) -> void:
+## For actions that may disable movement such as being pushed by knockback
+func disable_movement(duration: float) -> void:
+	_disable_timer = duration
+	move_stopped.emit()
+
+
+func _physics_process(delta: float) -> void:
+	if _disable_timer > 0.0:
+		_disable_timer -= delta
+		return
+
 	if navigation_agent.is_navigation_finished():
 		stop()
 		return
@@ -60,7 +72,7 @@ func stop() -> void:
 
 # TODO Change run_speed to use a variable that is defined by goap action instead
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
-	if not is_physics_processing():
+	if not is_physics_processing() or _disable_timer > 0.0:
 		return
 
 	if owner != null:

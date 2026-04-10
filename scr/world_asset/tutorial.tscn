@@ -9,9 +9,6 @@
 [ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="8_b41y6"]
 [ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="8_i234j"]
 [ext_resource type="PackedScene" uid="uid://c56qwxi1bjc7i" path="res://scr/entity/knight/knight.tscn" id="9_tt1wy"]
-[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="10_tt1wy"]
-[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://scr/util/combat/core/health.gd" id="11_b41y6"]
-[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://scr/util/entity/entity_stats.gd" id="12_qe5du"]
 [ext_resource type="PackedScene" uid="uid://bn8k2rqhlq6nf" path="res://scr/world_asset/dungeon.tscn" id="12_tt1wy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lvv06"]
@@ -22,25 +19,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 script = ExtResource("8_b41y6")
 run_speed = 18.5
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
-
-[sub_resource type="Resource" id="Resource_fiyed"]
-resource_local_to_scene = true
-script = ExtResource("10_tt1wy")
-type = 1
-power = 20
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_3snp4"]
-resource_local_to_scene = true
-script = ExtResource("11_b41y6")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_qrqis"]
-resource_local_to_scene = true
-script = ExtResource("12_qe5du")
-metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wbgx"]
 resource_name = "dark grey"
@@ -179,9 +157,6 @@ movement = SubResource("Resource_qe5du")
 
 [node name="Knight" parent="." unique_id=280064195 instance=ExtResource("9_tt1wy")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 3.3774014)
-attack = SubResource("Resource_fiyed")
-health = SubResource("Resource_3snp4")
-stats = SubResource("Resource_qrqis")
 
 [node name="Buildings" type="Node3D" parent="." unique_id=74413721]
 
