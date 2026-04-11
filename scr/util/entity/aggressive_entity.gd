@@ -41,7 +41,7 @@ func _ready() -> void:
 	assert(hurtbox, "Hurtbox incorrect for " + self.name)
 	assert(status_manager, "Status Manager missing for " + self.name)
 	assert(animation_player, "Animation player missing for " + self.name)
-	assert(attack and attack.power > 0 and attack.type != null, "Attack property incorrect for " + self.name)
+	assert(attack and attack.damage > 0 and attack.type != null, "Attack property incorrect for " + self.name)
 	assert(stats, "Stats property incorrect for " + self.name)
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)
 	assert(movement, "Movement incorrect for " + self.name)
@@ -77,18 +77,15 @@ func _ready() -> void:
 
 
 ## Virtual method for subclasses to override instead of _ready()
-## This ensures the parent class logic is always executed exactly where needed via Template Method pattern.
-func _entity_ready() -> void:
-	pass
-
+@abstract func _entity_ready() -> void
 
 ## Returns whether this entity requires a GOAP agent. Overridden by Player class.
-func _requires_goap() -> bool:
-	return true
+@abstract func _requires_goap() -> bool
 
 
 # TODO Disable navigation for GOAP, disable player controller
-# Maybe transform into abstract method? Player already overrides this
+# Maybe transform into abstract method to force override?
+# Player already overrides this
 func _on_death() -> void:
 	print_debug(str(self.name) + " is dead, Jim!")
 

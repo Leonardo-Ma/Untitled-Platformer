@@ -15,17 +15,18 @@ func _init() -> void:
 
 func _ready() -> void:
 	connect("area_entered", self._on_area_entered)
+	print(owner.name, "Has ", owner.health.health)
 
 
 func _on_area_entered(hitbox: Hitbox) -> void:
 	if hitbox == null:
 		return
-
 	var attacker: Node = hitbox.get_parent()
 	var attack_used: Attack = attacker.attack
 	owner.health.take_damage(attack_used)
+	print(owner, " Hurt by ", hitbox.owner, "For ", attack_used.damage)
 
-	hitbox.on_hit_connected(float(attack_used.power))
+	hitbox.on_hit_connected(float(attack_used.damage))
 
 	if attack_used.knockback_force > 0:
 		var direction: Vector3 = owner.global_position.direction_to(hitbox.owner.global_position)

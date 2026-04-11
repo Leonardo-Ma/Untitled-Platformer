@@ -37,7 +37,7 @@ func take_damage(attack: Attack) -> void:
 		return
 	if attack.hitkill:
 		health = 0
-	health -= attack.power
+	health -= attack.damage
 	damaged.emit(attack)
 	enable_invulnerability(1.0)
 	stop_regeneration()  # Stop any active regen and reset delay

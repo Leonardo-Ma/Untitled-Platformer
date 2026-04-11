@@ -16,7 +16,7 @@ extends Node
 
 func _ready() -> void:
 	assert(animation_tree, "Animation tree not defined by " + self.name)
-	assert(attack and attack.power > 0 and attack.type != null, "Attack property incorrect for " + self.name)
+	assert(attack and attack.damage > 0 and attack.type != null, "Attack property incorrect for " + self.name)
 	assert(status_manager, "status_manager not defined (or not unique) by " + self.name)
 	assert(hitbox, "hitbox not defined (or not unique) by " + self.name)
 

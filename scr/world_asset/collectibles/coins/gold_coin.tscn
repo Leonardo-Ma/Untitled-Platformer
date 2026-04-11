@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://be65x13d4tlnt"]
 
 [ext_resource type="Script" uid="uid://dwwy5ieawwur3" path="res://scr/util/item/collectible.gd" id="1_fkeve"]
-[ext_resource type="Resource" uid="uid://vts0dkuos5l6" path="res://scr/util/item/collectibles_data/gold_coin.tres" id="2_qvvac"]
+[ext_resource type="Resource" uid="uid://d4l1e5omaovdj" path="res://scr/world_asset/collectibles/coins/gold_coin.tres" id="2_qvvac"]
 [ext_resource type="Texture2D" uid="uid://ccs62hofilq3i" path="res://scr/world_asset/platformer_kit/assets/assets_colormap.png" id="3_8jsbt"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q8rma"]

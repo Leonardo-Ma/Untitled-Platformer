@@ -6,3 +6,7 @@ extends AggressiveEntity
 
 func _entity_ready() -> void:
 	pass
+
+
+func _requires_goap() -> bool:
+	return true
