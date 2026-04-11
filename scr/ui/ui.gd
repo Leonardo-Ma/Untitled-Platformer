@@ -3,11 +3,10 @@ extends CanvasLayer
 
 static var instance: UIManager
 
-@onready var menus: Control = $Menus
-@onready var hud: Control = $HUD
-@onready var overlays: Control = $Overlays
-@onready var debug_interface: Control = $DebugInterface
-@onready var inventory_interface: Control = $InventoryInterface
+@onready var menus: Control = %Menus
+@onready var hud: Control = %HUD
+@onready var overlays: Control = %Overlays
+@onready var debug_interface: Control = %DebugInterface
 
 
 # TODO Study this better, it is a 'locally declared singleton' globally accessible
@@ -29,7 +28,6 @@ func _ready() -> void:
 
 	hud.visible = false
 	overlays.visible = false
-	inventory_interface.visible = false
 
 	# Pause the game tree while main menu is open
 	get_tree().paused = true
@@ -42,7 +40,6 @@ func on_game_started() -> void:
 	menus.visible = false
 	hud.visible = true
 	overlays.visible = true
-	inventory_interface.visible = false
 
 	# Ensure the tree plays
 	get_tree().paused = false
@@ -57,8 +54,6 @@ func on_game_paused() -> void:
 
 	hud.visible = false
 	overlays.visible = false
-	inventory_interface.visible = false
-
 	get_tree().paused = true
 
 

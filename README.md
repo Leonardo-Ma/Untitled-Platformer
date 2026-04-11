@@ -33,23 +33,24 @@ Features:
 - Jump cutting, coyote time, knockback
 - Situational music and audio
 - Basic UI (Main menu, Pause, debug, hud)
+- Checkpoint
+- Collectibles (Coins, hearts)
 - Barebones magic system
 To implement:
-- Checkpoints
+- Collectible (key?)
 - Loot (Equipment)
 - Skills (Double jump, hook, dash, feather fall)
 - Saving system
-- In-game roadmap
-- Collectibles
-- Stamina
 - UI menu settings, overlay
 - Spawn and entity management system
 - Achievements
-- Faction and relationship system
 - Combat and peace stances (Different sound, visual and animation)
+- Stamina
 - In-game diary (For player notes)
+- In-game roadmap
 - In-game wiki
 - Analytics and statistics
+- Faction and relationship system
 
 Uses modular approach for future proofing, relying heavily on composition and inheritance when appropriate. Any complex system is documented in `docs/diagrams/core.drawio.png`.
 

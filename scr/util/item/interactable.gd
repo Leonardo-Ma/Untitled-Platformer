@@ -3,8 +3,6 @@
 @abstract class_name Interactable
 extends StaticBody3D
 
-
-# TODO Use this for inventory
+# TODO Use this for inventory?
 ## To override
-func player_interact() -> void:
-	assert(false, "player_interact() must be overridden in " + self.name)
+@abstract func player_interact() -> void
