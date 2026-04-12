@@ -56,7 +56,7 @@ func _draw_debug() -> void:
 	var time: float = Time.get_ticks_msec() / 1000.0
 
 	var valid_targets: int = 0
-	for target in _perception_system.known_entities:
+	for target: Node3D in _perception_system.known_entities:
 		if is_instance_valid(target) and _perception_system.known_entities[target].is_valid(time, _perception_system.config.memory_duration):
 			valid_targets += 1
 

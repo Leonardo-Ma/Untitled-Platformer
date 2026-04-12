@@ -72,7 +72,7 @@ func _try_get_new_plan(blackboard: Dictionary) -> void:
 	# Try goals in priority order
 	var goals_to_try: Array[GoapGoal] = _get_sorted_goals()
 
-	for potential_goal in goals_to_try:
+	for potential_goal: GoapGoal in goals_to_try:
 		if not potential_goal.is_valid(blackboard):
 			continue
 

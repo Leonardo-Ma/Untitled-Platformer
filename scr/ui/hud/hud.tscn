@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cb3xo2r1csv5r" path="res://scr/ui/player_attributes_ui.gd" id="2_l4m73"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="3_8stm2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://scr/ui/hud/collectibles_interface.gd" id="6_l3ger"]
+[ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://scr/ui/hud/abilities_interface.gd" id="7_8stm2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
 
@@ -148,13 +149,13 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 columns = 10
 
-[node name="Collectible1" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer"]
+[node name="Collectible1" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=233471282]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible1"]
+[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible1" unique_id=926886071]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -170,13 +171,13 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
 text = "0"
 
-[node name="Collectible2" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer"]
+[node name="Collectible2" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1969383905]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible2"]
+[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible2" unique_id=832375388]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -192,13 +193,13 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
 text = "0"
 
-[node name="Collectible3" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer"]
+[node name="Collectible3" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1485683767]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible3"]
+[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible3" unique_id=328243587]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -213,6 +214,252 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
 text = "0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=114191235]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Abilities" type="MarginContainer" parent="MarginContainer/VBoxContainer2" unique_id=535480650]
+custom_minimum_size = Vector2(436, 100)
+layout_mode = 2
+size_flags_vertical = 10
+script = ExtResource("7_8stm2")
+
+[node name="AbilitiesContainer" type="GridContainer" parent="MarginContainer/VBoxContainer2/Abilities" unique_id=1910653337]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+columns = 10
+
+[node name="Ability1" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=2104445520]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability1" unique_id=592424427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 270.0
+tint_progress = Color(0, 0, 0, 0.7)
+
+[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability1" unique_id=514682241]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+
+[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability1" unique_id=374898958]
+layout_mode = 1
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "(SPACE)"
+horizontal_alignment = 1
+
+[node name="Ability2" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1281935834]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability2" unique_id=967098199]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 270.0
+tint_progress = Color(0, 0, 0, 0.7)
+
+[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability2" unique_id=1628370953]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+
+[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability2" unique_id=1837987651]
+layout_mode = 1
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "(SPACE)"
+horizontal_alignment = 1
+
+[node name="Ability3" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=398257601]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability3" unique_id=1270637676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 270.0
+tint_progress = Color(0, 0, 0, 0.7)
+
+[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability3" unique_id=874495099]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+
+[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability3" unique_id=809431036]
+layout_mode = 1
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "(SPACE)"
+horizontal_alignment = 1
+
+[node name="Ability4" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1093860155]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability4" unique_id=613749924]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 270.0
+tint_progress = Color(0, 0, 0, 0.7)
+
+[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability4" unique_id=1545044077]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+
+[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability4" unique_id=1421666479]
+layout_mode = 1
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "(SPACE)"
+horizontal_alignment = 1
+
+[node name="Ability5" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1245653831]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability5" unique_id=948267632]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 270.0
+tint_progress = Color(0, 0, 0, 0.7)
+
+[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability5" unique_id=254494055]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+
+[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability5" unique_id=229648228]
+layout_mode = 1
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 10
+text = "(SPACE)"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="MagicSignPressIndicator/Timer" to="MagicSignPressIndicator" method="_on_timer_timeout"]
 [connection signal="timeout" from="MarginContainer/VBoxContainer/PlayerHealthbar/Timer" to="MarginContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]

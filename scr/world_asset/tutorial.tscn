@@ -6,9 +6,11 @@
 [ext_resource type="MeshLibrary" uid="uid://dk0v5pvpbvmsg" path="res://scr/world_asset/platformer_kit/mesh_libraries/scenery.meshlib" id="5_3d14f"]
 [ext_resource type="MeshLibrary" uid="uid://dsfls1ub7cfol" path="res://scr/world_asset/platformer_kit/mesh_libraries/moving_blocks.meshlib" id="5_soj4f"]
 [ext_resource type="MeshLibrary" uid="uid://bfodr8d2q27km" path="res://scr/world_asset/platformer_kit/mesh_libraries/traps.meshlib" id="6_soj4f"]
-[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="8_b41y6"]
 [ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="8_i234j"]
+[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="9_b41y6"]
 [ext_resource type="PackedScene" uid="uid://c56qwxi1bjc7i" path="res://scr/entity/knight/knight.tscn" id="9_tt1wy"]
+[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://scr/util/combat/core/health.gd" id="10_qe5du"]
+[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://scr/util/entity/entity_stats.gd" id="11_fiyed"]
 [ext_resource type="PackedScene" uid="uid://bn8k2rqhlq6nf" path="res://scr/world_asset/dungeon.tscn" id="12_tt1wy"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://scr/world_asset/checkpoint_flag.tscn" id="14_qe5du"]
 
@@ -16,10 +18,25 @@
 vertices = PackedVector3Array(-14.291062, 3.375, -11.291062, -14.291062, 3.375, -6.0410624, -8.541062, 3.375, -6.0410624, -8.541062, 3.375, -11.291062, -4.2910624, 2.625, -10.791062, -4.2910624, 2.625, -6.0410624, 3.9589376, 2.625, -6.0410624, 3.9589376, 2.625, -10.791062, -0.54106236, 0.875, -0.29106236, 0.20893764, 0.875, -0.54106236, 0.20893764, 0.875, -3.2910624, -6.2910624, 0.875, -3.2910624, 4.2089376, 0.875, 0.45893764, 1.2089376, 0.875, 0.45893764, 0.95893764, 0.875, 0.95893764, 4.2089376, 0.875, 7.9589376, -0.54106236, 0.875, 0.70893764, -6.2910624, 0.875, 7.9589376, 0.70893764, 0.875, -0.54106236, 4.2089376, 0.875, -3.2910624, -11.791062, 4.875, -2.2910624, -11.791062, 4.875, 0.95893764, -8.541062, 4.875, 0.95893764, -8.541062, 4.875, -2.2910624, -10.791062, 5.625, 4.2089376, -10.791062, 5.625, 6.9589376, -7.5410624, 5.625, 6.9589376, -7.5410624, 5.625, 4.2089376, -11.291062, 6.125, 10.208938, -11.291062, 6.125, 13.958938, -8.541062, 6.125, 13.958938, -8.541062, 6.125, 10.208938, -4.7910624, 7.625, 23.208939, -4.7910624, 7.625, 26.208939, -3.0410624, 7.625, 26.208939, -3.0410624, 7.625, 23.208939)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(16, 14, 15), PackedInt32Array(11, 8, 16), PackedInt32Array(11, 16, 17), PackedInt32Array(17, 16, 15), PackedInt32Array(18, 9, 10), PackedInt32Array(13, 18, 12), PackedInt32Array(12, 18, 19), PackedInt32Array(19, 18, 10), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(35, 34, 32), PackedInt32Array(32, 34, 33)]
 
+[sub_resource type="Resource" id="Resource_b41y6"]
+resource_local_to_scene = true
+script = ExtResource("9_b41y6")
+type = 1
+damage = 40
+knockback_force = 3.0
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
 [sub_resource type="Resource" id="Resource_qe5du"]
-script = ExtResource("8_b41y6")
-run_speed = 18.5
-metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+resource_local_to_scene = true
+script = ExtResource("10_qe5du")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_fiyed"]
+resource_local_to_scene = true
+script = ExtResource("11_fiyed")
+metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wbgx"]
 resource_name = "dark grey"
@@ -151,11 +168,13 @@ cell_size = Vector3(0.5, 0.25, 0.5)
 
 [node name="Player" parent="." unique_id=922527968 instance=ExtResource("8_i234j")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.911223, 0.6680844, 29.289679)
-movement = SubResource("Resource_qe5du")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4333315, 1.5740356, 29.289679)
 
 [node name="Knight" parent="." unique_id=280064195 instance=ExtResource("9_tt1wy")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 1.2985864, 3.3774014)
+attack = SubResource("Resource_b41y6")
+health = SubResource("Resource_qe5du")
+stats = SubResource("Resource_fiyed")
 
 [node name="Buildings" type="Node3D" parent="." unique_id=74413721]
 
@@ -201,7 +220,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, 0)
 shape = SubResource("BoxShape3D_qe5du")
 
 [node name="Dungeon" parent="." unique_id=1676076375 instance=ExtResource("12_tt1wy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.43629, 0, 30.242393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.43629, 0, 30.242393)
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=686769897]
 

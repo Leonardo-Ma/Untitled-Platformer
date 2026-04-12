@@ -27,7 +27,7 @@ This was my first minigame, also to be partially used as a mechanics and archite
 
 It's a simple 3d low poly plataformer.  
 Features:  
-- AI (GOAP and detection system)
+- AI (GOAP and visual detection system)
 - Inventory
 - Status modifier (Used by buff/debuff/equipment)
 - Jump cutting, coyote time, knockback
@@ -36,10 +36,13 @@ Features:
 - Checkpoint
 - Collectibles (Coins, hearts)
 - Barebones magic system
+- Skills (Multi jump, ground/air dash, feather fall, teleport)
 To implement:
+- Basic map levels
+- Procedural generation?
+- Skills (hook?)
 - Collectible (key?)
 - Loot (Equipment)
-- Skills (Double jump, hook, dash, feather fall)
 - Saving system
 - UI menu settings, overlay
 - Spawn and entity management system

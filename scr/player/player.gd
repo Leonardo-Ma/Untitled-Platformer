@@ -1,14 +1,20 @@
 class_name PlayerEntity
 extends AggressiveEntity
 
+@export_category("Skills")
+@export var skills: PlayerSkills
+
 @onready var interact_ray: RayCast3D = %InteractRay
-@onready var movement_controller: Node3D = %MovementController
-@onready var input_controller: Node = %InputController
-@onready var inventory_controller: Node = %InventoryController
+@onready var movement_controller: MovementController = %MovementController
+@onready var input_controller: InputController = %InputController
+@onready var inventory_controller: InventoryController = %InventoryController
+@onready var skills_controller: SkillsController = %SkillsController
 
 
 func _physics_process(delta: float) -> void:
 	movement_controller.move(self, delta)
+	skills_controller.process_skills(self, delta)
+	move_and_slide()
 
 
 func _entity_ready() -> void:

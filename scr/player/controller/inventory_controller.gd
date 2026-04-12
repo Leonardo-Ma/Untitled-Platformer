@@ -1,6 +1,6 @@
 # https://youtu.be/V79YabQZC1s?si=HGUpgvU7RAhYOMrY&t=792
 @icon("res://icons/16x16/ui_inventory.png")
-extends Node
+class_name InventoryController extends Node
 
 signal inventory_toggled
 

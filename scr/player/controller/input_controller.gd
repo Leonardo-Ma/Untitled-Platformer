@@ -1,5 +1,5 @@
 @icon("res://icons/16x16/joystick.png")
-extends Node
+class_name InputController extends Node
 
 signal inventory_toggled
 signal interact_requested

@@ -1,6 +1,6 @@
 # https://www.youtube.com/watch?v=EP5AYllgHy8 Godot 4.0 Third Person Controller Tutorial ( 2023 )
 @icon("res://icons/16x16/character_move.png")
-extends Node3D
+class_name MovementController extends Node3D
 
 # These signals go to animation controller, debug...
 signal move_started(is_running: bool)
@@ -18,9 +18,9 @@ const COYOTE_TIME: float = 0.05
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_speed: float = 0.0
-var _movement_enabled: bool = true
-var _disable_timer: float = 0.0
-var _coyote_timer: float = 0.0
+var movement_enabled: bool = true
+var coyote_timer: float = 0.0
+var disable_timer: float = 0.0
 
 @onready var magic_controller: Node = %MagicController
 
@@ -35,19 +35,17 @@ func _on_cast_started(freeze_duration: float) -> void:
 
 ## This is executed by entity's _physics_process
 func move(body: CharacterBody3D, delta: float) -> void:
-	if _disable_timer > 0.0:
-		_disable_timer -= delta
-		if _disable_timer <= 0.0:
-			_movement_enabled = true
+	if disable_timer > 0.0:
+		disable_timer -= delta
+		if disable_timer <= 0.0:
+			movement_enabled = true
 
 	movement_logic(body)
 	jump_air_logic(body, delta)
 
-	body.move_and_slide()
-
 
 func movement_logic(body: CharacterBody3D) -> void:
-	if not _movement_enabled:
+	if not movement_enabled:
 		emit_signal("move_stopped")
 		emit_signal("movement_direction_changed", Vector2.ZERO)
 		body.velocity.x = move_toward(body.velocity.x, 0, current_speed)
@@ -87,7 +85,7 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 	if not body.is_on_floor():
-		_coyote_timer -= delta
+		coyote_timer -= delta
 		emit_signal("in_air")
 		body.velocity.y -= gravity * delta
 
@@ -95,20 +93,20 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 		if Input.is_action_just_released("jump") and body.velocity.y > 0.0:
 			body.velocity.y *= 0.5
 	else:
-		_coyote_timer = COYOTE_TIME
+		coyote_timer = COYOTE_TIME
 		emit_signal("landed")
 
-	if not _movement_enabled:
+	if not movement_enabled:
 		return
 
-	if Input.is_action_just_pressed("jump") and _coyote_timer > 0.0:
+	if Input.is_action_just_pressed("jump") and coyote_timer > 0.0:
 		emit_signal("jumped")
 		body.velocity.y = JUMP_VELOCITY
 		# Reset timer to 0 so the player can't jump multiple times in the air
-		_coyote_timer = 0.0
+		coyote_timer = 0.0
 
 
 func disable_movement(duration: float) -> void:
-	_movement_enabled = false
-	if duration > _disable_timer:
-		_disable_timer = duration
+	movement_enabled = false
+	if duration > disable_timer:
+		disable_timer = duration

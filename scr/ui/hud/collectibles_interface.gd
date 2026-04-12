@@ -9,7 +9,7 @@ var _counter_ui_elements: Dictionary = {}
 func _ready() -> void:
 	assert(collectibles_container != null, "CollectiblesInterface missing container child.")
 
-	for child: Node in collectibles_container.get_children():
+	for child: Control in collectibles_container.get_children():
 		var texture_rect: TextureRect = child as TextureRect
 		if texture_rect != null:
 			texture_rect.hide()
