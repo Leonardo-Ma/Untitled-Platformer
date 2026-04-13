@@ -22,11 +22,11 @@
 </div>
 <!----------------------------->
 
-# Summary
 This was my first minigame, also to be partially used as a mechanics and architectural template for future ones.
+# Summary
+xx is a simple 3d low poly plataformer. The core game loop is a partially procedural endless runner around evolving player abilities.
 
-It's a simple 3d low poly plataformer.  
-Features:  
+## Features:  
 - AI (GOAP and visual detection system)
 - Inventory
 - Status modifier (Used by buff/debuff/equipment)
