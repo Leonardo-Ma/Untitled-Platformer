@@ -124,7 +124,11 @@ The style rules are intended to increase readability of the source code for huma
 
 ## Godot usage
 
-- **Mesh Deduplication**: When editing a map or scene, any unique mesh MUST be extracted and saved as an external `.tres` or `.res` resource file. Do not duplicate inline mesh data inside `.tscn` files. All nodes using the same mesh must load the exact same external resource file.
+- **Mesh Deduplication**: When editing a map or scene, any unique mesh must be extracted and saved as an external `.tres` or `.res` resource file. Do not duplicate inline mesh data inside `.tscn` files. All nodes using the same mesh must load the exact same external resource file.
+
+- **Group Names**: Always use the `Groups` AutoLoad constants (e.g., `Groups.PLAYERS`) to access Godot groups. Never use strings for grouping logic.
+
+- **Signals strictly by code**: All signals must be connected dynamically via code. Signals must not be manually created using the Editor UI's Node panel, as it obscures dependencies.
 
 - **Code Regions**: Use Godot's `#region Region Name` and `#endregion` tags to logically group together long blocks of related functions or variables where it makes sense.
 

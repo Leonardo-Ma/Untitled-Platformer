@@ -10,7 +10,7 @@ var _damage_indicator_timer: float = 0.0
 #region Setup & Signals
 func _ready() -> void:
 	GameEvents.player_spawned.connect(_on_player_spawned)
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
 	if not players.is_empty():
 		_on_player_spawned(players[0])
 
@@ -76,7 +76,7 @@ func _get_performance_text() -> String:
 
 #region Player Info Data
 func _get_player_info_text() -> String:
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
 	if players.is_empty() or not is_instance_valid(players[0]):
 		return "--- No Player Found ---\n"
 

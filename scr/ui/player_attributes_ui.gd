@@ -4,7 +4,7 @@ var player: PlayerEntity = null
 
 
 func _ready() -> void:
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
 	for p: Node in players:
 		if p is PlayerEntity:
 			player = p as PlayerEntity

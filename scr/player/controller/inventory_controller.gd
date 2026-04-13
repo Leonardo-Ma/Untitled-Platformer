@@ -20,7 +20,7 @@ func _setup_inventory() -> void:
 	self.inventory_toggled.connect(toggle_inventory_interface)
 
 	inventory_interface.set_player_inventory_data(owner.inventory_data)
-
+	# TODO Double check this group access (Not sure if need to use Groups autoload)
 	for node: Node in get_tree().get_nodes_in_group("external_inventory"):
 		node.connect("toggle_inventory", toggle_inventory_interface)
 

@@ -26,15 +26,16 @@ buses/default_bus_layout="uid://plxel2xf671u"
 
 [autoload]
 
+Groups="*uid://bwr6mdd41t0pc"
 PauseManager="*res://scr/util/autoload/pause_manager.gd"
 GameEvents="*res://scr/util/autoload/game_events.gd"
 SoundManager="*uid://c6aviitsw1wa"
 GoapWorldState="*uid://clan8pwdcjgaj"
 HitStopManager="*res://scr/util/autoload/hit_stop_manager.gd"
+CheckpointManager="*uid://cimfiv457vauf"
 TestGoapConsistency="*res://tests/goap.gd"
 TestAudio="*uid://cxi4v122jd7b6"
 GraphBuilder="*res://scr/util/autoload/goap_graph_builder.gd"
-CheckpointManager="*uid://cimfiv457vauf"
 
 [debug]
 

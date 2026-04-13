@@ -48,6 +48,7 @@ func _process(_delta: float) -> void:
 	_process_perception()
 
 
+# TODO Create target groups, remove player being only target
 func _process_perception() -> void:
 	var current_detections: Array[DetectionResult] = []
 
