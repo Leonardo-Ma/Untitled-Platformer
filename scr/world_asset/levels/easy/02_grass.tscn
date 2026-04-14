@@ -1,0 +1,340 @@
+[gd_scene format=4 uid="uid://dw07ed3pgsipq"]
+
+[ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://scr/world_asset/levels/templates/template.gd" id="1_jamdb"]
+[ext_resource type="PackedScene" uid="uid://cf5ku6le2d84s" path="res://scr/world_asset/levels/floor_level_boundary.tscn" id="2_jamdb"]
+[ext_resource type="Texture2D" uid="uid://ccs62hofilq3i" path="res://scr/world_asset/platformer_kit/assets/assets_colormap.png" id="2_xocel"]
+[ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://scr/world_asset/checkpoint_flag.tscn" id="3_4n5wh"]
+[ext_resource type="Script" uid="uid://jqe7b8io8fum" path="res://scr/util/checkpoint.gd" id="3_jamdb"]
+[ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="6_103pd"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_53kbe"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jamdb"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jamdb"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7en4"]
+resource_name = "colormap.020"
+cull_mode = 2
+albedo_texture = ExtResource("2_xocel")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ssf4x"]
+_surfaces = [{
+"aabb": AABB(-0.5410625, 0, -0.5410625, 1.082125, 0.5, 1.082125),
+"format": 34359742465,
+"index_count": 276,
+"index_data": PackedByteArray("AAAlACYAJwAmACUAJgAcAAAAHAAmACcAKAAlAAAAJQAoACcAHAAdAAAAJwAoAAUABQAHACcABAAFACgAJwAHAAoACgApACcAJwApABwAKQAKAAwAHAApACoADAAqACkAKgAdABwAKgAMAA0ADQArACoAKwANAAsALAAdACoAKgArACwACwAtACsALAArAC0ALgAtAAsACwAJAC4ALgAJAAYALQAIACwACAAtAC4ALgAvAAgALAAIADAACAAvADAAHwAvAC4ALwAfADAABgAxAC4ALgAxAB8AMAAfADEAMQAGAAMAAwAyADEAMQAyADAAMgADAAEAAQAzADIAMAAyADMAMwABAAIALAAwAB4AMwAeADAAHQAsAB4AAgA0ADMANAACAAQANQAeADMAHQAeADUAMwA0ADUAHQA1AAAABAA2ADQANQA0ADYANgAAADUAKAA2AAQAAAA2ACgADgA3ADgAOAAVAA4AFwAVADgAIAA3AA4ADgARACAAIAARABIAOAAQABcAGQAXABAAEAAhABkAGwAZACEAOQAhABAAIQA5ABsAEAA4ADkAGwA5ACIAOAAiADkAOAA3ACIAIgAaABsAGAAaACIANwAjACIAIgAjABgANwAgACMAGAAjADoAIAA6ACMAOgAWABgAFAAWADoAIAA7ADoAEgA7ACAAOgAkABQAOwAkADoAEwAUACQADwA7ABIAEgATAA8AOwAPACQAJAAPABMA"),
+"lods": [0.15071139, PackedByteArray("HAAdAAAAHAAKAB0ABwAKABwABwAcAAAADAAdAAoAAAAFAAcABQAAAAQAHQAMAA0ABAAAAAIAHgACAAAAHQAeAAAAHgABAAIAAQAeAAMABgADAB4AHgAfAAYACQAGAB8AHQAIAB4ACAAfAB4AHwAIAAkAHQANAAgACQAIAAsACwAIAA0ADgAgABAADgARACAAEAAVAA4AFwAVABAAGQAXABAAEAAhABkAGwAZACEAIgAhABAAIQAiABsAEAAgACIAIgAaABsAGAAaACIAIgAjABgAIAAjACIAIwAWABgAFAAWACMAIAARABIAIwAkABQAIAAkACMAEwAUACQADwAgABIAEgATAA8AIAAPACQAJAAPABMA"), 1.0150259, PackedByteArray("AAABAAIAAQAAAAMABAAAAAIABQAAAAQABgADAAAAAAAFAAcAAAAIAAYABwAIAAAACQAGAAgABwAKAAgACQAIAAsADAAIAAoACwAIAA0ACAAMAA0ADgAPABAADgARAA8ADwARABIAEgATAA8AEwAUAA8AEAAPABQAEAAVAA4AFAAWABAAFwAVABAAEAAWABgAGQAXABAAGAAaABAAGwAZABAAEAAaABsA")],
+"name": "colormap.020",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("tvLWPgAAAD+28ta+Fa5nvgAAgD4BAAC/Fa5nPgAAgD4BAAC/tvLWvgAAgD628ta+tvLWPgAAgD628ta+AQAAPwAAgD4Vrme+AQAAvwAAgD4Vrme+AQAAPwAAgD4Vrmc+tvLWvgAAAD+28tY+AQAAvwAAgD4Vrmc+tvLWPgAAgD628tY+tvLWvgAAgD628tY+Fa5nPgAAgD4BAAA/Fa5nvgAAgD4BAAA/Fa5nPgEAgD4BAAC/AQAAvxgmjAsVrme+AQAAPxgmjAsVrme+Fa5nvgEAgD4BAAC/tvLWvgEAgD628ta+AQAAvwEAgD4Vrme+AQAAvwEAgD4Vrmc+tvLWPgEAgD628ta+tvLWvgEAgD628tY+AQAAPwEAgD4Vrme+Fa5nvgEAgD4BAAA/AQAAPwEAgD4Vrmc+Fa5nPgEAgD4BAAA/tvLWPgEAgD628tY+tvLWPgAAAD+28tY+Fa5nPgAAAD8BAAA/Fa5nvgAAAD8BAAC/AQAAvwAAAD8Vrme+Fa5nvhgmjAsBAAC/AQAAPwAAAAAVrmc+Fa5nPgAAAAABAAA/Fa5nvgAAAAABAAA/AQAAvwAAAAAVrmc+AQAAPwAAAD8Vrme+AQAAPwAAAD8Vrmc+EoMKPwAAwD4j24E+EoMKPwAAwD4j24G+ZOvpPgAAwD5k6+k+I9uBPgAAwD4Sgwo/I9uBvgAAwD4Sgwo/Fa5nvgAAAD8BAAA/ZOvpvgAAwD5k6+k+EoMKvwAAwD4j24E+AQAAvwAAAD8Vrmc+tvLWvgAAAD+28ta+EoMKvwAAwD4j24G+ZOvpvgAAwD5k6+m+I9uBvgAAwD4Sgwq/I9uBPgAAwD4Sgwq/Fa5nPgAAAD8BAAC/ZOvpPgAAwD5k6+m+Fa5nPhgmjAsBAAC/tvLWPhgmjAu28ta+tvLWPgAAAAC28tY+tvLWvgAAAAC28tY+tvLWvhgmjAu28ta+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tjgee"]
+resource_name = "assets_block-grass-low"
+_surfaces = [{
+"aabb": AABB(-0.5410625, 0, -0.5410625, 1.082125, 0.5, 1.082125),
+"attribute_data": PackedByteArray("AAB4P2ZmBj8AAHg/mpk5PwAAeD+amTk/AAB4P5qZOT8AAHg/mpk5PwAAeD+amTk/AAB4P5qZOT8AAHg/mpk5PwAAeD9mZgY/AAB4P5qZOT8AAHg/mpk5PwAAeD+amTk/AAB4P5qZOT8AAHg/mpk5PwAA8D6amTk/AADwPmZmBj8AAPA+ZmYGPwAA8D6amTk/AADwPpqZOT8AAPA+mpk5PwAA8D6amTk/AADwPpqZOT8AAPA+mpk5PwAA8D6amTk/AADwPpqZOT8AAPA+mpk5PwAA8D6amTk/AADwPpqZOT8AAHg/ZmYGPwAAeD9mZgY/AAB4P2ZmBj8AAHg/ZmYGPwAAeD9mZgY/AAB4P2ZmBj8AAHg/ZmYGPwAAeD9mZgY/AAB4P2ZmBj8AAHg/ZmYGPwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAAeD9mZgY/AAB4P2ZmBj8AAHg/ZmYGPwAAeD9mZgY/AAB4P2ZmBj8AAHg/ZmYGPwAAeD8AACA/AAB4PwAAID8AAHg/AAAgPwAAeD8AACA/AAB4PwAAID8AAHg/AAAgPwAAeD8AACA/AAB4PwAAID8AAHg/AAAgPwAAeD+amTk/AAB4PwAAID8AAHg/mpk5PwAAeD8AACA/AAB4PwAAID8AAHg/AAAgPwAAeD8AACA/AAB4PwAAID8AAHg/mpk5PwAAeD+amTk/AAB4PwAAID8AAHg/AAAgPwAAeD+amTk/AAB4P5qZOT8AAHg/AAAgPwAAeD+amTk/AAB4P5qZOT8AAHg/AAAgPwAAeD8AACA/AAB4PwAAID8AAHg/AAAgPwAAeD+amTk/AAB4P5qZOT8AAHg/AAAgPwAAeD+amTk/AAB4P5qZOT8AAHg/AAAgPwAAeD8AACA/AAB4PwAAID8AAHg/ZmYGPwAAeD8AACA/AAB4P2ZmBj8AAHg/AAAgPwAAeD9mZgY/AAB4PwAAID8AAHg/AAAgPwAAeD9mZgY/AAB4PwAAID8AAHg/AAAgPwAAeD9mZgY/AAB4P2ZmBj8AAHg/AAAgPwAAeD8AACA/AAB4P2ZmBj8AAHg/ZmYGPwAAeD8AACA/AAB4PwAAID8AAHg/AAAgPwAAeD8AACA/AAB4P2ZmBj8AAHg/ZmYGPwAAeD8AACA/AAB4PwAAID8AAHg/ZmYGPwAAeD9mZgY/AAB4PwAAID8AAHg/AAAgPwAAeD9mZgY/AAB4PwAAID8AAHg/AAAgPwAAeD9mZgY/AAB4P2ZmBj8AAHg/AAAgPwAAeD8AACA/AAB4P2ZmBj8AAHg/ZmYGPwAAeD9mZgY/AAB4PwAAID8AAHg/AAAgPwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAA8D5mZgY/AADwPmZmBj8AAPA+mpk5PwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAA8D5mZgY/AADwPmZmBj8AAPA+ZmYGPwAA8D6amTk/AADwPpqZOT8AAPA+ZmYGPwAA8D5mZgY/AADwPpqZOT8AAPA+ZmYGPwAA8D5mZgY/AADwPpqZOT8AAPA+ZmYGPwAA8D5mZgY/AADwPpqZOT8AAPA+mpk5PwAA8D6amTk/AADwPmZmBj8AAPA+mpk5PwAA8D5mZgY/AADwPmZmBj8AAPA+mpk5PwAA8D6amTk/AADwPpqZOT8AAPA+ZmYGPwAA8D5mZgY/"),
+"format": 34359742487,
+"index_count": 276,
+"index_data": PackedByteArray("HgAyADMAMwAcAB4AHAAdAB4AHQA0AB4AHQAfADQAHQA1AB8ANQA2AB8ANQAgADYAIAA3ADYANwAhADYAOAA5AAUABQAHADgAOgABAAIAAgA7ADoAAwA8AD0APQAGAAMAPgAKAAwADAA/AD4AQABBAAQABABCAEAAQwBEAEUARQAJAEMARgANAAsACwBHAEYASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUgBTAFAAVABVAFYAVgBXAFQAWABZAFoAWgBbAFgAXABdACMAIwBeAFwAXwBgAAgACABhAF8AYgBjAGQAZABlAGIAZgBnAGgAaAAkAGYAaQBqAGsAawBsAGkAbQBuAG8AbwAAAG0AcABxAHIAcgAiAHAAcwB0AHUAdQB2AHMAdwB4AHkAeQB6AHcAewB8AH0AfQB+AHsAJQB/AIAAgACBACUAggCDAIQAhACFAIIADgCGAIcAhwAVAA4ADwCIABIAEgATAA8AGwCJACkAKQAaABsAigAqABgAGACLAIoAjAAsAC0ALQCNAIwAjQArAIwAjQCOACsAjgAvACsAjgAuAC8ALgCPAC8ALgCQAI8AkAAwAI8AkAAxADAAJgCRAJIAkgARACYAkwCUAJUAlQAWAJMAlgAZACcAJwCXAJYAKACYAJkAmQAUACgAmgCbAJwAnACdAJoAngAXABAAEACfAJ4AoAChAKIAogCjAKAApAClAKYApgCnAKQA"),
+"lods": [0.15071139, PackedByteArray("HAAdAB4AHQAfAB4AHQAgAB8AIAAhAB8AIgABAAIAAQAiAAMABgADACIAIgAjAAYACQAGACMAIwAIAAkACQAIAAsACwAIAA0AJAANAAgAJAAMAA0ADAAkAAoAJQAKACQABwAKACUABwAlAAAAIgACAAAAAAAFAAcABAAAAAIABQAAAAQADgAmABAADgARACYAEAAVAA4AJgARABIAFwAVABAADwAmABIAGQAXABAAEgATAA8AEAAnABkAKAAPABMAGwAZACcAEwAUACgAJwApABsAKgAoABQAKQAaABsAFAAWACoAGAAaACkAKgAWABgAKQAqABgAKwAsAC0ALQAuACsALgAvACsALgAwAC8ALgAxADAA"), 1.0150259, PackedByteArray("AAABAAIAAQAAAAMABAAAAAIABQAAAAQABgADAAAAAAAFAAcAAAAIAAYABwAIAAAACQAGAAgABwAKAAgACQAIAAsADAAIAAoACwAIAA0ACAAMAA0ADgAPABAADgARAA8ADwARABIAEgATAA8AEwAUAA8AEAAPABQAEAAVAA4AFAAWABAAFwAVABAAEAAWABgAGQAXABAAGAAaABAAGwAZABAAEAAaABsA")],
+"material": SubResource("StandardMaterial3D_g7en4"),
+"name": "colormap.020",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 168,
+"vertex_data": PackedByteArray("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tvLWPgEAgD628tY+tvLWPgAAAAC28tY+AQAAvxgmjAsVrme+AQAAvwEAgD4Vrme+tvLWvgAAAAC28tY+AQAAvwAAAAAVrmc+AQAAvwEAgD4Vrmc+tvLWvgEAgD628tY+AQAAPwEAgD4Vrmc+AQAAPwAAAAAVrmc+tvLWvgEAgD628ta+tvLWvhgmjAu28ta+Fa5nvhgmjAsBAAC/Fa5nvgEAgD4BAAC/AQAAPwEAgD4Vrme+tvLWPgEAgD628ta+tvLWPhgmjAu28ta+AQAAPxgmjAsVrme+uuKhzv///79sHtoO////v5Lh2g7///+/RB1dMf///7+64l0x////v5LhuFL///+/bB62Uv///7+30pJh////P6FOQ53///8/Ry2SYf///z9dsbti////P6FOu2L///8/3I6TYf///z8icZNh////P///wur///+/AAA8lf///7///zmV////vwAAxOr///+/AAD/v////78AADyV////vzoV/3////8/////v////7//P/9/////P///OZX///+/xWr/f////z/C6v9/////PzyV/3////8//7//f////z//f///////v/9///////+//3///////7//f///////v/9///////+//3///////79sHiTx////v2weRq3///+/2o5snv///z9dsUOd////PwAAxOr///+/wur/f////z86Ff9/////PzyV/3////8/xWr/f////z//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v0Pp/3////8//P8+af///78CAL0W////v///Q+n///+/AAD/v////78AAL2W////v/+//3////8/vZb/f////z///0Dp////v5Lh3A7///+/////v////79sHrhS////vwAAu5b///+/wBb8f////z9Baf9/////P/8//3////8/vZb8f////z/ajpJh////PyRxkmH///8/Q2n/f////z8AAP+/////v0QdXTH///+/bB7cDv///78AAEDp////v6FOu2L///8/SC2TYf///z++Fv9/////P/8//3////8///+9lv///7////+/////v7riXTH///+/kuG2Uv///79A6f9/////P7bSk2H///8/XbG7Yv///z//v/9/////P7sW/3////8/AgDAlv///79HLWye////P74W/3////8/SC1rnv///z//P/9/////PyJxa57///8/QWn/f////z//P/9/////P6FOQ53///8/u5b/f////z9BaQKA////PyRxbJ7///8/kuFGrf///7///7uW////vz7pAoD///8/t9Jsnv///z+S4SLx////v///QOn///+/////v////78AAEPp////v/z/Qen///+/kuEk8f///7+64qHO////v////7////+///+9lv///7+S4Uit////v0Qdoc7///+/AAD/v////78AAEDp////v2weIvH///+/AAC9lv///78AAP+/////v0Qdoc7///+/bB5Irf///7//v/9/////P72W/3////8/3I5rnv///z9dsUOd////P7bSa57///8/QOn/f////z//v/9/////P///wur///+/////v////78CAADA////v/+//3////8/OZX/f////z85lf9/////P/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7///8Tq////v///xOr///+/wmr/f////z/Cav9/////P/8//3////8//7//f////z/+vwGA////PwAAOZX///+/AAA5lf///7//P/9/////PzwV/3////8/PBX/f////z8AQP1/////P8Tq/3////8/xOr/f////z8AAP+/////vwAA/7////+/AADC6v///78AAMLq////v///PJX///+//P/+P////7////+/////v///PJX///+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ssf4x")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mrcbj"]
+size = Vector3(1.0131459, 0.5, 1.0342265)
+
+[node name="LevelChunk" type="Node3D" unique_id=1016321493]
+script = ExtResource("1_jamdb")
+
+[node name="FloorLevelBoundary" parent="." unique_id=444006995 instance=ExtResource("2_jamdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.143868, 0)
+
+[node name="EntranceTrigger" type="Area3D" parent="." unique_id=696928869]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 0
+script = ExtResource("3_jamdb")
+metadata/_custom_type_script = "uid://jqe7b8io8fum"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceTrigger" unique_id=1485830691]
+shape = SubResource("WorldBoundaryShape3D_53kbe")
+
+[node name="EntranceMarker" type="MeshInstance3D" parent="EntranceTrigger" unique_id=44632498]
+mesh = SubResource("BoxMesh_jamdb")
+skeleton = NodePath("../..")
+
+[node name="ExitTrigger" type="Area3D" parent="." unique_id=41995442]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitTrigger" unique_id=1986051839]
+shape = SubResource("WorldBoundaryShape3D_jamdb")
+
+[node name="Platforms" type="Node3D" parent="." unique_id=110955359]
+
+[node name="GrassPlatform" type="StaticBody3D" parent="Platforms" unique_id=195213234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8361595, -0.8572135)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform" unique_id=698515027]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform" unique_id=669261739]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="Checkpoint" parent="Platforms/GrassPlatform" unique_id=742215115 instance=ExtResource("3_4n5wh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.0214195, -3.2795658)
+
+[node name="GrassPlatform2" type="StaticBody3D" parent="Platforms" unique_id=515721809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.059908, -3.8361595, -15.857214)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform2" unique_id=246374950]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform2" unique_id=1384225283]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform3" type="StaticBody3D" parent="Platforms" unique_id=1964645696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4436626, -2.1623695, -16.03308)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform3" unique_id=788259708]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform3" unique_id=855893485]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform4" type="StaticBody3D" parent="Platforms" unique_id=1583520347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 3.9865172, -33.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform4" unique_id=361239389]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform4" unique_id=1159754975]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="Checkpoint" parent="Platforms/GrassPlatform4" unique_id=1442275315 instance=ExtResource("3_4n5wh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.0214195, -3.2795658)
+
+[node name="GrassPlatform15" type="StaticBody3D" parent="Platforms" unique_id=2050090371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 9.986517, -72.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform15" unique_id=469806644]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform15" unique_id=801671610]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="Checkpoint" parent="Platforms/GrassPlatform15" unique_id=1494908696 instance=ExtResource("3_4n5wh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.0214195, -3.2795658)
+
+[node name="GrassPlatform16" type="StaticBody3D" parent="Platforms" unique_id=2007622407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 9.986517, -114.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform16" unique_id=438433174]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform16" unique_id=611157305]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="Checkpoint" parent="Platforms/GrassPlatform16" unique_id=1327382486 instance=ExtResource("3_4n5wh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.0214195, -3.2795658)
+
+[node name="GrassPlatform17" type="StaticBody3D" parent="Platforms" unique_id=70517142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 5.986517, -114.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform17" unique_id=1774792747]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform17" unique_id=1565848571]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="Checkpoint" parent="Platforms/GrassPlatform17" unique_id=824951551 instance=ExtResource("3_4n5wh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.0214195, -3.2795658)
+
+[node name="GrassPlatform5" type="StaticBody3D" parent="Platforms" unique_id=129852660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16384053, -37.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform5" unique_id=1892132185]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform5" unique_id=2389193]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform14" type="StaticBody3D" parent="Platforms" unique_id=1231961689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.678024, 0.16384053, -22.425436)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform14" unique_id=510238206]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform14" unique_id=1895465602]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform6" type="StaticBody3D" parent="Platforms" unique_id=995759350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0.16384053, -21.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform6" unique_id=349084737]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform6" unique_id=1734714651]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform7" type="StaticBody3D" parent="Platforms" unique_id=1033021891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0.16384053, -44.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform7" unique_id=1452709582]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform7" unique_id=211538692]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform8" type="StaticBody3D" parent="Platforms" unique_id=1525866733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.16384053, -51.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform8" unique_id=1006408372]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform8" unique_id=2109192565]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform9" type="StaticBody3D" parent="Platforms" unique_id=1151941923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0.16384053, -51.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform9" unique_id=543360033]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform9" unique_id=1847865301]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform10" type="StaticBody3D" parent="Platforms" unique_id=249932087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0.16384053, -79.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform10" unique_id=1088748461]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform10" unique_id=845456060]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform11" type="StaticBody3D" parent="Platforms" unique_id=1618636374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.16384053, -79.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform11" unique_id=1791464661]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform11" unique_id=15232440]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform12" type="StaticBody3D" parent="Platforms" unique_id=206085349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.16384053, -103.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform12" unique_id=483911152]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform12" unique_id=802667303]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform18" type="StaticBody3D" parent="Platforms" unique_id=938394146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0.16384053, -103.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform18" unique_id=234108782]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform18" unique_id=1571923396]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="GrassPlatform13" type="StaticBody3D" parent="Platforms" unique_id=377021293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.16384053, -116.857216)
+metadata/_edit_group_ = true
+
+[node name="01-block-grass-low" type="MeshInstance3D" parent="Platforms/GrassPlatform13" unique_id=1046105001]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -2)
+mesh = SubResource("ArrayMesh_tjgee")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GrassPlatform13" unique_id=74290736]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.022310257, 2, -1.8084064)
+shape = SubResource("BoxShape3D_mrcbj")
+
+[node name="World" parent="." unique_id=1474738789 instance=ExtResource("6_103pd")]

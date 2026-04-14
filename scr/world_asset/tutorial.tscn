@@ -168,7 +168,7 @@ cell_size = Vector3(0.5, 0.25, 0.5)
 
 [node name="Player" parent="." unique_id=922527968 instance=ExtResource("8_i234j")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4333315, 1.5740356, 29.289679)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4333315, 2.7582245, 29.289679)
 
 [node name="Knight" parent="." unique_id=280064195 instance=ExtResource("9_tt1wy")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 1.2985864, 3.3774014)
@@ -224,8 +224,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.43629, 0, 30.242393)
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=686769897]
 
-[node name="Checkpoint" parent="Checkpoints" unique_id=742215115 instance=ExtResource("14_qe5du")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.2842057, 0)
-
-[node name="Checkpoint2" parent="Checkpoints" unique_id=436494537 instance=ExtResource("14_qe5du")]
+[node name="Checkpoint" parent="Checkpoints" unique_id=436494537 instance=ExtResource("14_qe5du")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.508627, 1.2842057, 36.693077)

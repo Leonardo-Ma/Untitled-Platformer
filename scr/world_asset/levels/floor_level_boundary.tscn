@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cf5ku6le2d84s"]
+
+[ext_resource type="Script" uid="uid://dm0m5bu51w0fd" path="res://scr/world_asset/levels/floor_level_boundary.gd" id="1_h1b00"]
+[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="2_g6x07"]
+[ext_resource type="Script" uid="uid://csig12422io62" path="res://scr/util/combat/core/hitbox.gd" id="2_ojqax"]
+
+[sub_resource type="Resource" id="Resource_g6x07"]
+script = ExtResource("2_g6x07")
+damage = 10
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_mrcbj"]
+
+[node name="FloorLevelBoundary" type="Area3D" unique_id=444006995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+script = ExtResource("1_h1b00")
+attack = SubResource("Resource_g6x07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74139295]
+shape = SubResource("WorldBoundaryShape3D_mrcbj")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=787957096]
+script = ExtResource("2_ojqax")
+metadata/_custom_type_script = "uid://csig12422io62"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=2049047280]
+shape = SubResource("WorldBoundaryShape3D_mrcbj")
