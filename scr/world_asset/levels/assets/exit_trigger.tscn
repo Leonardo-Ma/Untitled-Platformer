@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bfl3xs2wgfl1v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4vxvf"]
+size = Vector3(100, 100, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_duvqa"]
+size = Vector3(10, 10, 1)
+
+[node name="ExitTrigger" type="Area3D" unique_id=133090523]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=746214822]
+shape = SubResource("BoxShape3D_4vxvf")
+
+[node name="ExitMarker" type="MeshInstance3D" parent="." unique_id=1031288493]
+mesh = SubResource("BoxMesh_duvqa")
+skeleton = NodePath("../..")

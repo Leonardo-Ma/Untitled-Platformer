@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://scr/main.gd" id="1_b18bd"]
 [ext_resource type="PackedScene" uid="uid://cwgqh61gpa36j" path="res://scr/ui/ui.tscn" id="2_bx4na"]
+[ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="7_ss67u"]
 [ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="9_pguyi"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/world_asset/tutorial.tscn" id="11_bx4na"]
 [ext_resource type="PackedScene" uid="uid://cqyfierp40fon" path="res://scr/world_asset/chests/chest.tscn" id="17_ha2kd"]
@@ -14,8 +15,12 @@ unique_name_in_owner = true
 
 [node name="World" parent="." unique_id=1123589125 instance=ExtResource("9_pguyi")]
 
-[node name="Chest" parent="." unique_id=1968144271 instance=ExtResource("17_ha2kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57758975, -1.7680357)
-collision_layer = 5
-
 [node name="Tutorial" parent="." unique_id=1297917088 instance=ExtResource("11_bx4na")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Player" parent="Tutorial" unique_id=922527968 instance=ExtResource("7_ss67u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7718496, 28.118496)
+
+[node name="Chest" parent="Tutorial" unique_id=1968144271 instance=ExtResource("17_ha2kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7281647, 1.3621294, 21.147532)
+collision_layer = 5

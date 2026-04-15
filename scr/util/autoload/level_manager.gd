@@ -22,6 +22,7 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
 var _chunk_pool: Dictionary = {}  # Key: scene_path (String), Value: Array[LevelChunk]
+var _last_chunk_path: String = ""
 
 
 func _ready() -> void:
@@ -33,8 +34,8 @@ func _ready() -> void:
 
 
 func _load_chunk_metadata_from_disk() -> void:
-	for dir_path in CHUNK_DIRECTORIES:
-		var dir := DirAccess.open(dir_path)
+	for dir_path: String in CHUNK_DIRECTORIES:
+		var dir: DirAccess = DirAccess.open(dir_path)
 		if dir != null:
 			dir.list_dir_begin()
 			var file_name: String = dir.get_next()
@@ -72,17 +73,16 @@ func _load_chunk_metadata_from_disk() -> void:
 
 ## Reset pool when the reload or exit
 func clear_level() -> void:
-	for chunk in _active_chunks:
+	for chunk: LevelChunk in _active_chunks:
 		if is_instance_valid(chunk):
 			_pool_chunk(chunk)
 	_active_chunks.clear()
+	_last_chunk_path = ""
 
 
 func _get_player_skills() -> Dictionary:
 	var player: Node = get_tree().get_first_node_in_group(Groups.PLAYERS)
-	if player != null and player.has_method("get_skills"):
-		return player.get_skills()
-	return {}
+	return player.get_skills()
 
 
 ## Load chunks to be kept in memory, save them in active chunks
@@ -92,7 +92,7 @@ func initialize_level(parent_world: Node) -> void:
 
 	var next_spawn_transform: Transform3D = Transform3D()
 
-	for i in range(CHUNK_SPAWN_AMOUNT):
+	for i: int in range(CHUNK_SPAWN_AMOUNT):
 		var chunk_instance: LevelChunk = _get_random_valid_chunk()
 
 		# If chunk was pooled, it might already be in the tree, otherwise add it
@@ -101,18 +101,30 @@ func initialize_level(parent_world: Node) -> void:
 				chunk_instance.get_parent().remove_child(chunk_instance)
 			parent_world.add_child(chunk_instance)
 
-		chunk_instance.global_transform = next_spawn_transform
 		chunk_instance.process_mode = Node.PROCESS_MODE_INHERIT
 		chunk_instance.visible = true
+		_align_chunk_to_transform(chunk_instance, next_spawn_transform)
 		_active_chunks.push_back(chunk_instance)
 
 		_setup_chunk_trigger(chunk_instance, parent_world)
 
-		next_spawn_transform = chunk_instance.exit_trigger.global_transform
+		next_spawn_transform = chunk_instance.get_node("%ExitTrigger").global_transform
+
+
+func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D) -> void:
+	var entrance_node: Node3D = chunk.get_node_or_null("%EntranceTrigger")
+
+	# Snap position and maintain the chunk native rotation
+	# TODO Need to check if the trigger is correctly implemented,
+	# this should avoid chunks to spawn backwards
+	if entrance_node != null:
+		chunk.global_position = target_transform.origin - entrance_node.position
+	else:
+		chunk.global_position = target_transform.origin
 
 
 func _setup_chunk_trigger(chunk: LevelChunk, parent_world: Node) -> void:
-	var trigger: Area3D = chunk.get_node_or_null("%ExitTrigger")
+	var trigger: Area3D = chunk.get_node("%ExitTrigger")
 	if trigger != null:
 		# Disconnect previous connections if recycled
 		if trigger.body_entered.is_connected(_on_chunk_exit_reached):
@@ -145,9 +157,9 @@ func recycle_oldest_chunk(parent_world: Node) -> void:
 		parent_world.add_child(next_chunk)
 
 	# Snap the new chunk to the exit trigger of the current newest
-	next_chunk.global_transform = newest.exit_trigger.global_transform
 	next_chunk.process_mode = Node.PROCESS_MODE_INHERIT
 	next_chunk.visible = true
+	_align_chunk_to_transform(next_chunk, newest.get_node("%ExitTrigger").global_transform)
 
 	_active_chunks.push_back(next_chunk)
 	_setup_chunk_trigger(next_chunk, parent_world)
@@ -169,7 +181,7 @@ func _get_random_valid_chunk() -> LevelChunk:
 	var skills: Dictionary = _get_player_skills()
 	var valid_pool: Array[ChunkData] = []
 
-	for data in _all_chunks:
+	for data: ChunkData in _all_chunks:
 		if data.requires_multi_jump and not skills.get("multi_jump", false):
 			continue
 		if data.requires_ground_dash and not skills.get("ground_dash", false):
@@ -183,8 +195,14 @@ func _get_random_valid_chunk() -> LevelChunk:
 		valid_pool.push_back(data)
 
 	assert(valid_pool.size() > 0, "No chunks available matching player skills.")
+
+	# Avoid repeating the last chunk if we have enough options
+	if valid_pool.size() > 5:
+		valid_pool = valid_pool.filter(func(d: ChunkData) -> bool: return d.scene_path != _last_chunk_path)
+
 	var random_idx: int = _rng.randi_range(0, valid_pool.size() - 1)
 	var chosen_data: ChunkData = valid_pool[random_idx]
+	_last_chunk_path = chosen_data.scene_path
 
 	# 1. Check if we have a suspended instance in the pool
 	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():

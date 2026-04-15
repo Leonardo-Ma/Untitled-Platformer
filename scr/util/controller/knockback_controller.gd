@@ -26,12 +26,12 @@ func apply_knockback(impulse: Vector3) -> void:
 		var duration: float = _current_knockback.length() / friction
 
 		# Disable player movement
-		var movement_ctrl: Node = owner.get_node_or_null("%MovementController")
+		var movement_ctrl: Node = owner.get_node("%MovementController")
 		if movement_ctrl != null and movement_ctrl.has_method("disable_movement"):
 			movement_ctrl.disable_movement(duration)
 
 		# Disable enemy navigation
-		var nav_ctrl: Node = owner.get_node_or_null("%NavigationController")
+		var nav_ctrl: Node = owner.get_node("%NavigationController")
 		if nav_ctrl != null and nav_ctrl.has_method("disable_movement"):
 			nav_ctrl.disable_movement(duration)
 

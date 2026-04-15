@@ -31,6 +31,19 @@ func _requires_goap() -> bool:
 	return false
 
 
+func get_skills() -> Dictionary:
+	if skills == null:
+		return {}
+
+	return {
+		"multi_jump": skills.can_double_jump or skills.can_triple_jump,
+		"ground_dash": skills.can_ground_dash,
+		"air_dash": skills.can_air_dash,
+		"teleport": skills.can_teleport_dash,
+		"slow_fall": skills.can_feather_fall
+	}
+
+
 func _on_interact_requested() -> void:
 	_interact()
 
