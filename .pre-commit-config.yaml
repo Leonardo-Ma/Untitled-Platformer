@@ -10,6 +10,7 @@ exclude: |
     addons/|
     docs/documentation/logseq/|
     .*\.mtlx$|
+    .*\.drawio$|
     .*\.png$|
     .*\.svg$|
     .*\.jpg$|
