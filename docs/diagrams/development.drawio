@@ -218,14 +218,24 @@
                         <mxGeometry x="20" y="126.18095238095239" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Score&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="wO4MjMotxcq_kmV9VmXH-47">
+                <object label="Make 5 easy levels&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="vEwrIhNWB_baOUt1fghg-48">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="231.36190476190478" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Make 5 easy levels&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="vEwrIhNWB_baOUt1fghg-48">
+                <object label="UI note on top when entering new level (With name and difficulty)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="48">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
                         <mxGeometry x="20" y="336.5428571428572" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Checkpoint flag activation animation (Tween + fade in?)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="49">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                        <mxGeometry x="20" y="441.72380952380956" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Tweens! Tweens for me, Tweens for you, Tweens for everyone!&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="51">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                        <mxGeometry x="20" y="546.9047619047619" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="DONE (Need to add to readme features)" status="Completed" id="zGidKKg1ztPtrP2wG4Ue-28">
@@ -434,6 +444,9 @@
                 <mxCell id="kpV6V4yQIDp057W4oSi4-73" value="Checkpoints" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);rounded=1;connectable=0;" parent="bBEi1dyaBOHSlupFfo9l-50" vertex="1">
                     <mxGeometry x="100.5" y="240" width="70" height="30" as="geometry"/>
                 </mxCell>
+                <mxCell id="50" value="Score" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);rounded=1;connectable=0;" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-50">
+                    <mxGeometry x="185.5" y="40" width="70" height="30" as="geometry"/>
+                </mxCell>
                 <mxCell id="pvrSnMXBxDJnowrf8Xet-162" value="Main Objective" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#330000);rounded=1;" parent="bBEi1dyaBOHSlupFfo9l-48" vertex="1">
                     <mxGeometry x="26.5" y="50" width="91" height="30" as="geometry"/>
                 </mxCell>
@@ -619,10 +632,10 @@
                 <mxCell id="kpV6V4yQIDp057W4oSi4-57" value="License copy" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#330000);rounded=1;" parent="kpV6V4yQIDp057W4oSi4-55" vertex="1">
                     <mxGeometry x="90" y="38" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="JhgQBHCSCyRRbpY6usHA-47" value="&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Event bus usage:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Player stats (health, mana, stamina)&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Inventory changes&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Quest updates&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Game state changes (pause, day/night cycle)&lt;/font&gt;&lt;/div&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=21;verticalAlign=top;align=center;fontColor=default;fontSize=17;" vertex="1" parent="1">
+                <mxCell id="JhgQBHCSCyRRbpY6usHA-47" value="&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Event bus usage:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Player stats (health, mana, stamina)&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Inventory changes&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Quest updates&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Game state changes (pause, day/night cycle)&lt;/font&gt;&lt;/div&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=21;verticalAlign=top;align=center;fontColor=default;fontSize=17;" parent="1" vertex="1">
                     <mxGeometry x="-1540" y="-350" width="160" height="260" as="geometry"/>
                 </mxCell>
-                <mxCell id="vEwrIhNWB_baOUt1fghg-47" value="Space between platforms (No skills)&lt;br&gt;y: 4&lt;br&gt;z: 15" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=21;verticalAlign=top;align=center;fontSize=20;" vertex="1" parent="1">
+                <mxCell id="vEwrIhNWB_baOUt1fghg-47" value="Space between platforms (No skills)&lt;br&gt;y: 4&lt;br&gt;z: 15" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=21;verticalAlign=top;align=center;fontSize=20;" parent="1" vertex="1">
                     <mxGeometry x="-1780" y="-290" width="140" height="170" as="geometry"/>
                 </mxCell>
             </root>

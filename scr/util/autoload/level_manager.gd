@@ -11,6 +11,8 @@ class ChunkData:
 	var requires_air_dash: bool
 	var requires_teleport: bool
 	var requires_slow_fall: bool
+	var difficulty_points: int = 0
+	var skill_points: int = 0
 
 
 const CHUNK_DIRECTORIES: Array[String] = [
@@ -61,6 +63,29 @@ func _load_chunk_metadata_from_disk() -> void:
 								data.requires_air_dash = temp_instance.requires_air_dash
 								data.requires_teleport = temp_instance.requires_teleport
 								data.requires_slow_fall = temp_instance.requires_slow_fall
+
+								if "/easy/" in full_path:
+									data.difficulty_points = 10
+								elif "/medium/" in full_path:
+									data.difficulty_points = 30
+								elif "/hard/" in full_path:
+									data.difficulty_points = 50
+								else:
+									assert(false, "Difficulty not found for this level chunk")
+
+								var skills_count: int = 0
+								if data.requires_multi_jump:
+									skills_count += 1
+								if data.requires_ground_dash:
+									skills_count += 1
+								if data.requires_air_dash:
+									skills_count += 1
+								if data.requires_teleport:
+									skills_count += 1
+								if data.requires_slow_fall:
+									skills_count += 1
+								data.skill_points = skills_count * 2
+
 								_all_chunks.push_back(data)
 
 								# Start async loading the scene so it's ready in memory when needed
@@ -136,6 +161,14 @@ func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: Leve
 	if not body.is_in_group(Groups.PLAYERS):
 		return
 
+	if not passed_chunk.has_meta("scored"):
+		passed_chunk.set_meta("scored", true)
+		var chunk_path: String = passed_chunk.scene_file_path
+		for data: ChunkData in _all_chunks:
+			if data.scene_path == chunk_path:
+				GameEvents.add_score(data.difficulty_points + data.skill_points)
+				break
+
 	# Only start recycling after the third chunk
 	if _active_chunks.size() > 2 and _active_chunks[2] == passed_chunk:
 		recycle_oldest_chunk(parent_world)
@@ -169,6 +202,8 @@ func _pool_chunk(chunk: LevelChunk) -> void:
 	# Disable processing and hide the chunk to save performance
 	chunk.process_mode = Node.PROCESS_MODE_DISABLED
 	chunk.visible = false
+	if chunk.has_meta("scored"):
+		chunk.remove_meta("scored")
 
 	# Keep a reference to its original scene path to fetch it later
 	var path: String = chunk.scene_file_path

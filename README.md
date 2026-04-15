@@ -38,6 +38,7 @@ xx is a simple 3d low poly plataformer. The core game loop is a partially proced
 - Barebones magic system
 - Skills (Multi jump, ground/air dash, feather fall, teleport)
 - Chunk based Procedural generation
+- Basic score system
 To implement:
 - Basic map levels
 - Skills (hook, fly)?

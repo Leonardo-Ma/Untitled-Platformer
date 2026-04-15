@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d10lqh3g14fa3" path="res://scr/ui/inventory/inventory_interface.gd" id="1_2sq47"]
 [ext_resource type="Script" uid="uid://bc20xmwfj68dg" path="res://scr/player/combat/player_healthbar.gd" id="1_jreyb"]
+[ext_resource type="Script" uid="uid://c30uhilu8tn5v" path="res://scr/ui/hud/score.gd" id="2_cl4jo"]
 [ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="2_l3ger"]
-[ext_resource type="Script" uid="uid://cb3xo2r1csv5r" path="res://scr/ui/player_attributes_ui.gd" id="2_l4m73"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="3_8stm2"]
+[ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://scr/ui/hud/collectibles_interface.gd" id="6_l3ger"]
 [ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://scr/ui/hud/abilities_interface.gd" id="7_8stm2"]
 
@@ -91,19 +92,19 @@ show_percentage = false
 wait_time = 0.4
 one_shot = true
 
-[node name="PlayerAttributes" type="TextEdit" parent="MarginContainer/VBoxContainer" unique_id=1222868939]
-custom_maximum_size = Vector2(221, 244)
-custom_minimum_size = Vector2(221, 244)
+[node name="Score" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=554377692]
 layout_mode = 2
-placeholder_text = "		Main Attributes:
-strenght 		: 0
-toughness 	: 0
-perception	: 0
-dexterity 		: 0
-intelligence 	: 0
-spirit 				: 0
-charisma 		: 0"
-script = ExtResource("2_l4m73")
+script = ExtResource("2_cl4jo")
+
+[node name="ScoreIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Score" unique_id=374341339]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_ndnj2")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/Score" unique_id=1880561012]
+unique_name_in_owner = true
+layout_mode = 2
+text = "999"
 
 [node name="InventoryInterface" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2066091218]
 unique_name_in_owner = true

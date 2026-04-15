@@ -81,7 +81,6 @@ func _validate_animation_parameters() -> void:
 		"parameters/movement/blend_position",
 		"parameters/in_air_state/transition_request",
 		"parameters/is_jumping/request",
-		"parameters/attack_transition/transition_request",
 		"parameters/attack/request",
 		"parameters/is_damaged/request",
 		"parameters/is_alive/transition_request",
