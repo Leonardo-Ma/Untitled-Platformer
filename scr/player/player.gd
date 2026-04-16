@@ -21,6 +21,17 @@ func _physics_process(delta: float) -> void:
 	skills_controller.process_skills(self, delta)
 	move_and_slide()
 
+	for i: int in get_slide_collision_count():
+		var collision: KinematicCollision3D = get_slide_collision(i)
+		var collider: Object = collision.get_collider()
+		if collider is RigidBody3D:
+			var push_force: float = movement.run_speed * 0.1
+			# Push from the collision point
+			var push_dir: Vector3 = -collision.get_normal()
+			push_dir.y = 0.0  # Prevent pushing into the ground or sky
+			if push_dir.length_squared() > 0.001:
+				collider.apply_impulse(push_dir.normalized() * push_force, collision.get_position() - collider.global_position)
+
 
 func _entity_ready() -> void:
 	add_to_group("players")

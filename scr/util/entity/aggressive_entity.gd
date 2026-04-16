@@ -120,7 +120,7 @@ func _on_death() -> void:
 	var death_tween: Tween = create_tween()
 
 	death_tween.tween_interval(2.0)
-	death_tween.tween_property(self, "scale", Vector3.ZERO, 1.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	death_tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 1.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
 	await get_tree().create_timer(5.0).timeout
 	self.queue_free()

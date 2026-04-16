@@ -455,6 +455,9 @@ shape = SubResource("BoxShape3D_qlb32")
 [node name="Barrel_01" parent="Props/Barrels" unique_id=867034360 instance=ExtResource("4_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 25.94512, 1.0883816, -0.63824844)
 
+[node name="Barrel_02" parent="Props/Barrels" unique_id=1663030180 instance=ExtResource("4_voiec")]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 29.94512, 1.0883816, -0.63824844)
+
 [node name="Skulls" type="Node3D" parent="Props" unique_id=2017701350]
 
 [node name="skull_01" type="MeshInstance3D" parent="Props/Skulls" unique_id=589913318]
