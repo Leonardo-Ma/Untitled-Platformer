@@ -20,6 +20,18 @@ const CHUNK_DIRECTORIES: Array[String] = [
 ]
 const CHUNK_SPAWN_AMOUNT: int = 6
 
+const LEVEL_COMPLETE_SOUNDS: Array[AudioStream] = [
+	preload("res://scr/sound/level_complete/chequered_ink/brass_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/grand_piano_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/harpsichord_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/music_box_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/sitar_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/steel_drums_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/synth_bass_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/vibraphone_level_complete.wav"),
+	preload("res://scr/sound/level_complete/chequered_ink/xylophone_level_complete.wav")
+]
+
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
@@ -163,6 +175,9 @@ func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: Leve
 
 	if not passed_chunk.has_meta("scored"):
 		passed_chunk.set_meta("scored", true)
+		SoundManager.play_sound(
+			LEVEL_COMPLETE_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX, Vector2(body.global_position.x, body.global_position.z)
+		)
 		var chunk_path: String = passed_chunk.scene_file_path
 		for data: ChunkData in _all_chunks:
 			if data.scene_path == chunk_path:

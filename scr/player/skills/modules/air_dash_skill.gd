@@ -4,6 +4,7 @@ extends PlayerSkillModule
 signal air_dash_cooldown_started(duration: float)
 signal air_dash_cooldown_finished
 
+const DASH_SOUND: AudioStream = preload("uid://vo301kuo1mby")  # whoosh_2.wav
 const DOUBLE_TAP_THRESHOLD: float = 0.3
 
 var _air_dash_used: bool = false
@@ -76,6 +77,8 @@ func _start_air_dash(body: CharacterBody3D, skills: PlayerSkills, action_dir: St
 	_dash_timer = skills.air_dash_duration
 	_dash_cooldown = skills.air_dash_cooldown
 	air_dash_cooldown_started.emit(_dash_cooldown)
+
+	SoundManager.play_sound(DASH_SOUND, SoundManager.SoundCategory.SFX)
 
 	skills_controller.spawn_ghost_trail(0.4)  # VFX
 

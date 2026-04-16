@@ -138,6 +138,8 @@ The style rules are intended to increase readability of the source code for huma
 
 - **Scene Unique Nodes (`%`)**: For components that represent core functionality of a scene (like `Hitbox`, `Hurtbox`, `StatusManager`, or main UI containers), set and use them as unique.
 
+- **UID Preloading**: When preloading assets, use `UID` with comment(`preload("uid://abcdef") # asset.wav`) instead of path.
+
 - **Strict Assertions over Silent Failures**: When a script depends on another, avoid silent validations like `if has_node("...")` or `if node:`. Use `assert(value != null, "Error message")` or `assert(has_node("..."))`.
 
 - For connecting signals, use `nameof` to refer to methods whenever possible to reduce the chance of mistakes when methods are renamed.

@@ -3,6 +3,12 @@ extends Area3D
 
 signal checkpoint_activated(checkpoint_node: Checkpoint)
 
+const ACTIVATION_SOUNDS: Array[AudioStream] = [
+	preload("uid://elo0urfpuyn7"),  # rise01
+	preload("uid://cslbkk8dlfqo2"),  # rise02
+	preload("uid://ot2jiajcrnw8"),  # rise03
+]
+
 @export var is_active: bool = false
 
 
@@ -10,16 +16,12 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 
-func _on_body_entered(body: Node3D) -> void:
-	if not is_active and body is PlayerEntity:
-		activate_checkpoint()
-
-
 func activate_checkpoint() -> void:
 	is_active = true
 
 	checkpoint_activated.emit(self)
 	CheckpointManager.on_checkpoint_activated(self)
+	SoundManager.play_sound(ACTIVATION_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX, Vector2(global_position.x, global_position.z))
 
 	var tween: Tween = create_tween()
 	var original_scale: Vector3 = scale
@@ -40,3 +42,8 @@ func activate_checkpoint() -> void:
 func deactivate_checkpoint() -> void:
 	is_active = false
 	# TODO Add deactivation logic
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if not is_active and body is PlayerEntity:
+		activate_checkpoint()

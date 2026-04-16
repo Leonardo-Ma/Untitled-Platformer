@@ -4,6 +4,7 @@ extends PlayerSkillModule
 signal ground_dash_cooldown_started(duration: float)
 signal ground_dash_cooldown_finished
 
+const DASH_SOUND: AudioStream = preload("uid://vo301kuo1mby")  # whoosh_2.wav
 const DOUBLE_TAP_THRESHOLD: float = 0.3
 
 var _dash_timer: float = 0.0
@@ -68,6 +69,8 @@ func apply_logic(body: CharacterBody3D, _skills: PlayerSkills) -> void:
 func _start_dash(body: CharacterBody3D, skills: PlayerSkills, action_dir: String) -> void:
 	skills_controller.is_sliding = true
 	_dash_timer = skills.ground_dash_duration
+
+	SoundManager.play_sound(DASH_SOUND, SoundManager.SoundCategory.SFX)
 
 	skills_controller.spawn_ghost_trail(0.4)
 	_dash_cooldown = skills.ground_dash_cooldown

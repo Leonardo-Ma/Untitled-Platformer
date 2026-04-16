@@ -2,6 +2,11 @@ class_name PlayerMultiJumpSkill extends PlayerSkillModule
 
 signal multi_jump_executed
 
+const MULTI_JUMP_SOUNDS: Array[AudioStream] = [
+	preload("uid://i61p6tvxnhor"),  # jump.wav
+	preload("uid://bb1w0acj8f3i1"),  # jump_short.wav
+]
+
 var _jumps_made: int = 0
 
 
@@ -40,6 +45,8 @@ func handle_input(body: CharacterBody3D, skills: PlayerSkills) -> void:
 
 func _apply_jump_effects(skills: PlayerSkills) -> void:
 	multi_jump_executed.emit()
+
+	SoundManager.play_sound(MULTI_JUMP_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX)
 
 	skills_controller.spawn_ghost_trail(0.6)  # Slightly longer duration for multi-jump
 

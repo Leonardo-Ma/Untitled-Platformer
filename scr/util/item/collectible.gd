@@ -1,6 +1,13 @@
 class_name Collectible
 extends Area3D
 
+const COLLECT_SOUNDS: Array[AudioStream] = [
+	preload("uid://cwptti4mle3g0"),  # coin.wav
+	preload("uid://dgdotgk6kwxi"),  # coin_3.wav
+	preload("uid://luy8ck7csy0q"),  # coin_4.wav
+	preload("uid://ckl5fl1a1sq0w"),  # coin_collect.wav
+]
+
 @export var data: CollectibleData
 
 
@@ -12,6 +19,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is PlayerEntity:
+		SoundManager.play_sound(COLLECT_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX, Vector2(global_position.x, global_position.z))
 		_apply_effect(body as PlayerEntity)
 		queue_free()
 

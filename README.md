@@ -33,6 +33,7 @@ xx is a simple 3d low poly plataformer. The core game loop is a partially proced
 - Jump cutting, coyote time, knockback
 - Situational music and audio
 - Basic UI (Main menu, Pause, debug, hud)
+- Basic sound system
 - Checkpoint
 - Collectibles (Coins, hearts)
 - Barebones magic system

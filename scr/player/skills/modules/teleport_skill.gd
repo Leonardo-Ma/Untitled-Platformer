@@ -3,6 +3,8 @@ extends PlayerSkillModule
 
 signal teleport_charges_updated(charges: int)
 
+const DASH_SOUND: AudioStream = preload("uid://vo301kuo1mby")  # whoosh_2.wav
+
 var _teleport_charges: int = 0
 var _teleport_regen_timer: float = 0.0
 
@@ -46,6 +48,8 @@ func handle_input(body: CharacterBody3D, skills: PlayerSkills) -> void:
 func _perform_teleport_dash(body: CharacterBody3D, skills: PlayerSkills) -> void:
 	_teleport_charges -= 1
 	teleport_charges_updated.emit(_teleport_charges)
+
+	SoundManager.play_sound(DASH_SOUND, SoundManager.SoundCategory.SFX)
 
 	var input_dir: Vector2 = Input.get_vector("left", "right", "forward", "backward")
 	var forward: Vector3 = -body.transform.basis.z

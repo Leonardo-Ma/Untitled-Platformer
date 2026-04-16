@@ -84,9 +84,7 @@ func pause_all_sfx(paused: bool) -> void:
 	pool.pause_category(SoundCategory.VOICE, paused)
 
 
-# ============== PRIVATE HELPERS ==============
-
-
+#region Private helpers
 func _get_bus_for_category(category: SoundCategory) -> String:
 	match category:
 		SoundCategory.MUSIC:
@@ -119,3 +117,4 @@ func _save_volume_settings() -> void:
 		var volume: float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus))
 		config.set_value("volumes", bus, volume)
 	config.save("user://audio_settings.cfg")
+#endregion
