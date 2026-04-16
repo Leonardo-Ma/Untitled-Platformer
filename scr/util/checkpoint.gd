@@ -17,10 +17,24 @@ func _on_body_entered(body: Node3D) -> void:
 
 func activate_checkpoint() -> void:
 	is_active = true
-	# TODO Add animation, visual, sound for checkpoint activation
-	checkpoint_activated.emit(self)
 
+	checkpoint_activated.emit(self)
 	CheckpointManager.on_checkpoint_activated(self)
+
+	var tween: Tween = create_tween()
+	var original_scale: Vector3 = scale
+	tween.tween_property(self, "scale", original_scale * 1.3, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", original_scale, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+	var light: OmniLight3D = OmniLight3D.new()
+	light.light_color = Color.YELLOW
+	light.light_energy = 5.0
+	light.omni_range = 3.0
+	add_child(light)
+
+	var light_tween: Tween = create_tween()
+	light_tween.tween_property(light, "light_energy", 0.0, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	light_tween.tween_callback(light.queue_free)
 
 
 func deactivate_checkpoint() -> void:
