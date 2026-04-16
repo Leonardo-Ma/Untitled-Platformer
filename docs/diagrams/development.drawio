@@ -145,7 +145,7 @@
                 </object>
                 <object label="TO DO" status="New" id="zGidKKg1ztPtrP2wG4Ue-21">
                     <mxCell style="swimlane;strokeWidth=2;fontFamily=Permanent Marker;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=light-dark(#A0522D,#000033);" parent="zGidKKg1ztPtrP2wG4Ue-20" vertex="1">
-                        <mxGeometry x="187.5" y="28" width="187.5" height="967.6285714285714" as="geometry"/>
+                        <mxGeometry x="187.5" y="28" width="187.5" height="919.41" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="Fix movement animation&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="21">
@@ -214,28 +214,18 @@
                     </mxCell>
                 </object>
                 <object label="UI note on top when entering new level (With name and difficulty)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="48">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="336.5428571428572" width="160" height="85.18095238095239" as="geometry"/>
-                    </mxCell>
-                </object>
-                <object label="Checkpoint flag activation animation (Tween + fade in?)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="49">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
-                        <mxGeometry x="20" y="441.72380952380956" width="160" height="85.18095238095239" as="geometry"/>
-                    </mxCell>
-                </object>
-                <object label="Smoke particle effect when landing on platform&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="YVmbmAJROaMNfE4UVtPe-33">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
-                        <mxGeometry x="20" y="546.9047619047619" width="160" height="85.18095238095239" as="geometry"/>
-                    </mxCell>
-                </object>
-                <object label="Trail particles&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="43">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
-                        <mxGeometry x="20" y="652.0857142857143" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="DONE (Need to add to readme features)" status="Completed" id="zGidKKg1ztPtrP2wG4Ue-28">
                     <mxCell style="swimlane;strokeWidth=2;fontFamily=Permanent Marker;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=light-dark(#1BA1E2,#003300);" parent="zGidKKg1ztPtrP2wG4Ue-20" vertex="1">
                         <mxGeometry x="575" y="28" width="215" height="919.41" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Checkpoint flag activation animation (Tween + fade in?)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="49">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-28" vertex="1">
+                        <mxGeometry x="20" y="21" width="175" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <mxCell id="zGidKKg1ztPtrP2wG4Ue-45" value="SPRINT: April to March" style="whiteSpace=wrap;html=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-46" vertex="1">
@@ -302,7 +292,7 @@
                     <mxGeometry x="10" y="50" width="170" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="D-OprDwq7GcO0zXd7hnM-47" value="Other Diagrams on this Folder&lt;div&gt;Do not place them on this file&lt;/div&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=240;swimlaneFillColor=light-dark(transparent,#0F1439);height=40;" parent="1" vertex="1">
-                    <mxGeometry x="-1810" y="-790" width="400" height="240" as="geometry"/>
+                    <mxGeometry x="-1771" y="-780" width="400" height="240" as="geometry"/>
                 </mxCell>
                 <UserObject label="Procedural Generation" id="D-OprDwq7GcO0zXd7hnM-48">
                     <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="D-OprDwq7GcO0zXd7hnM-47" vertex="1">
@@ -439,7 +429,7 @@
                 <mxCell id="kpV6V4yQIDp057W4oSi4-73" value="Checkpoints" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);rounded=1;connectable=0;" parent="bBEi1dyaBOHSlupFfo9l-50" vertex="1">
                     <mxGeometry x="100.5" y="240" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="Score" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);rounded=1;connectable=0;" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-50">
+                <mxCell id="50" value="Score" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);rounded=1;connectable=0;" parent="bBEi1dyaBOHSlupFfo9l-50" vertex="1">
                     <mxGeometry x="185.5" y="40" width="70" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="pvrSnMXBxDJnowrf8Xet-162" value="Main Objective" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#330000);rounded=1;" parent="bBEi1dyaBOHSlupFfo9l-48" vertex="1">

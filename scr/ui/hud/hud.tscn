@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://d10lqh3g14fa3" path="res://scr/ui/inventory/inventory_interface.gd" id="1_2sq47"]
 [ext_resource type="Script" uid="uid://bc20xmwfj68dg" path="res://scr/player/combat/player_healthbar.gd" id="1_jreyb"]
+[ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://scr/ui/base_theme.tres" id="1_up44w"]
 [ext_resource type="Script" uid="uid://c30uhilu8tn5v" path="res://scr/ui/hud/score.gd" id="2_cl4jo"]
 [ext_resource type="PackedScene" uid="uid://dr6jvxkndpwcc" path="res://scr/ui/inventory/inventory.tscn" id="2_l3ger"]
 [ext_resource type="PackedScene" uid="uid://ccynrt0q7u4dm" path="res://scr/ui/inventory/slot/inventory_slot.tscn" id="3_8stm2"]
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://scr/ui/hud/collectibles_interface.gd" id="6_l3ger"]
 [ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://scr/ui/hud/abilities_interface.gd" id="7_8stm2"]
-[ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://icons/16x16/coins.png" id="8_05d6b"]
-[ext_resource type="Texture2D" uid="uid://d1glom2fd0461" path="res://icons/16x16/xp.png" id="9_1rhup"]
-[ext_resource type="Texture2D" uid="uid://c4vr015qfs1x" path="res://icons/16x16/gear.png" id="10_gy4ue"]
+[ext_resource type="PackedScene" uid="uid://ied3ddlblq1x" path="res://scr/ui/hud/collectible.tscn" id="8_1rhup"]
+[ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://scr/ui/hud/ability.tscn" id="13_gy4ue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
 
@@ -29,6 +29,9 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i25bo"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_4o8dc"]
+font_size = 24
+
 [node name="HUD" type="Control" unique_id=1333227325]
 layout_mode = 3
 anchors_preset = 15
@@ -36,8 +39,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_up44w")
 
 [node name="MagicSignPressIndicator" type="Label" parent="." unique_id=584095709]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 869.0
 offset_top = 211.0
@@ -47,7 +52,7 @@ offset_bottom = 263.0
 [node name="Timer" type="Timer" parent="MagicSignPressIndicator" unique_id=212922644]
 one_shot = true
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1870048858]
+[node name="BoxContainer" type="HBoxContainer" parent="." unique_id=583183313]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,13 +64,13 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2064273424]
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer" unique_id=2064273424]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerHealthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1575779896]
+[node name="PlayerHealthbar" type="ProgressBar" parent="BoxContainer/VBoxContainer" unique_id=1575779896]
 unique_name_in_owner = true
 z_index = 1
 custom_maximum_size = Vector2(436, 44)
@@ -78,7 +83,7 @@ value = 60.0
 show_percentage = false
 script = ExtResource("1_jreyb")
 
-[node name="Damagebar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PlayerHealthbar" unique_id=1633898337]
+[node name="Damagebar" type="ProgressBar" parent="BoxContainer/VBoxContainer/PlayerHealthbar" unique_id=1633898337]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -91,32 +96,36 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_i25bo")
 value = 80.0
 show_percentage = false
 
-[node name="Timer" type="Timer" parent="MarginContainer/VBoxContainer/PlayerHealthbar" unique_id=266650581]
+[node name="Timer" type="Timer" parent="BoxContainer/VBoxContainer/PlayerHealthbar" unique_id=266650581]
 wait_time = 0.4
 one_shot = true
 
-[node name="Score" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=554377692]
+[node name="Score" type="HBoxContainer" parent="BoxContainer/VBoxContainer" unique_id=554377692]
 layout_mode = 2
 script = ExtResource("2_cl4jo")
 
-[node name="ScoreIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Score" unique_id=374341339]
+[node name="ScoreIcon" type="TextureRect" parent="BoxContainer/VBoxContainer/Score" unique_id=374341339]
 unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(64, 62)
 layout_mode = 2
 texture = ExtResource("3_ndnj2")
+stretch_mode = 5
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/Score" unique_id=1880561012]
+[node name="ScoreLabel" type="Label" parent="BoxContainer/VBoxContainer/Score" unique_id=1880561012]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
+label_settings = SubResource("LabelSettings_4o8dc")
 
-[node name="InventoryInterface" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2066091218]
+[node name="InventoryInterface" type="Control" parent="BoxContainer/VBoxContainer" unique_id=2066091218]
 unique_name_in_owner = true
 visible = false
 z_index = 1
 layout_mode = 2
 script = ExtResource("1_2sq47")
 
-[node name="PlayerInventory" parent="MarginContainer/VBoxContainer/InventoryInterface" unique_id=137839633 instance=ExtResource("2_l3ger")]
+[node name="PlayerInventory" parent="BoxContainer/VBoxContainer/InventoryInterface" unique_id=137839633 instance=ExtResource("2_l3ger")]
 visible = false
 layout_mode = 0
 offset_left = 10.0
@@ -124,7 +133,7 @@ offset_top = 10.0
 offset_right = 26.0
 offset_bottom = 26.0
 
-[node name="ExternalInventory" parent="MarginContainer/VBoxContainer/InventoryInterface" unique_id=1501087187 instance=ExtResource("2_l3ger")]
+[node name="ExternalInventory" parent="BoxContainer/VBoxContainer/InventoryInterface" unique_id=1501087187 instance=ExtResource("2_l3ger")]
 visible = false
 layout_mode = 0
 offset_left = 638.0
@@ -132,7 +141,7 @@ offset_top = 260.0
 offset_right = 654.0
 offset_bottom = 276.0
 
-[node name="GrabbedSlot" parent="MarginContainer/VBoxContainer/InventoryInterface" unique_id=435231555 instance=ExtResource("3_8stm2")]
+[node name="GrabbedSlot" parent="BoxContainer/VBoxContainer/InventoryInterface" unique_id=435231555 instance=ExtResource("3_8stm2")]
 visible = false
 modulate = Color(1, 1, 1, 0.447059)
 self_modulate = Color(1, 1, 1, 0)
@@ -142,331 +151,54 @@ offset_top = 10.0
 offset_right = 74.0
 offset_bottom = 74.0
 
-[node name="Collectibles" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1290539515]
-custom_minimum_size = Vector2(436, 100)
+[node name="Collectibles" type="MarginContainer" parent="BoxContainer/VBoxContainer" unique_id=1290539515]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("6_l3ger")
 
-[node name="CollectiblesContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Collectibles" unique_id=1670828236]
+[node name="CollectiblesContainer" type="GridContainer" parent="BoxContainer/VBoxContainer/Collectibles" unique_id=1670828236]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 columns = 10
 
-[node name="Collectible1" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=233471282]
-custom_minimum_size = Vector2(64, 64)
+[node name="Collectible1" parent="BoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=482959666 instance=ExtResource("8_1rhup")]
 layout_mode = 2
-texture = ExtResource("8_05d6b")
-expand_mode = 2
-stretch_mode = 5
 
-[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible1" unique_id=926886071]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "99"
-
-[node name="Collectible2" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1969383905]
-custom_minimum_size = Vector2(64, 64)
+[node name="Collectible2" parent="BoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=2063211370 instance=ExtResource("8_1rhup")]
 layout_mode = 2
-texture = ExtResource("9_1rhup")
-expand_mode = 1
-stretch_mode = 5
 
-[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible2" unique_id=832375388]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "99"
-
-[node name="Collectible3" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1485683767]
-custom_minimum_size = Vector2(64, 64)
+[node name="Collectible3" parent="BoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1375961723 instance=ExtResource("8_1rhup")]
 layout_mode = 2
-texture = ExtResource("10_gy4ue")
-expand_mode = 1
-stretch_mode = 5
 
-[node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible3" unique_id=328243587]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "99"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=114191235]
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxContainer" unique_id=114191235]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Abilities" type="MarginContainer" parent="MarginContainer/VBoxContainer2" unique_id=535480650]
-custom_minimum_size = Vector2(436, 100)
+[node name="Abilities" type="MarginContainer" parent="BoxContainer/VBoxContainer2" unique_id=535480650]
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_vertical = 10
 script = ExtResource("7_8stm2")
 
-[node name="AbilitiesContainer" type="GridContainer" parent="MarginContainer/VBoxContainer2/Abilities" unique_id=1910653337]
+[node name="AbilitiesContainer" type="GridContainer" parent="BoxContainer/VBoxContainer2/Abilities" unique_id=1910653337]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 columns = 10
 
-[node name="Ability1" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=2104445520]
-custom_minimum_size = Vector2(64, 64)
+[node name="Ability1" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1660509414 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
 
-[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability1" unique_id=592424427]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 270.0
-tint_progress = Color(0, 0, 0, 0.7)
-
-[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability1" unique_id=514682241]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "0"
-horizontal_alignment = 2
-
-[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability1" unique_id=374898958]
-layout_mode = 1
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-text = "(SPACE)"
-horizontal_alignment = 1
-
-[node name="Ability2" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1281935834]
-custom_minimum_size = Vector2(64, 64)
+[node name="Ability2" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=216017026 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
 
-[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability2" unique_id=967098199]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 270.0
-tint_progress = Color(0, 0, 0, 0.7)
-
-[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability2" unique_id=1628370953]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "0"
-horizontal_alignment = 2
-
-[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability2" unique_id=1837987651]
-layout_mode = 1
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-text = "(SPACE)"
-horizontal_alignment = 1
-
-[node name="Ability3" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=398257601]
-custom_minimum_size = Vector2(64, 64)
+[node name="Ability3" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1030572130 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
 
-[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability3" unique_id=1270637676]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 270.0
-tint_progress = Color(0, 0, 0, 0.7)
-
-[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability3" unique_id=874495099]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "0"
-horizontal_alignment = 2
-
-[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability3" unique_id=809431036]
-layout_mode = 1
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-text = "(SPACE)"
-horizontal_alignment = 1
-
-[node name="Ability4" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1093860155]
-custom_minimum_size = Vector2(64, 64)
+[node name="Ability4" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1027499728 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
 
-[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability4" unique_id=613749924]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 270.0
-tint_progress = Color(0, 0, 0, 0.7)
-
-[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability4" unique_id=1545044077]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "0"
-horizontal_alignment = 2
-
-[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability4" unique_id=1421666479]
-layout_mode = 1
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-text = "(SPACE)"
-horizontal_alignment = 1
-
-[node name="Ability5" type="TextureRect" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1245653831]
-custom_minimum_size = Vector2(64, 64)
+[node name="Ability5" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CooldownProgress" type="TextureProgressBar" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability5" unique_id=948267632]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 270.0
-tint_progress = Color(0, 0, 0, 0.7)
-
-[node name="ChargeLabel" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability5" unique_id=254494055]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
-text = "0"
-horizontal_alignment = 2
-
-[node name="InputHint" type="Label" parent="MarginContainer/VBoxContainer2/Abilities/AbilitiesContainer/Ability5" unique_id=229648228]
-layout_mode = 1
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-text = "(SPACE)"
-horizontal_alignment = 1
 
 [connection signal="timeout" from="MagicSignPressIndicator/Timer" to="MagicSignPressIndicator" method="_on_timer_timeout"]
-[connection signal="timeout" from="MarginContainer/VBoxContainer/PlayerHealthbar/Timer" to="MarginContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]
+[connection signal="timeout" from="BoxContainer/VBoxContainer/PlayerHealthbar/Timer" to="BoxContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]

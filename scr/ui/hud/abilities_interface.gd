@@ -10,13 +10,14 @@ var ability_uis: Dictionary = {}  # { module_instance : { icon, charge_label, co
 func _ready() -> void:
 	assert(abilities_container != null, "abilities_container missing in " + self.name)
 	for ability_slot: Control in abilities_container.get_children():
-		assert(ability_slot is TextureRect, "Ability slot %s is not a TextureRect in %s" % [ability_slot.name, self.name])
+		# TODO Reconsider these asserts?
+		assert(ability_slot is VBoxContainer, "Ability slot %s is not a VBoxContainer in %s" % [ability_slot.name, self.name])
 		assert(
-			ability_slot.get_node("CooldownProgress") is TextureProgressBar,
+			ability_slot.get_node("%CooldownProgress") is TextureProgressBar,
 			"CooldownProgress missing in slot %s of %s" % [ability_slot.name, self.name],
 		)
-		assert(ability_slot.get_node("ChargeLabel") is Label, "ChargeLabel missing in slot %s of %s" % [ability_slot.name, self.name])
-		assert(ability_slot.get_node("InputHint") is Label, "InputHint missing in slot %s of %s" % [ability_slot.name, self.name])
+		assert(ability_slot.get_node("%ChargeLabel") is Label, "ChargeLabel missing in slot %s of %s" % [ability_slot.name, self.name])
+		assert(ability_slot.get_node("%InputHint") is Label, "InputHint missing in slot %s of %s" % [ability_slot.name, self.name])
 
 	GameEvents.player_spawned.connect(_on_player_spawned)
 
@@ -62,32 +63,37 @@ func _on_player_spawned(player: CharacterBody3D) -> void:
 		if slot_index >= slots.size():
 			break
 
-		var ability_icon: TextureRect = slots[slot_index] as TextureRect
-		if not ability_icon:
+		var slot_node: Control = slots[slot_index] as Control
+		if not slot_node:
 			continue
 
-		ability_icon.visible = true
+		var ability_icon: TextureRect = slot_node.get_node("%Ability") as TextureRect
+
+		slot_node.visible = true
 		ability_icon.texture = module.get_icon()
 
-		var input_hint: Label = ability_icon.get_node("InputHint") as Label
+		var input_hint: Label = slot_node.get_node("%InputHint") as Label
 		input_hint.text = _get_input_hint(module)
 
-		var charge_label: Label = ability_icon.get_node("ChargeLabel") as Label
+		var charge_label: Label = slot_node.get_node("%ChargeLabel") as Label
 		charge_label.visible = false
 
-		var cooldown_progress: TextureProgressBar = ability_icon.get_node("CooldownProgress") as TextureProgressBar
+		var cooldown_progress: TextureProgressBar = slot_node.get_node("%CooldownProgress") as TextureProgressBar
+		cooldown_progress.texture_progress = module.get_icon()
+		cooldown_progress.visible = _module_uses_cooldown(module)
+		cooldown_progress.value = 0.0
 
-		ability_uis[module] = {"icon": ability_icon, "charge_label": charge_label, "cooldown_progress": cooldown_progress}
+		ability_uis[module] = {"icon": slot_node, "charge_label": charge_label, "cooldown_progress": cooldown_progress}
 
-		assert(ability_uis[module]["icon"] != null, "Icon missing for module in " + self.name)
+		assert(ability_icon != null, "Icon missing for module in " + self.name)
 		assert(cooldown_progress != null or not _module_uses_cooldown(module), "Cooldown Progress missing in slot mapped for module in " + self.name)
 
-		_connect_module_signals(module, ability_icon)
+		_connect_module_signals(module, slot_node)
 		slot_index += 1
 
 
 func _module_uses_cooldown(module: PlayerSkillModule) -> bool:
-	return module is PlayerGroundDashSkill or module is PlayerAirDashSkill or module is PlayerTeleportSkill
+	return module is PlayerGroundDashSkill or module is PlayerAirDashSkill
 
 
 func _get_action_key(action_name: String, fallback: String) -> String:
@@ -138,7 +144,7 @@ func _connect_module_signals(module: PlayerSkillModule, icon: Control) -> void:
 
 
 func _start_cooldown(icon: Control, duration: float) -> void:
-	var cooldown_progress: TextureProgressBar = icon.get_node("CooldownProgress") as TextureProgressBar
+	var cooldown_progress: TextureProgressBar = icon.get_node("%CooldownProgress") as TextureProgressBar
 	assert(cooldown_progress != null)
 
 	var tween: Tween = create_tween()
@@ -166,13 +172,13 @@ func _finish_cooldown(icon: Control) -> void:
 	tween.tween_property(icon, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	icon.set_meta("pulse_tween", tween)
 
-	var cooldown_progress: TextureProgressBar = icon.get_node("CooldownProgress") as TextureProgressBar
+	var cooldown_progress: TextureProgressBar = icon.get_node("%CooldownProgress") as TextureProgressBar
 	assert(cooldown_progress != null)
 	cooldown_progress.value = 0.0
 
 
 func _update_charge_display(icon: Control, charges: int) -> void:
-	var charge_label: Label = icon.get_node("ChargeLabel") as Label
+	var charge_label: Label = icon.get_node("%ChargeLabel") as Label
 	assert(charge_label != null)
 
 	charge_label.text = str(charges)
