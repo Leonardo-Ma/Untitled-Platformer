@@ -26,6 +26,17 @@ func _ready() -> void:
 	movement_controller.landed.connect(_on_landed)
 
 
+#region Visual effect
+
+
+func spawn_ghost_trail(duration: float = 0.5, color: Color = Color(0.8, 1.0, 1.5, 0.4)) -> void:
+	var vfx: Node = get_node("%VFXController")
+	vfx.spawn_ghost_trail(duration, color)
+
+
+#endregion
+
+
 func process_skills(body: CharacterBody3D, delta: float) -> void:
 	var skills: PlayerSkills = entity.skills
 	if not skills:

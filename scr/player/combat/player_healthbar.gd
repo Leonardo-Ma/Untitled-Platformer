@@ -34,6 +34,7 @@ func _on_player_spawned(player: Node) -> void:
 	# Initialize health bars in proper order to avoid clamping constraints
 	max_value = health_resource.max_health
 	damagebar.max_value = health_resource.max_health
+	timer.wait_time *= 2.0
 
 	# Explicitly call _set_health setter or do it dynamically via self
 	self.health = health_resource.health
@@ -44,19 +45,24 @@ func _set_health(new_health: float) -> void:
 	health = clampf(new_health, 0, max_value)
 	value = health
 
-	# Timer for damage bar animation
 	if health < prev_health:
 		timer.start()
-	else:
-		# If health increased, update damage bar immediately
-		damagebar.value = health
+	elif health > prev_health:
+		if damagebar:
+			damagebar.value = health
 
 
 func _on_damaged(_attack: Attack) -> void:
-	self.health = health_resource.health
+	var tween: Tween = create_tween()
+	modulate = Color(2.0, 2.0, 2.0, 1.0)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
 func _on_health_changed(new_health: int) -> void:
+	if new_health > health:
+		var tween: Tween = create_tween()
+		modulate = Color(0.5, 2.0, 0.5, 1.0)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	self.health = new_health
 
 
@@ -67,4 +73,5 @@ func _on_death() -> void:
 
 func _on_timer_timeout() -> void:
 	# Animate damagebar down to match current health
-	damagebar.value = health
+	var tween: Tween = create_tween()
+	tween.tween_property(damagebar, "value", health, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

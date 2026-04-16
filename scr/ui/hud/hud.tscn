@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://scr/ui/hud/collectibles_interface.gd" id="6_l3ger"]
 [ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://scr/ui/hud/abilities_interface.gd" id="7_8stm2"]
+[ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://icons/16x16/coins.png" id="8_05d6b"]
+[ext_resource type="Texture2D" uid="uid://d1glom2fd0461" path="res://icons/16x16/xp.png" id="9_1rhup"]
+[ext_resource type="Texture2D" uid="uid://c4vr015qfs1x" path="res://icons/16x16/gear.png" id="10_gy4ue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
 
@@ -151,9 +154,10 @@ layout_mode = 2
 columns = 10
 
 [node name="Collectible1" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=233471282]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-expand_mode = 1
+texture = ExtResource("8_05d6b")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="CounterLabel" type="Label" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer/Collectible1" unique_id=926886071]
@@ -170,11 +174,12 @@ grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
-text = "0"
+text = "99"
 
 [node name="Collectible2" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1969383905]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("9_1rhup")
 expand_mode = 1
 stretch_mode = 5
 
@@ -192,11 +197,12 @@ grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
-text = "0"
+text = "99"
 
 [node name="Collectible3" type="TextureRect" parent="MarginContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1485683767]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("10_gy4ue")
 expand_mode = 1
 stretch_mode = 5
 
@@ -214,7 +220,7 @@ grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
-text = "0"
+text = "99"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=114191235]
 layout_mode = 2

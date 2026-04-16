@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" scale="1" border="10">
     <diagram id="cx9zFhAoh4Pe2WsfvzCV" name="Main">
-        <mxGraphModel dx="3723" dy="2381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
+        <mxGraphModel dx="3423" dy="2381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -145,7 +145,7 @@
                 </object>
                 <object label="TO DO" status="New" id="zGidKKg1ztPtrP2wG4Ue-21">
                     <mxCell style="swimlane;strokeWidth=2;fontFamily=Permanent Marker;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=light-dark(#A0522D,#000033);" parent="zGidKKg1ztPtrP2wG4Ue-20" vertex="1">
-                        <mxGeometry x="187.5" y="28" width="187.5" height="919.41" as="geometry"/>
+                        <mxGeometry x="187.5" y="28" width="187.5" height="967.6285714285714" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="Fix movement animation&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="21">
@@ -158,49 +158,39 @@
                         <mxGeometry x="20" y="126.18095238095239" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Smoke particle effect when landing on platform&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="YVmbmAJROaMNfE4UVtPe-33">
+                <object label="Add sfx handler&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="23">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="231.36190476190478" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Trail particles&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="43">
+                <object label="Interactable Component (Door, secret passage, puzzle)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="aXA1tpfaSAcbaf5xl08l-45">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="336.5428571428572" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Add sfx handler&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="23">
+                <object label="Improve Skills&lt;font color=&quot;#484848&quot;&gt;&amp;nbsp;UI&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="47">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="441.72380952380956" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Interactable Component (Door, secret passage, puzzle)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="aXA1tpfaSAcbaf5xl08l-45">
+                <object label="When player falls, a hand picks him up and drags to where he fell from&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="um75dobvWoiSktYiKVND-32">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="546.9047619047619" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Improve Skills&lt;font color=&quot;#484848&quot;&gt;&amp;nbsp;UI&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="47">
+                <object label="Loot and Interaction&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="zGidKKg1ztPtrP2wG4Ue-40">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="652.0857142857143" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="When player falls, a hand picks him up and drags to where he fell from&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="um75dobvWoiSktYiKVND-32">
+                <object label="Grappling Hook (skill from accessory)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="44">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="757.2666666666667" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Loot and Interaction&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="zGidKKg1ztPtrP2wG4Ue-40">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
-                        <mxGeometry x="20" y="862.447619047619" width="147.5" height="85.18095238095239" as="geometry"/>
-                    </mxCell>
-                </object>
-                <object label="Grappling Hook (skill from accessory)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="44">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
-                        <mxGeometry x="20" y="967.6285714285714" width="147.5" height="85.18095238095239" as="geometry"/>
-                    </mxCell>
-                </object>
                 <object label="Tutorial&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="wO4MjMotxcq_kmV9VmXH-48">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
-                        <mxGeometry x="20" y="1072.8095238095239" width="147.5" height="85.18095238095239" as="geometry"/>
+                        <mxGeometry x="20" y="862.447619047619" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="DOING" status="In progress" id="zGidKKg1ztPtrP2wG4Ue-25">
@@ -233,9 +223,14 @@
                         <mxGeometry x="20" y="441.72380952380956" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Tweens! Tweens for me, Tweens for you, Tweens for everyone!&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="51">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                <object label="Smoke particle effect when landing on platform&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="YVmbmAJROaMNfE4UVtPe-33">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="546.9047619047619" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Trail particles&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="43">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
+                        <mxGeometry x="20" y="652.0857142857143" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="DONE (Need to add to readme features)" status="Completed" id="zGidKKg1ztPtrP2wG4Ue-28">

@@ -2,10 +2,27 @@
 
 [ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://scr/main.gd" id="1_b18bd"]
 [ext_resource type="PackedScene" uid="uid://cwgqh61gpa36j" path="res://scr/ui/ui.tscn" id="2_bx4na"]
+[ext_resource type="Script" uid="uid://b4pk3vfyqba1t" path="res://scr/player/skills/player_skills.gd" id="6_ss67u"]
 [ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="7_ss67u"]
+[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="7_yk2f6"]
 [ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="9_pguyi"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/world_asset/tutorial.tscn" id="11_bx4na"]
 [ext_resource type="PackedScene" uid="uid://cqyfierp40fon" path="res://scr/world_asset/chests/chest.tscn" id="17_ha2kd"]
+
+[sub_resource type="Resource" id="Resource_ss67u"]
+script = ExtResource("6_ss67u")
+can_double_jump = true
+can_ground_dash = true
+can_air_dash = true
+can_teleport_dash = true
+can_feather_fall = true
+metadata/_custom_type_script = "uid://b4pk3vfyqba1t"
+
+[sub_resource type="Resource" id="Resource_q4m34"]
+script = ExtResource("7_yk2f6")
+walk_speed = 8.5
+run_speed = 19.5
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
 [node name="Main" type="Node" unique_id=1979390252]
 script = ExtResource("1_b18bd")
@@ -20,6 +37,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="Player" parent="Tutorial" unique_id=922527968 instance=ExtResource("7_ss67u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7718496, 28.118496)
+skills = SubResource("Resource_ss67u")
+movement = SubResource("Resource_q4m34")
 
 [node name="Chest" parent="Tutorial" unique_id=1968144271 instance=ExtResource("17_ha2kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7281647, 1.3621294, 21.147532)

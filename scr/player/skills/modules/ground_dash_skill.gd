@@ -68,6 +68,8 @@ func apply_logic(body: CharacterBody3D, _skills: PlayerSkills) -> void:
 func _start_dash(body: CharacterBody3D, skills: PlayerSkills, action_dir: String) -> void:
 	skills_controller.is_sliding = true
 	_dash_timer = skills.ground_dash_duration
+
+	skills_controller.spawn_ghost_trail(0.4)
 	_dash_cooldown = skills.ground_dash_cooldown
 	ground_dash_cooldown_started.emit(_dash_cooldown)
 

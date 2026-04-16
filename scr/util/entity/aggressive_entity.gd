@@ -24,6 +24,9 @@ signal melee_attacked
 @export var ai_config: AIConfig
 
 var goap_agent: GoapAgent = null
+var _damage_material: StandardMaterial3D
+var _damage_tween: Tween
+var _prev_health: int = 0
 
 # TODO Consider @onready collision layer and mask (Maybe in a parent Entity class?)
 @onready var hitbox: Hitbox = %Hitbox
@@ -46,7 +49,13 @@ func _ready() -> void:
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)
 	assert(movement, "Movement incorrect for " + self.name)
 
+	# Damage visual feedback
+	_setup_damage_material()
+
+	_prev_health = health.health
 	health.died.connect(_on_death)
+	health.damaged.connect(_on_damaged)
+	health.health_changed.connect(_on_health_changed)
 	# Inject timer creation capability into health resource - Dependency Injection
 	health.initialize_timer_callback(_create_timer)
 
@@ -89,6 +98,9 @@ func _ready() -> void:
 func _on_death() -> void:
 	print_debug(str(self.name) + " is dead, Jim!")
 
+	if _damage_tween and _damage_tween.is_valid():
+		_damage_tween.kill()
+
 	if goap_agent != null:
 		print_debug("Disabling GOAP agent ", goap_agent.name)
 		goap_agent.set_process(false)
@@ -99,13 +111,62 @@ func _on_death() -> void:
 		hurtbox.set_deferred("monitoring", false)
 		hurtbox.set_deferred("monitorable", false)
 
-	await get_tree().create_timer(10.0).timeout
+	var death_tween: Tween = create_tween()
+
+	death_tween.tween_interval(2.0)
+	death_tween.tween_property(self, "scale", Vector3.ZERO, 1.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+	await get_tree().create_timer(5.0).timeout
 	self.queue_free()
 
 
 func register_goap_agent(agent: GoapAgent) -> void:
 	print_debug("Registering GOAP agent: ", agent.name)
 	goap_agent = agent
+
+
+#region Visual damage effect
+func _setup_damage_material() -> void:
+	_damage_material = StandardMaterial3D.new()
+	_damage_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_damage_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_damage_material.albedo_color = Color(1.0, 1.0, 1.0, 0.0)
+
+	for mesh: MeshInstance3D in _get_all_mesh_instances(self):
+		mesh.material_overlay = _damage_material
+
+
+func _on_damaged(_attack: Attack) -> void:
+	if _damage_tween and _damage_tween.is_valid():
+		_damage_tween.kill()
+
+	_damage_material.albedo_color = Color(1.0, 1.0, 1.0, 0.5)
+	_damage_tween = create_tween()
+	_damage_tween.tween_property(_damage_material, "albedo_color:a", 0.0, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+func _on_health_changed(new_health: int) -> void:
+	if new_health > _prev_health:
+		if _damage_tween and _damage_tween.is_valid():
+			_damage_tween.kill()
+		# Flash green on heal (pulse)
+		_damage_material.albedo_color = Color(0.3, 1.0, 0.3, 0.4)
+		_damage_tween = create_tween()
+		_damage_tween.tween_property(_damage_material, "albedo_color:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	_prev_health = new_health
+
+
+func _get_all_mesh_instances(node: Node) -> Array[MeshInstance3D]:
+	var result: Array[MeshInstance3D] = []
+	for child: Node in node.get_children():
+		if child is MeshInstance3D:
+			result.append(child)
+		result.append_array(_get_all_mesh_instances(child))
+	return result
+
+
+#endregion
 
 
 ## Timer creation callback for Health resource (dependency injection)

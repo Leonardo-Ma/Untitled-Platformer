@@ -22,7 +22,7 @@ func _entity_ready() -> void:
 	GameEvents.player_spawned.emit(self)
 
 	# Connect controllers directly to each other
-	input_controller.inventory_toggled.connect(func(): inventory_controller.inventory_toggled.emit())
+	input_controller.inventory_toggled.connect(func() -> void: inventory_controller.inventory_toggled.emit())
 	input_controller.interact_requested.connect(_on_interact_requested)
 	input_controller.attack_pressed.connect(_on_attack_pressed)
 

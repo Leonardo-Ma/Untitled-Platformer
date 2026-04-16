@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://cpnmaicmyhwd6" path="res://scr/util/entity/entity_debug_label.gd" id="16_8mjma"]
 [ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://scr/goap/ai_config.gd" id="16_ametv"]
 [ext_resource type="Script" uid="uid://bll0orhps41m6" path="res://scr/util/controller/knockback_controller.gd" id="21_bceom"]
+[ext_resource type="Script" uid="uid://cpusxg43clwxv" path="res://scr/player/controller/vfx_controller.gd" id="22_w7jfr"]
 
 [sub_resource type="Resource" id="Resource_wefi8"]
 resource_local_to_scene = true
@@ -140,8 +141,14 @@ script = ExtResource("12_27k0l")
 metadata/_custom_type_script = "uid://r2b3ysikxov0"
 
 [node name="KnockbackController" type="Node" parent="Controllers" unique_id=1106279333]
+unique_name_in_owner = true
 script = ExtResource("21_bceom")
 metadata/_custom_type_script = "uid://bll0orhps41m6"
+
+[node name="VFXController" type="Node" parent="Controllers" unique_id=692832492]
+unique_name_in_owner = true
+script = ExtResource("22_w7jfr")
+metadata/_custom_type_script = "uid://cpusxg43clwxv"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1218537899]
 target_desired_distance = 1.2

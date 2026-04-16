@@ -65,6 +65,9 @@ func _perform_teleport_dash(body: CharacterBody3D, skills: PlayerSkills) -> void
 	query.exclude = [body.get_rid()]
 
 	var result: Dictionary = space_state.intersect_ray(query)
+
+	skills_controller.spawn_ghost_trail(2.0, Color(0.1, 0.1, 0.1, 0.7))  # Shadow
+
 	if result.is_empty():
 		body.global_position = target_pos
 	else:

@@ -77,6 +77,8 @@ func _start_air_dash(body: CharacterBody3D, skills: PlayerSkills, action_dir: St
 	_dash_cooldown = skills.air_dash_cooldown
 	air_dash_cooldown_started.emit(_dash_cooldown)
 
+	skills_controller.spawn_ghost_trail(0.4)  # VFX
+
 	var input_vec: Vector2 = Vector2.ZERO
 	match action_dir:
 		"forward":

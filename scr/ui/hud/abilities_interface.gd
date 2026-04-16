@@ -151,7 +151,10 @@ func _start_cooldown(icon: Control, duration: float) -> void:
 
 
 func _finish_cooldown(icon: Control) -> void:
-	icon.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	icon.modulate = Color(2.0, 2.0, 2.0, 1.0)  # Bright bloom
+
+	var mod_tween: Tween = create_tween()
+	mod_tween.tween_property(icon, "modulate", Color.WHITE, 0.4).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 	if icon.has_meta("pulse_tween"):
 		var old_tween: Tween = icon.get_meta("pulse_tween")
@@ -159,9 +162,8 @@ func _finish_cooldown(icon: Control) -> void:
 			old_tween.kill()
 
 	var tween: Tween = create_tween()
-	tween.set_loops(2)
-	tween.tween_property(icon, "scale", Vector2(1.15, 1.15), 0.08)
-	tween.tween_property(icon, "scale", Vector2(1.0, 1.0), 0.08)
+	tween.tween_property(icon, "scale", Vector2(1.25, 1.25), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(icon, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	icon.set_meta("pulse_tween", tween)
 
 	var cooldown_progress: TextureProgressBar = icon.get_node("CooldownProgress") as TextureProgressBar
