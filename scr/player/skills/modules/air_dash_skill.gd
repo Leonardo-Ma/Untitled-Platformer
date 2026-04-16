@@ -40,6 +40,7 @@ func process_timers(_skills: PlayerSkills, delta: float) -> void:
 	if _dash_cooldown > 0.0:
 		_dash_cooldown -= delta
 		if _dash_cooldown <= 0.0:
+			_air_dash_used = false
 			air_dash_cooldown_finished.emit()
 
 

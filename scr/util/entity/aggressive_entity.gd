@@ -39,9 +39,9 @@ var _prev_health: int = 0
 @onready var hurtbox: Hurtbox = %Hurtbox
 @onready var status_manager: StatusManager = %StatusManager
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
-@onready var navigation_controller: Node = %NavigationController
-@onready var goap_controller: GoapMemory = %GoapController
-@onready var perception_system: PerceptionSystem = %PerceptionSystem
+@onready var navigation_controller: Node = get_node_or_null("%NavigationController")
+@onready var goap_controller: GoapMemory = get_node_or_null("%GoapController")
+@onready var perception_system: PerceptionSystem = get_node_or_null("%PerceptionSystem")
 
 
 ## Inherited artifacts should override _entity_ready instead of this

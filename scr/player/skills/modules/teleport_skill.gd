@@ -2,6 +2,7 @@ class_name PlayerTeleportSkill
 extends PlayerSkillModule
 
 signal teleport_charges_updated(charges: int)
+signal teleport_cooldown_started(duration: float)
 
 const DASH_SOUND: AudioStream = preload("uid://vo301kuo1mby")  # whoosh_2.wav
 
@@ -35,6 +36,10 @@ func process_timers(skills: PlayerSkills, delta: float) -> void:
 			_teleport_regen_timer = 0.0
 			teleport_charges_updated.emit(_teleport_charges)
 
+			# Continue cooldown if not fully replenished
+			if _teleport_charges < skills.teleport_max_charges:
+				teleport_cooldown_started.emit(skills.teleport_charge_regen_time)
+
 
 func handle_input(body: CharacterBody3D, skills: PlayerSkills) -> void:
 	if skills_controller.is_sliding or not skills_controller.movement_controller.movement_enabled:
@@ -46,6 +51,9 @@ func handle_input(body: CharacterBody3D, skills: PlayerSkills) -> void:
 
 
 func _perform_teleport_dash(body: CharacterBody3D, skills: PlayerSkills) -> void:
+	if _teleport_charges == skills.teleport_max_charges:
+		teleport_cooldown_started.emit(skills.teleport_charge_regen_time)
+
 	_teleport_charges -= 1
 	teleport_charges_updated.emit(_teleport_charges)
 

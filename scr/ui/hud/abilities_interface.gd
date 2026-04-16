@@ -93,7 +93,7 @@ func _on_player_spawned(player: CharacterBody3D) -> void:
 
 
 func _module_uses_cooldown(module: PlayerSkillModule) -> bool:
-	return module is PlayerGroundDashSkill or module is PlayerAirDashSkill
+	return module is PlayerGroundDashSkill or module is PlayerAirDashSkill or module is PlayerTeleportSkill or module is PlayerMultiJumpSkill
 
 
 func _get_action_key(action_name: String, fallback: String) -> String:
@@ -131,6 +131,7 @@ func _connect_module_signals(module: PlayerSkillModule, icon: Control) -> void:
 
 	elif module is PlayerTeleportSkill:
 		module.teleport_charges_updated.connect(func(charges: int) -> void: _update_charge_display(icon, charges))
+		module.teleport_cooldown_started.connect(func(duration: float) -> void: _start_cooldown_unblocked(icon, duration))
 		if "_teleport_charges" in module:
 			_update_charge_display(icon, module.get("_teleport_charges"))
 
@@ -141,6 +142,8 @@ func _connect_module_signals(module: PlayerSkillModule, icon: Control) -> void:
 
 	elif module is PlayerMultiJumpSkill:
 		module.multi_jump_executed.connect(func() -> void: _play_pulse_animation(icon))
+		if module.has_signal("multi_jump_cooldown_started"):
+			module.multi_jump_cooldown_started.connect(func(duration: float) -> void: _start_cooldown_unblocked(icon, duration))
 
 
 func _start_cooldown(icon: Control, duration: float) -> void:
@@ -154,6 +157,15 @@ func _start_cooldown(icon: Control, duration: float) -> void:
 	icon.modulate = Color(0.4, 0.4, 0.4, 0.8)
 
 	_show_input_blocked_feedback(icon)
+
+
+func _start_cooldown_unblocked(icon: Control, duration: float) -> void:
+	var cooldown_progress: TextureProgressBar = icon.get_node("%CooldownProgress") as TextureProgressBar
+	assert(cooldown_progress != null)
+
+	var tween: Tween = create_tween()
+	cooldown_progress.value = 100.0
+	tween.tween_property(cooldown_progress, "value", 0.0, duration)
 
 
 func _finish_cooldown(icon: Control) -> void:
