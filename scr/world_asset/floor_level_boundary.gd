@@ -11,26 +11,32 @@ var _fallback_spawn: Vector3
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	CheckpointManager.checkpoint_activated.connect(_on_checkpoint_activated)
 	call_deferred("_initialize_position")
 
 
 func _physics_process(_delta: float) -> void:
 	var player: Node3D = get_tree().get_first_node_in_group(Groups.PLAYERS)
 	if player != null:
-		# Follow the player on all axes
+		# Since it's a BoxShape3D and not infinite, we DO need to update X and Z to cover the player's lateral movements!
+		# The Y position strictly obeys the checkpoint height (it does not move up or down here).
 		global_position.x = player.global_position.x
 		global_position.z = player.global_position.z
-
-		if CheckpointManager.has_active_checkpoint():
-			global_position.y = CheckpointManager.get_respawn_position().y - fall_margin
-		else:
-			global_position.y = _fallback_spawn.y - fall_margin
 
 
 func _initialize_position() -> void:
 	var player: Node3D = get_tree().get_first_node_in_group(Groups.PLAYERS)
 	if player != null:
 		_fallback_spawn = player.global_position
+		if CheckpointManager.has_active_checkpoint():
+			global_position.y = CheckpointManager.get_respawn_position().y - fall_margin
+		else:
+			global_position.y = player.global_position.y - fall_margin
+
+
+func _on_checkpoint_activated(checkpoint_position: Vector3) -> void:
+	# Only update the Y height on signal
+	global_position.y = checkpoint_position.y - fall_margin
 
 
 func _on_body_entered(body: Node3D) -> void:

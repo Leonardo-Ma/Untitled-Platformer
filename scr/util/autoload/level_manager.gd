@@ -6,6 +6,8 @@ extends Node
 class ChunkData:
 	extends RefCounted
 	var scene_path: String
+	var height_shift: float = 0.0
+	var has_checkpoint: bool = false
 	var requires_multi_jump: bool
 	var requires_ground_dash: bool
 	var requires_air_dash: bool
@@ -19,6 +21,8 @@ const CHUNK_DIRECTORIES: Array[String] = [
 	"res://scr/world_asset/levels/easy/", "res://scr/world_asset/levels/medium/", "res://scr/world_asset/levels/hard/"
 ]
 const CHUNK_SPAWN_AMOUNT: int = 6
+const MAX_VERTICAL_DEVIATION: float = 40.0
+const MIN_VERTICAL_DEVIATION: float = -40.0
 
 const LEVEL_COMPLETE_SOUNDS: Array[AudioStream] = [
 	preload("res://scr/sound/level_complete/chequered_ink/brass_level_complete.wav"),
@@ -66,9 +70,15 @@ func _load_chunk_metadata_from_disk() -> void:
 							var temp_instance: Node = scene.instantiate()
 							if temp_instance is LevelChunk:
 								var checkpoints: Array[Node] = temp_instance.find_children("*", "Checkpoint", true, false)
-								assert(checkpoints.size() > 0, "LevelChunk missing Checkpoint in " + full_path)
 
 								var data: ChunkData = ChunkData.new()
+								data.has_checkpoint = checkpoints.size() > 0
+
+								var entrance_trigger: Node3D = temp_instance.get_node_or_null("%EntranceTrigger")
+								var exit_trigger: Node3D = temp_instance.get_node_or_null("%ExitTrigger")
+								if entrance_trigger != null and exit_trigger != null:
+									data.height_shift = exit_trigger.position.y - entrance_trigger.position.y
+
 								data.scene_path = full_path
 								data.requires_multi_jump = temp_instance.requires_multi_jump
 								data.requires_ground_dash = temp_instance.requires_ground_dash
@@ -130,7 +140,7 @@ func initialize_level(parent_world: Node) -> void:
 	var next_spawn_transform: Transform3D = Transform3D()
 
 	for i: int in range(CHUNK_SPAWN_AMOUNT):
-		var chunk_instance: LevelChunk = _get_random_valid_chunk()
+		var chunk_instance: LevelChunk = _get_random_valid_chunk(next_spawn_transform.origin.y)
 
 		# If chunk was pooled, it might already be in the tree, otherwise add it
 		if chunk_instance.get_parent() != parent_world:
@@ -198,7 +208,8 @@ func recycle_oldest_chunk(parent_world: Node) -> void:
 
 	_pool_chunk(oldest)
 
-	var next_chunk: LevelChunk = _get_random_valid_chunk()
+	var current_y: float = newest.get_node("%ExitTrigger").global_transform.origin.y
+	var next_chunk: LevelChunk = _get_random_valid_chunk(current_y)
 	if next_chunk.get_parent() != parent_world:
 		if next_chunk.get_parent() != null:
 			next_chunk.get_parent().remove_child(next_chunk)
@@ -227,7 +238,7 @@ func _pool_chunk(chunk: LevelChunk) -> void:
 	_chunk_pool[path].push_back(chunk)
 
 
-func _get_random_valid_chunk() -> LevelChunk:
+func _get_random_valid_chunk(current_y_height: float = 0.0) -> LevelChunk:
 	var skills: Dictionary = _get_player_skills()
 	var valid_pool: Array[ChunkData] = []
 
@@ -242,11 +253,18 @@ func _get_random_valid_chunk() -> LevelChunk:
 			continue
 		if data.requires_slow_fall and not skills.get("slow_fall", false):
 			continue
+
+		# Prevent level from going too high or too low
+		if current_y_height + data.height_shift > MAX_VERTICAL_DEVIATION and data.height_shift > 0:
+			continue
+		if current_y_height + data.height_shift < MIN_VERTICAL_DEVIATION and data.height_shift < 0:
+			continue
+
 		valid_pool.push_back(data)
 
 	assert(valid_pool.size() > 0, "No chunks available matching player skills.")
 
-	# Avoid repeating the last chunk if we have enough options
+	# Avoid repeating the last chunk if  enough options
 	if valid_pool.size() > 5:
 		valid_pool = valid_pool.filter(func(d: ChunkData) -> bool: return d.scene_path != _last_chunk_path)
 
@@ -254,11 +272,11 @@ func _get_random_valid_chunk() -> LevelChunk:
 	var chosen_data: ChunkData = valid_pool[random_idx]
 	_last_chunk_path = chosen_data.scene_path
 
-	# 1. Check if we have a suspended instance in the pool
+	# Check if  suspended instance in the pool
 	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():
 		return _chunk_pool[chosen_data.scene_path].pop_back()
 
-	# 2. Otherwise, fetch the asynchronously loaded scene and instantiate it
+	# Else fetch the asynchronously loaded scene and instantiate it
 	var scene: PackedScene
 	var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(chosen_data.scene_path)
 
