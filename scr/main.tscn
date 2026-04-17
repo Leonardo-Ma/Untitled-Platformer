@@ -30,7 +30,7 @@ unique_name_in_owner = true
 [node name="World" parent="." unique_id=1123589125 instance=ExtResource("9_pguyi")]
 
 [node name="Tutorial" parent="." unique_id=1297917088 instance=ExtResource("11_bx4na")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
 
 [node name="Player" parent="Tutorial" unique_id=922527968 instance=ExtResource("7_ss67u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7718496, 28.118496)
