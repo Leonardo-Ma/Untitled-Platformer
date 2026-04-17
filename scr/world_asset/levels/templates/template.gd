@@ -5,6 +5,7 @@ enum Difficulty { EASY, MEDIUM, HARD }
 
 @export_category("Difficulty")
 @export var difficulty: Difficulty = Difficulty.EASY
+@export var score_multiplier: float = 1.0
 
 @export_category("Skills Required")
 @export var requires_multi_jump: bool = false

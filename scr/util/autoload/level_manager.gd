@@ -6,7 +6,10 @@ extends Node
 class ChunkData:
 	extends RefCounted
 	var scene_path: String
+	var local_aabb: AABB
+	var entrance_transform: Transform3D
 	var height_shift: float = 0.0
+	var is_turn: bool = false
 	var has_checkpoint: bool = false
 	var requires_multi_jump: bool
 	var requires_ground_dash: bool
@@ -15,12 +18,13 @@ class ChunkData:
 	var requires_slow_fall: bool
 	var difficulty_points: int = 0
 	var skill_points: int = 0
+	var score_multiplier: float = 1.0
 
 
 const CHUNK_DIRECTORIES: Array[String] = [
 	"res://scr/world_asset/levels/easy/", "res://scr/world_asset/levels/medium/", "res://scr/world_asset/levels/hard/"
 ]
-const CHUNK_SPAWN_AMOUNT: int = 6
+const CHUNK_SPAWN_AMOUNT: int = 8
 const MAX_VERTICAL_DEVIATION: float = 40.0
 const MIN_VERTICAL_DEVIATION: float = -40.0
 
@@ -41,6 +45,7 @@ var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
 var _chunk_pool: Dictionary = {}  # Key: scene_path (String), Value: Array[LevelChunk]
 var _last_chunk_path: String = ""
+var _chunks_since_turn: int = 5
 
 
 func _ready() -> void:
@@ -69,6 +74,8 @@ func _load_chunk_metadata_from_disk() -> void:
 						if scene != null:
 							var temp_instance: Node = scene.instantiate()
 							if temp_instance is LevelChunk:
+								add_child(temp_instance)
+
 								var checkpoints: Array[Node] = temp_instance.find_children("*", "Checkpoint", true, false)
 
 								var data: ChunkData = ChunkData.new()
@@ -78,6 +85,13 @@ func _load_chunk_metadata_from_disk() -> void:
 								var exit_trigger: Node3D = temp_instance.get_node_or_null("%ExitTrigger")
 								if entrance_trigger != null and exit_trigger != null:
 									data.height_shift = exit_trigger.position.y - entrance_trigger.position.y
+									data.entrance_transform = temp_instance.global_transform.affine_inverse() * entrance_trigger.global_transform
+
+									var in_z: Vector3 = entrance_trigger.global_transform.basis.z.normalized()
+									var out_z: Vector3 = exit_trigger.global_transform.basis.z.normalized()
+									data.is_turn = in_z.angle_to(out_z) > 0.1
+
+								data.local_aabb = _calculate_chunk_aabb(temp_instance)
 
 								data.scene_path = full_path
 								data.requires_multi_jump = temp_instance.requires_multi_jump
@@ -85,6 +99,9 @@ func _load_chunk_metadata_from_disk() -> void:
 								data.requires_air_dash = temp_instance.requires_air_dash
 								data.requires_teleport = temp_instance.requires_teleport
 								data.requires_slow_fall = temp_instance.requires_slow_fall
+
+								if "score_multiplier" in temp_instance:
+									data.score_multiplier = temp_instance.score_multiplier
 
 								if "/easy/" in full_path:
 									data.difficulty_points = 10
@@ -113,9 +130,63 @@ func _load_chunk_metadata_from_disk() -> void:
 								# Start async loading the scene so it's ready in memory when needed
 								ResourceLoader.load_threaded_request(full_path)
 
+								remove_child(temp_instance)
 							temp_instance.free()
 				file_name = dir.get_next()
 	assert(_all_chunks.size() > 0, "No valid LevelChunks found in directories.")
+
+
+func _calculate_chunk_aabb(chunk_node: Node3D) -> AABB:
+	var aabb: AABB = AABB()
+	var is_first: bool = true
+
+	var collision_shapes: Array[Node] = chunk_node.find_children("*", "CollisionShape3D", true, false)
+	for shape: Node in collision_shapes:
+		var col_3d: CollisionShape3D = shape as CollisionShape3D
+		if col_3d.shape == null:
+			continue
+
+		var parent_area: Area3D = col_3d.get_parent() as Area3D
+		if parent_area != null and ("Trigger" in parent_area.name):
+			continue
+
+		# Godot 4 shapes don't expose AABB natively without shape queries or meshes,
+		# so temporarily fetch its debug mesh AABB (or default to a generic size if custom logic is needed)
+		var shape_aabb: AABB
+		if col_3d.shape is BoxShape3D:
+			shape_aabb = AABB(-col_3d.shape.size / 2.0, col_3d.shape.size)
+		elif col_3d.shape is SphereShape3D:
+			var r: float = col_3d.shape.radius
+			shape_aabb = AABB(Vector3(-r, -r, -r), Vector3(r * 2.0, r * 2.0, r * 2.0))
+		elif col_3d.shape is CylinderShape3D:
+			var r: float = col_3d.shape.radius
+			var h: float = col_3d.shape.height
+			shape_aabb = AABB(Vector3(-r, -h / 2.0, -r), Vector3(r * 2.0, h, r * 2.0))
+		else:
+			# Fallback for complex shapes (Convex/Concave) roughly estimating size
+			shape_aabb = AABB(Vector3(-5, -5, -5), Vector3(10, 10, 10))
+
+		var rel_transform: Transform3D = chunk_node.global_transform.affine_inverse() * col_3d.global_transform
+		var child_aabb: AABB = rel_transform * shape_aabb
+
+		if is_first:
+			aabb = child_aabb
+			is_first = false
+		else:
+			aabb = aabb.merge(child_aabb)
+
+	# Safety fallback in case chunks have no explicit physical colliders
+	if is_first:
+		aabb = AABB(Vector3(-10, -10, -10), Vector3(20, 20, 20))
+
+	return aabb
+
+
+func _get_chunk_data_by_path(path: String) -> ChunkData:
+	for data: ChunkData in _all_chunks:
+		if data.scene_path == path:
+			return data
+	return null
 
 
 ## Reset pool when the reload or exit
@@ -125,6 +196,7 @@ func clear_level() -> void:
 			_pool_chunk(chunk)
 	_active_chunks.clear()
 	_last_chunk_path = ""
+	_chunks_since_turn = 5
 
 
 func _get_player_skills() -> Dictionary:
@@ -140,7 +212,7 @@ func initialize_level(parent_world: Node) -> void:
 	var next_spawn_transform: Transform3D = Transform3D()
 
 	for i: int in range(CHUNK_SPAWN_AMOUNT):
-		var chunk_instance: LevelChunk = _get_random_valid_chunk(next_spawn_transform.origin.y)
+		var chunk_instance: LevelChunk = _get_random_valid_chunk(next_spawn_transform)
 
 		# If chunk was pooled, it might already be in the tree, otherwise add it
 		if chunk_instance.get_parent() != parent_world:
@@ -162,12 +234,11 @@ func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D)
 	var entrance_node: Node3D = chunk.get_node_or_null("%EntranceTrigger")
 
 	# Snap position and maintain the chunk native rotation
-	# TODO Need to check if the trigger is correctly implemented,
-	# this should avoid chunks to spawn backwards
 	if entrance_node != null:
-		chunk.global_position = target_transform.origin - entrance_node.position
+		var rel_entrance: Transform3D = chunk.global_transform.affine_inverse() * entrance_node.global_transform
+		chunk.global_transform = target_transform * rel_entrance.affine_inverse()
 	else:
-		chunk.global_position = target_transform.origin
+		chunk.global_transform = target_transform
 
 
 func _setup_chunk_trigger(chunk: LevelChunk, parent_world: Node) -> void:
@@ -191,7 +262,8 @@ func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: Leve
 		var chunk_path: String = passed_chunk.scene_file_path
 		for data: ChunkData in _all_chunks:
 			if data.scene_path == chunk_path:
-				GameEvents.add_score(data.difficulty_points + data.skill_points)
+				var total_score: int = roundi((data.difficulty_points + data.skill_points) * data.score_multiplier)
+				GameEvents.add_score(total_score)
 				break
 
 	# Only start recycling after the third chunk
@@ -208,8 +280,8 @@ func recycle_oldest_chunk(parent_world: Node) -> void:
 
 	_pool_chunk(oldest)
 
-	var current_y: float = newest.get_node("%ExitTrigger").global_transform.origin.y
-	var next_chunk: LevelChunk = _get_random_valid_chunk(current_y)
+	var target_transform: Transform3D = newest.get_node("%ExitTrigger").global_transform
+	var next_chunk: LevelChunk = _get_random_valid_chunk(target_transform)
 	if next_chunk.get_parent() != parent_world:
 		if next_chunk.get_parent() != null:
 			next_chunk.get_parent().remove_child(next_chunk)
@@ -218,7 +290,7 @@ func recycle_oldest_chunk(parent_world: Node) -> void:
 	# Snap the new chunk to the exit trigger of the current newest
 	next_chunk.process_mode = Node.PROCESS_MODE_INHERIT
 	next_chunk.visible = true
-	_align_chunk_to_transform(next_chunk, newest.get_node("%ExitTrigger").global_transform)
+	_align_chunk_to_transform(next_chunk, target_transform)
 
 	_active_chunks.push_back(next_chunk)
 	_setup_chunk_trigger(next_chunk, parent_world)
@@ -231,6 +303,9 @@ func _pool_chunk(chunk: LevelChunk) -> void:
 	if chunk.has_meta("scored"):
 		chunk.remove_meta("scored")
 
+	if chunk.get_parent() != null:
+		chunk.get_parent().remove_child(chunk)
+
 	# Keep a reference to its original scene path to fetch it later
 	var path: String = chunk.scene_file_path
 	if not _chunk_pool.has(path):
@@ -238,9 +313,11 @@ func _pool_chunk(chunk: LevelChunk) -> void:
 	_chunk_pool[path].push_back(chunk)
 
 
-func _get_random_valid_chunk(current_y_height: float = 0.0) -> LevelChunk:
+func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	var skills: Dictionary = _get_player_skills()
 	var valid_pool: Array[ChunkData] = []
+	var strict_pool: Array[ChunkData] = []
+	var current_y_height: float = target_transform.origin.y
 
 	for data: ChunkData in _all_chunks:
 		if data.requires_multi_jump and not skills.get("multi_jump", false):
@@ -254,15 +331,48 @@ func _get_random_valid_chunk(current_y_height: float = 0.0) -> LevelChunk:
 		if data.requires_slow_fall and not skills.get("slow_fall", false):
 			continue
 
+		# Prevent back-to-back turns
+		if data.is_turn and _chunks_since_turn < 5:
+			continue
+
+		valid_pool.push_back(data)
+
 		# Prevent level from going too high or too low
 		if current_y_height + data.height_shift > MAX_VERTICAL_DEVIATION and data.height_shift > 0:
 			continue
 		if current_y_height + data.height_shift < MIN_VERTICAL_DEVIATION and data.height_shift < 0:
 			continue
 
-		valid_pool.push_back(data)
+		# --- AABB Intersection Check ---
+		var proposed_transform: Transform3D = target_transform * data.entrance_transform.affine_inverse()
+		var proposed_aabb: AABB = proposed_transform * data.local_aabb
 
-	assert(valid_pool.size() > 0, "No chunks available matching player skills.")
+		var overlaps: bool = false
+		for active_chunk: LevelChunk in _active_chunks:
+			if not is_instance_valid(active_chunk):
+				continue
+			var active_data: ChunkData = _get_chunk_data_by_path(active_chunk.scene_file_path)
+			if active_data != null:
+				var active_aabb: AABB = active_chunk.global_transform * active_data.local_aabb
+
+				# Shrink generously to forgive triggers/platforms exactly touching (like adjacent floors)
+				var shrunk_proposed: AABB = proposed_aabb.grow(-2.0)
+				var shrunk_active: AABB = active_aabb.grow(-2.0)
+
+				if shrunk_proposed.size.x > 0 and shrunk_active.size.x > 0 and shrunk_proposed.intersects(shrunk_active):
+					overlaps = true
+					break
+
+		if overlaps:
+			continue
+
+		strict_pool.push_back(data)
+
+	# Soft fallbacks to prevent crash if constraints box the generator into a corner
+	if strict_pool.size() > 0:
+		valid_pool = strict_pool
+	elif valid_pool.size() == 0:
+		valid_pool = _all_chunks
 
 	# Avoid repeating the last chunk if  enough options
 	if valid_pool.size() > 5:
@@ -272,7 +382,12 @@ func _get_random_valid_chunk(current_y_height: float = 0.0) -> LevelChunk:
 	var chosen_data: ChunkData = valid_pool[random_idx]
 	_last_chunk_path = chosen_data.scene_path
 
-	# Check if  suspended instance in the pool
+	if chosen_data.is_turn:
+		_chunks_since_turn = 0
+	else:
+		_chunks_since_turn += 1
+
+	# Check if suspended instance in the pool
 	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():
 		return _chunk_pool[chosen_data.scene_path].pop_back()
 
