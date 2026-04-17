@@ -80,7 +80,8 @@ commit_parsers = [
   { message = "^Chore\\(pr\\)", skip = true },
   { message = "^Chore\\(pull\\)", skip = true },
   { message = "^Chore\\(npm\\).*yarn\\.lock", skip = true },
-  { message = "^Chore|^Ci|^Build", group = "<!-- 7 -->⚙️ Miscellaneous Tasks" },
+  { message = "^Chore|^Ci|^Build", skip = true },
+  { message = "^Remove", group = "<!-- 7 -->🗑️ Removes" },
   { body = ".*Security", group = "<!-- 8 -->🛡️ Security" },
   { message = "^Revert", group = "<!-- 9 -->◀️ Revert" },
 ]
