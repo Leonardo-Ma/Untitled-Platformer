@@ -9,10 +9,10 @@
 [![CI][ci_badge]][ci_url]
 [![GitHub version][github_release_badge]][changelog]
 
-[ci_badge]: https://github.com/Leonardo-Ma/Space-Toilet/actions/workflows/ci.yml/badge.svg
-[ci_url]: https://github.com/Leonardo-Ma/Space-Toilet/actions/workflows/ci.yml
+[ci_badge]: https://github.com/Leonardo-Ma/Untitled-Platformer/actions/workflows/ci.yml/badge.svg
+[ci_url]: https://github.com/Leonardo-Ma/Untitled-Platformer/actions/workflows/ci.yml
 
-[github_release_badge]: https://img.shields.io/github/v/release/leonardo-ma/Space-Toilet
+[github_release_badge]: https://img.shields.io/github/v/release/leonardo-ma/Untitled-Platformer
 
 <!------------------------------------------------->
 <h3>
