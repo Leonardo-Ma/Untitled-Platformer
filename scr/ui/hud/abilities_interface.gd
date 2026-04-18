@@ -1,6 +1,6 @@
 # BUG Need to heavily improve this garbage
 # TODO Make diagrams >:(
-extends MarginContainer
+extends Control
 
 var ability_uis: Dictionary = {}  # { module_instance : { icon, charge_label, cooldown_progress } }
 

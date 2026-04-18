@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bnq8if00xnf2p" path="res://icons/16x16/bomb.png" id="1_hwd1u"]
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=1806796059]
-offset_right = 124.0
+offset_right = 104.0
 offset_bottom = 88.0
 
 [node name="Ability" type="TextureRect" parent="." unique_id=1660509414]
@@ -35,13 +35,13 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "(SPACE)"
+theme_override_font_sizes/font_size = 14
+text = "Double 
+W/A/S/D"
 horizontal_alignment = 1
 
 [node name="ChargeLabel" type="Label" parent="HBoxContainer" unique_id=252372805]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -49,4 +49,4 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
 text = "0"
-horizontal_alignment = 2
+horizontal_alignment = 3

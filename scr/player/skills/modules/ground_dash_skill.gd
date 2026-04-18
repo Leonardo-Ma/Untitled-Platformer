@@ -19,7 +19,7 @@ func get_icon() -> Texture2D:
 
 
 func get_custom_input_hint() -> String:
-	return "Double W/A/S/D"
+	return "Double\n W/A/S/D"
 
 
 func is_unlocked(skills: PlayerSkills) -> bool:

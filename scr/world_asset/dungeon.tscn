@@ -12,8 +12,14 @@
 vertices = PackedVector3Array(-3.5530949, 0.37780982, -3.5530949, -3.5530949, 0.37780982, 15.446905, 33.446907, 0.37780982, 15.446905, 33.446907, 0.37780982, -3.5530949)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_f7plw"]
+size = Vector3(0.18969727, 0.0031255183, 0.06125243)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cr444"]
+size = Vector3(0.17553711, 0.0031255183, 0.06125243)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dhjrq"]
-size = Vector3(0.1895576, 0.0031255183, 0.06125243)
+size = Vector3(0.15917969, 0.0031255183, 0.06125243)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qlb32"]
 size = Vector3(0.008948197, 0.008948197, 0.030889511)
@@ -352,34 +358,21 @@ mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallWest" unique_id=420765177]
-transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
-shape = SubResource("BoxShape3D_dhjrq")
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0.09462987, 0.030304626, 0)
+shape = SubResource("BoxShape3D_f7plw")
 
 [node name="WallWest2" type="StaticBody3D" parent="Walls" unique_id=758345532]
 transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, 14.905413, 0.028295994, -4.2071943)
 metadata/_edit_group_ = true
 
 [node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallWest2" unique_id=540741672]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.963273, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0, 0, 0)
 mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallWest2" unique_id=389002413]
-transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
-shape = SubResource("BoxShape3D_dhjrq")
-
-[node name="WallWest4" type="StaticBody3D" parent="Walls" unique_id=1102946417]
-transform = Transform3D(-4.589696e-06, 0, 105, 0, 105, 0, -105, 0, -4.589696e-06, -4.0945873, 0.028295994, 15.792806)
-metadata/_edit_group_ = true
-
-[node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallWest4" unique_id=751597142]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-mesh = ExtResource("3_dhjrq")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallWest4" unique_id=1353994548]
-transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
-shape = SubResource("BoxShape3D_dhjrq")
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0.09462987, 0.030304626, 0)
+shape = SubResource("BoxShape3D_cr444")
 
 [node name="WallEast2" type="StaticBody3D" parent="Walls" unique_id=1293319383]
 transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, -4.094588, 0.028295994, 15.792806)
@@ -399,12 +392,12 @@ transform = Transform3D(105, 0, 0, 0, 105, 0, 0, 0, 105, 15.829079, 0.028295994,
 metadata/_edit_group_ = true
 
 [node name="BrickWall01" type="MeshInstance3D" parent="Walls/WallEast6" unique_id=2085990709]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.917, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallEast6" unique_id=931717610]
-transform = Transform3D(1.0000004, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0.09462987, 0.030304626, 0)
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0.09462987, 0.030304626, 0)
 shape = SubResource("BoxShape3D_dhjrq")
 
 [node name="Pillars" type="Node3D" parent="." unique_id=1885493808]
@@ -432,6 +425,32 @@ mesh = ExtResource("4_cr444")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_02" unique_id=1886477028]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Pillar_01_03" type="StaticBody3D" parent="Pillars" unique_id=122234816]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 32.95818, -0.06217909, 14.459145)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_03" unique_id=1939279337]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_03" unique_id=1345436700]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Pillar_01_05" type="StaticBody3D" parent="Pillars" unique_id=1066026381]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 32.95818, -0.06217909, -3.0100603)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_05" unique_id=738602655]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_05" unique_id=1143862502]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
 shape = SubResource("BoxShape3D_qlb32")
 
@@ -543,7 +562,16 @@ transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4
 [node name="Spikes_02" parent="Traps/Spikes" unique_id=765098820 instance=ExtResource("6_0dkqc")]
 transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 12.73865, 0.38613796, 11.01001)
 
+[node name="Spikes_03" parent="Traps/Spikes" unique_id=573613324 instance=ExtResource("6_0dkqc")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 17.738651, 0.38613796, 6.01001)
+
+[node name="Spikes_04" parent="Traps/Spikes" unique_id=1183027425 instance=ExtResource("6_0dkqc")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 19.738651, 0.38613796, 1.0100098)
+
 [node name="Collectibles" type="Node3D" parent="." unique_id=785218821]
 
 [node name="GoldCoin_01" parent="Collectibles" unique_id=1971537253 instance=ExtResource("9_voiec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.308853, 2.3183827, -1.4973187)
+
+[node name="GoldCoin_02" parent="Collectibles" unique_id=979430069 instance=ExtResource("9_voiec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.308853, 2.3183827, 11.502682)

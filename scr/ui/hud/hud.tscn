@@ -52,25 +52,27 @@ offset_bottom = 263.0
 [node name="Timer" type="Timer" parent="MagicSignPressIndicator" unique_id=212922644]
 one_shot = true
 
-[node name="BoxContainer" type="HBoxContainer" parent="." unique_id=583183313]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=583183313]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = -50.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer" unique_id=2064273424]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2064273424]
+custom_maximum_size = Vector2(364, -1)
+custom_minimum_size = Vector2(364, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerHealthbar" type="ProgressBar" parent="BoxContainer/VBoxContainer" unique_id=1575779896]
+[node name="PlayerHealthbar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=1575779896]
 unique_name_in_owner = true
 z_index = 1
 custom_maximum_size = Vector2(436, 44)
@@ -83,7 +85,7 @@ value = 60.0
 show_percentage = false
 script = ExtResource("1_jreyb")
 
-[node name="Damagebar" type="ProgressBar" parent="BoxContainer/VBoxContainer/PlayerHealthbar" unique_id=1633898337]
+[node name="Damagebar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/PlayerHealthbar" unique_id=1633898337]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -96,15 +98,15 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_i25bo")
 value = 80.0
 show_percentage = false
 
-[node name="Timer" type="Timer" parent="BoxContainer/VBoxContainer/PlayerHealthbar" unique_id=266650581]
+[node name="Timer" type="Timer" parent="HBoxContainer/VBoxContainer/PlayerHealthbar" unique_id=266650581]
 wait_time = 0.4
 one_shot = true
 
-[node name="Score" type="HBoxContainer" parent="BoxContainer/VBoxContainer" unique_id=554377692]
+[node name="Score" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=554377692]
 layout_mode = 2
 script = ExtResource("2_cl4jo")
 
-[node name="ScoreIcon" type="TextureRect" parent="BoxContainer/VBoxContainer/Score" unique_id=374341339]
+[node name="ScoreIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/Score" unique_id=374341339]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(64, 62)
@@ -112,20 +114,20 @@ layout_mode = 2
 texture = ExtResource("3_ndnj2")
 stretch_mode = 5
 
-[node name="ScoreLabel" type="Label" parent="BoxContainer/VBoxContainer/Score" unique_id=1880561012]
+[node name="ScoreLabel" type="Label" parent="HBoxContainer/VBoxContainer/Score" unique_id=1880561012]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_4o8dc")
 
-[node name="InventoryInterface" type="Control" parent="BoxContainer/VBoxContainer" unique_id=2066091218]
+[node name="InventoryInterface" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=2066091218]
 unique_name_in_owner = true
 visible = false
 z_index = 1
 layout_mode = 2
 script = ExtResource("1_2sq47")
 
-[node name="PlayerInventory" parent="BoxContainer/VBoxContainer/InventoryInterface" unique_id=137839633 instance=ExtResource("2_l3ger")]
+[node name="PlayerInventory" parent="HBoxContainer/VBoxContainer/InventoryInterface" unique_id=137839633 instance=ExtResource("2_l3ger")]
 visible = false
 layout_mode = 0
 offset_left = 10.0
@@ -133,7 +135,7 @@ offset_top = 10.0
 offset_right = 26.0
 offset_bottom = 26.0
 
-[node name="ExternalInventory" parent="BoxContainer/VBoxContainer/InventoryInterface" unique_id=1501087187 instance=ExtResource("2_l3ger")]
+[node name="ExternalInventory" parent="HBoxContainer/VBoxContainer/InventoryInterface" unique_id=1501087187 instance=ExtResource("2_l3ger")]
 visible = false
 layout_mode = 0
 offset_left = 638.0
@@ -141,7 +143,7 @@ offset_top = 260.0
 offset_right = 654.0
 offset_bottom = 276.0
 
-[node name="GrabbedSlot" parent="BoxContainer/VBoxContainer/InventoryInterface" unique_id=435231555 instance=ExtResource("3_8stm2")]
+[node name="GrabbedSlot" parent="HBoxContainer/VBoxContainer/InventoryInterface" unique_id=435231555 instance=ExtResource("3_8stm2")]
 visible = false
 modulate = Color(1, 1, 1, 0.447059)
 self_modulate = Color(1, 1, 1, 0)
@@ -151,54 +153,57 @@ offset_top = 10.0
 offset_right = 74.0
 offset_bottom = 74.0
 
-[node name="Collectibles" type="MarginContainer" parent="BoxContainer/VBoxContainer" unique_id=1290539515]
+[node name="Collectibles" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=1290539515]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("6_l3ger")
 
-[node name="CollectiblesContainer" type="GridContainer" parent="BoxContainer/VBoxContainer/Collectibles" unique_id=1670828236]
+[node name="CollectiblesContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/Collectibles" unique_id=1670828236]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 10
 
-[node name="Collectible1" parent="BoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=482959666 instance=ExtResource("8_1rhup")]
+[node name="Collectible1" parent="HBoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=482959666 instance=ExtResource("8_1rhup")]
 layout_mode = 2
 
-[node name="Collectible2" parent="BoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=2063211370 instance=ExtResource("8_1rhup")]
+[node name="Collectible2" parent="HBoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=2063211370 instance=ExtResource("8_1rhup")]
 layout_mode = 2
 
-[node name="Collectible3" parent="BoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1375961723 instance=ExtResource("8_1rhup")]
+[node name="Collectible3" parent="HBoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1375961723 instance=ExtResource("8_1rhup")]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="BoxContainer" unique_id=114191235]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=114191235]
+custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Abilities" type="MarginContainer" parent="BoxContainer/VBoxContainer2" unique_id=535480650]
-custom_minimum_size = Vector2(400, 100)
+[node name="Abilities" type="Panel" parent="HBoxContainer/VBoxContainer2" unique_id=1095038458]
+custom_minimum_size = Vector2(480, 110)
 layout_mode = 2
 size_flags_vertical = 10
 script = ExtResource("7_8stm2")
 
-[node name="AbilitiesContainer" type="GridContainer" parent="BoxContainer/VBoxContainer2/Abilities" unique_id=1910653337]
+[node name="AbilitiesContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/Abilities" unique_id=1910653337]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_right = 476.0
+offset_bottom = 111.0
 columns = 10
 
-[node name="Ability1" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1660509414 instance=ExtResource("13_gy4ue")]
+[node name="Ability1" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1660509414 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability2" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=216017026 instance=ExtResource("13_gy4ue")]
+[node name="Ability2" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=216017026 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability3" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1030572130 instance=ExtResource("13_gy4ue")]
+[node name="Ability3" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1030572130 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability4" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1027499728 instance=ExtResource("13_gy4ue")]
+[node name="Ability4" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1027499728 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability5" parent="BoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
+[node name="Ability5" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
 [connection signal="timeout" from="MagicSignPressIndicator/Timer" to="MagicSignPressIndicator" method="_on_timer_timeout"]
-[connection signal="timeout" from="BoxContainer/VBoxContainer/PlayerHealthbar/Timer" to="BoxContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]
+[connection signal="timeout" from="HBoxContainer/VBoxContainer/PlayerHealthbar/Timer" to="HBoxContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]

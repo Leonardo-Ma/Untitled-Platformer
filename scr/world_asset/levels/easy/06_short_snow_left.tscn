@@ -7,6 +7,7 @@
 
 [node name="LevelChunk" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_ypqr5")
+score_multiplier = 0.3
 
 [node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_qlucv")]
 unique_name_in_owner = true
