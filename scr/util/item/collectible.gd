@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is PlayerEntity:
-		SoundManager.play_sound(COLLECT_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX, Vector2(global_position.x, global_position.z))
+		SoundManager.play_sound(COLLECT_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX, global_position)
 		_apply_effect(body as PlayerEntity)
 		queue_free()
 

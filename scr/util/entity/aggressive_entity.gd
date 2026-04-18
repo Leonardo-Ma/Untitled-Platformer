@@ -146,7 +146,7 @@ func _on_damaged(_attack: Attack) -> void:
 	if _damage_tween and _damage_tween.is_valid():
 		_damage_tween.kill()
 
-	SoundManager.play_combat_sound(DAMAGE_SOUNDS.pick_random(), Vector2(global_position.x, global_position.z), 1)
+	SoundManager.play_combat_sound(DAMAGE_SOUNDS.pick_random(), global_position, 1)
 
 	_damage_material.albedo_color = Color(1.0, 1.0, 1.0, 0.5)
 	_damage_tween = create_tween()

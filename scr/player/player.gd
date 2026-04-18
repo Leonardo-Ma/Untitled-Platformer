@@ -65,7 +65,7 @@ func _on_interact_requested() -> void:
 
 
 func _on_attack_pressed() -> void:
-	SoundManager.play_combat_sound(ATTACK_SOUNDS.pick_random(), Vector2(global_position.x, global_position.z))
+	SoundManager.play_combat_sound(ATTACK_SOUNDS.pick_random(), global_position)
 	melee_attacked.emit()
 
 

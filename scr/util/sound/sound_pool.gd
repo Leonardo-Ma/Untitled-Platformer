@@ -1,3 +1,4 @@
+# BUG Some audios' volume decreases and increases wrongly
 class_name SoundPool
 extends Node
 
@@ -41,14 +42,16 @@ func _setup_pools() -> void:
 			_pools[category].append(player)
 
 
-# Return type is Node (common parent of both AudioStreamPlayer and AudioStreamPlayer2D)
 func _create_player_for_category(category: int) -> Node:
 	var player: Node
 
-	# Use 2D players for positional sounds
+	# Use 3D players for positional sounds
 	match category:
 		SoundManager.SoundCategory.SFX, SoundManager.SoundCategory.AMBIENT, SoundManager.SoundCategory.VOICE:
-			player = AudioStreamPlayer2D.new()
+			player = AudioStreamPlayer3D.new()
+
+			player.unit_size = 15.0
+			player.max_distance = 200.0
 		_:  # MUSIC, UI
 			player = AudioStreamPlayer.new()
 
@@ -56,7 +59,7 @@ func _create_player_for_category(category: int) -> Node:
 	return player
 
 
-func play_sound(sound: AudioStream, category: int, position: Vector2 = Vector2.ZERO) -> Variant:
+func play_sound(sound: AudioStream, category: int, position: Vector3 = Vector3.ZERO) -> Variant:
 	var player: Variant = _get_available_player(category)
 	if player == null:
 		player = _replace_oldest_sound(category)
@@ -70,8 +73,13 @@ func play_sound(sound: AudioStream, category: int, position: Vector2 = Vector2.Z
 	player.pitch_scale = 1.0
 	player.stream_paused = false  # Reset paused state
 
-	if player is AudioStreamPlayer2D and position != Vector2.ZERO:
-		(player as AudioStreamPlayer2D).global_position = position
+	if player is AudioStreamPlayer3D:
+		if position != Vector3.ZERO:
+			(player as AudioStreamPlayer3D).global_position = position
+			(player as AudioStreamPlayer3D).attenuation_model = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE
+		else:
+			# If no position is provided, disable distance attenuation so it's heard cleanly everywhere like UI/Music
+			(player as AudioStreamPlayer3D).attenuation_model = AudioStreamPlayer3D.ATTENUATION_DISABLED
 
 	player.play()
 	_active_players[category].append(player as Node)
@@ -82,7 +90,7 @@ func play_sound(sound: AudioStream, category: int, position: Vector2 = Vector2.Z
 
 
 func _get_available_player(category: int) -> Variant:
-	# Return type is inferred (will be AudioStreamPlayer or AudioStreamPlayer2D)
+	# Return type is inferred (will be AudioStreamPlayer or AudioStreamPlayer3D)
 	if _pools[category].is_empty():
 		return null
 	return _pools[category].pop_back()

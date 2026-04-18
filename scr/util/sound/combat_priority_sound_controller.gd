@@ -40,13 +40,13 @@ func initialize(pool: SoundPool) -> void:
 # Main playback with priority
 func play_with_priority(
 	sound: AudioStream,
-	position: Vector2,
+	position: Vector3,
 	priority: int,
 	sound_id: String = "",
-	source_node: Node2D = null,
+	source_node: Node3D = null,
 ) -> bool:
 	# Calculate actual position
-	var actual_pos: Vector2 = position
+	var actual_pos: Vector3 = position
 	if source_node:
 		actual_pos = source_node.global_position
 
@@ -89,7 +89,7 @@ func play_with_priority(
 # Play multiple sounds in sequence (e.g., combo attacks)
 func play_combo(sounds: Array, positions: Array, priorities: Array, delay_ms: float = 100.0) -> void:
 	for i: int in range(sounds.size()):
-		var pos: Vector2 = positions[i] if i < positions.size() else Vector2.ZERO
+		var pos: Vector3 = positions[i] if i < positions.size() else Vector3.ZERO
 		var prio: int = priorities[i] if i < priorities.size() else Priority.MEDIUM
 
 		if i == 0:

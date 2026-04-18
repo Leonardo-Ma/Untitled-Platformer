@@ -35,12 +35,12 @@ func _create_subsystems() -> void:
 
 
 # Basic sound playback
-func play_sound(sound: AudioStream, category: SoundCategory, position: Vector2 = Vector2.ZERO) -> void:
+func play_sound(sound: AudioStream, category: SoundCategory, position: Vector3 = Vector3.ZERO) -> void:
 	pool.play_sound(sound, category, position)
 
 
 # Combat-specific with priority
-func play_combat_sound(sound: AudioStream, position: Vector2, priority: int = 0) -> void:
+func play_combat_sound(sound: AudioStream, position: Vector3, priority: int = 0) -> void:
 	combat.play_with_priority(sound, position, priority)
 
 
