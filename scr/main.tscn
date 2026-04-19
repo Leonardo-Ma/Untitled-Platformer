@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://scr/main.gd" id="1_b18bd"]
 [ext_resource type="PackedScene" uid="uid://cwgqh61gpa36j" path="res://scr/ui/ui.tscn" id="2_bx4na"]
+[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="6_52hli"]
 [ext_resource type="PackedScene" uid="uid://c56qwxi1bjc7i" path="res://scr/entity/knight/knight.tscn" id="6_ahl4q"]
 [ext_resource type="Script" uid="uid://dm0m5bu51w0fd" path="res://scr/world_asset/floor_level_boundary.gd" id="7_q4m34"]
 [ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="7_ss67u"]
@@ -15,7 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://c6on7cp5w028m" path="res://scr/world_asset/dungeon_assets/individual_assets/spikes.tscn" id="13_vmhdc"]
 [ext_resource type="PackedScene" uid="uid://bneqpm1wdlci3" path="res://scr/world_asset/levels/assets/moving_platform_orange.tscn" id="14_o5q5n"]
 
-[sub_resource type="Resource" id="Resource_o5q5n"]
+[sub_resource type="Resource" id="Resource_bqaqr"]
+script = ExtResource("6_52hli")
+walk_speed = 7.0
+run_speed = 150.0
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+
+[sub_resource type="Resource" id="Resource_b18bd"]
 resource_local_to_scene = true
 script = ExtResource("8_tpi1q")
 type = 1
@@ -23,14 +30,14 @@ damage = 40
 knockback_force = 3.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_52hli"]
+[sub_resource type="Resource" id="Resource_8sfv0"]
 resource_local_to_scene = true
 script = ExtResource("8_vmhdc")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="Resource" id="Resource_bqaqr"]
+[sub_resource type="Resource" id="Resource_1p1te"]
 resource_local_to_scene = true
 script = ExtResource("9_o5q5n")
 metadata/_custom_type_script = "uid://b46orajcidbak"
@@ -59,12 +66,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.7632)
 
 [node name="Player" parent="Tutorial" unique_id=922527968 instance=ExtResource("7_ss67u")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9327073, 1.3706474, -16.759369)
+movement = SubResource("Resource_bqaqr")
 
 [node name="Knight" parent="Tutorial" unique_id=280064195 instance=ExtResource("6_ahl4q")]
 transform = Transform3D(-1.0000001, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1.0000001, -1, 1.2985864, 3.3774033)
-attack = SubResource("Resource_o5q5n")
-health = SubResource("Resource_52hli")
-stats = SubResource("Resource_bqaqr")
+attack = SubResource("Resource_b18bd")
+health = SubResource("Resource_8sfv0")
+stats = SubResource("Resource_1p1te")
 
 [node name="Checkpoints" type="Node3D" parent="Tutorial" unique_id=330886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.608765)

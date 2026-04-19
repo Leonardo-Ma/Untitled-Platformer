@@ -3,7 +3,8 @@
 
 [![Conventional Commits][conventional_commits_badge]][conventional_commits_url]
 [![Keep a Changelog][keep_changelog_badge]][keep_changelog_url]
-[![Semantion Version (SemVer)][semver_badge]][semver_url]  
+[![Semantion Version (SemVer)][semver_badge]][semver_url]
+[![Docs With Zensical][zensical_badge]][zensical_url]
 [![Pre-commit][pre_commit_badge]][pre_commit_url]
 [![git-cliff - Git Changelog Generator][git_cliff_badge]][git_cliff_url]  
 
@@ -59,6 +60,7 @@ Dependencies:
 - [pipx](https://github.com/pypa/pipx)
 - [pre-commit](https://github.com/pre-commit/pre-commit)
 
+Installing with pipx:
 ```bash
 pipx install pre-commit
 pipx ensurepath
@@ -66,6 +68,17 @@ pipx ensurepath
 cd <repo-path>
 pre-commit install --install-hooks
 pre-commit install --hook-type commit-msg
+```
+
+### To change docs (zensical)
+
+Dependencies:
+- [zensical](https://zensical.org/)
+
+Installing with pipx:
+```bash
+cd <project path>
+pipx install zensical
 ```
 
 ### Commit guideline
@@ -94,7 +107,7 @@ git-cliff
 ```
 
 # Acknowledgments
-Refer to [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md).
+Refer to [ACKNOWLEDGMENTS.md](docs/ACKNOWLEDGMENTS.md).
 
 
 <!------------------------------------------------------------->
@@ -106,6 +119,9 @@ Refer to [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md).
 
 [semver_badge]: https://img.shields.io/badge/Semantic%20Versioning-2.0.0-green?logo=semver
 [semver_url]: https://semver.org/
+
+[zensical_badge]: https://img.shields.io/badge/Docs%20With%20Zensical-gray?logo=senzical&logoColor=gray
+[zensical_url]: https://zensical.org/
 
 [pre_commit_badge]: https://img.shields.io/badge/Pre--Commit-enabled-green?logo=pre-commit
 [pre_commit_url]: https://pre-commit.com/

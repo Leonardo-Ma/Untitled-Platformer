@@ -18,8 +18,3 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
-
-# Logseq related
-docs/documentation/*
-!docs/documentation/pages/
-!docs/documentation/.gdignore

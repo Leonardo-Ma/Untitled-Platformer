@@ -8,7 +8,7 @@ exclude: |
     .*\.import$|
     (^|/)build/|
     addons/|
-    docs/documentation/logseq/|
+    site/|
     .*\.mtlx$|
     .*\.drawio$|
     .*\.png$|
