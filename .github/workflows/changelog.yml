@@ -1,13 +1,30 @@
-- name: Generate diff changelog
-  run: |
-    git cliff --latest --strip header -o CHANGELOG.generated.md
+name: Changelog Check
 
-- name: Compare with committed CHANGELOG.md
-  run: |
-    if ! diff -u CHANGELOG.md CHANGELOG.generated.md; then
-      echo "CHANGELOG.md is out of date!"
-      echo "Run git-cliff locally and commit the result before tag."
-      exit 1
-    fi
+on:
+  push:
+    tags:
+      - '*'
 
-    echo "Changelog is correct."
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install git-cliff
+        run: |
+          cargo install git-cliff
+
+      - name: Generate diff changelog
+        run: |
+          git cliff --latest --strip header -o CHANGELOG.generated.md
+
+      - name: Compare with committed CHANGELOG.md
+        run: |
+          if ! diff -u CHANGELOG.md CHANGELOG.generated.md; then
+            echo "CHANGELOG.md is out of date!"
+            echo "Run git-cliff locally and commit the result before tag."
+            exit 1
+          fi
