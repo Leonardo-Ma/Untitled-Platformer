@@ -1670,6 +1670,7 @@ size = Vector3(2.1247706, 2.8462768, 0.37046856)
 [node name="Node3D" type="Node3D" unique_id=766929677]
 
 [node name="Props" type="Node3D" parent="." unique_id=1758391584]
+visible = false
 
 [node name="railing" type="MeshInstance3D" parent="Props" unique_id=1282414447]
 mesh = SubResource("ArrayMesh_k5ehr")
@@ -1897,6 +1898,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_krskn")
 
 [node name="Stairs" type="Node3D" parent="." unique_id=1774762899]
+visible = false
 
 [node name="stairs" type="MeshInstance3D" parent="Stairs" unique_id=1508057780]
 mesh = SubResource("ArrayMesh_58rlj")
@@ -1955,6 +1957,7 @@ shape = SubResource("ConvexPolygonShape3D_k7f3d")
 [node name="Traps" type="Node3D" parent="." unique_id=96034596]
 
 [node name="spikes floor" type="MeshInstance3D" parent="Traps" unique_id=1417612910]
+visible = false
 mesh = SubResource("ArrayMesh_3xlrp")
 skeleton = NodePath("")
 
@@ -1964,6 +1967,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_rswbm")
 
 [node name="spikes" type="MeshInstance3D" parent="Traps" unique_id=1014867319]
+visible = false
 mesh = SubResource("ArrayMesh_xa1n5")
 skeleton = NodePath("")
 
@@ -1973,6 +1977,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_hvhyk")
 
 [node name="saw blade floor" type="MeshInstance3D" parent="Traps" unique_id=1594857979]
+visible = false
 mesh = SubResource("ArrayMesh_m5ws2")
 skeleton = NodePath("")
 
@@ -1982,6 +1987,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_50h2t")
 
 [node name="saw blade floor corner" type="MeshInstance3D" parent="Traps" unique_id=156303946]
+visible = false
 mesh = SubResource("ArrayMesh_5caau")
 skeleton = NodePath("")
 
@@ -1991,6 +1997,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_1pwb0")
 
 [node name="saw blade" type="MeshInstance3D" parent="Traps" unique_id=1367635586]
+visible = false
 mesh = SubResource("ArrayMesh_skg6o")
 skeleton = NodePath("")
 
@@ -2000,6 +2007,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jqx7g")
 
 [node name="blade trap" type="MeshInstance3D" parent="Traps" unique_id=1954391612]
+visible = false
 mesh = SubResource("ArrayMesh_h8q8k")
 skeleton = NodePath("")
 
@@ -2009,6 +2017,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_pprsx")
 
 [node name="blade trap base" type="MeshInstance3D" parent="Traps" unique_id=328821993]
+visible = false
 mesh = SubResource("ArrayMesh_pwlw2")
 skeleton = NodePath("")
 
@@ -2018,6 +2027,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_rgau5")
 
 [node name="Interactable" type="Node3D" parent="." unique_id=327659354]
+visible = false
 
 [node name="Key_001" type="MeshInstance3D" parent="Interactable" unique_id=1019599447]
 mesh = SubResource("ArrayMesh_s02gj")
@@ -2056,6 +2066,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_iakjd")
 
 [node name="WallsDoors" type="Node3D" parent="." unique_id=838598573]
+visible = false
 
 [node name="door_013" type="MeshInstance3D" parent="WallsDoors" unique_id=1542551524]
 mesh = SubResource("ArrayMesh_eecm7")

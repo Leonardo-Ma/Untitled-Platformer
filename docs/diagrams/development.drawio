@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" scale="1" border="10">
     <diagram id="cx9zFhAoh4Pe2WsfvzCV" name="Main">
-        <mxGraphModel dx="3295" dy="2233" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
+        <mxGraphModel dx="3772" dy="2075" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -188,24 +188,34 @@
                         <mxGeometry x="375" y="28" width="200" height="919.41" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Save and load&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" link="https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html" id="pJ3uSeKpmcf_2nzhuHjm-33">
+                <object label="Spike trap trigger&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="pJ3uSeKpmcf_2nzhuHjm-33">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="21" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Level chunk transition&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="2FUA6Hij4xSa2xVxUrEN-50">
-                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
+                <object label="Moving platforms&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="94">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
                         <mxGeometry x="20" y="126.18095238095239" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="UI note on top when entering new level (With name and difficulty)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="48">
+                <object label="Level chunk transition&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="2FUA6Hij4xSa2xVxUrEN-50">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="231.36190476190478" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Improve Skills&lt;font color=&quot;#484848&quot;&gt;&amp;nbsp;UI&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="47">
+                <object label="UI note on top when entering new level (With name and difficulty)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="48">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="336.5428571428572" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Improve Skills&lt;font color=&quot;#484848&quot;&gt;&amp;nbsp;UI&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="47">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
+                        <mxGeometry x="20" y="441.72380952380956" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Save and load&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" link="https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html" id="93">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                        <mxGeometry x="20" y="546.9047619047619" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="DONE (Need to add to readme features)" status="Completed" id="zGidKKg1ztPtrP2wG4Ue-28">
@@ -360,7 +370,7 @@
                     </mxCell>
                 </UserObject>
                 <UserObject label="In-game roadmap" id="92">
-                    <mxCell style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;connectable=0;enumerate=0;" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-49">
+                    <mxCell style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;connectable=0;enumerate=0;" parent="bBEi1dyaBOHSlupFfo9l-49" vertex="1">
                         <mxGeometry x="248" y="130" width="70" height="30" as="geometry"/>
                     </mxCell>
                 </UserObject>
@@ -451,28 +461,28 @@
                 <mxCell id="2AoRUoapF8K-Em0GScke-47" value="Entity Spawn &amp;amp; Manager" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;rounded=1;" parent="bBEi1dyaBOHSlupFfo9l-86" vertex="1">
                     <mxGeometry x="256.25" y="162" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" value="Skills" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;rounded=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-86">
+                <mxCell id="83" value="Skills" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;rounded=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="bBEi1dyaBOHSlupFfo9l-86" vertex="1">
                     <mxGeometry x="11.25" y="212" width="340" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="Multi jump" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="83">
+                <mxCell id="82" value="Multi jump" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="83" vertex="1">
                     <mxGeometry x="13.5" y="40" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="84" value="Dash" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="83">
+                <mxCell id="84" value="Dash" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="83" vertex="1">
                     <mxGeometry x="91.5" y="40" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="85" value="Air Dash" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="83">
+                <mxCell id="85" value="Air Dash" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="83" vertex="1">
                     <mxGeometry x="171.5" y="40" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="Feather Fall" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="83">
+                <mxCell id="86" value="Feather Fall" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="83" vertex="1">
                     <mxGeometry x="251.5" y="40" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="Teleport" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="83">
+                <mxCell id="87" value="Teleport" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="83" vertex="1">
                     <mxGeometry x="11.5" y="80" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" value="Hook" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;" vertex="1" parent="83">
+                <mxCell id="88" value="Hook" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;" parent="83" vertex="1">
                     <mxGeometry x="91.5" y="80" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="91" value="Stamina" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;noLabel=0;rounded=1;" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-86">
+                <mxCell id="91" value="Stamina" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;noLabel=0;rounded=1;" parent="bBEi1dyaBOHSlupFfo9l-86" vertex="1">
                     <mxGeometry x="342.75" y="42" width="70" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="kpV6V4yQIDp057W4oSi4-73" value="Checkpoints" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);rounded=1;connectable=0;" parent="bBEi1dyaBOHSlupFfo9l-50" vertex="1">
@@ -497,11 +507,11 @@
                     </mxCell>
                 </UserObject>
                 <UserObject label="Collectibles" id="89">
-                    <mxCell style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;connectable=0;enumerate=0;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-50">
+                    <mxCell style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;rounded=1;connectable=0;enumerate=0;strokeColor=default;fontColor=default;fillColor=light-dark(#FFFFFF,#003300);" parent="bBEi1dyaBOHSlupFfo9l-50" vertex="1">
                         <mxGeometry x="189.75" y="200" width="70" height="30" as="geometry"/>
                     </mxCell>
                 </UserObject>
-                <mxCell id="90" value="Loot" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#330000);noLabel=0;rounded=1;" vertex="1" parent="bBEi1dyaBOHSlupFfo9l-50">
+                <mxCell id="90" value="Loot" style="whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#330000);noLabel=0;rounded=1;" parent="bBEi1dyaBOHSlupFfo9l-50" vertex="1">
                     <mxGeometry x="190.5" y="245" width="70" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="bBEi1dyaBOHSlupFfo9l-68" value="Accessibility" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;rounded=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=light-dark(#FFFFFF,#330000);" parent="bBEi1dyaBOHSlupFfo9l-48" vertex="1">

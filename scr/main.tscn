@@ -12,8 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="9_pguyi"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://scr/world_asset/checkpoint_flag.tscn" id="10_52hli"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/world_asset/tutorial.tscn" id="11_bx4na"]
+[ext_resource type="PackedScene" uid="uid://c6on7cp5w028m" path="res://scr/world_asset/dungeon_assets/individual_assets/spikes.tscn" id="13_vmhdc"]
 
-[sub_resource type="Resource" id="Resource_bqaqr"]
+[sub_resource type="Resource" id="Resource_vmhdc"]
 resource_local_to_scene = true
 script = ExtResource("8_tpi1q")
 type = 1
@@ -21,14 +22,14 @@ damage = 40
 knockback_force = 3.0
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_b18bd"]
+[sub_resource type="Resource" id="Resource_o5q5n"]
 resource_local_to_scene = true
 script = ExtResource("8_vmhdc")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="Resource" id="Resource_8sfv0"]
+[sub_resource type="Resource" id="Resource_52hli"]
 resource_local_to_scene = true
 script = ExtResource("9_o5q5n")
 metadata/_custom_type_script = "uid://b46orajcidbak"
@@ -60,9 +61,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9
 
 [node name="Knight" parent="Tutorial" unique_id=280064195 instance=ExtResource("6_ahl4q")]
 transform = Transform3D(-1.0000001, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1.0000001, -1, 1.2985864, 3.3774033)
-attack = SubResource("Resource_bqaqr")
-health = SubResource("Resource_b18bd")
-stats = SubResource("Resource_8sfv0")
+attack = SubResource("Resource_vmhdc")
+health = SubResource("Resource_o5q5n")
+stats = SubResource("Resource_52hli")
 
 [node name="Checkpoints" type="Node3D" parent="Tutorial" unique_id=330886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.608765)
@@ -83,3 +84,6 @@ metadata/_custom_type_script = "uid://csig12422io62"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorLevelBoundary/Hitbox" unique_id=741375312]
 shape = SubResource("BoxShape3D_vmhdc")
+
+[node name="Spike" parent="." unique_id=2024920262 instance=ExtResource("13_vmhdc")]
+transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 1.2846608, -68.17299)
