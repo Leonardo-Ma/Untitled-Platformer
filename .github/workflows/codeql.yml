@@ -3,8 +3,12 @@ name: "Code Analysis CodeQL"
 on:
   push:
     branches: ["main"]
+    paths:
+      - ".github/workflows/**"
   pull_request:
     branches: ["main"]
+    paths:
+      - ".github/workflows/**"
   schedule:
     - cron: '00 5 * * 2' # 5 AM Tuesday
 
