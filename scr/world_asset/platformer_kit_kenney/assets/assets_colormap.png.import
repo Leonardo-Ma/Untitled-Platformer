@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccs62hofilq3i"
-path.s3tc="res://.godot/imported/assets_colormap.png-02ad92f9cdacdf16311f206c3fff87bf.s3tc.ctex"
+path.s3tc="res://.godot/imported/assets_colormap.png-fbe361721c5a4d77d8add6e8200bc745.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://scr/world_asset/platformer_kit/assets/assets_colormap.png"
-dest_files=["res://.godot/imported/assets_colormap.png-02ad92f9cdacdf16311f206c3fff87bf.s3tc.ctex"]
+source_file="res://scr/world_asset/platformer_kit_kenney/assets/assets_colormap.png"
+dest_files=["res://.godot/imported/assets_colormap.png-fbe361721c5a4d77d8add6e8200bc745.s3tc.ctex"]
 
 [params]
 
