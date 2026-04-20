@@ -1,4 +1,0 @@
-- [[Terrain3d]]
-- Rules:
-	- Default text/style:
-		- "If you can see this, this is a bug!

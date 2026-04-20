@@ -74,13 +74,11 @@ repo = "fontawesome/brands/github"
 #code = "Jetbrains Mono"
 
 [[project.theme.palette]]
-media = "(prefers-color-scheme: dark)"
 scheme = "default"
 toggle.icon = "lucide/sun"
 toggle.name = "Dark mode"
 
 [[project.theme.palette]]
-media = "(prefers-color-scheme: light)"
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Light mode"

@@ -5,6 +5,7 @@
 [![Keep a Changelog][keep_changelog_badge]][keep_changelog_url]
 [![Semantion Version (SemVer)][semver_badge]][semver_url]
 [![Docs With Zensical][zensical_badge]][zensical_url]
+
 [![Pre-commit][pre_commit_badge]][pre_commit_url]
 [![git-cliff - Git Changelog Generator][git_cliff_badge]][git_cliff_url]  
 
