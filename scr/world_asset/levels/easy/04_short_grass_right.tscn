@@ -41,8 +41,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 165)
 [node name="GrassPlatform9" parent="Platforms" unique_id=810428904 instance=ExtResource("6_71ha2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, 168)
 
-[node name="GrassPlatform10" parent="Platforms" unique_id=2112305712 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 2, 178)
+[node name="GrassPlatform10" parent="Platforms" unique_id=1924209665 instance=ExtResource("6_71ha2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 4, 177)
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=1149308522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -124)

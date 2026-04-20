@@ -15,15 +15,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
 
 [node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("4_vtepi")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 20.357464, 188.74878)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 13.30714, 185.74878)
 
 [node name="Platforms" type="Node3D" parent="." unique_id=110955359]
 
 [node name="GrassPlatform" parent="Platforms" unique_id=537577895 instance=ExtResource("5_nvqb6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 3.4776468)
 
 [node name="GrassPlatform9" parent="Platforms" unique_id=261631060 instance=ExtResource("5_nvqb6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 6.5830317)
 
 [node name="GrassPlatform4" parent="Platforms" unique_id=397787695 instance=ExtResource("5_nvqb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 22)
@@ -60,9 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8, 165.71457)
 
 [node name="GrassPlatform26" parent="Platforms" unique_id=495259173 instance=ExtResource("5_nvqb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.543778, 10, 179.55339)
-
-[node name="GrassPlatform27" parent="Platforms" unique_id=1555390066 instance=ExtResource("5_nvqb6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 12, 191)
 
 [node name="GrassPlatform6" parent="Platforms" unique_id=767651646 instance=ExtResource("5_nvqb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -3, 50)

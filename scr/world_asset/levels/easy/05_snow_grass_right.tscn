@@ -15,17 +15,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 1)
 
 [node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_n7i6n")]
 unique_name_in_owner = true
-transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 0.9999999, 0, 0.9999999, 0, -4.3711374e-08, -47, 9.8995495, 52.0831)
+transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 0.9999999, 0, 0.9999999, 0, -4.3711374e-08, -47, 5.9058228, 52.0831)
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=1149308522]
 
 [node name="Platforms" type="Node3D" parent="." unique_id=1093726929]
 
-[node name="GrassPlatform" parent="Platforms" unique_id=1850419682 instance=ExtResource("4_xpu0x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 6)
-
 [node name="GrassPlatform2" parent="Platforms" unique_id=817564388 instance=ExtResource("4_xpu0x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 6.162756)
 
 [node name="GrassPlatform3" parent="Platforms" unique_id=2015340725 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, 17)
@@ -42,8 +39,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 41)
 [node name="GrassPlatform9" parent="Platforms" unique_id=596463747 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, 44)
 
-[node name="GrassPlatform10" parent="Platforms" unique_id=2124229674 instance=ExtResource("4_xpu0x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 2, 54)
+[node name="GrassPlatform10" parent="Platforms" unique_id=537577895 instance=ExtResource("4_xpu0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, 55)
 
 [node name="Traps" type="Node3D" parent="." unique_id=669077855]
 

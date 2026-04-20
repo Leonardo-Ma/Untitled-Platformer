@@ -21,6 +21,9 @@ size = Vector3(0.17553711, 0.0031255183, 0.06125243)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dhjrq"]
 size = Vector3(0.15917969, 0.0031255183, 0.06125243)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_q8rma"]
+size = Vector3(0.19140625, 0.0031255183, 0.06125243)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qlb32"]
 size = Vector3(0.008948197, 0.008948197, 0.030889511)
 
@@ -397,8 +400,8 @@ mesh = ExtResource("3_dhjrq")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallEast6" unique_id=931717610]
-transform = Transform3D(1.0000004, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0.09462987, 0.030304626, 0)
-shape = SubResource("BoxShape3D_dhjrq")
+transform = Transform3D(1.0000004, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0.0779597, 0.030304626, 0)
+shape = SubResource("BoxShape3D_q8rma")
 
 [node name="Pillars" type="Node3D" parent="." unique_id=1885493808]
 
@@ -474,13 +477,22 @@ shape = SubResource("BoxShape3D_qlb32")
 [node name="Barrel_01" parent="Props/Barrels" unique_id=867034360 instance=ExtResource("4_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 25.94512, 1.0883816, -0.63824844)
 
+[node name="Barrel_03" parent="Props/Barrels" unique_id=538126779 instance=ExtResource("4_voiec")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 21.94512, 1.0883816, 10.255065)
+
+[node name="Barrel_04" parent="Props/Barrels" unique_id=1607613962 instance=ExtResource("4_voiec")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.94512, 1.0883816, 10.255065)
+
+[node name="Barrel_05" parent="Props/Barrels" unique_id=523182056 instance=ExtResource("4_voiec")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.9451199, 1.0883816, 6.255065)
+
 [node name="Barrel_02" parent="Props/Barrels" unique_id=1663030180 instance=ExtResource("4_voiec")]
 transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 29.94512, 1.0883816, -0.63824844)
 
 [node name="Skulls" type="Node3D" parent="Props" unique_id=2017701350]
 
 [node name="skull_01" type="MeshInstance3D" parent="Props/Skulls" unique_id=589913318]
-transform = Transform3D(-99.53393, 8.388028, -4.7580233, -2.175282, -67.596115, -73.66162, -9.394996, -73.2148, 67.463524, 9.282031, 0.33047193, 3.245014)
+transform = Transform3D(-99.53393, 8.388028, -4.7580233, -2.175282, -67.596115, -73.66162, -9.394996, -73.2148, 67.463524, 9.282031, 0.5396126, 3.245014)
 mesh = SubResource("ArrayMesh_voiec")
 skeleton = NodePath("")
 
@@ -532,6 +544,20 @@ transform = Transform3D(100, 0, 0, 0, 100, -1.4210853e-12, 0, 1.4210853e-12, 100
 mesh = SubResource("ArrayMesh_te6sk")
 skeleton = NodePath("")
 
+[node name="Box_01_02" type="RigidBody3D" parent="Props/Boxes" unique_id=1086498968]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 6.7938404, 0.72387236, -1.6196201)
+mass = 0.5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxes/Box_01_02" unique_id=2064665003]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_0dkqc")
+
+[node name="Box_001" type="MeshInstance3D" parent="Props/Boxes/Box_01_02" unique_id=2125563772]
+transform = Transform3D(100, 0, 0, 0, 100, -1.4210853e-12, 0, 1.4210853e-12, 100, 0, 0, 0)
+mesh = SubResource("ArrayMesh_te6sk")
+skeleton = NodePath("")
+
 [node name="Torches" type="Node3D" parent="Props" unique_id=2125968192]
 
 [node name="Torch_01_01" parent="Props/Torches" unique_id=153820126 instance=ExtResource("5_cr444")]
@@ -539,6 +565,18 @@ transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4
 
 [node name="Torch_01_02" parent="Props/Torches" unique_id=133695907 instance=ExtResource("5_cr444")]
 transform = Transform3D(-100, 8.742277e-06, 3.8213706e-13, 0, -4.3711384e-06, 99.99999, 8.742278e-06, 99.99999, 4.3711384e-06, 0.83300114, 3.1652231, 15.405031)
+
+[node name="Torch_01_03" parent="Props/Torches" unique_id=1961943859 instance=ExtResource("5_cr444")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 18.2464, 3.889872, -3.660997)
+
+[node name="Torch_01_04" parent="Props/Torches" unique_id=1518363128 instance=ExtResource("5_cr444")]
+transform = Transform3D(-100, 8.742277e-06, 3.8213706e-13, 0, -4.3711384e-06, 99.99999, 8.742278e-06, 99.99999, 4.3711384e-06, 15.833001, 3.1652231, 15.405031)
+
+[node name="Torch_01_05" parent="Props/Torches" unique_id=583572489 instance=ExtResource("5_cr444")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 30.2464, 3.889872, -3.660997)
+
+[node name="Torch_01_06" parent="Props/Torches" unique_id=47229832 instance=ExtResource("5_cr444")]
+transform = Transform3D(-100, 8.742277e-06, 3.8213706e-13, 0, -4.3711384e-06, 99.99999, 8.742278e-06, 99.99999, 4.3711384e-06, 27.833, 3.1652231, 15.405031)
 
 [node name="Chests" type="Node3D" parent="Props" unique_id=97370806]
 
