@@ -3,29 +3,29 @@ Inspired by [Thrive's Code Style](https://github.com/Revolutionary-Games/Thrive/
 
 Objectives [Godot's GDScript style guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html)
 
-
+---
 This style guide is separated into three parts: code rules, other file rules, and guidelines for git.
 
 The style rules are intended to increase readability of the source code for humans that will read the written code. The most important rule of all is: Use common sense.
 
 ## Code style rules
 
--  | Type          | Convention   | Example                      |
-   |---------------|--------------|------------------------------|
-   | File names    | snake_case   | yaml_parser.gd               |
-   | Class names   | PascalCase   | class_name YAMLParser        |
-   | Node names    | PascalCase   | Camera3D, Player             |
-   | Functions     | snake_case   | func load_level():           |
-   | Variables     | snake_case   | var particle_effect          |
-   | Signals       | snake_case   | signal door_opened           |
-   | Constants     | CONSTANT_CASE| const MAX_SPEED = 200        |
-   | Enum names    | PascalCase   | enum Element                 |
-   | Enum members  | CONSTANT_CASE| {EARTH, WATER, AIR, FIRE}    |
----
+| Type          | Convention   | Example                      |
+|---------------|--------------|------------------------------|
+| File names    | snake_case   | yaml_parser.gd               |
+| Class names   | PascalCase   | class_name YAMLParser        |
+| Node names    | PascalCase   | Camera3D, Player             |
+| Functions     | snake_case   | func load_level():           |
+| Variables     | snake_case   | var particle_effect          |
+| Signals       | snake_case   | signal door_opened           |
+| Constants     | CONSTANT_CASE| const MAX_SPEED = 200        |
+| Enum names    | PascalCase   | enum Element                 |
+| Enum members  | CONSTANT_CASE| {EARTH, WATER, AIR, FIRE}    |
 
 - Indentation is 4 spaces. Continued statements are indented one level
   higher.
 
+### Naming
 - Names (that includes variables, functions and classes) should be
   descriptive. Avoid abbreviations. Do not shorten variable names just
   to save key strokes, it will be read far more often than it will be
@@ -46,12 +46,12 @@ The style rules are intended to increase readability of the source code for huma
   - `rect` (when related to class names and variables holding instances of those classes)
   - `tech` (short for technology)
 
-
+#### File system
 - Files inside `/scr` and Godot related are snake_case.
 - - Only exception: [ScriptTemplates](https://docs.godotengine.org/en/stable/tutorials/scripting/creating_script_templates.html)
 - -
 
-- Start comments with a space and capital letter, unless it is a commented out
+- Comments start with a space and capital letter, unless it is a commented out
   code block or a keyword.
 
 - Use preincrement (`++i`) in loops and other cases, unless you
@@ -64,8 +64,7 @@ The style rules are intended to increase readability of the source code for huma
   without a blank line. Other variables and class elements should have
   a blank line separating them.
 
-- Don't declare multiple local variables on the same line, instead
-  place each declaration on its own line
+- Don't declare multiple local variables on the same line.
 
 - Properties should be very strongly preferred over getter or setter
   methods. Only when a parameter is needed, is a getter method a good
@@ -124,64 +123,23 @@ The style rules are intended to increase readability of the source code for huma
 
 ## Godot usage
 
+- Specific GUI: [gui_guide.md](gui_guide.md)
+
 - **Mesh Deduplication**: When editing a map or scene, any unique mesh must be extracted and saved as an external `.tres` or `.res` resource file. Do not duplicate inline mesh data inside `.tscn` files. All nodes using the same mesh must load the exact same external resource file.
 
-- **Group Names**: Always use the `Groups` AutoLoad constants (e.g., `Groups.PLAYERS`) to access Godot groups. Never use strings for grouping logic.
+- **Group Names**: Use the `Groups` AutoLoad constants (e.g., `Groups.PLAYERS`) to access groups. Avoid using strings.
 
 - **Signals strictly by code**: All signals must be connected dynamically via code. Signals must not be manually created using the Editor UI's Node panel, as it obscures dependencies.
 
 - **Code Regions**: Use Godot's `#region Region Name` and `#endregion` tags to logically group together long blocks of related functions or variables where it makes sense.
 
-- **Component/Resource Icons**: Use `@icon("res://icons/16x16/...")` for components and resources to make them explicitly identifiable in Godot's Scene tree and FileSystem.
-
-- Specific GUI: [gui_guide.md](gui_guide.md)
+- **Component/Resource Icons**: Use `@icon("res://icons/16x16/x.png")` for components and resources to make them explicitly identifiable in Godot's Scene tree and FileSystem.
 
 - **Scene Unique Nodes (`%`)**: For components that represent core functionality of a scene (like `Hitbox`, `Hurtbox`, `StatusManager`, or main UI containers), set and use them as unique.
 
-- **UID Preloading**: When preloading assets, use `UID` with comment(`preload("uid://abcdef") # asset.wav`) instead of path.
+- **UID Preloading**: When preloading assets, use `UID` with comment(`preload("uid://abcdef") # asset.wav`) instead of path. (You can also hover over uid to see path)
 
 - **Strict Assertions over Silent Failures**: When a script depends on another, avoid silent validations like `if has_node("...")` or `if node:`. Use `assert(value != null, "Error message")` or `assert(has_node("..."))`.
-
-- For connecting signals, use `nameof` to refer to methods whenever possible to reduce the chance of mistakes when methods are renamed.
-
-- When destroying child Nodes or Controls take care to detach them
-  first, in cases that having them hang around for one more frame
-  causes issues, as that doesn't happen if you just call
-  `QueueFree`. You can instead call `DetachAndQueueFree`
-  instead to detach them from parents automatically.
-
-- The order of Godot overridden methods in a class should be in the
-  following order: (class constructor), `_Ready`, `_ExitTree`, `_Process`,
-  `_Input`, `_UnhandledInput`, (other callbacks)
-
-- To remove all children of a Node use `FreeChildren` or
-  `QueueFreeChildren` extension methods.
-
-- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or
-  `Free` instead. Also don't override Dispose in Node derived types to
-  detect when the Node is removed, instead use the tree enter and exit
-  callbacks to handle resources that need releasing when removed.
-
-- For scene attached Nodes, they do not need to be manually freed or
-  disposed. Godot will automatically free them along with the parent.
-
-- `NodePath` variables should be disposed as they aren't part of the
-  scene tree or Godot properties it likely knows about. So disposing
-  those variables will speed up their clearing.
-
-- Avoid using a constructor to setup Godot resources, usually Node
-  derived types should mostly do Godot Node related, constructor-like
-  operations entirely in `_Ready`. Many resources are not ready yet when
-  a class is constructed or static variables are being initialized. If
-  this is not followed script variables may not show up correctly in
-  the Godot editor as that relies on creating an instance of the
-  class, and that can fail for example because SimulationParameters
-  are not initialized in the Godot editor. This needs especial care
-  when a class type is directly attached to a Godot scene.
-
-- When you are instantiating a custom Control in Godot, use
-  `Instance Child Scene` if it has a corresponding scene (.tscn) file; If it doesn't, add a corresponding built-in Control and use `Attach Script`.
-  An alternative is to locate the scene or script file in `FileSystem` panel (by default on the bottom-left corner) and drag it to the proper position.
 
 Other recommended approaches
 ----------------------------
@@ -197,8 +155,8 @@ Other files
 -----------
 
 - Do not use `<br>` in markdown unless it is a table where line breaks
-  need to be tightly controlled. Use blank lines instead of
-  `<br>`. Also don't use `<hr>` use `---` instead.
+  need to be tightly controlled. Use two blank lines (spaces) instead of
+  `<br>`. Also use `---` instead of `<hr>`.
 
 Gameplay changes
 ----------------

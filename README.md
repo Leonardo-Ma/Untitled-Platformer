@@ -53,6 +53,11 @@ Dependencies:
 - [Godot 4](https://godotengine.org/)
 - [Git](https://git-scm.com/)
 
+```
+Clone this repo
+Scan the project's root in Godot
+Enjoy
+```
 
 ### For commit hooks (formatter/lint/parser/spelling...) to work ([.pre-commit-config.yaml](.pre-commit-config.yaml)):
 
@@ -82,8 +87,14 @@ cd <project path>
 pipx install zensical
 ```
 
+Running zensical locally:
+```bash
+zensical serve
+```
+
 ### Commit guideline
-Refer to [Conventional Commit configuration](git-conventional-commits.yaml)
+Refer to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).  
+This project's [configuration](git-conventional-commits.yaml).
 
 ```
 <type>(<optional scope>): <description>

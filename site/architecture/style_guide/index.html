@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../gui_guide/">
+        <link rel="prev" href="../semantic_versioning/">
       
       
-        <link rel="next" href="../../documentation/future/">
+        <link rel="next" href="../../future_games/brainstorm/">
       
       
         
@@ -327,6 +327,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -379,6 +383,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../conventional_commits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conventional Commits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../gui_guide/" class="md-nav__link">
         
   
@@ -387,6 +419,34 @@
     
   
     Graphical User Interface (GUI) guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../semantic_versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semantic Versioning
   
 
     
@@ -475,6 +535,40 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Code style rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File system
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -572,7 +666,7 @@
   <span class="md-ellipsis">
     
   
-    Documentation
+    Future games
   
 
     
@@ -588,7 +682,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Documentation
+    Future games
   
 
           </label>
@@ -601,14 +695,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../documentation/future/" class="md-nav__link">
+      <a href="../../future_games/brainstorm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Future
+    Brainstorm
   
 
     
@@ -1075,6 +1169,40 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Code style rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File system
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1164,7 +1292,7 @@
     
     
       <li class="md-path__item">
-        <a href="../gui_guide/" class="md-path__link">
+        <a href="../conventional_commits/" class="md-path__link">
           
   <span class="md-ellipsis">
     Architecture
@@ -1203,11 +1331,10 @@
 <h1 id="code-style-guide">Code Style Guide<a class="headerlink" href="#code-style-guide" title="Permanent link">&para;</a></h1>
 <p>Inspired by <a href="https://github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.md">Thrive's Code Style</a></p>
 <p>Objectives <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html">Godot's GDScript style guide</a></p>
+<hr />
 <p>This style guide is separated into three parts: code rules, other file rules, and guidelines for git.</p>
 <p>The style rules are intended to increase readability of the source code for humans that will read the written code. The most important rule of all is: Use common sense.</p>
 <h2 id="code-style-rules">Code style rules<a class="headerlink" href="#code-style-rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
 <table>
 <thead>
 <tr>
@@ -1264,14 +1391,12 @@
 </tr>
 </tbody>
 </table>
-</li>
-</ul>
-<hr />
 <ul>
-<li>
-<p>Indentation is 4 spaces. Continued statements are indented one level
-  higher.</p>
-</li>
+<li>Indentation is 4 spaces. Continued statements are indented one level
+  higher.</li>
+</ul>
+<h3 id="naming">Naming<a class="headerlink" href="#naming" title="Permanent link">&para;</a></h3>
+<ul>
 <li>
 <p>Names (that includes variables, functions and classes) should be
   descriptive. Avoid abbreviations. Do not shorten variable names just
@@ -1294,12 +1419,11 @@
 </li>
 <li><code>min</code> - <code>max</code> - <code>pos</code> - <code>rot</code> - <code>str</code></li>
 <li><code>rect</code> (when related to class names and variables holding instances of those classes)</li>
-<li>
-<p><code>tech</code> (short for technology)</p>
-</li>
-<li>
-<p>Files inside <code>/scr</code> and Godot related are snake_case.</p>
-</li>
+<li><code>tech</code> (short for technology)</li>
+</ul>
+<h4 id="file-system">File system<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Files inside <code>/scr</code> and Godot related are snake_case.</li>
 <li>
 <ul>
 <li>Only exception: <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/creating_script_templates.html">ScriptTemplates</a></li>
@@ -1309,7 +1433,7 @@
 <p>-</p>
 </li>
 <li>
-<p>Start comments with a space and capital letter, unless it is a commented out
+<p>Comments start with a space and capital letter, unless it is a commented out
   code block or a keyword.</p>
 </li>
 <li>
@@ -1326,8 +1450,7 @@
   a blank line separating them.</p>
 </li>
 <li>
-<p>Don't declare multiple local variables on the same line, instead
-  place each declaration on its own line</p>
+<p>Don't declare multiple local variables on the same line.</p>
 </li>
 <li>
 <p>Properties should be very strongly preferred over getter or setter
@@ -1399,10 +1522,13 @@
 <h2 id="godot-usage">Godot usage<a class="headerlink" href="#godot-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
+<p>Specific GUI: <a href="../gui_guide/">gui_guide.md</a></p>
+</li>
+<li>
 <p><strong>Mesh Deduplication</strong>: When editing a map or scene, any unique mesh must be extracted and saved as an external <code>.tres</code> or <code>.res</code> resource file. Do not duplicate inline mesh data inside <code>.tscn</code> files. All nodes using the same mesh must load the exact same external resource file.</p>
 </li>
 <li>
-<p><strong>Group Names</strong>: Always use the <code>Groups</code> AutoLoad constants (e.g., <code>Groups.PLAYERS</code>) to access Godot groups. Never use strings for grouping logic.</p>
+<p><strong>Group Names</strong>: Use the <code>Groups</code> AutoLoad constants (e.g., <code>Groups.PLAYERS</code>) to access groups. Avoid using strings.</p>
 </li>
 <li>
 <p><strong>Signals strictly by code</strong>: All signals must be connected dynamically via code. Signals must not be manually created using the Editor UI's Node panel, as it obscures dependencies.</p>
@@ -1411,69 +1537,16 @@
 <p><strong>Code Regions</strong>: Use Godot's <code>#region Region Name</code> and <code>#endregion</code> tags to logically group together long blocks of related functions or variables where it makes sense.</p>
 </li>
 <li>
-<p><strong>Component/Resource Icons</strong>: Use <code>@icon("res://icons/16x16/...")</code> for components and resources to make them explicitly identifiable in Godot's Scene tree and FileSystem.</p>
-</li>
-<li>
-<p>Specific GUI: <a href="../gui_guide/">gui_guide.md</a></p>
+<p><strong>Component/Resource Icons</strong>: Use <code>@icon("res://icons/16x16/x.png")</code> for components and resources to make them explicitly identifiable in Godot's Scene tree and FileSystem.</p>
 </li>
 <li>
 <p><strong>Scene Unique Nodes (<code>%</code>)</strong>: For components that represent core functionality of a scene (like <code>Hitbox</code>, <code>Hurtbox</code>, <code>StatusManager</code>, or main UI containers), set and use them as unique.</p>
 </li>
 <li>
-<p><strong>UID Preloading</strong>: When preloading assets, use <code>UID</code> with comment(<code>preload("uid://abcdef") # asset.wav</code>) instead of path.</p>
+<p><strong>UID Preloading</strong>: When preloading assets, use <code>UID</code> with comment(<code>preload("uid://abcdef") # asset.wav</code>) instead of path. (You can also hover over uid to see path)</p>
 </li>
 <li>
 <p><strong>Strict Assertions over Silent Failures</strong>: When a script depends on another, avoid silent validations like <code>if has_node("...")</code> or <code>if node:</code>. Use <code>assert(value != null, "Error message")</code> or <code>assert(has_node("..."))</code>.</p>
-</li>
-<li>
-<p>For connecting signals, use <code>nameof</code> to refer to methods whenever possible to reduce the chance of mistakes when methods are renamed.</p>
-</li>
-<li>
-<p>When destroying child Nodes or Controls take care to detach them
-  first, in cases that having them hang around for one more frame
-  causes issues, as that doesn't happen if you just call
-  <code>QueueFree</code>. You can instead call <code>DetachAndQueueFree</code>
-  instead to detach them from parents automatically.</p>
-</li>
-<li>
-<p>The order of Godot overridden methods in a class should be in the
-  following order: (class constructor), <code>_Ready</code>, <code>_ExitTree</code>, <code>_Process</code>,
-  <code>_Input</code>, <code>_UnhandledInput</code>, (other callbacks)</p>
-</li>
-<li>
-<p>To remove all children of a Node use <code>FreeChildren</code> or
-  <code>QueueFreeChildren</code> extension methods.</p>
-</li>
-<li>
-<p>DO NOT DISPOSE Godot Node derived objects, call <code>QueueFree</code> or
-  <code>Free</code> instead. Also don't override Dispose in Node derived types to
-  detect when the Node is removed, instead use the tree enter and exit
-  callbacks to handle resources that need releasing when removed.</p>
-</li>
-<li>
-<p>For scene attached Nodes, they do not need to be manually freed or
-  disposed. Godot will automatically free them along with the parent.</p>
-</li>
-<li>
-<p><code>NodePath</code> variables should be disposed as they aren't part of the
-  scene tree or Godot properties it likely knows about. So disposing
-  those variables will speed up their clearing.</p>
-</li>
-<li>
-<p>Avoid using a constructor to setup Godot resources, usually Node
-  derived types should mostly do Godot Node related, constructor-like
-  operations entirely in <code>_Ready</code>. Many resources are not ready yet when
-  a class is constructed or static variables are being initialized. If
-  this is not followed script variables may not show up correctly in
-  the Godot editor as that relies on creating an instance of the
-  class, and that can fail for example because SimulationParameters
-  are not initialized in the Godot editor. This needs especial care
-  when a class type is directly attached to a Godot scene.</p>
-</li>
-<li>
-<p>When you are instantiating a custom Control in Godot, use
-  <code>Instance Child Scene</code> if it has a corresponding scene (.tscn) file; If it doesn't, add a corresponding built-in Control and use <code>Attach Script</code>.
-  An alternative is to locate the scene or script file in <code>FileSystem</code> panel (by default on the bottom-left corner) and drag it to the proper position.</p>
 </li>
 </ul>
 <h2 id="other-recommended-approaches">Other recommended approaches<a class="headerlink" href="#other-recommended-approaches" title="Permanent link">&para;</a></h2>
@@ -1488,8 +1561,8 @@
 <h2 id="other-files">Other files<a class="headerlink" href="#other-files" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Do not use <code>&lt;br&gt;</code> in markdown unless it is a table where line breaks
-  need to be tightly controlled. Use blank lines instead of
-  <code>&lt;br&gt;</code>. Also don't use <code>&lt;hr&gt;</code> use <code>---</code> instead.</li>
+  need to be tightly controlled. Use two blank lines (spaces) instead of
+  <code>&lt;br&gt;</code>. Also use <code>---</code> instead of <code>&lt;hr&gt;</code>.</li>
 </ul>
 <h2 id="gameplay-changes">Gameplay changes<a class="headerlink" href="#gameplay-changes" title="Permanent link">&para;</a></h2>
 <p>When doing changes that impact existing gameplay or add new gameplay
@@ -1548,7 +1621,7 @@ need to be taken into account.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../gui_guide/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Graphical User Interface (GUI) guide">
+          <a href="../semantic_versioning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Semantic Versioning">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -1558,20 +1631,20 @@ need to be taken into account.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Graphical User Interface (GUI) guide
+                Semantic Versioning
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../documentation/future/" class="md-footer__link md-footer__link--next" aria-label="Next: Future">
+          <a href="../../future_games/brainstorm/" class="md-footer__link md-footer__link--next" aria-label="Next: Brainstorm">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Future
+                Brainstorm
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -100,6 +100,7 @@ link = "https://gitlab.com/Leonardo-ma/Untitled-Platformer"
 [project.markdown_extensions.def_list]
 [project.markdown_extensions.footnotes]
 [project.markdown_extensions.md_in_html]
+[project.markdown_extensions.pymdownx.snippets]
 [project.markdown_extensions.toc]
 permalink = true
 [project.markdown_extensions.pymdownx.arithmatex]
@@ -114,6 +115,8 @@ emoji_index = "zensical.extensions.emoji.twemoji"
 anchor_linenums = true
 line_spans = "__span"
 pygments_lang_class = true
+linenums = true
+auto_title = true
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.keys]
 [project.markdown_extensions.pymdownx.magiclink]
