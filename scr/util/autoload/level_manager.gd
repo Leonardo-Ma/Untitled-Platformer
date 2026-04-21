@@ -91,7 +91,7 @@ func _load_chunk_metadata_from_disk() -> void:
 									var out_z: Vector3 = exit_trigger.global_transform.basis.z.normalized()
 									data.is_turn = in_z.angle_to(out_z) > 0.1
 
-								data.local_aabb = _calculate_chunk_aabb(temp_instance)
+								data.local_aabb = _calculate_chunk_aabb(temp_instance as Node3D)
 
 								data.scene_path = full_path
 								data.requires_multi_jump = temp_instance.requires_multi_jump
@@ -154,7 +154,7 @@ func _calculate_chunk_aabb(chunk_node: Node3D) -> AABB:
 		# so temporarily fetch its debug mesh AABB (or default to a generic size if custom logic is needed)
 		var shape_aabb: AABB
 		if col_3d.shape is BoxShape3D:
-			shape_aabb = AABB(-col_3d.shape.size / 2.0, col_3d.shape.size)
+			shape_aabb = AABB(-col_3d.shape.size as Vector3 / 2.0, col_3d.shape.size as Vector3)
 		elif col_3d.shape is SphereShape3D:
 			var r: float = col_3d.shape.radius
 			shape_aabb = AABB(Vector3(-r, -r, -r), Vector3(r * 2.0, r * 2.0, r * 2.0))
@@ -256,7 +256,7 @@ func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: Leve
 
 	if not passed_chunk.has_meta("scored"):
 		passed_chunk.set_meta("scored", true)
-		SoundManager.play_sound(LEVEL_COMPLETE_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX, body.global_position)
+		SoundManager.play_sound(LEVEL_COMPLETE_SOUNDS.pick_random() as AudioStream, SoundManager.SoundCategory.SFX, body.global_position)
 		var chunk_path: String = passed_chunk.scene_file_path
 		for data: ChunkData in _all_chunks:
 			if data.scene_path == chunk_path:

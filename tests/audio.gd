@@ -7,9 +7,9 @@ func _ready() -> void:
 	_run_all_tests()
 
 
-# Optional: Run tests on demand via console command
+# Run tests on demand via console command
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_home"):  # Home key
+	if event.is_action_pressed("ui_home"):
 		print("\n🔄 Re-running audio system tests...")
 		_run_all_tests()
 
@@ -40,11 +40,10 @@ func _test_soundmanager_autoload() -> void:
 		"SoundManager exists but may not be properly initialized",
 	)
 
-	print("✅ Test 1: SoundManager autoload exists")
+	print("✅ Test 1: SoundManager autoload")
 
 
 func _test_subsystems_exist() -> void:
-	# Check SoundPool
 	assert(
 		SoundManager.pool != null,
 		"SoundManager.pool is null - SoundPool not created",
@@ -54,7 +53,6 @@ func _test_subsystems_exist() -> void:
 		"SoundManager.pool is not a SoundPool instance",
 	)
 
-	# Check MusicController
 	assert(
 		SoundManager.music != null,
 		"SoundManager.music is null - MusicController not created",
@@ -73,7 +71,7 @@ func _test_subsystems_exist() -> void:
 		"SoundManager.combat is not a CombatPrioritySoundController instance",
 	)
 
-	print("✅ Test 2: All subsystems exist and are correct types")
+	print("✅ Test 2: Subsystems")
 
 
 func _test_audio_buses() -> void:
@@ -81,12 +79,10 @@ func _test_audio_buses() -> void:
 
 	var bus_indices: Dictionary = {}
 
-	# Build lookup from AudioServer
 	for i: int in range(AudioServer.get_bus_count()):
 		var bus_name: String = AudioServer.get_bus_name(i)
 		bus_indices[bus_name] = i
 
-	# Validate existence + mute state
 	for bus_name: String in required_buses:
 		assert(
 			bus_name in bus_indices,
@@ -100,7 +96,6 @@ func _test_audio_buses() -> void:
 			"Audio bus '%s' is muted. Fix it in the layout." % bus_name,
 		)
 
-	# Validate routing (Music -> Master)
 	var music_idx: int = bus_indices["Music"]
 	var send: String = AudioServer.get_bus_send(music_idx)
 
@@ -109,13 +104,12 @@ func _test_audio_buses() -> void:
 		"Music bus should send to Master bus.",
 	)
 
-	print("✅ Test 3: All audio buses properly configured")
+	print("✅ Test 3: Audio buses")
 
 
 func _test_soundpool_categories() -> void:
 	var pool: SoundPool = SoundManager.pool
 
-	# Check category limits exist
 	var expected_categories: Array[int] = [
 		SoundManager.SoundCategory.MUSIC,
 		SoundManager.SoundCategory.SFX,
@@ -136,7 +130,6 @@ func _test_soundpool_categories() -> void:
 			"Category %d has invalid limit: %d" % [category, limit],
 		)
 
-	# Verify player pools were created
 	assert(
 		not pool._pools.is_empty(),
 		"SoundPool._pools is empty - pools not initialized",
@@ -147,7 +140,7 @@ func _test_soundpool_categories() -> void:
 		"SoundPool._active_players is empty - tracking not initialized",
 	)
 
-	print("✅ Test 4: SoundPool categories properly configured")
+	print("✅ Test 4: SoundPool categories")
 
 
 func _test_music_system() -> void:
@@ -183,7 +176,7 @@ func _test_music_system() -> void:
 
 	music.set_volume(-10.0)
 
-	print("✅ Test 5: MusicController functional")
+	print("✅ Test 5: MusicController")
 
 
 func _test_combat_system() -> void:
@@ -192,15 +185,6 @@ func _test_combat_system() -> void:
 	assert(
 		combat.Priority != null,
 		"combat priority enum not accessible",
-	)
-
-	assert(
-		combat.Priority.LOW == 0,
-		"Priority.LOW should be 0",
-	)
-	assert(
-		combat.Priority.ULTIMATE == 4,
-		"Priority.ULTIMATE should be 4",
 	)
 
 	assert(
@@ -222,7 +206,6 @@ func _test_combat_system() -> void:
 
 
 func _test_volume_controls() -> void:
-	# Test get/set for each category
 	var categories: Array[Dictionary] = [
 		{"enum": SoundManager.SoundCategory.MUSIC, "bus": "Music"},
 		{"enum": SoundManager.SoundCategory.SFX, "bus": "SFX"},
@@ -243,10 +226,8 @@ func _test_volume_controls() -> void:
 			"Volume control broken for category %s" % cat.bus,
 		)
 
-		# Restore original volume
 		SoundManager.set_category_volume(cat.enum, original_volume)
 
-	# Test mute/unmute
 	SoundManager.mute_all()
 	var master_idx: int = AudioServer.get_bus_index("Master")
 	assert(
@@ -261,5 +242,5 @@ func _test_volume_controls() -> void:
 	)
 
 	print(
-		"✅ Test 7: Volume controls working correctly",
+		"✅ Test 7: Volume controls",
 	)

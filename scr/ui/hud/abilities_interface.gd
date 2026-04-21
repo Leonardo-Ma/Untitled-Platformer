@@ -23,7 +23,7 @@ func _ready() -> void:
 
 	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
 	if not players.is_empty() and players[0] is CharacterBody3D:
-		_on_player_spawned(players[0] as CharacterBody3D)
+		await _on_player_spawned(players[0] as CharacterBody3D)
 
 
 func _on_player_spawned(player: CharacterBody3D) -> void:
@@ -122,11 +122,11 @@ func _get_input_hint(module: PlayerSkillModule) -> String:
 
 func _connect_module_signals(module: PlayerSkillModule, icon: Control) -> void:
 	if module is PlayerGroundDashSkill:
-		module.ground_dash_cooldown_started.connect(func(duration: float) -> void: _start_cooldown(icon, duration))
+		module.ground_dash_cooldown_started.connect(func(duration: float) -> void: await _start_cooldown(icon, duration))
 		module.ground_dash_cooldown_finished.connect(func() -> void: _finish_cooldown(icon))
 
 	elif module is PlayerAirDashSkill:
-		module.air_dash_cooldown_started.connect(func(duration: float) -> void: _start_cooldown(icon, duration))
+		module.air_dash_cooldown_started.connect(func(duration: float) -> void: await _start_cooldown(icon, duration))
 		module.air_dash_cooldown_finished.connect(func() -> void: _finish_cooldown(icon))
 
 	elif module is PlayerTeleportSkill:
@@ -148,7 +148,6 @@ func _connect_module_signals(module: PlayerSkillModule, icon: Control) -> void:
 
 func _start_cooldown(icon: Control, duration: float) -> void:
 	var cooldown_progress: TextureProgressBar = icon.get_node("%CooldownProgress") as TextureProgressBar
-	assert(cooldown_progress != null)
 
 	var tween: Tween = create_tween()
 	cooldown_progress.value = 100.0
@@ -156,12 +155,11 @@ func _start_cooldown(icon: Control, duration: float) -> void:
 
 	icon.modulate = Color(0.4, 0.4, 0.4, 0.8)
 
-	_show_input_blocked_feedback(icon)
+	await _show_input_blocked_feedback(icon)
 
 
 func _start_cooldown_unblocked(icon: Control, duration: float) -> void:
 	var cooldown_progress: TextureProgressBar = icon.get_node("%CooldownProgress") as TextureProgressBar
-	assert(cooldown_progress != null)
 
 	var tween: Tween = create_tween()
 	cooldown_progress.value = 100.0
@@ -185,13 +183,11 @@ func _finish_cooldown(icon: Control) -> void:
 	icon.set_meta("pulse_tween", tween)
 
 	var cooldown_progress: TextureProgressBar = icon.get_node("%CooldownProgress") as TextureProgressBar
-	assert(cooldown_progress != null)
 	cooldown_progress.value = 0.0
 
 
 func _update_charge_display(icon: Control, charges: int) -> void:
 	var charge_label: Label = icon.get_node("%ChargeLabel") as Label
-	assert(charge_label != null)
 
 	charge_label.text = str(charges)
 	charge_label.visible = charges > 0

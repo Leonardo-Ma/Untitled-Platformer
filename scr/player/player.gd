@@ -70,7 +70,7 @@ func _on_attack_pressed() -> void:
 
 
 func _on_death() -> void:
-	respawn(5.0, CheckpointManager.get_respawn_position(), true)
+	await respawn(5.0, CheckpointManager.get_respawn_position(), true)
 
 
 func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> void:

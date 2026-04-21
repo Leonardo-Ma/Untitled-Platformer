@@ -22,8 +22,8 @@ func _ready() -> void:
 	self.queue_free()
 
 
-func _load_all_scripts_in_dir(dir_path: String) -> Array:
-	var result: Array = []
+func _load_all_scripts_in_dir(dir_path: String) -> Array[Object]:
+	var result: Array[Object] = []
 	var dir: DirAccess = DirAccess.open(dir_path)
 	if dir:
 		dir.list_dir_begin()
@@ -38,7 +38,7 @@ func _load_all_scripts_in_dir(dir_path: String) -> Array:
 	return result
 
 
-func test_goal_action_consistency(_goals: Array, _actions: Array) -> void:
+func test_goal_action_consistency(_goals: Array[Object], _actions: Array[Object]) -> void:
 	for goal: Object in _goals:
 		for key: String in goal.get_desired_state().keys():
 			var found: bool = false

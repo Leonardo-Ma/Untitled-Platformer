@@ -91,8 +91,7 @@ func change_state(new_state: MusicState, immediate: bool = false) -> void:
 
 		# Prevent state change spam
 		_transition_cooldown = true
-		await get_tree().create_timer(1.0).timeout
-		_transition_cooldown = false
+		get_tree().create_timer(1.0).timeout.connect(_on_transition_cooldown_finished)
 
 
 func stop(fade_duration: float = 1.0) -> void:
@@ -138,6 +137,10 @@ func on_combat_ended() -> void:
 
 
 # Private helpers
+func _on_transition_cooldown_finished() -> void:
+	_transition_cooldown = false
+
+
 func _cleanup_old_player(old_player: AudioStreamPlayer) -> void:
 	old_player.stop()
 	old_player.queue_free()

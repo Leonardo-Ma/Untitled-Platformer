@@ -67,7 +67,7 @@ func _draw_debug() -> void:
 
 	_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 
-	for target in _perception_system.known_entities:
+	for target: CharacterBody3D in _perception_system.known_entities:
 		if not is_instance_valid(target):
 			continue
 

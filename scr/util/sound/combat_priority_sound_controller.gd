@@ -87,7 +87,7 @@ func play_with_priority(
 
 
 # Play multiple sounds in sequence (e.g., combo attacks)
-func play_combo(sounds: Array, positions: Array, priorities: Array, delay_ms: float = 100.0) -> void:
+func play_combo(sounds: Array[AudioStream], positions: Array[Vector3], priorities: Array[int], delay_ms: float = 100.0) -> void:
 	for i: int in range(sounds.size()):
 		var pos: Vector3 = positions[i] if i < positions.size() else Vector3.ZERO
 		var prio: int = priorities[i] if i < priorities.size() else Priority.MEDIUM
