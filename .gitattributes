@@ -1,2 +1,6 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Ignore 3rd party folders to count for repo's languages
+site/** linguist-vendored=true
+addons/** linguist-vendored=true
