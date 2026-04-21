@@ -5,10 +5,12 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+      - "site/**"
   pull_request:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+      - "site/**"
   schedule:
     - cron: '00 5 * * 2' # 5 AM Tuesday
 
