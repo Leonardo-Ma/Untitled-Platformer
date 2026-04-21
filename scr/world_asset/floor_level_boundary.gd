@@ -35,17 +35,15 @@ func _initialize_position() -> void:
 
 
 func _on_checkpoint_activated(checkpoint_position: Vector3) -> void:
-	# Only update the Y height on signal
 	global_position.y = checkpoint_position.y - fall_margin
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group(Groups.PLAYERS):
-		# TODO Add delay and animation
+	if body is PlayerEntity:
+		var target: Vector3 = _fallback_spawn
 		if CheckpointManager.has_active_checkpoint():
-			body.global_position = CheckpointManager.get_respawn_position()
-		else:
-			# Fallback if the player falls before hitting the first checkpoint
-			body.global_position = _fallback_spawn
+			target = CheckpointManager.get_respawn_position()
+
+		body.respawn(2.0, target)
 	else:
-		print_debug("Something wrong here at " + self.name + " House.")
+		print_debug("Something wrong here at " + self.name + "'s house.")

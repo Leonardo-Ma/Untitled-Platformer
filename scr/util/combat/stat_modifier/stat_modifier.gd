@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/stat.png")
+@icon("res://icons/16x16/script.png")
 class_name StatModifier
 extends Resource
 

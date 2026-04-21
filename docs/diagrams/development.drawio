@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" scale="1" border="10">
     <diagram id="cx9zFhAoh4Pe2WsfvzCV" name="Main">
-        <mxGraphModel dx="3472" dy="2075" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
+        <mxGraphModel dx="3423" dy="2381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -168,7 +168,7 @@
                         <mxGeometry x="20" y="336.5428571428572" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
-                <object label="Tutorial&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="wO4MjMotxcq_kmV9VmXH-48">
+                <object label="Tutorial (With text integrated in map)&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" id="wO4MjMotxcq_kmV9VmXH-48">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-21" vertex="1">
                         <mxGeometry x="20" y="441.72380952380956" width="147.5" height="85.18095238095239" as="geometry"/>
                     </mxCell>
@@ -206,6 +206,21 @@
                 <object label="Save and load&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" placeholders="1" link="https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html" id="93">
                     <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" parent="zGidKKg1ztPtrP2wG4Ue-25" vertex="1">
                         <mxGeometry x="20" y="336.5428571428572" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Disappearing platforms&lt;br&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="95">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                        <mxGeometry x="20" y="441.72380952380956" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Simply cloudly background&lt;br&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="97">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                        <mxGeometry x="20" y="546.9047619047619" width="160" height="85.18095238095239" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Not repeat same platform until 5th&lt;br&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;span&gt;&lt;font&gt;%status%&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="107">
+                    <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;fontSize=15;" vertex="1" parent="zGidKKg1ztPtrP2wG4Ue-25">
+                        <mxGeometry x="20" y="652.0857142857143" width="160" height="85.18095238095239" as="geometry"/>
                     </mxCell>
                 </object>
                 <object label="DONE (Need to add to readme features)" status="Completed" id="zGidKKg1ztPtrP2wG4Ue-28">

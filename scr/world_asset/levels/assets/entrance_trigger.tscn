@@ -17,5 +17,6 @@ metadata/_custom_type_script = "uid://jqe7b8io8fum"
 shape = SubResource("BoxShape3D_4vxvf")
 
 [node name="EntranceMarker" type="MeshInstance3D" parent="." unique_id=272739063]
+visible = false
 mesh = SubResource("BoxMesh_arch")
 skeleton = NodePath("../..")

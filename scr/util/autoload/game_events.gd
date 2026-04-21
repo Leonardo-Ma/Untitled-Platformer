@@ -9,6 +9,8 @@ signal counter_collectible_collected(identifier: StringName, amount: int, icon: 
 signal status_buff_collectible_collected(status_effect: StatusEffect, icon: Texture2D)
 @warning_ignore("unused_signal")
 signal score_updated(new_score: int, added_points: int)
+@warning_ignore("unused_signal")
+signal player_respawning(duration: float)
 
 var procedural_seed: int = 0
 var player_score: int = 0
