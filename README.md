@@ -29,18 +29,17 @@ In order to reduce scope and actually finish and publish it, I gave myself a ~ t
 xx is a simple 3d low poly plataformer. The core game loop is a partially procedural endless runner around evolving player abilities.
 
 ## Main Features:  
-- Basic UI (Main menu, Pause, debug, hud)
 - Skills: Multi jump, ground/air dash, feather fall, teleport
 - Jump cutting, coyote time, knockback
-- AI (GOAP and visual detection system)
 - Basic sound system
 - Checkpoint and collectibles
 - Chunk based procedural level generation (Handcrafted chunks)
-- Simple core system
+
+![Features diagram](docs/diagrams/features.drawio.svg)
 ---
 
 <!-- TODO When finish doc as code, update this -->
-### Project architecture
+## Project architecture
 Uses modular approach for future proofing, relying heavily on composition and inheritance when appropriate. Any complex system is documented in `docs/diagrams/`.
 
 Uses conventional commit messages that are fed into git-cliff to auto generate changelog. Has a few CI checks locally and on Github, also pushes to Gitlab. Has a few custom unit tests after execution.

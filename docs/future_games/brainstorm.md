@@ -74,6 +74,8 @@
 
 - Every time you press to quit it gives you an offensive different quote (Like from barony)
 
+- Have an in-game feature request to be voted by players, with suggestions from discord.
+
 - After game release if no other priority:
 	- Chess
 	- Musical instruments
