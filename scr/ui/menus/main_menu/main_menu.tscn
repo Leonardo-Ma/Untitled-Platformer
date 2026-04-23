@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://ckhxplf4oi0ca"]
 
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://scr/ui/base_theme.tres" id="1_cqtv1"]
+[ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://scr/ui/menus/main_menu/scale_font_size.gd" id="1_mainmenu"]
 [ext_resource type="Script" uid="uid://b8xklo3ubuprp" path="res://scr/ui/menus/main_menu/new_game.gd" id="2_esfjp"]
 [ext_resource type="Script" uid="uid://dfo4jdqyttoed" path="res://scr/ui/menus/main_menu/options.gd" id="3_rhqoy"]
 [ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://scr/ui/menus/main_menu/quit_to_desktop.gd" id="4_gdklf"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_cwpl0"]
 
 [node name="MainMenu" type="Control" unique_id=1634997965]
 z_index = 1
@@ -17,61 +16,65 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cqtv1")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2101363272]
-modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -280.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_cwpl0")
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1347495052]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1998219499]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.49, 0.49, 0.49, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1452025231]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1452025231]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = 25.0
+offset_right = 200.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 40
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_mainmenu")
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1802350550]
-custom_minimum_size = Vector2(400, 100)
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1802350550]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Space Toilet"
+size_flags_vertical = 15
+text = "Untitled Platformer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContinueLastGame" type="Button" parent="MarginContainer/VBoxContainer" unique_id=482588791]
+[node name="ContinueLastGame" type="Button" parent="VBoxContainer" unique_id=482588791]
 layout_mode = 2
+size_flags_vertical = 7
 text = "Continue Last Game"
 
-[node name="Load" type="Button" parent="MarginContainer/VBoxContainer" unique_id=82444837]
+[node name="Load" type="Button" parent="VBoxContainer" unique_id=82444837]
 layout_mode = 2
+size_flags_vertical = 7
 text = "Load"
 
-[node name="NewGame" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1538141097]
+[node name="NewGame" type="Button" parent="VBoxContainer" unique_id=1538141097]
 layout_mode = 2
+size_flags_vertical = 7
 text = "New Game"
 script = ExtResource("2_esfjp")
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1218892017]
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=1218892017]
 layout_mode = 2
+size_flags_vertical = 7
 text = "Options"
 script = ExtResource("3_rhqoy")
 
-[node name="QuitDesktop" type="Button" parent="MarginContainer/VBoxContainer" unique_id=184267010]
+[node name="QuitDesktop" type="Button" parent="VBoxContainer" unique_id=184267010]
 layout_mode = 2
+size_flags_vertical = 7
 text = "Quit to Desktop"
 script = ExtResource("4_gdklf")
 
@@ -82,10 +85,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -136.0
-offset_top = -45.0
+offset_left = -130.0
+offset_top = -64.0
+offset_right = -13.0
+offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "0.0.0"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 42
+text = "v0.0.0"
+horizontal_alignment = 3
+vertical_alignment = 3

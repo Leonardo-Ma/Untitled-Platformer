@@ -41,17 +41,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_up44w")
 
-[node name="MagicSignPressIndicator" type="Label" parent="." unique_id=584095709]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 869.0
-offset_top = 211.0
-offset_right = 953.0
-offset_bottom = 263.0
-
-[node name="Timer" type="Timer" parent="MagicSignPressIndicator" unique_id=212922644]
-one_shot = true
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=583183313]
 layout_mode = 1
 anchors_preset = 15
@@ -65,18 +54,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2064273424]
-custom_maximum_size = Vector2(364, -1)
 custom_minimum_size = Vector2(364, 0)
+custom_maximum_size = Vector2(364, -1)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_constants/separation = 40
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHealthbar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=1575779896]
 unique_name_in_owner = true
 z_index = 1
-custom_maximum_size = Vector2(436, 44)
 custom_minimum_size = Vector2(436, 44)
+custom_maximum_size = Vector2(436, 44)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxEmpty_y13nm")
@@ -176,20 +166,24 @@ layout_mode = 2
 custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="Abilities" type="Panel" parent="HBoxContainer/VBoxContainer2" unique_id=1095038458]
 self_modulate = Color(1, 1, 1, 0.5137255)
-custom_maximum_size = Vector2(460, -1)
 custom_minimum_size = Vector2(0, 110)
+custom_maximum_size = Vector2(460, -1)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
 script = ExtResource("7_8stm2")
 
 [node name="AbilitiesContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/Abilities" unique_id=1910653337]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 476.0
-offset_bottom = 111.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0350001
+anchor_bottom = 1.0
+offset_right = -0.10003662
+offset_bottom = 1.0
 columns = 10
 
 [node name="Ability1" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1660509414 instance=ExtResource("13_gy4ue")]
@@ -207,5 +201,4 @@ layout_mode = 2
 [node name="Ability5" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[connection signal="timeout" from="MagicSignPressIndicator/Timer" to="MagicSignPressIndicator" method="_on_timer_timeout"]
 [connection signal="timeout" from="HBoxContainer/VBoxContainer/PlayerHealthbar/Timer" to="HBoxContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]
