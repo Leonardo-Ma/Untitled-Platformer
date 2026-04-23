@@ -35,7 +35,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 
-[node name="Label" type="Label" parent="ScreenTransition" unique_id=1228166055]
+[node name="RespawnLabel" type="Label" parent="ScreenTransition" unique_id=1228166055]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

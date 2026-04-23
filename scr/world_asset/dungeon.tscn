@@ -5,6 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bduf3ad71475q" path="res://scr/world_asset/dungeon_assets/meshes/pillar_001.tres" id="4_cr444"]
 [ext_resource type="PackedScene" uid="uid://bac4iokysa58j" path="res://scr/world_asset/dungeon_assets/individual_assets/barrel.tscn" id="4_voiec"]
 [ext_resource type="PackedScene" uid="uid://dy7goxhejncoa" path="res://scr/world_asset/dungeon_assets/individual_assets/torch.tscn" id="5_cr444"]
+[ext_resource type="PackedScene" uid="uid://bhvmo3w7rkqa3" path="res://scr/world_asset/dungeon_assets/individual_assets/box.tscn" id="5_voiec"]
 [ext_resource type="PackedScene" uid="uid://c6on7cp5w028m" path="res://scr/world_asset/dungeon_assets/individual_assets/spikes.tscn" id="6_0dkqc"]
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://scr/world_asset/collectibles/coins/gold_coin.tscn" id="9_voiec"]
 
@@ -530,19 +531,8 @@ metadata/_edit_lock_ = true
 
 [node name="Boxes" type="Node3D" parent="Props" unique_id=1400603203]
 
-[node name="Box_01_01" type="RigidBody3D" parent="Props/Boxes" unique_id=1553390737]
+[node name="Box_01_01" parent="Props/Boxes" unique_id=1345912249 instance=ExtResource("5_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 23.79384, 0.72387236, -1.6196201)
-mass = 0.5
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxes/Box_01_01" unique_id=702527930]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-shape = SubResource("BoxShape3D_0dkqc")
-
-[node name="Box_001" type="MeshInstance3D" parent="Props/Boxes/Box_01_01" unique_id=40940225]
-transform = Transform3D(100, 0, 0, 0, 100, -1.4210853e-12, 0, 1.4210853e-12, 100, 0, 0, 0)
-mesh = SubResource("ArrayMesh_te6sk")
-skeleton = NodePath("")
 
 [node name="Box_01_02" type="RigidBody3D" parent="Props/Boxes" unique_id=1086498968]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 6.7938404, 0.72387236, -1.6196201)
@@ -595,16 +585,16 @@ skeleton = NodePath("")
 [node name="Spikes" type="Node3D" parent="Traps" unique_id=1052531009]
 
 [node name="Spikes_01" parent="Traps/Spikes" unique_id=883976889 instance=ExtResource("6_0dkqc")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 8.967434, 0.38613796, 3.0494943)
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 8.967434, 0.25877738, 3.0494943)
 
 [node name="Spikes_02" parent="Traps/Spikes" unique_id=765098820 instance=ExtResource("6_0dkqc")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 12.73865, 0.38613796, 11.01001)
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 12.73865, 0.25877738, 11.01001)
 
 [node name="Spikes_03" parent="Traps/Spikes" unique_id=573613324 instance=ExtResource("6_0dkqc")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 17.738651, 0.38613796, 6.01001)
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 17.738651, 0.25877738, 6.01001)
 
 [node name="Spikes_04" parent="Traps/Spikes" unique_id=1183027425 instance=ExtResource("6_0dkqc")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 19.738651, 0.38613796, 1.0100098)
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 19.738651, 0.25877738, 1.0100098)
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=785218821]
 

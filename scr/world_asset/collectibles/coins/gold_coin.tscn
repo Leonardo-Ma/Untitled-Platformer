@@ -44,7 +44,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_582fi")
 
-[node name="GoldCoin_01_01" type="Area3D" unique_id=1971537253]
+[node name="GoldCoin" type="Area3D" unique_id=1971537253]
 collision_layer = 0
 script = ExtResource("1_fkeve")
 data = ExtResource("2_qvvac")

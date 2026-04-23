@@ -3,44 +3,18 @@
 [ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://scr/main.gd" id="1_b18bd"]
 [ext_resource type="PackedScene" uid="uid://cwgqh61gpa36j" path="res://scr/ui/ui.tscn" id="2_bx4na"]
 [ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://scr/util/combat/core/movement.gd" id="6_52hli"]
-[ext_resource type="PackedScene" uid="uid://c56qwxi1bjc7i" path="res://scr/entity/knight/knight.tscn" id="6_ahl4q"]
 [ext_resource type="Script" uid="uid://dm0m5bu51w0fd" path="res://scr/world_asset/floor_level_boundary.gd" id="7_q4m34"]
 [ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://scr/player/player.tscn" id="7_ss67u"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://scr/util/combat/core/attack.gd" id="8_tpi1q"]
-[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://scr/util/combat/core/health.gd" id="8_vmhdc"]
 [ext_resource type="Script" uid="uid://csig12422io62" path="res://scr/util/combat/core/hitbox.gd" id="9_bx4na"]
-[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://scr/util/entity/entity_stats.gd" id="9_o5q5n"]
 [ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://scr/world.tscn" id="9_pguyi"]
-[ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://scr/world_asset/checkpoint_flag.tscn" id="10_52hli"]
 [ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://scr/world_asset/tutorial.tscn" id="11_bx4na"]
-[ext_resource type="PackedScene" uid="uid://c6on7cp5w028m" path="res://scr/world_asset/dungeon_assets/individual_assets/spikes.tscn" id="13_vmhdc"]
-[ext_resource type="PackedScene" uid="uid://bneqpm1wdlci3" path="res://scr/world_asset/levels/assets/moving_platform_orange.tscn" id="14_o5q5n"]
 
 [sub_resource type="Resource" id="Resource_bqaqr"]
 script = ExtResource("6_52hli")
 walk_speed = 7.0
 run_speed = 150.0
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
-
-[sub_resource type="Resource" id="Resource_b18bd"]
-resource_local_to_scene = true
-script = ExtResource("8_tpi1q")
-type = 1
-damage = 40
-knockback_force = 3.0
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_8sfv0"]
-resource_local_to_scene = true
-script = ExtResource("8_vmhdc")
-max_health = 100
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_1p1te"]
-resource_local_to_scene = true
-script = ExtResource("9_o5q5n")
-metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [sub_resource type="Resource" id="Resource_g6x07"]
 script = ExtResource("8_tpi1q")
@@ -65,20 +39,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.7632)
 
 [node name="Player" parent="Tutorial" unique_id=922527968 instance=ExtResource("7_ss67u")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9327073, 1.3706474, -16.759369)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2.9327073, 1.3706474, -14.759369)
 movement = SubResource("Resource_bqaqr")
-
-[node name="Knight" parent="Tutorial" unique_id=280064195 instance=ExtResource("6_ahl4q")]
-transform = Transform3D(-1.0000001, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1.0000001, -1, 1.2985864, 3.3774033)
-attack = SubResource("Resource_b18bd")
-health = SubResource("Resource_8sfv0")
-stats = SubResource("Resource_1p1te")
-
-[node name="Checkpoints" type="Node3D" parent="Tutorial" unique_id=330886]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.608765)
-
-[node name="Checkpoint" parent="Tutorial/Checkpoints" unique_id=742215115 instance=ExtResource("10_52hli")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.5086269, 1.2842057, 4.3437824)
 
 [node name="FloorLevelBoundary" type="Area3D" parent="." unique_id=444006995]
 script = ExtResource("7_q4m34")
@@ -93,9 +55,3 @@ metadata/_custom_type_script = "uid://csig12422io62"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorLevelBoundary/Hitbox" unique_id=741375312]
 shape = SubResource("BoxShape3D_vmhdc")
-
-[node name="Spike" parent="." unique_id=2024920262 instance=ExtResource("13_vmhdc")]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 1.2846608, -68.17299)
-
-[node name="MovingPlatformOrange" parent="." unique_id=1536531067 instance=ExtResource("14_o5q5n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.035039, -65.299995)
