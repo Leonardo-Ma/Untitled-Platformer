@@ -8,7 +8,7 @@ var inventory_interface: Control
 
 
 func _ready() -> void:
-	# Give the tree a moment to set up in case the UI is instantiated later or below the player
+	# Wait to set up in case the UI is instantiated later or below the player
 	call_deferred("_setup_inventory")
 
 

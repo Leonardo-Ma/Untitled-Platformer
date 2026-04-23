@@ -1,5 +1,4 @@
 # BUG Need to heavily improve this garbage
-# TODO Make diagrams >:(
 extends Control
 
 var ability_uis: Dictionary = {}  # { module_instance : { icon, charge_label, cooldown_progress } }
@@ -37,7 +36,7 @@ func _on_player_spawned(player: CharacterBody3D) -> void:
 	if not skills_controller.is_node_ready():
 		await skills_controller.ready
 
-	# Await an extra frame in case the controller delays its initialization slightly
+	# Await an extra frame in case the controller delays its initialization
 	if skills_controller.modules.is_empty():
 		await get_tree().process_frame
 

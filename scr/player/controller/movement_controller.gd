@@ -1,17 +1,16 @@
 # https://www.youtube.com/watch?v=EP5AYllgHy8 Godot 4.0 Third Person Controller Tutorial ( 2023 )
 @icon("res://icons/16x16/character_move.png")
+## Player movement controller
 class_name MovementController extends Node3D
 
 # These signals go to animation controller, debug...
-signal move_started(is_running: bool)
+signal move_started
 signal move_stopped
-signal movement_direction_changed(direction: Vector2, is_running: bool)
+signal movement_direction_changed(direction: Vector2, speed_factor: float)
 signal jumped
 signal in_air
 signal landed
 
-# TODO Change this to  be a variable in core stats
-const JUMP_VELOCITY: float = 6.5
 const COYOTE_TIME: float = 0.05
 
 @export var camera: Node3D
@@ -46,8 +45,8 @@ func move(body: CharacterBody3D, delta: float) -> void:
 
 func movement_logic(body: CharacterBody3D) -> void:
 	if not movement_enabled:
-		emit_signal("move_stopped")
-		emit_signal("movement_direction_changed", Vector2.ZERO)
+		move_stopped.emit()
+		movement_direction_changed.emit(Vector2.ZERO, 0.0)
 		body.velocity.x = move_toward(body.velocity.x, 0, current_speed)
 		body.velocity.z = move_toward(body.velocity.z, 0, current_speed)
 		return
@@ -62,13 +61,13 @@ func movement_logic(body: CharacterBody3D) -> void:
 		else:
 			current_speed = owner.movement.walk_speed
 
-		emit_signal("move_started")
+		move_started.emit()
 
 		var normalized_input: Vector2 = input_direction.normalized()
 		var speed_factor: float = current_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
 		var blend_direction: Vector2 = Vector2(normalized_input.x, -normalized_input.y) * speed_factor
 
-		emit_signal("movement_direction_changed", blend_direction)
+		movement_direction_changed.emit(blend_direction, speed_factor)
 
 		# Make armature relative to camera instead of locking upfront
 		#if direction.length() > 0.01:
@@ -77,8 +76,8 @@ func movement_logic(body: CharacterBody3D) -> void:
 		body.velocity.x = direction.x * current_speed
 		body.velocity.z = direction.z * current_speed
 	else:
-		emit_signal("move_stopped")
-		emit_signal("movement_direction_changed", Vector2.ZERO)
+		move_stopped.emit()
+		movement_direction_changed.emit(Vector2.ZERO, 0.0)
 		body.velocity.x = move_toward(body.velocity.x, 0, current_speed)
 		body.velocity.z = move_toward(body.velocity.z, 0, current_speed)
 
@@ -86,22 +85,22 @@ func movement_logic(body: CharacterBody3D) -> void:
 func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 	if not body.is_on_floor():
 		coyote_timer -= delta
-		emit_signal("in_air")
+		in_air.emit()
 		body.velocity.y -= gravity * delta
 
-		# Jump cutting: if jump button is released while moving upwards, slash velocity
+		# Jump cutting: if jump button is released while moving upwards, cut velocity
 		if Input.is_action_just_released("jump") and body.velocity.y > 0.0:
 			body.velocity.y *= 0.5
 	else:
 		coyote_timer = COYOTE_TIME
-		emit_signal("landed")
+		landed.emit()
 
 	if not movement_enabled:
 		return
 
 	if Input.is_action_just_pressed("jump") and coyote_timer > 0.0:
-		emit_signal("jumped")
-		body.velocity.y = JUMP_VELOCITY
+		jumped.emit()
+		body.velocity.y = owner.movement.jump_velocity
 		# Reset timer to 0 so the player can't jump multiple times in the air
 		coyote_timer = 0.0
 

@@ -7,7 +7,7 @@ var _tracked_health: Health = null
 var _damage_indicator_timer: float = 0.0
 
 
-#region Setup & Signals
+#region Setup and Signals
 func _ready() -> void:
 	GameEvents.player_spawned.connect(_on_player_spawned)
 	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
@@ -30,7 +30,6 @@ func _on_player_damaged(_attack: Attack) -> void:
 #endregion
 
 
-#region Process Loop
 func _process(delta: float) -> void:
 	if not self.visible:
 		return
@@ -46,10 +45,6 @@ func _process(delta: float) -> void:
 	self.text = text_output
 
 
-#endregion
-
-
-#region Profiling Data
 func _get_performance_text() -> String:
 	var output: String = "--- PERFORMANCE ---\n"
 	output += "FPS: %s\n" % Engine.get_frames_per_second()
@@ -71,10 +66,6 @@ func _get_performance_text() -> String:
 	return output
 
 
-#endregion
-
-
-#region Player Info Data
 func _get_player_info_text() -> String:
 	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
 	if players.is_empty() or not is_instance_valid(players[0]):
@@ -103,13 +94,10 @@ func _get_player_info_text() -> String:
 	var recently_damaged: String = "Yes" if _damage_indicator_timer > 0.0 else "No"
 	output += "Damaged: %s\n" % recently_damaged
 
+	output += "Movement blend position: %s\n" % player_entity.get_node("AnimationTree").get("parameters/movement/blend_position")
 	return output
 
 
-#endregion
-
-
-#region Input Polling
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed() and not event.is_echo():
 		event_text = event.as_text()
@@ -118,4 +106,3 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if event is InputEventKey and event.keycode == KEY_F10:
 			print_debug("=== DEBUG: PRINTING ORPHAN NODES ===")
 			Node.print_orphan_nodes()
-#endregion

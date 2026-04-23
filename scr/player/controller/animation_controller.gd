@@ -1,3 +1,4 @@
+# BUG TODO Unify this with entity animation controller
 #######################################
 ## Player animation controller
 ## To be attached to AnimationTree
@@ -5,7 +6,7 @@
 #######################################
 extends Node
 
-@onready var player: CharacterBody3D = $".."
+@onready var player: CharacterBody3D = owner
 @onready var health: Health = player.health
 @onready var movement_controller: Node3D = %MovementController
 @onready var magic_controller: Node = %MagicController
@@ -13,13 +14,12 @@ extends Node
 
 func _ready() -> void:
 	_validate_animation_parameters()
-	assert(self, "Animation tree not defined by " + self.name)
-	#movement_controller.move_stopped.connect(_on_move_stopped)
+#	movement_controller.move_stopped.connect(_on_move_stopped)
 	movement_controller.movement_direction_changed.connect(_on_movement_direction_changed)
 	movement_controller.jumped.connect(_on_jumped)
 	movement_controller.in_air.connect(_on_in_air)
 	movement_controller.landed.connect(_on_landed)
-	magic_controller.casted.connect(_on_magic_casted)
+#	magic_controller.casted.connect(_on_magic_casted)
 	player.melee_attacked.connect(_on_melee_attack)
 	health.damaged.connect(_on_damaged)
 	health.died.connect(_on_death)
@@ -31,11 +31,13 @@ func _ready() -> void:
 #	self.set("parameters/moving/transition_request", "idle")
 
 
-func _on_movement_direction_changed(direction: Vector2) -> void:
-	# Update BlendSpace2D position
+# BUG If player uses shift + movement, strafe animation gets stuck if: shift + a/d + w  then releasing w
+# removed strafe left and right on animation tree movement
+func _on_movement_direction_changed(direction: Vector2, _speed_factor: float) -> void:
+	# Update BlendSpace2D position in animation tree
 	# X axis: left (-1) to right (1)
 	# Y axis: backward (-0.6 walk, -1.0 run) to forward (0.6 walk, 1.0 run)
-	# Speed is encoded in the magnitude: walk speed = 0.6, run speed = 1.0
+	# The direction vector is already scaled by speed_factor in the movement controller
 	self.set("parameters/movement/blend_position", direction)
 
 
@@ -57,9 +59,9 @@ func _on_melee_attack() -> void:
 	self.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
-func _on_magic_casted() -> void:
-	self.set("parameters/attack_transition/transition_request", "magic_attack")
-	self.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+#func _on_magic_casted() -> void:
+#	self.set("parameters/attack_transition/transition_request", "magic_attack")
+#	self.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
 func _on_damaged(_attack: Attack) -> void:

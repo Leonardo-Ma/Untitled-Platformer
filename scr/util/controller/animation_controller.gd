@@ -1,3 +1,4 @@
+# BUG TODO Unify this with player animation controller
 extends Node
 #######################################
 ## Entity animation controller
@@ -26,7 +27,7 @@ func _ready() -> void:
 	health.died.connect(_on_death)
 
 
-func _on_move_started(is_running: bool) -> void:
+func _on_move_started(is_running: bool = false) -> void:
 	self.set("parameters/moving/transition_request", "moving")
 	self.set("parameters/is_running/blend_amount", int(is_running))
 

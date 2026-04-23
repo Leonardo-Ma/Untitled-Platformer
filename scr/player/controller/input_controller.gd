@@ -10,7 +10,7 @@ signal attack_pressed
 
 func _ready() -> void:
 	if not is_instance_valid(camera_controller):
-		assert(false, "InputController: CamRoot not found; mouse capture signals disabled.")
+		assert(false, "InputController: CamRoot not found")
 		return
 	camera_controller.connect("capture_mouse_requested", Callable(self, "_on_capture_mouse_requested"))
 	camera_controller.connect("release_mouse_requested", Callable(self, "_on_release_mouse_requested"))

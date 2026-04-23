@@ -1,3 +1,4 @@
+## To be attached to entities that may receive knockback
 class_name KnockbackController
 extends Node
 
