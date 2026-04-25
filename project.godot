@@ -18,7 +18,7 @@ config/name="Space Toilet"
 run/main_scene="uid://dlvcb7vmtq1lo"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=1000
-config/icon="res://scr/icon.svg"
+config/icon="res://src/icon.svg"
 
 [audio]
 
@@ -27,16 +27,16 @@ buses/default_bus_layout="uid://plxel2xf671u"
 [autoload]
 
 Groups="*uid://bwr6mdd41t0pc"
-PauseManager="*res://scr/util/autoload/pause_manager.gd"
-GameEvents="*res://scr/util/autoload/game_events.gd"
+PauseManager="*res://src/globals/pause_manager.gd"
+GameEvents="*res://src/globals/game_events.gd"
 SoundManager="*uid://c6aviitsw1wa"
 GoapWorldState="*uid://clan8pwdcjgaj"
 LevelManager="*uid://qsxf8ht6hmse"
-HitStopManager="*res://scr/util/autoload/hit_stop_manager.gd"
+HitStopManager="*res://src/globals/hit_stop_manager.gd"
 CheckpointManager="*uid://cimfiv457vauf"
 TestGoapConsistency="*res://tests/goap.gd"
 TestAudio="*uid://cxi4v122jd7b6"
-GraphBuilder="*res://scr/util/autoload/goap_graph_builder.gd"
+GraphBuilder="*res://src/entities/ai/goap/goap_graph_builder.gd"
 
 [debug]
 
@@ -60,18 +60,27 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
 
 folder_colors={
 "res://icons/": "green",
-"res://scr/common/animation/": "yellow",
 "res://scr/documentation/": "gray",
-"res://scr/entity/": "yellow",
-"res://scr/goap/": "pink",
-"res://scr/player/": "yellow",
-"res://scr/player/combat/": "gray",
-"res://scr/sound/": "blue",
-"res://scr/ui/": "green",
-"res://scr/ui/debug/": "gray",
-"res://scr/util/": "gray",
-"res://scr/world_asset/": "orange",
-"res://scr/world_map/": "orange"
+"res://scr/world_map/": "orange",
+"res://src/entities/": "yellow",
+"res://src/entities/ai/": "pink",
+"res://src/entities/animation/": "orange",
+"res://src/entities/components/": "gray",
+"res://src/entities/magic/": "orange",
+"res://src/entities/player/": "red",
+"res://src/entities/player/combat/": "gray",
+"res://src/entities/player/controller/": "gray",
+"res://src/entities/player/skills/": "gray",
+"res://src/entities/player/visual/": "orange",
+"res://src/entities/resources/": "purple",
+"res://src/entities/systems/": "gray",
+"res://src/environment/": "orange",
+"res://src/globals/": "gray",
+"res://src/sound/": "blue",
+"res://src/sound/helpers/": "gray",
+"res://src/systems/": "gray",
+"res://src/ui/": "green",
+"res://src/ui/debug/": "gray"
 }
 
 [filesystem]
