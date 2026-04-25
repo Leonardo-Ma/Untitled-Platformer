@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dlvcb7vmtq1lo"]
+
+[ext_resource type="Script" uid="uid://clu8iudb2yelh" path="res://src/main.gd" id="1_b18bd"]
+[ext_resource type="PackedScene" uid="uid://cwgqh61gpa36j" path="res://src/ui/ui.tscn" id="2_bx4na"]
+[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://src/entities/components/movement.gd" id="6_52hli"]
+[ext_resource type="Script" uid="uid://dm0m5bu51w0fd" path="res://src/environment/mechanics/floor_level_boundary.gd" id="7_q4m34"]
+[ext_resource type="PackedScene" uid="uid://dwxbechemu2kl" path="res://src/entities/player/player.tscn" id="7_ss67u"]
+[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="8_tpi1q"]
+[ext_resource type="Script" uid="uid://csig12422io62" path="res://src/entities/components/combat/hitbox.gd" id="9_bx4na"]
+[ext_resource type="PackedScene" uid="uid://bpno04cqaffpc" path="res://src/world.tscn" id="9_pguyi"]
+[ext_resource type="PackedScene" uid="uid://dvyt2mgm7c8vo" path="res://src/environment/tutorial.tscn" id="11_bx4na"]
+
+[sub_resource type="Resource" id="Resource_bqaqr"]
+script = ExtResource("6_52hli")
+walk_speed = 28.6
+run_speed = 131.4
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+
+[sub_resource type="Resource" id="Resource_g6x07"]
+script = ExtResource("8_tpi1q")
+damage = 10
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ahl4q"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmhdc"]
+size = Vector3(10, 0.1, 10)
+
+[node name="Main" type="Node" unique_id=1979390252]
+script = ExtResource("1_b18bd")
+
+[node name="UI" parent="." unique_id=670172270 instance=ExtResource("2_bx4na")]
+unique_name_in_owner = true
+
+[node name="World" parent="." unique_id=1123589125 instance=ExtResource("9_pguyi")]
+
+[node name="Tutorial" parent="." unique_id=1297917088 instance=ExtResource("11_bx4na")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.7632)
+
+[node name="Player" parent="Tutorial" unique_id=922527968 instance=ExtResource("7_ss67u")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2.9327073, 1.3706474, -14.759369)
+movement = SubResource("Resource_bqaqr")
+
+[node name="FloorLevelBoundary" type="Area3D" parent="." unique_id=444006995]
+script = ExtResource("7_q4m34")
+attack = SubResource("Resource_g6x07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorLevelBoundary" unique_id=74139295]
+shape = SubResource("BoxShape3D_ahl4q")
+
+[node name="Hitbox" type="Area3D" parent="FloorLevelBoundary" unique_id=787957096]
+script = ExtResource("9_bx4na")
+metadata/_custom_type_script = "uid://csig12422io62"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorLevelBoundary/Hitbox" unique_id=741375312]
+shape = SubResource("BoxShape3D_vmhdc")

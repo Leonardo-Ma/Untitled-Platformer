@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dn75eha84ej3"]
+
+[ext_resource type="PackedScene" uid="uid://bsmn3bk73fjki" path="res://src/environment/chests/wooden_chest/chest_wood.fbx" id="1_4ys31"]
+[ext_resource type="Texture2D" uid="uid://nnj4bv8bpaq5" path="res://src/environment/chests/wooden_chest/chest_wood_0.png" id="2_hn2q0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni6b5"]
+albedo_texture = ExtResource("2_hn2q0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgre1"]
+albedo_texture = ExtResource("2_hn2q0")
+
+[node name="chest_wood" instance=ExtResource("1_4ys31")]
+
+[node name="Chest_Wood_Base" parent="Chest_Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_ni6b5")
+
+[node name="Chest_Wood_Lid" parent="Chest_Armature/Skeleton3D" index="1"]
+material_override = SubResource("StandardMaterial3D_jgre1")

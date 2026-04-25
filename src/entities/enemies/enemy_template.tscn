@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://cq301lp0jblvc"]
+
+[ext_resource type="Script" uid="uid://dnyucxasx1bhh" path="res://src/entities/enemies/knight/knight.gd" id="1_ljpg2"]
+[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="2_koncd"]
+[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="3_tc4qu"]
+[ext_resource type="Script" uid="uid://dlbf4w8moqj2j" path="res://src/entities/components/movement.gd" id="4_g5gh7"]
+[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://src/entities/components/entity_stats.gd" id="5_xa7tv"]
+[ext_resource type="Script" uid="uid://bqys3jbut4h6" path="res://src/entities/ai/perception/perception_config.gd" id="6_iieoc"]
+[ext_resource type="Script" uid="uid://cuwnfmbuuro3s" path="res://src/entities/ai/perception/visual_config.gd" id="7_djwp5"]
+[ext_resource type="Script" uid="uid://v5kimqljxjc2" path="res://src/entities/ai/goap/actions/flee_from_enemy.gd" id="8_fxy2i"]
+[ext_resource type="Script" uid="uid://dycviide8g017" path="res://src/entities/ai/goap/actions/goto_enemy.gd" id="9_i57bl"]
+[ext_resource type="Script" uid="uid://8sv6xwujwxyk" path="res://src/entities/ai/goap/actions/melee_attack.gd" id="10_2ajce"]
+[ext_resource type="Script" uid="uid://djjmno7kihjpr" path="res://src/entities/ai/goap/actions/wander.gd" id="11_lrta4"]
+[ext_resource type="Script" uid="uid://b7v4ao8jga5rg" path="res://src/entities/ai/goap/goals/flee.gd" id="12_mi7mc"]
+[ext_resource type="Script" uid="uid://c5rs5bpioolo8" path="res://src/entities/ai/goap/goals/track_enemy.gd" id="13_hwngx"]
+[ext_resource type="Script" uid="uid://o8dqx6i7woqt" path="res://src/entities/ai/goap/goals/kill_enemy.gd" id="14_ia32q"]
+[ext_resource type="Script" uid="uid://8ib48sr624k3" path="res://src/entities/ai/goap/goals/wander.gd" id="15_tur1j"]
+[ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://src/entities/ai/goap/helpers/ai_config.gd" id="16_iqbar"]
+[ext_resource type="Script" uid="uid://bclk4k6dj18ue" path="res://src/entities/components/animation_controller.gd" id="17_dfgrq"]
+[ext_resource type="Script" uid="uid://cjc0pv560qqv1" path="res://src/entities/ai/goap/memories/red_mage_memory.gd" id="18_h6n62"]
+[ext_resource type="Script" uid="uid://bccasf1g707qk" path="res://src/entities/components/navigation_controller.gd" id="19_nw04b"]
+[ext_resource type="Script" uid="uid://r2b3ysikxov0" path="res://src/entities/ai/perception/perception_system.gd" id="20_tbbw0"]
+[ext_resource type="Script" uid="uid://bll0orhps41m6" path="res://src/entities/components/combat/knockback_controller.gd" id="21_q7i4y"]
+[ext_resource type="Script" uid="uid://cpusxg43clwxv" path="res://src/entities/player/controller/vfx_controller.gd" id="22_ju7vx"]
+[ext_resource type="Script" uid="uid://rpbdsks54nbp" path="res://src/entities/components/stat_modifier/status_manager.gd" id="23_o0y4x"]
+[ext_resource type="Script" uid="uid://csig12422io62" path="res://src/entities/components/combat/hitbox.gd" id="24_sx6k8"]
+[ext_resource type="Script" uid="uid://wqopxvagomo6" path="res://src/entities/components/combat/hurtbox.gd" id="25_ljr68"]
+[ext_resource type="Script" uid="uid://cpnmaicmyhwd6" path="res://src/entities/components/entity_debug_label.gd" id="26_5e42j"]
+
+[sub_resource type="Resource" id="Resource_wefi8"]
+resource_local_to_scene = true
+script = ExtResource("2_koncd")
+type = 1
+metadata/_custom_type_script = "uid://cxqsapbic2imr"
+
+[sub_resource type="Resource" id="Resource_hp5pt"]
+resource_local_to_scene = true
+script = ExtResource("3_tc4qu")
+max_health = 100
+health_regen = 2.0
+metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="Resource" id="Resource_rbcv5"]
+script = ExtResource("4_g5gh7")
+metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
+
+[sub_resource type="Resource" id="Resource_0w32b"]
+resource_local_to_scene = true
+script = ExtResource("5_xa7tv")
+metadata/_custom_type_script = "uid://b46orajcidbak"
+
+[sub_resource type="Resource" id="Resource_kcsny"]
+script = ExtResource("7_djwp5")
+metadata/_custom_type_script = "uid://cuwnfmbuuro3s"
+
+[sub_resource type="Resource" id="Resource_k6n52"]
+script = ExtResource("6_iieoc")
+memory_duration = 60.0
+visual = SubResource("Resource_kcsny")
+metadata/_custom_type_script = "uid://bqys3jbut4h6"
+
+[sub_resource type="Resource" id="Resource_f7hab"]
+script = ExtResource("16_iqbar")
+available_actions = Array[Script]([ExtResource("8_fxy2i"), ExtResource("9_i57bl"), ExtResource("10_2ajce"), ExtResource("11_lrta4")])
+available_goals = Array[Script]([ExtResource("12_mi7mc"), ExtResource("13_hwngx"), ExtResource("14_ia32q"), ExtResource("15_tur1j")])
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wefi8"]
+height = 2.0947266
+
+[sub_resource type="Animation" id="Animation_bnvtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bceom"]
+_data = {
+&"RESET": SubResource("Animation_bnvtc")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bfx7"]
+size = Vector3(1, 1.4, 0.562427)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7mh1l"]
+height = 1.47117
+radius = 0.3
+
+[node name="AggressiveEntity" type="CharacterBody3D" unique_id=280064195]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 11
+script = ExtResource("1_ljpg2")
+attack = SubResource("Resource_wefi8")
+health = SubResource("Resource_hp5pt")
+movement = SubResource("Resource_rbcv5")
+stats = SubResource("Resource_0w32b")
+perception_config = SubResource("Resource_k6n52")
+debug_perception = true
+ai_config = SubResource("Resource_f7hab")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1263244351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94727004, 0)
+shape = SubResource("CapsuleShape3D_wefi8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=369935479]
+unique_name_in_owner = true
+root_node = NodePath("../Visual")
+libraries/ = SubResource("AnimationLibrary_bceom")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=905057315]
+unique_name_in_owner = true
+deterministic = false
+root_node = NodePath("%Visual")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("17_dfgrq")
+
+[node name="Visual" type="Node3D" parent="." unique_id=977755737]
+unique_name_in_owner = true
+
+[node name="Controllers" type="Node" parent="." unique_id=1494063068]
+
+[node name="GoapController" type="Node" parent="Controllers" unique_id=1716733961]
+unique_name_in_owner = true
+script = ExtResource("18_h6n62")
+
+[node name="NavigationController" type="Node" parent="Controllers" unique_id=1608642422]
+unique_name_in_owner = true
+script = ExtResource("19_nw04b")
+
+[node name="PerceptionSystem" type="Node" parent="Controllers" unique_id=255216185]
+unique_name_in_owner = true
+script = ExtResource("20_tbbw0")
+metadata/_custom_type_script = "uid://r2b3ysikxov0"
+
+[node name="KnockbackController" type="Node" parent="Controllers" unique_id=1106279333]
+unique_name_in_owner = true
+script = ExtResource("21_q7i4y")
+metadata/_custom_type_script = "uid://bll0orhps41m6"
+
+[node name="VFXController" type="Node" parent="Controllers" unique_id=692832492]
+unique_name_in_owner = true
+script = ExtResource("22_ju7vx")
+metadata/_custom_type_script = "uid://cpusxg43clwxv"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1218537899]
+target_desired_distance = 1.2
+path_height_offset = 0.25
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Stats" type="Node" parent="." unique_id=295181189]
+
+[node name="StatusManager" type="Node" parent="Stats" unique_id=2000296191]
+unique_name_in_owner = true
+script = ExtResource("23_o0y4x")
+metadata/_custom_type_script = "uid://rpbdsks54nbp"
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=998701689]
+unique_name_in_owner = true
+script = ExtResource("24_sx6k8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=186970168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0167861, 0.793203, 0.818708)
+shape = SubResource("BoxShape3D_4bfx7")
+disabled = true
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=2035338296]
+unique_name_in_owner = true
+script = ExtResource("25_ljr68")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1446340234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00218695, 0.771088, -0.02247)
+shape = SubResource("CylinderShape3D_7mh1l")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=2037298063]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.9496033, 0)
+billboard = 1
+double_sided = false
+font_size = 24
+outline_size = 8
+script = ExtResource("26_5e42j")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="Controllers/NavigationController" method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="Controllers/NavigationController" method="_on_navigation_agent_3d_velocity_computed"]

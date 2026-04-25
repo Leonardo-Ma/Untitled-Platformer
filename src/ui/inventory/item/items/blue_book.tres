@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://2no5jp4t7iqa"]
+
+[ext_resource type="Script" uid="uid://bxaefcxgic3xp" path="res://src/ui/inventory/item/item_data.gd" id="1_3lpr1"]
+[ext_resource type="Texture2D" uid="uid://dfi8ptd4wyty2" path="res://src/ui/inventory/item/#1 - Transparent Icons.png" id="2_ujujc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwyjo"]
+atlas = ExtResource("2_ujujc")
+region = Rect2(0, 416, 32, 32)
+
+[resource]
+script = ExtResource("1_3lpr1")
+name = "Book"
+description = "Good book"
+texture = SubResource("AtlasTexture_lwyjo")
+metadata/_custom_type_script = "uid://bxaefcxgic3xp"
