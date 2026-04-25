@@ -6,7 +6,7 @@
 [sub_resource type="Curve3D" id="Curve3D_xcpnr"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.012, 0, 0.01, 0, 0, 0, 0, 0, 0, 0, 0, 14),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.012, 0, 0.01, 0, 0, 0, 0, 0, 0, 0, 0, 15),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2

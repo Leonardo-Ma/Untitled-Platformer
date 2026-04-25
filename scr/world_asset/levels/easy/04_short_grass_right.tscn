@@ -24,25 +24,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -124)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 130)
 
 [node name="GrassPlatform2" parent="Platforms" unique_id=929283303 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 140)
 
 [node name="GrassPlatform3" parent="Platforms" unique_id=401228616 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, 141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -3, 141)
+
+[node name="GrassPlatform5" parent="Platforms" unique_id=1321168641 instance=ExtResource("6_71ha2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -3, 150)
 
 [node name="GrassPlatform4" parent="Platforms" unique_id=1507871139 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, 153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 153)
 
 [node name="GrassPlatform6" parent="Platforms" unique_id=1324602107 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, 165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, 163)
 
 [node name="GrassPlatform8" parent="Platforms" unique_id=396051906 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -1, 165)
 
 [node name="GrassPlatform9" parent="Platforms" unique_id=810428904 instance=ExtResource("6_71ha2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, 168)
 
+[node name="GrassPlatform11" parent="Platforms" unique_id=868941847 instance=ExtResource("6_71ha2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1, 162)
+
 [node name="GrassPlatform10" parent="Platforms" unique_id=1924209665 instance=ExtResource("6_71ha2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 4, 177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4, 177)
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=1149308522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -124)
