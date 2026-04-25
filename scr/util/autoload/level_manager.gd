@@ -1,3 +1,4 @@
+# BUG TODO Improve this garbage
 ## Manages object pooling, async loading, and sequential connecting of procedural level chunks
 extends Node
 
@@ -6,7 +7,6 @@ extends Node
 class ChunkData:
 	extends RefCounted
 	var scene_path: String
-	var local_aabb: AABB
 	var entrance_transform: Transform3D
 	var height_shift: float = 0.0
 	var is_turn: bool = false
@@ -44,14 +44,14 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
 var _chunk_pool: Dictionary = {}  # Key: scene_path (String), Value: Array[LevelChunk]
-var _last_chunk_path: String = ""
+var _recent_chunk_paths: Array[String] = []
 var _chunks_since_turn: int = 5
 
 
 func _ready() -> void:
 	_load_chunk_metadata_from_disk()
 
-	# Try to pull a deterministic seed globally set by the event bus or menu session manager
+	# Try to fetch the global seed, else random
 	var target_seed: int = GameEvents.procedural_seed if GameEvents.procedural_seed != 0 else Time.get_ticks_msec()
 	_rng.seed = target_seed
 
@@ -69,7 +69,7 @@ func _load_chunk_metadata_from_disk() -> void:
 						var full_path: String = dir_path + clean_name
 
 						# Sync load once at startup just to read the metadata/skills required.
-						# Ideally, this metadata should be in a separate Resource (.tres) to avoid loading the full scene.
+						# Ideally, this metadata would be in a separate Resource (.tres) to avoid loading the full scene.
 						var scene: PackedScene = load(full_path) as PackedScene
 						if scene != null:
 							var temp_instance: Node = scene.instantiate()
@@ -91,8 +91,6 @@ func _load_chunk_metadata_from_disk() -> void:
 									var out_z: Vector3 = exit_trigger.global_transform.basis.z.normalized()
 									data.is_turn = in_z.angle_to(out_z) > 0.1
 
-								data.local_aabb = _calculate_chunk_aabb(temp_instance as Node3D)
-
 								data.scene_path = full_path
 								data.requires_multi_jump = temp_instance.requires_multi_jump
 								data.requires_ground_dash = temp_instance.requires_ground_dash
@@ -103,6 +101,7 @@ func _load_chunk_metadata_from_disk() -> void:
 								if "score_multiplier" in temp_instance:
 									data.score_multiplier = temp_instance.score_multiplier
 
+								# TODO Change to switch statement (match)
 								if "/easy/" in full_path:
 									data.difficulty_points = 10
 								elif "/medium/" in full_path:
@@ -110,7 +109,7 @@ func _load_chunk_metadata_from_disk() -> void:
 								elif "/hard/" in full_path:
 									data.difficulty_points = 50
 								else:
-									assert(false, "Difficulty not found for this level chunk")
+									assert(false, "Difficulty not found for this level chunk " + data.scene_path)
 
 								var skills_count: int = 0
 								if data.requires_multi_jump:
@@ -136,52 +135,6 @@ func _load_chunk_metadata_from_disk() -> void:
 	assert(_all_chunks.size() > 0, "No valid LevelChunks found in directories.")
 
 
-func _calculate_chunk_aabb(chunk_node: Node3D) -> AABB:
-	var aabb: AABB = AABB()
-	var is_first: bool = true
-
-	var collision_shapes: Array[Node] = chunk_node.find_children("*", "CollisionShape3D", true, false)
-	for shape: Node in collision_shapes:
-		var col_3d: CollisionShape3D = shape as CollisionShape3D
-		if col_3d.shape == null:
-			continue
-
-		var parent_area: Area3D = col_3d.get_parent() as Area3D
-		if parent_area != null and ("Trigger" in parent_area.name):
-			continue
-
-		# Godot 4 shapes don't expose AABB natively without shape queries or meshes,
-		# so temporarily fetch its debug mesh AABB (or default to a generic size if custom logic is needed)
-		var shape_aabb: AABB
-		if col_3d.shape is BoxShape3D:
-			shape_aabb = AABB(-col_3d.shape.size as Vector3 / 2.0, col_3d.shape.size as Vector3)
-		elif col_3d.shape is SphereShape3D:
-			var r: float = col_3d.shape.radius
-			shape_aabb = AABB(Vector3(-r, -r, -r), Vector3(r * 2.0, r * 2.0, r * 2.0))
-		elif col_3d.shape is CylinderShape3D:
-			var r: float = col_3d.shape.radius
-			var h: float = col_3d.shape.height
-			shape_aabb = AABB(Vector3(-r, -h / 2.0, -r), Vector3(r * 2.0, h, r * 2.0))
-		else:
-			# Fallback for complex shapes (Convex/Concave) roughly estimating size
-			shape_aabb = AABB(Vector3(-5, -5, -5), Vector3(10, 10, 10))
-
-		var rel_transform: Transform3D = chunk_node.global_transform.affine_inverse() * col_3d.global_transform
-		var child_aabb: AABB = rel_transform * shape_aabb
-
-		if is_first:
-			aabb = child_aabb
-			is_first = false
-		else:
-			aabb = aabb.merge(child_aabb)
-
-	# Safety fallback in case chunks have no explicit physical colliders
-	if is_first:
-		aabb = AABB(Vector3(-10, -10, -10), Vector3(20, 20, 20))
-
-	return aabb
-
-
 func _get_chunk_data_by_path(path: String) -> ChunkData:
 	for data: ChunkData in _all_chunks:
 		if data.scene_path == path:
@@ -195,7 +148,7 @@ func clear_level() -> void:
 		if is_instance_valid(chunk):
 			_pool_chunk(chunk)
 	_active_chunks.clear()
-	_last_chunk_path = ""
+	_recent_chunk_paths.clear()
 	_chunks_since_turn = 5
 
 
@@ -317,17 +270,31 @@ func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	var strict_pool: Array[ChunkData] = []
 	var current_y_height: float = target_transform.origin.y
 
+	print("\n==================== Chunk Selection Debug ====================")
+	print("Target Y: ", current_y_height, " | Chunks since turn: ", _chunks_since_turn)
+	print("Recent paths: ", _recent_chunk_paths)
+
 	for data: ChunkData in _all_chunks:
+		var reject_reason: String = ""
+
 		if data.requires_multi_jump and not skills.get("multi_jump", false):
+			reject_reason += "missing multi_jump "
 			continue
 		if data.requires_ground_dash and not skills.get("ground_dash", false):
+			reject_reason += "missing ground_dash "
 			continue
 		if data.requires_air_dash and not skills.get("air_dash", false):
+			reject_reason += "missing air_dash "
 			continue
 		if data.requires_teleport and not skills.get("teleport", false):
+			reject_reason += "missing teleport "
 			continue
 		if data.requires_slow_fall and not skills.get("slow_fall", false):
+			reject_reason += "missing slow_fall "
 			continue
+
+		if reject_reason:
+			print("  ✗ REJECTED [%s]: %s" % [data.scene_path.get_file(), reject_reason])
 
 		# Prevent back-to-back turns
 		if data.is_turn and _chunks_since_turn < 5:
@@ -337,48 +304,47 @@ func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 
 		# Prevent level from going too high or too low
 		if current_y_height + data.height_shift > MAX_VERTICAL_DEVIATION and data.height_shift > 0:
+			print("  ✗ STRICT-REJECTED [%s]: would exceed MAX_VERTICAL_DEVIATION" % data.scene_path.get_file())
 			continue
 		if current_y_height + data.height_shift < MIN_VERTICAL_DEVIATION and data.height_shift < 0:
-			continue
-
-		# --- AABB Intersection Check ---
-		var proposed_transform: Transform3D = target_transform * data.entrance_transform.affine_inverse()
-		var proposed_aabb: AABB = proposed_transform * data.local_aabb
-
-		var overlaps: bool = false
-		for active_chunk: LevelChunk in _active_chunks:
-			if not is_instance_valid(active_chunk):
-				continue
-			var active_data: ChunkData = _get_chunk_data_by_path(active_chunk.scene_file_path)
-			if active_data != null:
-				var active_aabb: AABB = active_chunk.global_transform * active_data.local_aabb
-
-				# Shrink generously to forgive triggers/platforms exactly touching (like adjacent floors)
-				var shrunk_proposed: AABB = proposed_aabb.grow(-2.0)
-				var shrunk_active: AABB = active_aabb.grow(-2.0)
-
-				if shrunk_proposed.size.x > 0 and shrunk_active.size.x > 0 and shrunk_proposed.intersects(shrunk_active):
-					overlaps = true
-					break
-
-		if overlaps:
+			print("  ✗ STRICT-REJECTED [%s]: would exceed MIN_VERTICAL_DEVIATION" % data.scene_path.get_file())
 			continue
 
 		strict_pool.push_back(data)
 
+	print("Pool sizes → valid: %d, strict: %d, total available: %d" % [valid_pool.size(), strict_pool.size(), _all_chunks.size()])
+
 	# Soft fallbacks to prevent crash if constraints box the generator into a corner
 	if strict_pool.size() > 0:
+		print("  → Using STRICT pool")
 		valid_pool = strict_pool
 	elif valid_pool.size() == 0:
+		print("  → EMERGENCY FALLBACK: using ALL chunks")
 		valid_pool = _all_chunks
+	else:
+		print("  → Using BASIC valid pool (some chunks may violate vertical/AABB)")
 
-	# Avoid repeating the last chunk if  enough options
-	if valid_pool.size() > 5:
-		valid_pool = valid_pool.filter(func(d: ChunkData) -> bool: return d.scene_path != _last_chunk_path)
+	# Try to filter out all recent chunks
+	var non_recent: Array[ChunkData] = valid_pool.filter(func(d: ChunkData) -> bool: return not d.scene_path in _recent_chunk_paths)
+	if non_recent.size() > 0:
+		print("  → Filtered out recent chunks, %d remain" % valid_pool.size())
+		valid_pool = non_recent
+	else:
+		print("  → WARNING: All valid chunks were recent! Relaxing filter to exclude only last chunk")
+		# Fallback: at least try to avoid the very last chunk played
+		var non_last: Array[ChunkData] = valid_pool.filter(
+			func(d: ChunkData) -> bool: return _recent_chunk_paths.size() == 0 or d.scene_path != _recent_chunk_paths.back()
+		)
+		if non_last.size() > 0:
+			valid_pool = non_last
 
 	var random_idx: int = _rng.randi_range(0, valid_pool.size() - 1)
 	var chosen_data: ChunkData = valid_pool[random_idx]
-	_last_chunk_path = chosen_data.scene_path
+	print("  ✓ SELECTED: [%s] (is_turn: %s, height_shift: %.1f)" % [chosen_data.scene_path.get_file(), chosen_data.is_turn, chosen_data.height_shift])
+	print("====================================================\n")
+	_recent_chunk_paths.push_back(chosen_data.scene_path)
+	if _recent_chunk_paths.size() > 5:
+		_recent_chunk_paths.pop_front()
 
 	if chosen_data.is_turn:
 		_chunks_since_turn = 0
