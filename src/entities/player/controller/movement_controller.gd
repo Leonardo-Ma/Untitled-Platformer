@@ -4,8 +4,6 @@
 class_name MovementController extends Node3D
 
 # These signals go to animation controller, debug...
-signal move_started
-signal move_stopped
 signal movement_direction_changed(direction: Vector2, speed_factor: float)
 signal jumped
 signal in_air
@@ -45,7 +43,6 @@ func move(body: CharacterBody3D, delta: float) -> void:
 
 func movement_logic(body: CharacterBody3D) -> void:
 	if not movement_enabled:
-		move_stopped.emit()
 		movement_direction_changed.emit(Vector2.ZERO, 0.0)
 		body.velocity.x = move_toward(body.velocity.x, 0, current_speed)
 		body.velocity.z = move_toward(body.velocity.z, 0, current_speed)
@@ -61,8 +58,6 @@ func movement_logic(body: CharacterBody3D) -> void:
 		else:
 			current_speed = owner.movement.walk_speed
 
-		move_started.emit()
-
 		var normalized_input: Vector2 = input_direction.normalized()
 		var speed_factor: float = current_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
 		var blend_direction: Vector2 = Vector2(normalized_input.x, -normalized_input.y) * speed_factor
@@ -76,7 +71,6 @@ func movement_logic(body: CharacterBody3D) -> void:
 		body.velocity.x = direction.x * current_speed
 		body.velocity.z = direction.z * current_speed
 	else:
-		move_stopped.emit()
 		movement_direction_changed.emit(Vector2.ZERO, 0.0)
 		body.velocity.x = move_toward(body.velocity.x, 0, current_speed)
 		body.velocity.z = move_toward(body.velocity.z, 0, current_speed)
