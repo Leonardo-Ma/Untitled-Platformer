@@ -9,10 +9,8 @@ const ATTACK_SOUNDS: Array[AudioStream] = [
 @export_category("Skills")
 @export var skills: PlayerSkills
 
-@onready var interact_ray: RayCast3D = %InteractRay
 @onready var movement_controller: MovementController = %MovementController
 @onready var input_controller: InputController = %InputController
-@onready var inventory_controller: InventoryController = %InventoryController
 @onready var skills_controller: SkillsController = %SkillsController
 
 
@@ -39,8 +37,6 @@ func _entity_ready() -> void:
 	GameEvents.player_spawned.emit(self)
 
 	# Connect controllers directly to each other
-	input_controller.inventory_toggled.connect(func() -> void: inventory_controller.inventory_toggled.emit())
-	input_controller.interact_requested.connect(_on_interact_requested)
 	input_controller.attack_pressed.connect(_on_attack_pressed)
 
 
@@ -59,10 +55,6 @@ func get_skills() -> Dictionary:
 		"teleport": skills.can_teleport_dash,
 		"slow_fall": skills.can_feather_fall
 	}
-
-
-func _on_interact_requested() -> void:
-	_interact()
 
 
 func _on_attack_pressed() -> void:
@@ -93,8 +85,3 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 
 	input_controller.set_process_input(true)
 	input_controller.set_process_unhandled_input(true)
-
-
-func _interact() -> void:
-	if interact_ray.is_colliding():
-		interact_ray.get_collider().player_interact()
