@@ -1,0 +1,103 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://basam7g1dbev2"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bpwly"]
+filters = ["../Hitbox/CollisionShape3D:disabled", "Armature/Skeleton3D:mixamorig_Head", "Armature/Skeleton3D:mixamorig_HeadTop_End", "Armature/Skeleton3D:mixamorig_LeftArm", "Armature/Skeleton3D:mixamorig_LeftForeArm", "Armature/Skeleton3D:mixamorig_LeftHand", "Armature/Skeleton3D:mixamorig_LeftHandIndex1", "Armature/Skeleton3D:mixamorig_LeftHandIndex2", "Armature/Skeleton3D:mixamorig_LeftHandIndex3", "Armature/Skeleton3D:mixamorig_LeftHandIndex4", "Armature/Skeleton3D:mixamorig_LeftHandMiddle1", "Armature/Skeleton3D:mixamorig_LeftHandMiddle2", "Armature/Skeleton3D:mixamorig_LeftHandMiddle3", "Armature/Skeleton3D:mixamorig_LeftHandMiddle4", "Armature/Skeleton3D:mixamorig_LeftHandPinky1", "Armature/Skeleton3D:mixamorig_LeftHandPinky2", "Armature/Skeleton3D:mixamorig_LeftHandPinky3", "Armature/Skeleton3D:mixamorig_LeftHandPinky4", "Armature/Skeleton3D:mixamorig_LeftHandRing1", "Armature/Skeleton3D:mixamorig_LeftHandRing2", "Armature/Skeleton3D:mixamorig_LeftHandRing3", "Armature/Skeleton3D:mixamorig_LeftHandRing4", "Armature/Skeleton3D:mixamorig_LeftHandThumb1", "Armature/Skeleton3D:mixamorig_LeftHandThumb2", "Armature/Skeleton3D:mixamorig_LeftHandThumb3", "Armature/Skeleton3D:mixamorig_LeftHandThumb4", "Armature/Skeleton3D:mixamorig_LeftShoulder", "Armature/Skeleton3D:mixamorig_Neck", "Armature/Skeleton3D:mixamorig_RightArm", "Armature/Skeleton3D:mixamorig_RightForeArm", "Armature/Skeleton3D:mixamorig_RightHand", "Armature/Skeleton3D:mixamorig_RightHandIndex1", "Armature/Skeleton3D:mixamorig_RightHandIndex2", "Armature/Skeleton3D:mixamorig_RightHandIndex3", "Armature/Skeleton3D:mixamorig_RightHandIndex4", "Armature/Skeleton3D:mixamorig_RightHandMiddle1", "Armature/Skeleton3D:mixamorig_RightHandMiddle2", "Armature/Skeleton3D:mixamorig_RightHandMiddle3", "Armature/Skeleton3D:mixamorig_RightHandMiddle4", "Armature/Skeleton3D:mixamorig_RightHandPinky1", "Armature/Skeleton3D:mixamorig_RightHandPinky2", "Armature/Skeleton3D:mixamorig_RightHandPinky3", "Armature/Skeleton3D:mixamorig_RightHandPinky4", "Armature/Skeleton3D:mixamorig_RightHandRing1", "Armature/Skeleton3D:mixamorig_RightHandRing2", "Armature/Skeleton3D:mixamorig_RightHandRing3", "Armature/Skeleton3D:mixamorig_RightHandRing4", "Armature/Skeleton3D:mixamorig_RightHandThumb1", "Armature/Skeleton3D:mixamorig_RightHandThumb2", "Armature/Skeleton3D:mixamorig_RightHandThumb3", "Armature/Skeleton3D:mixamorig_RightHandThumb4", "Armature/Skeleton3D:mixamorig_RightShoulder", "Armature/Skeleton3D:mixamorig_Spine1", "Armature/Skeleton3D:mixamorig_Spine2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u2sm2"]
+animation = &"general/Hit_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_we42k"]
+animation = &"general/Death_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ooae8"]
+animation = &"movement/Jump_Idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_tw3sg"]
+input_0/name = "ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_syyu3"]
+input_0/name = "dead"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "damaged"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_awwfw"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nel44"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wid51"]
+animation = &"movement/Jump_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kq587"]
+animation = &"combat/1H_Attack_Slice_Diagonal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kg3hq"]
+animation = &"general/Idle_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nukr8"]
+animation = &"movement/Running_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7eq1v"]
+animation = &"movement_advanced/Walking_Backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nljmw"]
+animation = &"movement/Running_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gc4ts"]
+animation = &"movement/Running_A"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_oqjme"]
+sync_mode = 2
+blend_point_0/node = SubResource("AnimationNodeAnimation_kg3hq")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_0/name = &"general_Idle_A"
+blend_point_1/node = SubResource("AnimationNodeAnimation_nukr8")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_1/name = &"movement_Running_A"
+blend_point_2/node = SubResource("AnimationNodeAnimation_7eq1v")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_2/name = &"movement_advanced_Walking_Backwards"
+blend_point_3/node = SubResource("AnimationNodeAnimation_nljmw")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_3/name = &"movement_Running_A 2"
+blend_point_4/node = SubResource("AnimationNodeAnimation_gc4ts")
+blend_point_4/pos = Vector2(1, 0)
+blend_point_4/name = &"movement_Running_A 3"
+
+[resource]
+graph_offset = Vector2(-736.3476, -21.404419)
+nodes/output/position = Vector2(520, 380)
+nodes/damaged/node = SubResource("AnimationNodeAnimation_u2sm2")
+nodes/damaged/position = Vector2(-60, 800)
+nodes/death/node = SubResource("AnimationNodeAnimation_we42k")
+nodes/death/position = Vector2(-100, 620)
+nodes/fall/node = SubResource("AnimationNodeAnimation_ooae8")
+nodes/fall/position = Vector2(-420, 440)
+nodes/attack/node = SubResource("AnimationNodeOneShot_bpwly")
+nodes/attack/position = Vector2(-100, 40)
+nodes/melee_attack/node = SubResource("AnimationNodeAnimation_kq587")
+nodes/melee_attack/position = Vector2(-460, 200)
+nodes/jump/node = SubResource("AnimationNodeAnimation_wid51")
+nodes/jump/position = Vector2(-440, 620)
+nodes/in_air_state/node = SubResource("AnimationNodeTransition_tw3sg")
+nodes/in_air_state/position = Vector2(140, 200)
+nodes/is_alive/node = SubResource("AnimationNodeTransition_syyu3")
+nodes/is_alive/position = Vector2(200, 500)
+nodes/is_damaged/node = SubResource("AnimationNodeOneShot_awwfw")
+nodes/is_damaged/position = Vector2(360, 360)
+nodes/is_jumping/node = SubResource("AnimationNodeOneShot_nel44")
+nodes/is_jumping/position = Vector2(-100, 320)
+nodes/movement/node = SubResource("AnimationNodeBlendSpace2D_oqjme")
+nodes/movement/position = Vector2(-380, -40)
+node_connections = [&"output", 0, &"is_damaged", &"attack", 0, &"movement", &"attack", 1, &"melee_attack", &"in_air_state", 0, &"attack", &"in_air_state", 1, &"is_jumping", &"is_alive", 0, &"death", &"is_alive", 1, &"damaged", &"is_damaged", 0, &"in_air_state", &"is_damaged", 1, &"is_alive", &"is_jumping", 0, &"fall", &"is_jumping", 1, &"jump"]

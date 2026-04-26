@@ -1,10 +1,10 @@
 # If this is used by GOAP, it will be disabled and enabled depending on current action
 # https://www.youtube.com/watch?v=-juhGgA076E DevLogLogan Godot 4 3D - AI Pathfinding/Navigation
 # TODO Maybe assert instead of if != null?
+class_name NavigationController
 extends Node
 
-signal move_started
-signal move_stopped
+signal movement_direction_changed(direction: Vector2, speed_factor: float)
 
 var _disable_timer: float = 0.0
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 func disable_movement(duration: float) -> void:
 	if duration > _disable_timer:
 		_disable_timer = duration
-	move_stopped.emit()
+	movement_direction_changed.emit(Vector2.ZERO, 0.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -68,7 +68,7 @@ func stop() -> void:
 		owner.velocity = Vector3.ZERO
 	if navigation_agent != null:
 		navigation_agent.set_velocity(Vector3.ZERO)
-	move_stopped.emit()
+	movement_direction_changed.emit(Vector2.ZERO, 0.0)
 
 
 # TODO Change run_speed to use a variable that is defined by goap action instead
@@ -79,13 +79,11 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if owner != null:
 		owner.velocity = safe_velocity
 		owner.move_and_slide()
-		if "movement" in owner:
-			move_started.emit(owner.movement.run_speed)
-		else:
-			move_started.emit()
+		# NPCs using navigation typically move forward locally.
+		movement_direction_changed.emit(Vector2(0, 1), 1.0)
 
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	if owner != null and "velocity" in owner:
 		owner.velocity = Vector3.ZERO
-	move_stopped.emit()
+	movement_direction_changed.emit(Vector2.ZERO, 0.0)

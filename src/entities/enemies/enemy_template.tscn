@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://o8dqx6i7woqt" path="res://src/entities/ai/goap/goals/kill_enemy.gd" id="14_ia32q"]
 [ext_resource type="Script" uid="uid://8ib48sr624k3" path="res://src/entities/ai/goap/goals/wander.gd" id="15_tur1j"]
 [ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://src/entities/ai/goap/helpers/ai_config.gd" id="16_iqbar"]
-[ext_resource type="Script" uid="uid://bclk4k6dj18ue" path="res://src/entities/components/animation_controller.gd" id="17_dfgrq"]
+[ext_resource type="Script" uid="uid://cuefrffw4m4jh" path="res://src/entities/components/animation_controller.gd" id="17_ejhyg"]
 [ext_resource type="Script" uid="uid://cjc0pv560qqv1" path="res://src/entities/ai/goap/memories/red_mage_memory.gd" id="18_h6n62"]
 [ext_resource type="Script" uid="uid://bccasf1g707qk" path="res://src/entities/components/navigation_controller.gd" id="19_nw04b"]
 [ext_resource type="Script" uid="uid://r2b3ysikxov0" path="res://src/entities/ai/perception/perception_system.gd" id="20_tbbw0"]
@@ -95,7 +95,6 @@ height = 1.47117
 radius = 0.3
 
 [node name="AggressiveEntity" type="CharacterBody3D" unique_id=280064195]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_ljpg2")
@@ -121,7 +120,7 @@ unique_name_in_owner = true
 deterministic = false
 root_node = NodePath("%Visual")
 anim_player = NodePath("../AnimationPlayer")
-script = ExtResource("17_dfgrq")
+script = ExtResource("17_ejhyg")
 
 [node name="Visual" type="Node3D" parent="." unique_id=977755737]
 unique_name_in_owner = true
