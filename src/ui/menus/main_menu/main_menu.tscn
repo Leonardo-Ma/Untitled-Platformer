@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_cqtv1"]
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="1_mainmenu"]
 [ext_resource type="Script" uid="uid://b8xklo3ubuprp" path="res://src/ui/menus/main_menu/new_game.gd" id="2_esfjp"]
-[ext_resource type="Script" uid="uid://dfo4jdqyttoed" path="res://src/ui/menus/main_menu/options.gd" id="3_rhqoy"]
 [ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://src/ui/menus/main_menu/quit_to_desktop.gd" id="4_gdklf"]
 
 [node name="MainMenu" type="Control" unique_id=1634997965]
@@ -65,12 +64,6 @@ layout_mode = 2
 size_flags_vertical = 7
 text = "New Game"
 script = ExtResource("2_esfjp")
-
-[node name="Options" type="Button" parent="VBoxContainer" unique_id=1218892017]
-layout_mode = 2
-size_flags_vertical = 7
-text = "Options"
-script = ExtResource("3_rhqoy")
 
 [node name="QuitDesktop" type="Button" parent="VBoxContainer" unique_id=184267010]
 layout_mode = 2

@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_tb8x8"]
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="2_pmc0i"]
 [ext_resource type="Script" uid="uid://mqguyiauncmr" path="res://src/ui/menus/pause_menu/resume.gd" id="2_vsi4c"]
-[ext_resource type="Script" uid="uid://dfo4jdqyttoed" path="res://src/ui/menus/main_menu/options.gd" id="3_pmc0i"]
 [ext_resource type="Script" uid="uid://buikwklv2j3ub" path="res://src/ui/menus/main_menu/quit_main_menu.gd" id="4_qmph6"]
 [ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://src/ui/menus/main_menu/quit_to_desktop.gd" id="5_an2k7"]
 
@@ -62,12 +61,6 @@ text = "Save"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Load"
-
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=381054329]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Options"
-script = ExtResource("3_pmc0i")
 
 [node name="Quit_Main_Menu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1385652931]
 layout_mode = 2
