@@ -66,7 +66,6 @@ folder_colors={
 "res://src/entities/ai/": "pink",
 "res://src/entities/animation/": "orange",
 "res://src/entities/components/": "gray",
-"res://src/entities/magic/": "orange",
 "res://src/entities/player/": "red",
 "res://src/entities/player/combat/": "gray",
 "res://src/entities/player/controller/": "gray",

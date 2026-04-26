@@ -19,16 +19,6 @@ var movement_enabled: bool = true
 var coyote_timer: float = 0.0
 var disable_timer: float = 0.0
 
-@onready var magic_controller: Node = %MagicController
-
-
-func _ready() -> void:
-	magic_controller.cast_started.connect(_on_cast_started)
-
-
-func _on_cast_started(freeze_duration: float) -> void:
-	disable_movement(freeze_duration)
-
 
 ## This is executed by entity's _physics_process
 func move(body: CharacterBody3D, delta: float) -> void:

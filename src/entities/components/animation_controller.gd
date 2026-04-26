@@ -15,8 +15,6 @@ func _ready() -> void:
 	assert(movement_controller || navigation_controller, "Movement or navigation controller missing for " + owner.name)
 
 	if entity is PlayerEntity:
-		var magic_controller: Node = get_node("%MagicController")
-		assert(magic_controller, "Magic controller not defined by " + owner.name)
 #		movement_controller.move_stopped.connect(_on_move_stopped)
 		movement_controller.movement_direction_changed.connect(_on_movement_direction_changed)
 		movement_controller.jumped.connect(_on_jumped)
