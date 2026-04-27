@@ -17,37 +17,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 1)
 unique_name_in_owner = true
 transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 0.9999999, 0, 0.9999999, 0, -4.3711374e-08, -47, 5.9058228, 52.0831)
 
-[node name="Checkpoints" type="Node3D" parent="." unique_id=1149308522]
-
-[node name="Platforms" type="Node3D" parent="." unique_id=1093726929]
-
-[node name="GrassPlatform2" parent="Platforms" unique_id=817564388 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform2" parent="." unique_id=817564388 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 6.162756)
 
-[node name="GrassPlatform3" parent="Platforms" unique_id=2015340725 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform3" parent="." unique_id=2015340725 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, 17)
 
-[node name="GrassPlatform5" parent="Platforms" unique_id=537577895 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform5" parent="." unique_id=537577895 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 17)
 
-[node name="GrassPlatform4" parent="Platforms" unique_id=1465725515 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform4" parent="." unique_id=1465725515 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 27)
 
-[node name="GrassPlatform6" parent="Platforms" unique_id=1231013589 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform6" parent="." unique_id=1231013589 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, 38)
 
-[node name="GrassPlatform8" parent="Platforms" unique_id=2111315957 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform8" parent="." unique_id=2111315957 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 48)
 
-[node name="GrassPlatform11" parent="Platforms" unique_id=1970857736 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform11" parent="." unique_id=1970857736 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 48)
 
-[node name="GrassPlatform9" parent="Platforms" unique_id=596463747 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform9" parent="." unique_id=596463747 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, -1, 47)
 
-[node name="GrassPlatform10" parent="Platforms" unique_id=1003535736 instance=ExtResource("4_xpu0x")]
+[node name="GrassPlatform10" parent="." unique_id=1003535736 instance=ExtResource("4_xpu0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1, 54)
-
-[node name="Traps" type="Node3D" parent="." unique_id=669077855]
-
-[node name="Props" type="Node3D" parent="." unique_id=1124199125]

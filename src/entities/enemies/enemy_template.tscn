@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://8ib48sr624k3" path="res://src/entities/ai/goap/goals/wander.gd" id="15_tur1j"]
 [ext_resource type="Script" uid="uid://bvvk88q345vy4" path="res://src/entities/ai/goap/helpers/ai_config.gd" id="16_iqbar"]
 [ext_resource type="Script" uid="uid://cuefrffw4m4jh" path="res://src/entities/components/animation_controller.gd" id="17_ejhyg"]
-[ext_resource type="Script" uid="uid://cjc0pv560qqv1" path="res://src/entities/ai/goap/memories/red_mage_memory.gd" id="18_h6n62"]
+[ext_resource type="Script" uid="uid://cjc0pv560qqv1" path="res://src/entities/ai/goap/memories/base_memory.gd" id="18_h6n62"]
 [ext_resource type="Script" uid="uid://bccasf1g707qk" path="res://src/entities/components/navigation_controller.gd" id="19_nw04b"]
 [ext_resource type="Script" uid="uid://r2b3ysikxov0" path="res://src/entities/ai/perception/perception_system.gd" id="20_tbbw0"]
 [ext_resource type="Script" uid="uid://bll0orhps41m6" path="res://src/entities/components/combat/knockback_controller.gd" id="21_q7i4y"]
@@ -80,7 +80,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bfx7"]
-size = Vector3(1, 1.4, 0.562427)
+size = Vector3(1, 1.4, 0.65767837)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7mh1l"]
 height = 1.47117
@@ -152,7 +152,7 @@ unique_name_in_owner = true
 script = ExtResource("24_sx6k8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=186970168]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0167861, 0.793203, 0.818708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0167861, 0.793203, 0.99409854)
 shape = SubResource("BoxShape3D_4bfx7")
 disabled = true
 

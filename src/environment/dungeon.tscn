@@ -10,8 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="9_voiec"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dhjrq"]
-vertices = PackedVector3Array(-3.5530949, 0.37780982, -3.5530949, -3.5530949, 0.37780982, 15.446905, 33.446907, 0.37780982, 15.446905, 33.446907, 0.37780982, -3.5530949)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-3.5530949, 6.87781, -3.5530949, -3.5530949, 6.87781, 15.446905, 33.446907, 6.87781, 15.446905, 33.446907, 6.87781, -3.5530949, 11.446905, 0.37780982, 2.9469051, 13.196905, 0.37780982, 2.6969051, 13.196905, 0.37780982, -3.5530949, -1.5530949, 0.37780982, -3.5530949, -1.8030949, 0.37780982, -1.5530949, 13.196905, 0.37780982, 15.446905, 13.196905, 0.37780982, 5.696905, 11.446905, 0.37780982, 5.446905, -1.5530949, 0.37780982, 13.196905, -1.5530949, 0.37780982, 15.446905, -3.5530949, 0.37780982, -1.5530949, -3.5530949, 0.37780982, 12.946905, 14.696905, 0.37780982, 2.9469051, 31.446905, 0.37780982, -1.8030949, 31.446905, 0.37780982, -3.5530949, 14.696905, 0.37780982, 5.446905, 31.446905, 0.37780982, 13.196905, 33.446907, 0.37780982, 12.946905, 33.446907, 0.37780982, -1.5530949, 31.446905, 0.37780982, 15.446905)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 13, 12), PackedInt32Array(11, 8, 4), PackedInt32Array(14, 8, 15), PackedInt32Array(15, 8, 12), PackedInt32Array(9, 12, 11), PackedInt32Array(11, 12, 8), PackedInt32Array(5, 6, 16), PackedInt32Array(16, 6, 17), PackedInt32Array(17, 6, 18), PackedInt32Array(9, 10, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 17), PackedInt32Array(17, 20, 19), PackedInt32Array(19, 20, 9), PackedInt32Array(19, 16, 17), PackedInt32Array(20, 23, 9)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qlb32"]
+size = Vector3(0.008948197, 0.008948197, 0.030889511)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f7plw"]
 size = Vector3(0.18969727, 0.0031255183, 0.06125243)
@@ -24,9 +27,6 @@ size = Vector3(0.15917969, 0.0031255183, 0.06125243)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8rma"]
 size = Vector3(0.19140625, 0.0031255183, 0.06125243)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qlb32"]
-size = Vector3(0.008948197, 0.008948197, 0.030889511)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gjmle"]
 resource_name = "beige"
@@ -350,6 +350,73 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -6, 0)
 
+[node name="Pillars" type="Node3D" parent="NavigationRegion3D" unique_id=1885493808]
+
+[node name="Pillar_01_01" type="StaticBody3D" parent="NavigationRegion3D/Pillars" unique_id=618070127]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393597, -0.06217909, 14.459145)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="NavigationRegion3D/Pillars/Pillar_01_01" unique_id=1461540125]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Pillars/Pillar_01_01" unique_id=872052545]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Pillar_01_02" type="StaticBody3D" parent="NavigationRegion3D/Pillars" unique_id=1415062395]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393595, -0.06217909, -3.0100603)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="NavigationRegion3D/Pillars/Pillar_01_02" unique_id=968709355]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Pillars/Pillar_01_02" unique_id=1886477028]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Pillar_01_03" type="StaticBody3D" parent="NavigationRegion3D/Pillars" unique_id=122234816]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 32.95818, -0.06217909, 14.459145)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="NavigationRegion3D/Pillars/Pillar_01_03" unique_id=1939279337]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Pillars/Pillar_01_03" unique_id=1345436700]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Pillar_01_05" type="StaticBody3D" parent="NavigationRegion3D/Pillars" unique_id=1066026381]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 32.95818, -0.06217909, -3.0100603)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="NavigationRegion3D/Pillars/Pillar_01_05" unique_id=738602655]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Pillars/Pillar_01_05" unique_id=1143862502]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Pillar_01_04" type="StaticBody3D" parent="NavigationRegion3D/Pillars" unique_id=782556257]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 13.053822, -0.06217909, 4.225624)
+metadata/_edit_group_ = true
+
+[node name="Pillar_01" type="MeshInstance3D" parent="NavigationRegion3D/Pillars/Pillar_01_04" unique_id=311626887]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
+mesh = ExtResource("4_cr444")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Pillars/Pillar_01_04" unique_id=1452091031]
+transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
+shape = SubResource("BoxShape3D_qlb32")
+
 [node name="Walls" type="Node3D" parent="." unique_id=885531893]
 
 [node name="WallWest" type="StaticBody3D" parent="Walls" unique_id=1201378512]
@@ -404,91 +471,29 @@ skeleton = NodePath("")
 transform = Transform3D(1.0000004, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0.0779597, 0.030304626, 0)
 shape = SubResource("BoxShape3D_q8rma")
 
-[node name="Pillars" type="Node3D" parent="." unique_id=1885493808]
-
-[node name="Pillar_01_01" type="StaticBody3D" parent="Pillars" unique_id=618070127]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393597, -0.06217909, 14.459145)
-metadata/_edit_group_ = true
-
-[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_01" unique_id=1461540125]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
-mesh = ExtResource("4_cr444")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_01" unique_id=872052545]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
-shape = SubResource("BoxShape3D_qlb32")
-
-[node name="Pillar_01_02" type="StaticBody3D" parent="Pillars" unique_id=1415062395]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.1393595, -0.06217909, -3.0100603)
-metadata/_edit_group_ = true
-
-[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_02" unique_id=968709355]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
-mesh = ExtResource("4_cr444")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_02" unique_id=1886477028]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
-shape = SubResource("BoxShape3D_qlb32")
-
-[node name="Pillar_01_03" type="StaticBody3D" parent="Pillars" unique_id=122234816]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 32.95818, -0.06217909, 14.459145)
-metadata/_edit_group_ = true
-
-[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_03" unique_id=1939279337]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
-mesh = ExtResource("4_cr444")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_03" unique_id=1345436700]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
-shape = SubResource("BoxShape3D_qlb32")
-
-[node name="Pillar_01_05" type="StaticBody3D" parent="Pillars" unique_id=1066026381]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 32.95818, -0.06217909, -3.0100603)
-metadata/_edit_group_ = true
-
-[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_05" unique_id=738602655]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
-mesh = ExtResource("4_cr444")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_05" unique_id=1143862502]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
-shape = SubResource("BoxShape3D_qlb32")
-
-[node name="Pillar_01_04" type="StaticBody3D" parent="Pillars" unique_id=782556257]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 13.053822, -0.06217909, 4.225624)
-metadata/_edit_group_ = true
-
-[node name="Pillar_01" type="MeshInstance3D" parent="Pillars/Pillar_01_04" unique_id=311626887]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 0, -0.0154447565)
-mesh = ExtResource("4_cr444")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillars/Pillar_01_04" unique_id=1452091031]
-transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
-shape = SubResource("BoxShape3D_qlb32")
-
 [node name="Props" type="Node3D" parent="." unique_id=536212436]
 
 [node name="Barrels" type="Node3D" parent="Props" unique_id=1535172649]
 
 [node name="Barrel_01" parent="Props/Barrels" unique_id=867034360 instance=ExtResource("4_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 25.94512, 1.0883816, -0.63824844)
+script = null
 
-[node name="Barrel_03" parent="Props/Barrels" unique_id=538126779 instance=ExtResource("4_voiec")]
+[node name="Barrel_03" parent="Props/Barrels" unique_id=1384266354 instance=ExtResource("4_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 21.94512, 1.0883816, 10.255065)
+script = null
 
-[node name="Barrel_04" parent="Props/Barrels" unique_id=1607613962 instance=ExtResource("4_voiec")]
+[node name="Barrel_04" parent="Props/Barrels" unique_id=1768819821 instance=ExtResource("4_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.94512, 1.0883816, 10.255065)
+script = null
 
-[node name="Barrel_05" parent="Props/Barrels" unique_id=523182056 instance=ExtResource("4_voiec")]
+[node name="Barrel_05" parent="Props/Barrels" unique_id=534059036 instance=ExtResource("4_voiec")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.9451199, 1.0883816, 6.255065)
+script = null
 
-[node name="Barrel_02" parent="Props/Barrels" unique_id=1663030180 instance=ExtResource("4_voiec")]
-transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 29.94512, 1.0883816, -0.63824844)
+[node name="Barrel_02" parent="Props/Barrels" unique_id=1304676505 instance=ExtResource("4_voiec")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 29.94512, 1.0883816, -0.63824844)
+script = null
 
 [node name="Skulls" type="Node3D" parent="Props" unique_id=2017701350]
 

@@ -1,14 +1,6 @@
 [gd_scene format=3 uid="uid://bac4iokysa58j"]
 
-[ext_resource type="Script" uid="uid://c30e5ujesolj4" path="res://src/environment/dungeon_assets/individual_assets/barrel.gd" id="1_lce4q"]
-[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="2_1wpck"]
 [ext_resource type="ArrayMesh" uid="uid://clxiq3vvpsxql" path="res://src/environment/dungeon_assets/meshes/barrel_001.tres" id="3_h8shr"]
-[ext_resource type="Script" uid="uid://wqopxvagomo6" path="res://src/entities/components/combat/hurtbox.gd" id="4_oidkm"]
-
-[sub_resource type="Resource" id="Resource_q8rma"]
-script = ExtResource("2_1wpck")
-max_health = 10
-metadata/_custom_type_script = "uid://njkofl5g11k7"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cr444"]
 height = 1.4775391
@@ -18,8 +10,6 @@ radius = 0.67529297
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_lce4q")
-health = SubResource("Resource_q8rma")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=486811208]
@@ -30,14 +20,3 @@ shape = SubResource("CylinderShape3D_cr444")
 transform = Transform3D(100, 0, 0, 0, 100, -1.364242e-12, 0, 1.364242e-12, 100, 0, 0, 0)
 mesh = ExtResource("3_h8shr")
 skeleton = NodePath("")
-
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1078358462]
-unique_name_in_owner = true
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("4_oidkm")
-metadata/_custom_type_script = "uid://wqopxvagomo6"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1753892662]
-transform = Transform3D(1.0000005, 0, 0, 0, -4.3711413e-08, 1.0000007, 0, -1.0000007, -4.3711413e-08, 0, -0.0003490448, -0.00038278103)
-shape = SubResource("CylinderShape3D_cr444")
