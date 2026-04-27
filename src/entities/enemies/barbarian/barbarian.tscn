@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cq301lp0jblvc" path="res://src/entities/enemies/enemy_template.tscn" id="1_4frua"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="2_cin2i"]
 [ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="3_ud1dh"]
-[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://src/entities/components/entity_stats.gd" id="4_f35k1"]
 [ext_resource type="AnimationLibrary" uid="uid://vginonlwcip8" path="res://src/entities/animation/libraries/combat.res" id="5_0ifyg"]
 [ext_resource type="Texture2D" uid="uid://d0qopgxxjomc5" path="res://src/entities/enemies/barbarian/barbarian_barbarian_texture.png" id="5_18ttt"]
 [ext_resource type="AnimationLibrary" uid="uid://qw3lmf4rabqb" path="res://src/entities/animation/libraries/general.res" id="6_q7dfg"]
@@ -24,11 +23,6 @@ script = ExtResource("3_ud1dh")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_85d17"]
-resource_local_to_scene = true
-script = ExtResource("4_f35k1")
-metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j12qd"]
 resource_name = "barbarian"
@@ -252,7 +246,6 @@ blend_shape_mode = 0
 [node name="Barbarian" unique_id=280064195 instance=ExtResource("1_4frua")]
 attack = SubResource("Resource_m7jbs")
 health = SubResource("Resource_675n4")
-stats = SubResource("Resource_85d17")
 perception_config = null
 debug_perception = false
 

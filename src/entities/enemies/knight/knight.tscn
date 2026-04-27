@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cq301lp0jblvc" path="res://src/entities/enemies/enemy_template.tscn" id="1_yec36"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="2_7eyey"]
 [ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="3_1a47c"]
-[ext_resource type="Script" uid="uid://b46orajcidbak" path="res://src/entities/components/entity_stats.gd" id="4_hp1j4"]
 [ext_resource type="ArrayMesh" uid="uid://dhkwua5f8rp5r" path="res://src/entities/player/visual/mesh/arm_left.res" id="8_q5gs3"]
 [ext_resource type="ArrayMesh" uid="uid://benf5fx77de3o" path="res://src/entities/player/visual/mesh/arm_right.res" id="9_borpn"]
 [ext_resource type="ArrayMesh" uid="uid://cdjq172y8xhry" path="res://src/entities/player/visual/mesh/body.tres" id="10_trgwc"]
@@ -33,11 +32,6 @@ script = ExtResource("3_1a47c")
 max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
-
-[sub_resource type="Resource" id="Resource_whugq"]
-resource_local_to_scene = true
-script = ExtResource("4_hp1j4")
-metadata/_custom_type_script = "uid://b46orajcidbak"
 
 [sub_resource type="Animation" id="Animation_aas06"]
 length = 0.001
@@ -175,7 +169,6 @@ shadow_mesh = SubResource("ArrayMesh_py1fg")
 [node name="Knight" unique_id=280064195 instance=ExtResource("1_yec36")]
 attack = SubResource("Resource_7g3bp")
 health = SubResource("Resource_1dgrr")
-stats = SubResource("Resource_whugq")
 perception_config = null
 debug_perception = false
 
