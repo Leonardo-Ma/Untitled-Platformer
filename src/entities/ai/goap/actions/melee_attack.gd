@@ -1,7 +1,7 @@
 class_name MeleeAttack
 extends GoapAction
 
-var _attack_cooldown: float = 0.7
+var _attack_cooldown: float = 1.8
 var _last_attack_time: int = 0
 
 
