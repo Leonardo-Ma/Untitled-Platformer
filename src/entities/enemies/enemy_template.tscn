@@ -57,7 +57,7 @@ available_actions = Array[Script]([ExtResource("9_i57bl"), ExtResource("10_2ajce
 available_goals = Array[Script]([ExtResource("13_hwngx"), ExtResource("14_ia32q"), ExtResource("15_tur1j")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wefi8"]
-height = 2.0947266
+height = 1.9296875
 
 [sub_resource type="Animation" id="Animation_bnvtc"]
 length = 0.001
