@@ -26,8 +26,16 @@ func get_effects() -> Dictionary:
 
 
 func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
-	# TODO This just zeroes the velocity, need to find better way
-	_actor.navigation_controller.navigation_agent.set_velocity(Vector3.ZERO)
+	_actor.navigation_controller.stop()
+
+	var enemy_pos: Vector3 = _blackboard.get("enemy_position", _actor.global_position)
+	var direction: Vector3 = _actor.global_position.direction_to(enemy_pos)
+	direction.y = 0.0
+
+	if direction.length_squared() > 0.001:
+		direction = direction.normalized()
+		var target_rotation_y: float = atan2(direction.x, direction.z)
+		_actor.rotation.y = lerp_angle(_actor.rotation.y, target_rotation_y, 10.0 * _delta)
 
 	var current_time: int = Time.get_ticks_msec()
 
