@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - 'docs/**'
+      - '!docs/diagrams/development.drawio'
       - 'zensical.toml'
       - '.github/workflows/docs.yml'
 permissions:
