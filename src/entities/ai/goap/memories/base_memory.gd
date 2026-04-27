@@ -65,9 +65,9 @@ func update_blackboard() -> void:
 		_blackboard["is_wandering"] = false
 		return
 
-	var current_player: Node3D = best_target_data.entity
-	assert(current_player != null, "Target entity is missing from target data")
-	assert("health" in current_player and current_player.health != null, "Target player must have a valid Health resource.")
+	var current_target: Node3D = best_target_data.entity
+	assert(current_target != null, "Target entity is missing from target data")
+	assert("health" in current_target and current_target.health != null, "Target must have a valid Health resource.")
 
 	var current_time: float = Time.get_ticks_msec() / 1000.0
 	var enemy_pos: Vector3 = best_target_data.last_known_position
@@ -75,7 +75,7 @@ func update_blackboard() -> void:
 	# If active line of sight (seen in the last 0.5 seconds), track exactly
 	# Prevents tracking stutter caused by the perception update interval rate
 	if current_time - best_target_data.last_detection_time < 0.5:
-		enemy_pos = current_player.global_position
+		enemy_pos = current_target.global_position
 
 	var distance_squared: float = actor_pos.distance_squared_to(enemy_pos)
 
@@ -84,7 +84,7 @@ func update_blackboard() -> void:
 	var in_melee_range: bool = distance_squared <= MELEE_RANGE_SQUARED
 	var enemy_nearby: bool = distance_squared < NEARBY_RANGE_SQUARED
 
-	var enemy_alive: bool = current_player.health.health > 0.0
+	var enemy_alive: bool = current_target.health.health > 0.0
 	var in_combat: bool = in_melee_range and enemy_alive
 
 	_blackboard["enemy_position"] = enemy_pos
