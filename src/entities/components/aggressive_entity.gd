@@ -72,7 +72,7 @@ func _ready() -> void:
 		var goals: Array[GoapGoal] = ai_config.create_goals()
 		var actions: Array[GoapAction] = ai_config.create_actions()
 
-		# Agent name helps with debugging
+		# Helps with debugging
 		goap_agent.name = "GoapAgent"
 
 		goap_agent.init(self, goals, goap_controller, actions)
@@ -155,7 +155,7 @@ func _on_health_changed(new_health: int) -> void:
 		# Flash green on heal (pulse)
 		_damage_material.albedo_color = Color(0.3, 1.0, 0.3, 0.4)
 		_damage_tween = create_tween()
-		_damage_tween.tween_property(_damage_material, "albedo_color:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		_damage_tween.tween_property(_damage_material, "albedo_color:a", 0.0, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	_prev_health = new_health
 

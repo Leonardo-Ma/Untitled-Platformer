@@ -1,4 +1,3 @@
-# TODO only execute this if debug (Maybe the whole debug UI root?)
 extends Label
 
 var event_text: String = ""
@@ -24,7 +23,7 @@ func _on_player_spawned(player: Node) -> void:
 
 
 func _on_player_damaged(_attack: Attack) -> void:
-	_damage_indicator_timer = 1.0  # Display "Yes" for 1 second
+	_damage_indicator_timer = 1.0
 
 
 #endregion
@@ -81,7 +80,6 @@ func _get_player_info_text() -> String:
 	var is_in_air: bool = not player_entity.is_on_floor()
 	output += "In Air: %s\n" % str(is_in_air)
 
-	# Trusting domain asserts for core dependencies, simply displaying information.
 	var current_speed: float = player_entity.movement_controller.current_speed
 	output += "Move Speed: %.1f\n" % current_speed
 
@@ -102,7 +100,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed() and not event.is_echo():
 		event_text = event.as_text()
 
-		# Temporary built-in debug hook to dump orphan details to Godot terminal
 		if event is InputEventKey and event.keycode == KEY_F10:
 			print_debug("=== DEBUG: PRINTING ORPHAN NODES ===")
 			Node.print_orphan_nodes()
+			print("=======================================")

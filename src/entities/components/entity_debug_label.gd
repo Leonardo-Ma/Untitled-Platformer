@@ -7,6 +7,12 @@ extends Label3D
 @onready var label_text: String
 
 
+func _ready() -> void:
+	if not OS.is_debug_build():
+		queue_free()
+		return
+
+
 func _process(_delta: float) -> void:
 	if not self.visible:
 		return

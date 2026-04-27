@@ -8,6 +8,9 @@ var _perception_system: PerceptionSystem
 
 
 func _ready() -> void:
+	if not OS.is_debug_build():
+		queue_free()
+		return
 	_perception_system = get_parent() as PerceptionSystem
 	assert(_perception_system != null, "PerceptionDebug must be a child of PerceptionSystem in " + self.name)
 
