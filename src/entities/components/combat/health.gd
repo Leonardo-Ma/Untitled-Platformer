@@ -28,8 +28,9 @@ var invulnerable: bool = false
 var _timer_callback: Callable  # Reference to entity's timer creation method
 var _is_regenerating: bool = false
 var _regen_tick_rate: float = 0.5  # Regenerate every 0.5 seconds
-var _regen_delay: float = 30.0  # Seconds to wait after damage before regenerating
+var _regen_delay: float = 15.0  # Seconds to wait after damage before regenerating
 var _waiting_for_regen_delay: bool = false
+var _last_damage_time: int = 0
 
 
 func take_damage(attack: Attack) -> void:
@@ -37,14 +38,17 @@ func take_damage(attack: Attack) -> void:
 		return
 	if attack.hitkill:
 		health = 0
-	health -= attack.damage
+	else:
+		health -= attack.damage
+	_last_damage_time = Time.get_ticks_msec()
 	damaged.emit(attack)
 	enable_invulnerability(1.0)
 	stop_regeneration()  # Stop any active regen and reset delay
-	schedule_regeneration()
 
 	if health <= 0:
 		died.emit()
+	else:
+		schedule_regeneration()
 
 
 # Revived warns HUD
@@ -56,7 +60,6 @@ func reset() -> void:
 	stop_regeneration()
 	disable_invulnerability()
 	_waiting_for_regen_delay = false
-	start_regeneration()
 
 
 ## Called by entity during _ready() to inject timer dependency
@@ -100,6 +103,12 @@ func start_regeneration() -> void:
 	if not _can_regenerate() or _is_regenerating:
 		return
 
+	var time_since_damage: float = (Time.get_ticks_msec() - _last_damage_time) / 1000.0
+	if time_since_damage < _regen_delay:
+		_waiting_for_regen_delay = true
+		_timer_callback.call(_regen_delay - time_since_damage, start_regeneration)
+		return
+
 	_is_regenerating = true
 	_timer_callback.call(_regen_tick_rate, apply_regeneration_tick)
 
@@ -110,6 +119,9 @@ func stop_regeneration() -> void:
 
 
 func apply_regeneration_tick() -> void:
+	if not _is_regenerating:
+		return
+
 	if health >= max_health:
 		_is_regenerating = false
 		return
