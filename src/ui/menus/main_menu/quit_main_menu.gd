@@ -5,6 +5,5 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 
-# TODO Implement quit to main menu
 func _on_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://src/main.tscn")
