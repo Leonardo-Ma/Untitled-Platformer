@@ -77,12 +77,13 @@ func update_blackboard() -> void:
 	if current_time - best_target_data.last_detection_time < 0.5:
 		enemy_pos = current_target.global_position
 
-	var distance_squared: float = actor_pos.distance_squared_to(enemy_pos)
+	var distance_to_last_known_squared: float = actor_pos.distance_squared_to(enemy_pos)
+	var true_distance_squared: float = actor_pos.distance_squared_to(current_target.global_position)
 
 	# BUG In order for this to work it has to be same
 	# target desired distance of NavigationAgent3D
-	var in_melee_range: bool = distance_squared <= MELEE_RANGE_SQUARED
-	var enemy_nearby: bool = distance_squared < NEARBY_RANGE_SQUARED
+	var in_melee_range: bool = true_distance_squared <= MELEE_RANGE_SQUARED
+	var enemy_nearby: bool = distance_to_last_known_squared < NEARBY_RANGE_SQUARED
 
 	var enemy_alive: bool = current_target.health.health > 0.0
 	var in_combat: bool = in_melee_range and enemy_alive
