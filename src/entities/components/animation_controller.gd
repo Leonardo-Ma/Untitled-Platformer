@@ -70,6 +70,7 @@ func _on_melee_attack() -> void:
 
 
 func _on_damaged(_attack: Attack) -> void:
+	self.set("parameters/is_alive/transition_request", "damaged")
 	self.set("parameters/is_damaged/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
