@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dbk6we1ehloks"]
+
+[ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_ad2n6"]
+[ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_7e4qu"]
+[ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_din2u"]
+[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass_platform.tscn" id="4_fdenn"]
+[ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="5_qhihy"]
+[ext_resource type="PackedScene" uid="uid://db7v7h36s030i" path="res://src/environment/levels/assets/static_platforms/snow_platform.tscn" id="5_vev7o"]
+[ext_resource type="PackedScene" uid="uid://bneqpm1wdlci3" path="res://src/environment/levels/assets/moving_plaforms/moving_platform_orange.tscn" id="6_swwcn"]
+[ext_resource type="PackedScene" uid="uid://c6on7cp5w028m" path="res://src/environment/dungeon_assets/individual_assets/spikes.tscn" id="7_qhihy"]
+[ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="7_swwcn"]
+
+[node name="MediumTemplate" type="Node3D" unique_id=1016321493]
+script = ExtResource("1_ad2n6")
+
+[node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_7e4qu")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_din2u")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
+
+[node name="GrassPlatform" parent="." unique_id=537577895 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="GrassPlatform2" parent="." unique_id=159482676 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27)
+
+[node name="GrassPlatform3" parent="." unique_id=524929854 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 36)
+
+[node name="GrassPlatform4" parent="." unique_id=1522920052 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 56)
+
+[node name="Spike3" parent="GrassPlatform4" unique_id=1269000478 instance=ExtResource("7_qhihy")]
+transform = Transform3D(180, 0, 0, 0, -7.86805e-06, 180, 0, -180, -7.86805e-06, -1.3915176, 3.8129644, -3)
+
+[node name="GrassPlatform5" parent="." unique_id=1471926387 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 76)
+
+[node name="GrassPlatform6" parent="." unique_id=170478884 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 75)
+
+[node name="Checkpoint" parent="GrassPlatform6" unique_id=742215115 instance=ExtResource("7_swwcn")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, -2)
+
+[node name="GoldCoin" parent="." unique_id=1971537253 instance=ExtResource("5_qhihy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 74)
+
+[node name="GrassPlatform7" parent="." unique_id=1205046339 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 86)
+
+[node name="GrassPlatform8" parent="." unique_id=383896393 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2, 109)
+
+[node name="GrassPlatform9" parent="." unique_id=1957331320 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 130)
+
+[node name="GrassPlatform10" parent="." unique_id=306009726 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 139)
+
+[node name="GrassPlatform11" parent="." unique_id=843772019 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 163)
+
+[node name="GoldCoin" parent="GrassPlatform11" unique_id=2070898365 instance=ExtResource("5_qhihy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5, -3)
+
+[node name="GrassPlatform12" parent="." unique_id=1277502490 instance=ExtResource("4_fdenn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 184)
+
+[node name="SnowPlatform" parent="." unique_id=800740477 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
+
+[node name="Spike" parent="SnowPlatform" unique_id=2024920262 instance=ExtResource("7_qhihy")]
+transform = Transform3D(180, 0, 0, 0, -7.86805e-06, 180, 0, -180, -7.86805e-06, 0, 4, 0)
+
+[node name="SnowPlatform2" parent="." unique_id=1511710519 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 27)
+
+[node name="Spike2" parent="SnowPlatform2" unique_id=1738756837 instance=ExtResource("7_qhihy")]
+transform = Transform3D(180, 0, 0, 0, -7.86805e-06, 180, 0, -180, -7.86805e-06, -1.3915176, 3.8110561, -2)
+
+[node name="SnowPlatform3" parent="." unique_id=863546309 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 46)
+
+[node name="SnowPlatform4" parent="." unique_id=3505939 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 66)
+
+[node name="SnowPlatform5" parent="." unique_id=1862157729 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 79)
+
+[node name="SnowPlatform6" parent="." unique_id=167405810 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 78)
+
+[node name="SnowPlatform7" parent="." unique_id=2048916552 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 98)
+
+[node name="SnowPlatform8" parent="." unique_id=575468329 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 3, 120)
+
+[node name="Spike4" parent="SnowPlatform8" unique_id=11060297 instance=ExtResource("7_qhihy")]
+transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 3.8810654, 0)
+
+[node name="SnowPlatform9" parent="." unique_id=1621654046 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 140)
+
+[node name="Checkpoint2" parent="SnowPlatform9" unique_id=1259805730 instance=ExtResource("7_swwcn")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, 0)
+
+[node name="SnowPlatform10" parent="." unique_id=44571465 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1, 152)
+
+[node name="SnowPlatform11" parent="." unique_id=1551991465 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 173)
+
+[node name="SnowPlatform12" parent="." unique_id=1314127943 instance=ExtResource("5_vev7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 191)
+
+[node name="MovingPlatformOrange" parent="." unique_id=36073028 instance=ExtResource("6_swwcn")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 34)
