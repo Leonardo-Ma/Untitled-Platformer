@@ -97,7 +97,7 @@ text = "Don't forget
 the coins!"
 
 [node name="LeftClickToAttack" type="Label3D" parent="TutorialLabels" unique_id=692226076]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 11, 41.770695)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 9, 41.770695)
 pixel_size = 0.01
 double_sided = false
 text = "Left click 
@@ -121,7 +121,7 @@ transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2, 0.504436, 22)
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2, 2.504436, 35)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Platforms" unique_id=1031225863]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 2.504436, 53)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 0.504436, 53)
 navigation_mesh = SubResource("NavigationMesh_mi8ch")
 
 [node name="GrassPlatform3" parent="Platforms/NavigationRegion3D" unique_id=1176620490 instance=ExtResource("11_obxih")]

@@ -24,28 +24,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -124)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 130)
 
 [node name="GrassPlatform2" parent="Platforms" unique_id=929283303 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 140)
 
 [node name="GrassPlatform4" parent="Platforms" unique_id=1507871139 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 142)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, 141)
 
 [node name="GrassPlatform5" parent="Platforms" unique_id=1130352153 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, 153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -2, 152)
 
 [node name="GrassPlatform6" parent="Platforms" unique_id=1324602107 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, 165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -4, 164)
 
 [node name="GrassPlatform7" parent="Platforms" unique_id=1273451664 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 164)
 
 [node name="GrassPlatform8" parent="Platforms" unique_id=396051906 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 176)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 175)
 
 [node name="GrassPlatform9" parent="Platforms" unique_id=810428904 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 186)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2, 185)
 
 [node name="GrassPlatform10" parent="Platforms" unique_id=91356957 instance=ExtResource("6_lxs6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 194)
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=1149308522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -124)

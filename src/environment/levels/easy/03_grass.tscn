@@ -82,7 +82,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.910973, 8, 145)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, 0)
 
 [node name="GrassPlatform25" parent="." unique_id=1420895409 instance=ExtResource("5_8ekpc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.910973, 8, 159)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.910973, 8, 156)
+
+[node name="GrassPlatform34" parent="." unique_id=1140727035 instance=ExtResource("5_8ekpc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.910973, 8, 165)
 
 [node name="GrassPlatform26" parent="." unique_id=495259173 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.910973, 10, 174)
