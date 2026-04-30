@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/heart.png")
+@icon("uid://c71vj0fgk7gfw")  # heart.png
 
 class_name Health
 extends Resource

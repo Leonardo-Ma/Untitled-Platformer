@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/entity_move.png")
+@icon("uid://bn57rt7oachxy")  # entity_move.png
 
 ## To be used with movement controller
 class_name Movement

@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/glow.png")
+@icon("uid://bhbhlf4t28wyo")  # glow.png
 ## Contains unlockable flags and parameters for player abilities.
 class_name PlayerSkills extends Resource
 

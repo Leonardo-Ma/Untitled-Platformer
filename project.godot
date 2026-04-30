@@ -58,7 +58,6 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://icons/": "green",
 "res://scr/documentation/": "gray",
 "res://scr/world_map/": "orange",
 "res://src/entities/": "yellow",
@@ -74,6 +73,7 @@ folder_colors={
 "res://src/entities/systems/": "gray",
 "res://src/environment/": "orange",
 "res://src/globals/": "gray",
+"res://src/icons/": "green",
 "res://src/sound/": "blue",
 "res://src/sound/helpers/": "gray",
 "res://src/systems/": "gray",

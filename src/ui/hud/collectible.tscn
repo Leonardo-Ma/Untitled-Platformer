@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ied3ddlblq1x"]
 
-[ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://icons/16x16/coins.png" id="1_bil18"]
+[ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://src/icons/16x16/coins.png" id="1_bil18"]
 
 [node name="HBoxContainer" type="HBoxContainer" unique_id=1789230896]
 offset_right = 40.0

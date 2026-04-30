@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/computer.png")
+@icon("uid://bgcef2dg8bwf")  # computer.png
 ## Configuration resource for entity AI
 ## Defines which actions and goals are available for a specific entity type
 class_name AIConfig

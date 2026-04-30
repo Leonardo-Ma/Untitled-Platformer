@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/sword.png")
+@icon("uid://cdm1p42bwmr10")  # sword.png
 ## This is attached to 'Attack' resources on entities to deal damage (passing to hurtbox)
 class_name Attack
 extends Resource

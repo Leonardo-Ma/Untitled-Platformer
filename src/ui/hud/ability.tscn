@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dih45d4ygmyww"]
 
-[ext_resource type="Texture2D" uid="uid://bnq8if00xnf2p" path="res://icons/16x16/bomb.png" id="1_hwd1u"]
+[ext_resource type="Texture2D" uid="uid://bnq8if00xnf2p" path="res://src/icons/16x16/bomb.png" id="1_hwd1u"]
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=1806796059]
 offset_right = 90.0

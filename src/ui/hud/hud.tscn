@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bc20xmwfj68dg" path="res://src/entities/player/combat/player_healthbar.gd" id="1_jreyb"]
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_up44w"]
 [ext_resource type="Script" uid="uid://c30uhilu8tn5v" path="res://src/ui/hud/score.gd" id="2_cl4jo"]
-[ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://icons/16x16/star.png" id="3_ndnj2"]
+[ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://src/icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://src/ui/hud/collectibles_interface.gd" id="6_l3ger"]
 [ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/abilities_interface.gd" id="7_8stm2"]
 [ext_resource type="PackedScene" uid="uid://ied3ddlblq1x" path="res://src/ui/hud/collectible.tscn" id="8_1rhup"]

@@ -1,5 +1,5 @@
 # https://www.youtube.com/watch?v=EP5AYllgHy8 Godot 4.0 Third Person Controller Tutorial ( 2023 )
-@icon("res://icons/16x16/character_move.png")
+@icon("uid://d4g1stey2kdtm")  # character_move.png
 ## Player movement controller
 class_name MovementController extends Node3D
 

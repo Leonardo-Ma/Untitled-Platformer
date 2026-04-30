@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/joystick.png")
+@icon("uid://bcle4jlufep4u")  # joystick.png
 class_name InputController extends Node
 
 signal inventory_toggled
