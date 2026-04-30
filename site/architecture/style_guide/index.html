@@ -292,14 +292,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ROADMAP/" class="md-nav__link">
+      <a href="../../first_steps/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Roadmap
+    First Steps
   
 
     
@@ -1561,7 +1561,15 @@
 <p><strong>Group Names</strong>: Use the <code>Groups</code> AutoLoad constants (e.g., <code>Groups.PLAYERS</code>) to access groups. Avoid using strings.</p>
 </li>
 <li>
-<p><strong>Signals strictly by code</strong>: All signals must be connected dynamically via code. Signals must not be manually created using the Editor UI's Node panel, as it obscures dependencies.</p>
+<p><strong>Signals strictly by code</strong>: All signals must be connected dynamically by code. Never connect signals via the Godot Editor Inspector (the Node dock).</p>
+</li>
+<li>
+<ul>
+<li>Always emit signals using <code>my_signal.emit()</code> syntax.</li>
+</ul>
+</li>
+<li>
+<p><strong>No Deprecated Methods</strong>: Avoid using deprecated methods or paradigms from older Godot versions. Always use the latest equivalents.</p>
 </li>
 <li>
 <p><strong>Code Regions</strong>: Use Godot's <code>#region Region Name</code> and <code>#endregion</code> tags to logically group together long blocks of related functions or variables where it makes sense.</p>

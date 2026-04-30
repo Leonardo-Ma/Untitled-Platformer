@@ -129,7 +129,10 @@ The style rules are intended to increase readability of the source code for huma
 
 - **Group Names**: Use the `Groups` AutoLoad constants (e.g., `Groups.PLAYERS`) to access groups. Avoid using strings.
 
-- **Signals strictly by code**: All signals must be connected dynamically via code. Signals must not be manually created using the Editor UI's Node panel, as it obscures dependencies.
+- **Signals strictly by code**: All signals must be connected dynamically by code. Never connect signals via the Godot Editor Inspector (the Node dock).
+- - Always emit signals using `my_signal.emit()` syntax.
+
+- **No Deprecated Methods**: Avoid using deprecated methods or paradigms from older Godot versions. Always use the latest equivalents.
 
 - **Code Regions**: Use Godot's `#region Region Name` and `#endregion` tags to logically group together long blocks of related functions or variables where it makes sense.
 

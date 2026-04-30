@@ -1,5 +1,9 @@
 ## Brainstorm
 
+##### Game ideas
+- Silly car game like [barro](https://store.steampowered.com/app/618140/Barro/)
+- Power fantasy with minigames as stats progression like [return of the saiyans](https://saiyansreturn.com/)
+
 #### Ambience
 - https://www.youtube.com/watch?v=lxzWJdYnwLQ bensmotel What Happened To Video Game Ambience?
 
