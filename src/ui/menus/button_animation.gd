@@ -31,7 +31,7 @@ func _on_hover(button: Button) -> void:
 	(
 		SoundManager
 		. play_sound(
-			preload("uid://ssx21t0ynnox"),  # Rollover3.wav
+			preload("uid://cxb6ockccyuf0"),  # switch1.wav
 			SoundManager.SoundCategory.UI,
 		)
 	)

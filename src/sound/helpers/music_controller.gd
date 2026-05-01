@@ -1,3 +1,5 @@
+# TODO: Improve methods and variables names
+# TODO: Double check if AudioStreamPlayers are being freed properly
 class_name MusicController
 extends Node
 
@@ -11,17 +13,24 @@ enum MusicState {
 	SILENCE,
 }
 
-# TODO Change this to use uid
 var music_library: Dictionary = {
-	MusicState.EXPLORATION: preload("uid://d30ibn7723bcm"),  # src/common/audio/music/the_last_encounter_collection/tle_digital_loop_long
-	#MusicState.COMBAT: preload("res://audio/music/combat.ogg"),
-	#MusicState.DUNGEON: preload("res://audio/music/dungeon.ogg"),
-	#MusicState.BOSS: preload("res://audio/music/boss.ogg"),
-	#MusicState.TOWN: preload("res://audio/music/town.ogg"),
-	#MusicState.NIGHT: preload("res://audio/music/night.ogg"),
+	MusicState.EXPLORATION:
+	{
+		"start": preload("uid://bxyvub1x8yjhp"),  # start.mp3
+		"blossom": preload("uid://cp0si1iqrye43"),  # blossom.mp3
+		"journey": preload("uid://bqcm6jip7ppr1"),  # journey.mp3
+		"regrowth_wip": preload("uid://dhkwf2sf675tb"),  # regrowth_wip.mp3
+		"shop": preload("uid://cewvxcw8hwrj1"),  # shop.mp3
+		"town": preload("uid://bbdc8a1gy34l"),  # town.mp3
+	},
+	#MusicState.COMBAT: {"default": preload()},
+	#MusicState.DUNGEON: {"default": preload()},
+	#MusicState.BOSS: {"default": preload()},
+	#MusicState.TOWN: {"default": preload()},
+	#MusicState.NIGHT: {"default": preload()},
 }
 
-var current_state: MusicState = MusicState.EXPLORATION
+var current_state: MusicState = MusicState.SILENCE
 var current_track: AudioStream
 var is_playing: bool = false
 
@@ -40,7 +49,6 @@ func initialize(pool: SoundPool) -> void:
 func _create_music_player() -> void:
 	_current_player = AudioStreamPlayer.new()
 	_current_player.bus = "Music"
-	_current_player.volume_db = -10  # Default music volume
 	add_child(_current_player)
 
 
@@ -59,6 +67,7 @@ func play(track: AudioStream, fade_duration: float = 1.0) -> void:
 	new_player.stream = track
 	new_player.volume_db = -80  # Start silent
 	add_child(new_player)
+	new_player.finished.connect(_on_track_finished)
 	new_player.play()
 	is_playing = true
 
@@ -71,8 +80,9 @@ func play(track: AudioStream, fade_duration: float = 1.0) -> void:
 	_current_player = new_player
 
 
-func change_state(new_state: MusicState, immediate: bool = false) -> void:
-	if new_state == current_state:
+# TODO: Maybe new parameter to loop song?
+func change_state(new_state: MusicState, immediate: bool = false, track_key: String = "") -> void:
+	if new_state == current_state and track_key == "":
 		return
 
 	if _transition_cooldown and not immediate:
@@ -84,8 +94,14 @@ func change_state(new_state: MusicState, immediate: bool = false) -> void:
 		stop()
 		return
 
-	var track: AudioStream = music_library.get(new_state)
-	if track:
+	var tracks: Dictionary = music_library.get(new_state, {})
+	if not tracks.is_empty():
+		var track: AudioStream
+		if track_key != "" and tracks.has(track_key):
+			track = tracks[track_key]
+		else:
+			track = tracks.values().pick_random()
+
 		var fade_duration: float = 0.0 if immediate else _crossfade_duration
 		play(track, fade_duration)
 
@@ -137,6 +153,13 @@ func on_combat_ended() -> void:
 
 
 # Private helpers
+func _on_track_finished() -> void:
+	var tracks: Dictionary = music_library.get(current_state, {})
+	if not tracks.is_empty():
+		var next_track: AudioStream = tracks.values().pick_random()
+		play(next_track, _crossfade_duration)
+
+
 func _on_transition_cooldown_finished() -> void:
 	_transition_cooldown = false
 

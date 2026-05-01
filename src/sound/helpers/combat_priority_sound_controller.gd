@@ -37,7 +37,6 @@ func initialize(pool: SoundPool) -> void:
 	_sound_pool = pool
 
 
-# Main playback with priority
 func play_with_priority(
 	sound: AudioStream,
 	position: Vector3,
@@ -45,7 +44,6 @@ func play_with_priority(
 	sound_id: String = "",
 	source_node: Node3D = null,
 ) -> bool:
-	# Calculate actual position
 	var actual_pos: Vector3 = position
 	if source_node:
 		actual_pos = source_node.global_position
@@ -69,7 +67,6 @@ func play_with_priority(
 	if player == null:
 		return false
 
-	# Store priority metadata
 	player.set_meta("priority", priority)
 	player.set_meta("timestamp", Time.get_ticks_msec())
 
@@ -80,7 +77,6 @@ func play_with_priority(
 	# Auto-remove when finished
 	player.finished.connect(_on_combat_sound_finished.bind(player), CONNECT_ONE_SHOT)
 
-	# Update combat intensity
 	_update_combat_intensity(priority)
 
 	return true

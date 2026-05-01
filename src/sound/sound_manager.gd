@@ -13,8 +13,8 @@ func _ready() -> void:
 	combat.initialize(pool)
 	music.initialize(pool)
 
-	# Optional: Load saved volume settings
-	_load_volume_settings()
+	if not OS.is_debug_build():
+		_load_volume_settings()
 
 
 func _create_subsystems() -> void:
@@ -49,8 +49,8 @@ func play_music(track: AudioStream, fade_duration: float = 1.0) -> void:
 	music.play(track, fade_duration)
 
 
-func change_music_state(state: MusicController.MusicState, immediate: bool = false) -> void:
-	music.change_state(state, immediate)
+func change_music_state(state: MusicController.MusicState, immediate: bool = false, track_key: String = "") -> void:
+	music.change_state(state, immediate, track_key)
 
 
 func stop_music(fade_duration: float = 1.0) -> void:
