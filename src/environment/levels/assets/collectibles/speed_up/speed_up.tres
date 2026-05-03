@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpeedBoostStatus" format=3 uid="uid://62y38laatth2"]
+
+[ext_resource type="Script" uid="uid://sx06xo701l0n" path="res://src/entities/components/stat_modifier/status_effects/SpeedBoostStatus.gd" id="1_4vc1q"]
+
+[resource]
+script = ExtResource("1_4vc1q")
+id = &"speed_boost"
+name = "speed_boost"
+type = 0
+duration = 10.0
+metadata/_custom_type_script = "uid://sx06xo701l0n"
