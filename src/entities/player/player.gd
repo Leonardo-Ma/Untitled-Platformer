@@ -81,6 +81,7 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 
 	if is_death:
 		health.reset()
+		status_manager.clear_temporary_statuses()
 
 	input_controller.set_process_input(true)
 	input_controller.set_process_unhandled_input(true)

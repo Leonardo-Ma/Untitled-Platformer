@@ -35,6 +35,7 @@ var _prev_health: int = 0
 # TODO Consider @onready collision layer and mask (Maybe in a parent Entity class?)
 @onready var hitbox: Hitbox = %Hitbox
 @onready var hurtbox: Hurtbox = %Hurtbox
+@onready var status_manager: StatusManager = %StatusManager
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var navigation_controller: Node = get_node_or_null("%NavigationController")
 @onready var goap_controller: GoapMemory = get_node_or_null("%GoapController")
@@ -45,6 +46,7 @@ var _prev_health: int = 0
 func _ready() -> void:
 	assert(hitbox, "Hitbox incorrect for " + self.name)
 	assert(hurtbox, "Hurtbox incorrect for " + self.name)
+	assert(status_manager, "Status Manager missing for " + self.name)
 	assert(animation_player, "Animation player missing for " + self.name)
 	assert(attack and attack.damage > 0 and attack.type != null, "Attack property incorrect for " + self.name)
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)

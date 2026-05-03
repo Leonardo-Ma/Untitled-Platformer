@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://r2b3ysikxov0" path="res://src/entities/ai/perception/perception_system.gd" id="20_tbbw0"]
 [ext_resource type="Script" uid="uid://bll0orhps41m6" path="res://src/entities/components/combat/knockback_controller.gd" id="21_q7i4y"]
 [ext_resource type="Script" uid="uid://cpusxg43clwxv" path="res://src/entities/player/controller/vfx_controller.gd" id="22_ju7vx"]
+[ext_resource type="Script" uid="uid://rpbdsks54nbp" path="res://src/entities/components/stat_modifier/status_manager.gd" id="23_o0y4x"]
 [ext_resource type="Script" uid="uid://csig12422io62" path="res://src/entities/components/combat/hitbox.gd" id="24_sx6k8"]
 [ext_resource type="Script" uid="uid://wqopxvagomo6" path="res://src/entities/components/combat/hurtbox.gd" id="25_ljr68"]
 [ext_resource type="Script" uid="uid://cpnmaicmyhwd6" path="res://src/entities/components/entity_debug_label.gd" id="26_5e42j"]
@@ -146,6 +147,13 @@ target_desired_distance = 1.2
 path_height_offset = 0.25
 avoidance_enabled = true
 debug_enabled = true
+
+[node name="Status" type="Node" parent="." unique_id=295181189]
+
+[node name="StatusManager" type="Node" parent="Status" unique_id=2000296191]
+unique_name_in_owner = true
+script = ExtResource("23_o0y4x")
+metadata/_custom_type_script = "uid://rpbdsks54nbp"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=998701689]
 unique_name_in_owner = true
