@@ -3,7 +3,7 @@ extends AggressiveEntity
 
 const ATTACK_SOUNDS: Array[AudioStream] = [
 	preload("uid://domodec4epc7f"),  # sword_slice.wav
-	preload("uid://doay56c5x3rwr"),  # sword_clash_2.wav
+	#	preload("uid://doay56c5x3rwr"),  # sword_clash_2.wav
 ]
 
 @export_category("Skills")
