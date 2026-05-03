@@ -1,4 +1,4 @@
-class_name HealthCollectibleData
+class_name HealthCollectible
 extends CollectibleData
 
 @export_category("Health Recovery")

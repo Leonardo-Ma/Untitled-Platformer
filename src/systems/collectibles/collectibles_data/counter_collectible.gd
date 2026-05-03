@@ -1,4 +1,4 @@
-class_name CounterCollectibleData
+class_name CounterCollectible
 extends CollectibleData
 
 @export_category("Counter Mechanics")

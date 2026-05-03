@@ -1,4 +1,4 @@
-## Base data container for collectibles. Use specific subclasses like CounterCollectibleData, StatusCollectibleData, or HealthCollectibleData.
+## Base data container for collectibles. Use specific subclasses like CounterCollectible, StatusCollectibleData, or HealthCollectible.
 @abstract class_name CollectibleData
 extends Resource
 
