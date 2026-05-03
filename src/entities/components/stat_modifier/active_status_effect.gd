@@ -10,9 +10,9 @@ var remaining_time: float = 0.0
 var tick_timer: float = 0.0
 
 
-func _init(p_status: StatusEffect, p_target: Node) -> void:
-	status = p_status
-	target = p_target
+func _init(_status: StatusEffect, _target: Node) -> void:
+	status = _status
+	target = _target
 	remaining_time = status.duration
 	tick_timer = status.tick_interval
 	status.on_apply(target)

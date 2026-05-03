@@ -33,12 +33,12 @@ func _process(delta: float) -> void:
 
 
 func apply_status(status: StatusEffect) -> void:
-	if _active_statuses.has(status.id):
-		_active_statuses[status.id].handle_reapplication()
+	if _active_statuses.has(status.get_id()):
+		_active_statuses[status.get_id()].handle_reapplication()
 	else:
 		var new_active: ActiveStatusEffect = ActiveStatusEffect.new(status, _target)
 		new_active.expired.connect(_on_status_expired)
-		_active_statuses[status.id] = new_active
+		_active_statuses[status.get_id()] = new_active
 
 	statuses_changed.emit()
 
@@ -53,7 +53,7 @@ func remove_status(status_id: StringName) -> void:
 
 
 func _on_status_expired(active_status: ActiveStatusEffect) -> void:
-	remove_status(active_status.status.id)
+	remove_status(active_status.status.get_id())
 
 
 func dispatch_event(event_name: StringName, data: Dictionary) -> void:
