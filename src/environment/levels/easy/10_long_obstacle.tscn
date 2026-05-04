@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 75)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, -2)
 
 [node name="GoldCoin" parent="." unique_id=1971537253 instance=ExtResource("5_qhihy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 74)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 6, 75)
 
 [node name="GrassPlatform7" parent="." unique_id=1205046339 instance=ExtResource("4_fdenn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 86)

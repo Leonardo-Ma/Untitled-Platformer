@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass_platform.tscn" id="5_tyk6i"]
 [ext_resource type="PackedScene" uid="uid://db7v7h36s030i" path="res://src/environment/levels/assets/static_platforms/snow_platform.tscn" id="6_t3dyd"]
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="7_w2knr"]
+[ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="7_xcckb"]
 
 [node name="LevelChunk" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_defqu")
@@ -36,6 +37,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -3, 16)
 [node name="SnowPlatform4" parent="." unique_id=779929968 instance=ExtResource("6_t3dyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -2, 26)
 
+[node name="SpeedUp" parent="SnowPlatform4" unique_id=707485280 instance=ExtResource("7_xcckb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -2)
+
 [node name="GrassPlatform5" parent="." unique_id=761031890 instance=ExtResource("5_tyk6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -1.10531, 36)
 
@@ -53,6 +57,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -0.10530996, 65)
 
 [node name="GoldCoin" parent="SnowPlatform6" unique_id=1971537253 instance=ExtResource("7_w2knr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, 0)
+
+[node name="SpeedUp" parent="SnowPlatform6" unique_id=467854452 instance=ExtResource("7_xcckb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -2)
 
 [node name="GrassPlatform9" parent="." unique_id=1909465993 instance=ExtResource("5_tyk6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -0.10530996, 75)

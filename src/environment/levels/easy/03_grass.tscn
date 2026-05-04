@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="4_hj6vk"]
 [ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass_platform.tscn" id="5_8ekpc"]
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="5_33rl1"]
+[ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="6_5k8j0"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="6_378ft"]
 
 [node name="LevelChunk" type="Node3D" unique_id=1016321493]
@@ -39,8 +40,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0139542, -4, 5)
 [node name="GrassPlatform4" parent="." unique_id=397787695 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.910973, -3, 21)
 
+[node name="Checkpoint" parent="GrassPlatform4" unique_id=742215115 instance=ExtResource("6_378ft")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, -2)
+
 [node name="GrassPlatform5" parent="." unique_id=398618247 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.910973, -3, 37)
+
+[node name="SpeedUp" parent="GrassPlatform5" unique_id=707485280 instance=ExtResource("6_5k8j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -2)
 
 [node name="GrassPlatform30" parent="." unique_id=1374870291 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.910973, -3, 29)
@@ -99,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.910973, 8, 195)
 [node name="GrassPlatform6" parent="." unique_id=767651646 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.910973, -3, 50)
 
-[node name="Checkpoint" parent="GrassPlatform6" unique_id=742215115 instance=ExtResource("6_378ft")]
+[node name="Checkpoint" parent="GrassPlatform6" unique_id=285606185 instance=ExtResource("6_378ft")]
 
 [node name="GrassPlatform7" parent="." unique_id=1170968329 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.910973, -3, 48)

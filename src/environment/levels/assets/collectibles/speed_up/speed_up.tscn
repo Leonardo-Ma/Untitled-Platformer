@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cvcxve456vw1e"]
 
 [ext_resource type="Script" uid="uid://ba3iid01vglkb" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.gd" id="1_f0w0h"]
-[ext_resource type="Script" uid="uid://sx06xo701l0n" path="res://src/entities/components/stat_modifier/status_effects/SpeedBoostStatus.gd" id="2_d827c"]
+[ext_resource type="Script" uid="uid://sx06xo701l0n" path="res://src/entities/components/stat_modifier/status_effects/speed_boost_status.gd" id="2_d827c"]
 [ext_resource type="Texture2D" uid="uid://dr1j7pfphg208" path="res://src/environment/kaykit_platformer/platformer_texture.png" id="2_lv6xb"]
 [ext_resource type="Script" uid="uid://cqo4vne1iqdw4" path="res://src/systems/collectibles/collectibles_data/status_collectible.gd" id="3_d827c"]
 
