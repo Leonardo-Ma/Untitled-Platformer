@@ -1,8 +1,6 @@
 @icon("uid://bcle4jlufep4u")  # joystick.png
 class_name InputController extends Node
 
-signal inventory_toggled
-signal interact_requested
 signal attack_pressed
 
 @onready var camera_controller: Node = $"../../CamRoot"
@@ -34,16 +32,6 @@ func _is_ui_interacting() -> bool:
 		return true
 	var hovered_control: Control = viewport.gui_get_hovered_control()
 	return hovered_control != null
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("inventory"):
-		inventory_toggled.emit()
-		get_viewport().set_input_as_handled()
-
-	if event.is_action_pressed("interact"):
-		interact_requested.emit()
-		get_viewport().set_input_as_handled()
 
 
 func _input(event: InputEvent) -> void:
