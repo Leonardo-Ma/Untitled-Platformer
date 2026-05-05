@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://4dnhjq8r5f03"]
+
+[ext_resource type="Texture2D" uid="uid://ckymx5j2we16r" path="res://src/icons/16x16/arrow_speed.png" id="1_3ctaq"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1789230896]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PowerUp" type="TextureRect" parent="." unique_id=482959666]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_3ctaq")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="PowerUp" unique_id=1920979956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 4
+radial_initial_angle = 270.0
+nine_patch_stretch = true
+tint_progress = Color(0, 0, 0, 0.7)

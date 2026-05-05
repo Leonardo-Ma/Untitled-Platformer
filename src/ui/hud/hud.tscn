@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://src/icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://src/ui/hud/collectibles_interface.gd" id="6_l3ger"]
 [ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/abilities_interface.gd" id="7_8stm2"]
+[ext_resource type="PackedScene" uid="uid://4dnhjq8r5f03" path="res://src/ui/hud/powerup.tscn" id="7_qtkbr"]
+[ext_resource type="Script" uid="uid://cb1h0wlra5gti" path="res://src/ui/hud/power_up_interface.gd" id="7_raafm"]
 [ext_resource type="PackedScene" uid="uid://ied3ddlblq1x" path="res://src/ui/hud/collectible.tscn" id="8_1rhup"]
 [ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://src/ui/hud/ability.tscn" id="13_gy4ue"]
 
@@ -124,6 +126,25 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Collectible3" parent="HBoxContainer/VBoxContainer/Collectibles/CollectiblesContainer" unique_id=1375961723 instance=ExtResource("8_1rhup")]
+layout_mode = 2
+
+[node name="PowerUps" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=1788304339]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("7_raafm")
+
+[node name="PowerUpsContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/PowerUps" unique_id=1310403331]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 10
+
+[node name="PowerUp" parent="HBoxContainer/VBoxContainer/PowerUps/PowerUpsContainer" unique_id=1789230896 instance=ExtResource("7_qtkbr")]
+layout_mode = 2
+
+[node name="PowerUp2" parent="HBoxContainer/VBoxContainer/PowerUps/PowerUpsContainer" unique_id=403828577 instance=ExtResource("7_qtkbr")]
+layout_mode = 2
+
+[node name="PowerUp3" parent="HBoxContainer/VBoxContainer/PowerUps/PowerUpsContainer" unique_id=1027955728 instance=ExtResource("7_qtkbr")]
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=114191235]
