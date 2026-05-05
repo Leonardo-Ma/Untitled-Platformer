@@ -134,6 +134,8 @@ The style rules are intended to increase readability of the source code for huma
 
 - **No Deprecated Methods**: Avoid using deprecated methods or paradigms from older Godot versions. Always use the latest equivalents.
 
+- **Inheritance and `_ready()` (Template Method Pattern)**: Avoid requiring `super._ready()` (if you override in children's ready, it will ignore parent's ready). If you need strict control over initialization order, define an abstract virtual method like `@abstract func _entity_ready()` in the parent, and call it inside the parent's `_ready()`, and have the extended child override `_entity_ready()` instead of `_ready()`.
+
 - **Code Regions**: Use Godot's `#region Region Name` and `#endregion` tags to logically group together long blocks of related functions or variables where it makes sense.
 
 - **Component/Resource Icons**: Use `@icon("res://icons/16x16/x.png")` for components and resources to make them explicitly identifiable in Godot's Scene tree and FileSystem.

@@ -1,8 +1,8 @@
 # Read more: https://zensical.org/docs/setup/basics
 [project]
 site_name = "Untitled Platformer Documentation"
-site_description = "A new project generated from the default template project."
-site_author = "<your name here>"
+site_description = "Template and games documentation."
+site_author = "Leonardo"
 #site_url = "https://www.example.com/"
 docs_dir = "docs"
 #logo = "icon.svg"
@@ -12,7 +12,7 @@ repo_url = "https://github.com/Leonardo-Ma/Untitled-Platformer"
 edit_uri = "edit/main/docs/"
 
 copyright = """
-Copyright &copy; 2026 The authors
+Copyright &copy; 2026 Leonardo
 """
 
 # nav = [
@@ -100,6 +100,7 @@ link = "https://gitlab.com/Leonardo-ma/Untitled-Platformer"
 [project.markdown_extensions.def_list]
 [project.markdown_extensions.footnotes]
 [project.markdown_extensions.md_in_html]
+[project.markdown_extensions.zensical.extensions.glightbox]
 [project.markdown_extensions.pymdownx.snippets]
 [project.markdown_extensions.toc]
 permalink = true
