@@ -38,11 +38,11 @@ func _ready() -> void:
 
 # BUG If player uses shift + movement, strafe animation gets stuck if: shift + a/d + w  then releasing w
 # removed strafe left and right on animation tree movement
+## Update BlendSpace2D position in animation tree
+## X axis: left (-1) to right (1)
+## Y axis: backward (-0.6 walk, -1.0 run) to forward (0.6 walk, 1.0 run)
+## The direction vector is already scaled by speed_factor in the movement controller
 func _on_movement_direction_changed(direction: Vector2, _speed_factor: float) -> void:
-	# Update BlendSpace2D position in animation tree
-	# X axis: left (-1) to right (1)
-	# Y axis: backward (-0.6 walk, -1.0 run) to forward (0.6 walk, 1.0 run)
-	# The direction vector is already scaled by speed_factor in the movement controller
 	self.set("parameters/movement/blend_position", direction)
 
 
@@ -53,6 +53,8 @@ func _on_jumped() -> void:
 
 func _on_in_air() -> void:
 	self.set("parameters/in_air_state/transition_request", "air")
+	# TODO Consider input buffering, so if you attack when about to hit ground, it triggers attack
+	_abort_attack()
 
 
 func _on_landed() -> void:
@@ -60,6 +62,8 @@ func _on_landed() -> void:
 
 
 func _on_melee_attack() -> void:
+	if self.get("parameters/in_air_state/current_state") != "ground":
+		return
 	self.set("parameters/attack_transition/transition_request", "melee_attack")
 	self.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
@@ -81,6 +85,11 @@ func _on_death() -> void:
 # TODO Add new revive animation and state
 func _on_revived() -> void:
 	self.set("parameters/is_alive/transition_request", "alive")
+
+
+func _abort_attack() -> void:
+	self.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	entity.get_node("%AnimationPlayer").play("RESET")
 
 
 func _validate_animation_parameters() -> void:
