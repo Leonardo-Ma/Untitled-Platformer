@@ -58,8 +58,11 @@ func get_skills() -> Dictionary:
 
 
 func _on_attack_pressed() -> void:
-	SoundManager.play_combat_sound(ATTACK_SOUNDS.pick_random(), global_position)
 	melee_attacked.emit()
+
+
+func play_attack_sound() -> void:
+	SoundManager.play_combat_sound(ATTACK_SOUNDS.pick_random(), global_position)
 
 
 func _on_death() -> void:
