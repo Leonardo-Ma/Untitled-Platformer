@@ -28,9 +28,6 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i25bo"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4o8dc"]
-font_size = 24
-
 [node name="HUD" type="Control" unique_id=1333227325]
 layout_mode = 3
 anchors_preset = 15
@@ -107,7 +104,6 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
-label_settings = SubResource("LabelSettings_4o8dc")
 
 [node name="Collectibles" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=1290539515]
 unique_name_in_owner = true
