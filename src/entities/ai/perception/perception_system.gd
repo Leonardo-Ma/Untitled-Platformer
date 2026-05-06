@@ -19,8 +19,8 @@ func _ready() -> void:
 	assert(_owner_node != null, "PerceptionSystem must be a child of a Node3D in " + self.name)
 
 	var entity: AggressiveEntity = _owner_node as AggressiveEntity
-	if entity != null:
-		if entity.perception_config != null:
+	if entity:
+		if entity.perception_config:
 			config = entity.perception_config
 		if entity.get("debug_perception"):
 			debug_mode = true
@@ -61,7 +61,7 @@ func _process_perception() -> void:
 			# Additional health validation to not detect dead bodies
 			if target.has_method("get_health") or "health" in target:
 				var target_health: Variant = target.get_health() if target.has_method("get_health") else target.get("health")
-				if target_health != null and "health" in target_health and target_health.health <= 0.0:
+				if target_health and "health" in target_health and target_health.health <= 0.0:
 					continue  # Ignore dead entities
 
 			var detection: DetectionResult = _visual_processor.detect(_owner_node, target as Node3D)

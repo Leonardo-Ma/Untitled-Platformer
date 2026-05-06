@@ -11,7 +11,7 @@ func _ready() -> void:
 
 	for child: Control in power_ups_container.get_children():
 		var hbox: HBoxContainer = child as HBoxContainer
-		if hbox != null:
+		if hbox:
 			hbox.hide()
 			# re-assign keys when actual identifiers come in
 			_powerup_ui_elements[StringName(hbox.name)] = hbox
@@ -83,7 +83,7 @@ func _on_status_buff_collected(status_effect: StatusEffect, icon: Texture2D) -> 
 	var cooldown_progress: TextureProgressBar = null
 
 	if icon_node:
-		if icon != null:
+		if icon:
 			icon_node.texture = icon
 		cooldown_progress = icon_node.get_node("CooldownProgress") as TextureProgressBar
 

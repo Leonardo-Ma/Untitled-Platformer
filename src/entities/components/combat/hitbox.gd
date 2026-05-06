@@ -15,5 +15,5 @@ func _init() -> void:
 func on_hit_connected(damage_dealt: float) -> void:
 	var attacker: Node = owner
 	var status_manager: Node = attacker.get_node_or_null("%StatusManager")
-	if status_manager != null:
+	if status_manager:
 		status_manager.dispatch_event(&"on_damage_dealt", {"damage": damage_dealt})

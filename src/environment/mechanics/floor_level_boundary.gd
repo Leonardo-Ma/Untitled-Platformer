@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var player: Node3D = get_tree().get_first_node_in_group(Groups.PLAYERS)
-	if player != null:
+	if player:
 		# Since it's a BoxShape3D and not infinite, we DO need to update X and Z to cover the player's lateral movements!
 		# The Y position strictly obeys the checkpoint height (it does not move up or down here).
 		global_position.x = player.global_position.x
@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 
 func _initialize_position() -> void:
 	var player: Node3D = get_tree().get_first_node_in_group(Groups.PLAYERS)
-	if player != null:
+	if player:
 		_fallback_spawn = player.global_position
 		if CheckpointManager.has_active_checkpoint():
 			global_position.y = CheckpointManager.get_respawn_position().y - fall_margin

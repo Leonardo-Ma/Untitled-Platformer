@@ -11,7 +11,7 @@ func _ready() -> void:
 
 	for child: Control in collectibles_container.get_children():
 		var hbox: HBoxContainer = child as HBoxContainer
-		if hbox != null:
+		if hbox:
 			hbox.hide()
 			# re-assign keys when actual identifiers come in
 			_counter_ui_elements[StringName(hbox.name)] = hbox

@@ -60,7 +60,7 @@ func _ready() -> void:
 func _load_chunk_metadata_from_disk() -> void:
 	for dir_path: String in CHUNK_DIRECTORIES:
 		var dir: DirAccess = DirAccess.open(dir_path)
-		if dir != null:
+		if dir:
 			dir.list_dir_begin()
 			var file_name: String = dir.get_next()
 			while file_name != "":
@@ -72,7 +72,7 @@ func _load_chunk_metadata_from_disk() -> void:
 						# Sync load once at startup just to read the metadata/skills required.
 						# Ideally, this metadata would be in a separate Resource (.tres) to avoid loading the full scene.
 						var scene: PackedScene = load(full_path) as PackedScene
-						if scene != null:
+						if scene:
 							var temp_instance: Node = scene.instantiate()
 							if temp_instance is LevelChunk:
 								add_child(temp_instance)
@@ -84,7 +84,7 @@ func _load_chunk_metadata_from_disk() -> void:
 
 								var entrance_trigger: Node3D = temp_instance.get_node_or_null("%EntranceTrigger")
 								var exit_trigger: Node3D = temp_instance.get_node_or_null("%ExitTrigger")
-								if entrance_trigger != null and exit_trigger != null:
+								if entrance_trigger and exit_trigger:
 									data.height_shift = exit_trigger.position.y - entrance_trigger.position.y
 									data.entrance_transform = temp_instance.global_transform.affine_inverse() * entrance_trigger.global_transform
 
@@ -188,7 +188,7 @@ func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D)
 	var entrance_node: Node3D = chunk.get_node_or_null("%EntranceTrigger")
 
 	# Snap position and maintain the chunk native rotation
-	if entrance_node != null:
+	if entrance_node:
 		var rel_entrance: Transform3D = chunk.global_transform.affine_inverse() * entrance_node.global_transform
 		chunk.global_transform = target_transform * rel_entrance.affine_inverse()
 	else:
@@ -197,7 +197,7 @@ func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D)
 
 func _setup_chunk_trigger(chunk: LevelChunk, parent_world: Node) -> void:
 	var trigger: Area3D = chunk.get_node("%ExitTrigger")
-	if trigger != null:
+	if trigger:
 		# Disconnect previous connections if recycled
 		if trigger.body_entered.is_connected(_on_chunk_exit_reached):
 			trigger.body_entered.disconnect(_on_chunk_exit_reached)

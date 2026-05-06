@@ -64,9 +64,9 @@ func update_target_location(target_location: Vector3) -> void:
 
 func stop() -> void:
 	set_physics_process(false)
-	if owner != null and "velocity" in owner:
+	if owner and "velocity" in owner:
 		owner.velocity = Vector3.ZERO
-	if navigation_agent != null:
+	if navigation_agent:
 		navigation_agent.set_velocity(Vector3.ZERO)
 	movement_direction_changed.emit(Vector2.ZERO, 0.0)
 
@@ -76,7 +76,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_physics_processing() or _disable_timer > 0.0:
 		return
 
-	if owner != null:
+	if owner:
 		owner.velocity = safe_velocity
 		owner.move_and_slide()
 		# NPCs using navigation typically move forward locally.
@@ -84,6 +84,6 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 
 
 func _on_navigation_agent_3d_target_reached() -> void:
-	if owner != null and "velocity" in owner:
+	if owner and "velocity" in owner:
 		owner.velocity = Vector3.ZERO
 	movement_direction_changed.emit(Vector2.ZERO, 0.0)

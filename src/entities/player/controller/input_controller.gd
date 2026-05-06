@@ -28,7 +28,7 @@ func _is_ui_interacting() -> bool:
 		return false
 	var viewport: Viewport = get_viewport()
 	var focus_owner: Control = viewport.gui_get_focus_owner()
-	if focus_owner != null:
+	if focus_owner:
 		return true
 	var hovered_control: Control = viewport.gui_get_hovered_control()
 	return hovered_control != null

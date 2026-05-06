@@ -7,7 +7,7 @@ var _active_checkpoint: Checkpoint = null
 
 func on_checkpoint_activated(new_checkpoint: Checkpoint) -> void:
 	# Deactivate the old one to show visual changes
-	if _active_checkpoint != null and _active_checkpoint != new_checkpoint:
+	if _active_checkpoint and _active_checkpoint != new_checkpoint:
 		_active_checkpoint.deactivate_checkpoint()
 
 	_active_checkpoint = new_checkpoint
