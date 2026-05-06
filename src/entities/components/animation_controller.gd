@@ -62,7 +62,7 @@ func _on_landed() -> void:
 
 
 func _on_melee_attack() -> void:
-	if self.get("parameters/in_air_state/current_state") != "ground":
+	if self.get("parameters/in_air_state/current_state") != "ground" or self.get("parameters/attack/active") == true:
 		return
 	self.set("parameters/attack_transition/transition_request", "melee_attack")
 	self.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
