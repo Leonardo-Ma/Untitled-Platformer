@@ -8,10 +8,17 @@ extends CharacterBody3D
 @warning_ignore("unused_signal")
 signal melee_attacked
 
+## When damaged, called by code
 const DAMAGE_SOUNDS: Array[AudioStream] = [
 	preload("uid://c2uxva6p1yaxw"),  # chequered_ink/punch.wav
 	preload("uid://ygovytmkf0xu"),  # chequered_ink/punch_2.wav
 	preload("uid://c4qxkql51g7pm"),  # chequered_ink/punch_3.wav
+]
+
+## When attacking, called by animation player
+const ATTACK_SOUNDS: Array[AudioStream] = [
+	preload("uid://domodec4epc7f"),  # sword_slice.wav
+	#preload("uid://doay56c5x3rwr"),  # sword_clash_2.wav
 ]
 
 @export_category("Core")
@@ -82,7 +89,7 @@ func _ready() -> void:
 
 		register_goap_agent(goap_agent)
 
-		# Disable navigation as goap will enable it when tracking
+		# Disable navigation as goap will enable it when an action has movement
 		navigation_controller.set_physics_process(false)
 
 		assert(goap_agent != null, "NPCs must have GoapAgent. " + self.name)
@@ -91,7 +98,7 @@ func _ready() -> void:
 ## Virtual method for subclasses to override instead of _ready()
 @abstract func _entity_ready() -> void
 
-## Returns whether this entity requires a GOAP agent. Overridden by Player class.
+## False for Player class
 @abstract func _requires_goap() -> bool
 
 
@@ -104,11 +111,15 @@ func _on_death() -> void:
 	if _damage_tween and _damage_tween.is_valid():
 		_damage_tween.kill()
 
-	if goap_agent != null:
+	if goap_agent:
 		print_debug("Disabling GOAP agent ", goap_agent.name)
 		goap_agent.set_process(false)
 	else:
 		print_debug("GOAP agent not found")
+
+	if hitbox:
+		hitbox.set_deferred("monitoring", false)
+		hitbox.set_deferred("monitorable", false)
 
 	if hurtbox:
 		hurtbox.set_deferred("monitoring", false)
@@ -160,6 +171,11 @@ func _on_health_changed(new_health: int) -> void:
 		_damage_tween.tween_property(_damage_material, "albedo_color:a", 0.0, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	_prev_health = new_health
+
+
+func play_attack_sound() -> void:
+	if ATTACK_SOUNDS.size() > 0:
+		SoundManager.play_combat_sound(ATTACK_SOUNDS.pick_random(), global_position)
 
 
 func _get_all_mesh_instances(node: Node) -> Array[MeshInstance3D]:

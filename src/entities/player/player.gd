@@ -1,11 +1,6 @@
 class_name PlayerEntity
 extends AggressiveEntity
 
-const ATTACK_SOUNDS: Array[AudioStream] = [
-	preload("uid://domodec4epc7f"),  # sword_slice.wav
-	#	preload("uid://doay56c5x3rwr"),  # sword_clash_2.wav
-]
-
 @export_category("Skills")
 @export var skills: PlayerSkills
 
@@ -59,10 +54,6 @@ func get_skills() -> Dictionary:
 
 func _on_attack_pressed() -> void:
 	melee_attacked.emit()
-
-
-func play_attack_sound() -> void:
-	SoundManager.play_combat_sound(ATTACK_SOUNDS.pick_random(), global_position)
 
 
 func _on_death() -> void:
