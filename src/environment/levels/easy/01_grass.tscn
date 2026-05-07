@@ -54,7 +54,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, -2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1, 133)
 
 [node name="GrassPlatform21" parent="." unique_id=1603991750 instance=ExtResource("5_nvqb6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 3, 145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 3, 145)
 
 [node name="GrassPlatform22" parent="." unique_id=1149550057 instance=ExtResource("5_nvqb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4, 151)
