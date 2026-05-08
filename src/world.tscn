@@ -74,7 +74,9 @@ glow_enabled = true
 [node name="World" type="Node3D" unique_id=2116164514]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1522551731]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.43301553, 0.2500003, 0, 0.49999797, 0.86602616, -0.50000286, 0.74999934, -0.4330101, 0, 0, 0)
+light_color = Color(1, 1, 0.3882353, 1)
+light_energy = 0.3
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=757660088]
