@@ -35,7 +35,7 @@ func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 	if direction.length_squared() > 0.001:
 		direction = direction.normalized()
 		var target_rotation_y: float = atan2(direction.x, direction.z)
-		_actor.rotation.y = lerp_angle(_actor.rotation.y, target_rotation_y, 10.0 * _delta)
+		_actor.global_rotation.y = lerp_angle(_actor.global_rotation.y, target_rotation_y, 10.0 * _delta)
 
 	var current_time: int = Time.get_ticks_msec()
 

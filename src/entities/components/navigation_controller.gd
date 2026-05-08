@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 	if direction.length_squared() > 0.001:
 		var target_rotation_y: float = atan2(direction.x, direction.z)
-		owner.rotation.y = lerp_angle(owner.rotation.y, target_rotation_y, 0.15)  # smooth rotation is usually better
+		owner.global_rotation.y = lerp_angle(owner.global_rotation.y, target_rotation_y, 0.15)  # smooth rotation is usually better
 
 	navigation_agent.set_velocity(new_velocity)
 
