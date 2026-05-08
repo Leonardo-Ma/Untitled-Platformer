@@ -7,23 +7,23 @@
 ### Godot
 
 #### Godot first steps
-- [Brackeys - How to make a Video Game - Godot Beginner Tutorial](https://www.youtube.com/watch?v=LOhfqjmasi0)
-- [Bramwell - Make your first 3D Platformer in Godot 4: Setup, Movement, and Camera Controls](https://www.youtube.com/watch?v=sVsn9NqpVhg)
-- [Brackeys - How to program in Godot - GDScript Tutorial](https://www.youtube.com/watch?v=e1zJS31tr88)
-- [Karto - Godot Control Node (UI) Masterclass](https://www.youtube.com/watch?v=5Hog6a0EYa0)
+- [Youtube: Brackeys - How to make a Video Game - Godot Beginner Tutorial](https://www.youtube.com/watch?v=LOhfqjmasi0)
+- [Youtube: Bramwell - Make your first 3D Platformer in Godot 4: Setup, Movement, and Camera Controls](https://www.youtube.com/watch?v=sVsn9NqpVhg)
+- [Youtube: Brackeys - How to program in Godot - GDScript Tutorial](https://www.youtube.com/watch?v=e1zJS31tr88)
+- [Youtube: Karto - Godot Control Node (UI) Masterclass](https://www.youtube.com/watch?v=5Hog6a0EYa0)
 
 #### Godot Templates
 
-- [Bacon and Games - I Made a Godot Template So You Don't Have To](https://www.youtube.com/watch?v=tNqFLmbWW-Y)
+- [Youtube: Bacon and Games - I Made a Godot Template So You Don't Have To](https://www.youtube.com/watch?v=tNqFLmbWW-Y)
 
 #### Advanced concepts
-- [Bitlytic - How You Can Easily Make Your Code Simpler in Godot 4](https://www.youtube.com/watch?v=74y6zWZfQKk) (Inheritance & Composition)
-- [GDQuest - Save Countless Lines of Code With Animations in Godot](https://www.youtube.com/watch?v=5KBNGKYV-vU) (Functions in animation player)
-- [Bitlytic - Finite State Machines in Godot 4 in Under 10 Minutes](https://www.youtube.com/watch?v=ow_Lum-Agbs)
-- [GDQuest How to Code Melee Attacks in Godot: Hitboxes and Hurtboxes](https://www.youtube.com/watch?v=JWjzSn95bM0)
-- [StayAtHomeDev - Do THIS Before You Publish Your Godot Game](https://www.youtube.com/watch?v=3iGHpha-DmE) (Pre-publish configuration)
-- [Bitlytic - Modular Upgrades Made Easy Using the Strategy Pattern](https://www.youtube.com/watch?v=sZDJJeDNe_M)  
-- [Bacon and Games - 5 Handy Signal Uses You Might Not Know](https://www.youtube.com/watch?v=KUlBaaQ4D-s) (bind(), Lambdas, Event bus, Await)
+- [Youtube: Bitlytic - How You Can Easily Make Your Code Simpler in Godot 4](https://www.youtube.com/watch?v=74y6zWZfQKk) (Inheritance & Composition)
+- [Youtube: GDQuest - Save Countless Lines of Code With Animations in Godot](https://www.youtube.com/watch?v=5KBNGKYV-vU) (Functions in animation player)
+- [Youtube: Bitlytic - Finite State Machines in Godot 4 in Under 10 Minutes](https://www.youtube.com/watch?v=ow_Lum-Agbs)
+- [Youtube: GDQuest How to Code Melee Attacks in Godot: Hitboxes and Hurtboxes](https://www.youtube.com/watch?v=JWjzSn95bM0)
+- [Youtube: StayAtHomeDev - Do THIS Before You Publish Your Godot Game](https://www.youtube.com/watch?v=3iGHpha-DmE) (Pre-publish configuration)
+- [Youtube: Bitlytic - Modular Upgrades Made Easy Using the Strategy Pattern](https://www.youtube.com/watch?v=sZDJJeDNe_M)  
+- [Youtube: Bacon and Games - 5 Handy Signal Uses You Might Not Know](https://www.youtube.com/watch?v=KUlBaaQ4D-s) (bind(), Lambdas, Event bus, Await)
 
 #### Applicable design patterns
 - RefactoringGuru - [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
@@ -33,7 +33,7 @@
 - RefactoringGuru - [Command Pattern](https://refactoring.guru/design-patterns/command)
 
 #### Debugging
-- [Bacon and Games - Godot Debugging Techniques EVERY Dev Should Know](https://www.youtube.com/watch?v=P7AQLUU3xKk)
+- [Youtube: Bacon and Games - Godot Debugging Techniques EVERY Dev Should Know](https://www.youtube.com/watch?v=P7AQLUU3xKk)
 
 #### Tips
 - _process or _physics_process are sacred, before doing anything in them, ask yourself: "Is this required to run every single frame?" and "Is the performance impact negigible?".

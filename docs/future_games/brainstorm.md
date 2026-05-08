@@ -6,7 +6,7 @@
 - Voxel? Something similar [Cube World's Alpha](https://store.steampowered.com/app/1128000/Cube_World/)
 
 #### Ambience
-- https://www.youtube.com/watch?v=lxzWJdYnwLQ bensmotel What Happened To Video Game Ambience?
+- [Youtube: bensmotel What Happened To Video Game Ambience?](https://www.youtube.com/watch?v=lxzWJdYnwLQ)
 
 #### Combat
 - Dodge:
@@ -16,13 +16,13 @@
 
 #### Enemy AI & Systemic mechanics
 
-- Enemies and entities should react to stimulus instead of specific events. [The Rise of Systemic Games - Game Maker's Toolkit](https://youtu.be/SnpAAX9CkIc?si=kfrU1zWJrXrY1Cr-&t=370)
-	- [GCAP 2016: Systems Are Everywhere - Aleissia Laidacker](https://youtu.be/Gelpn4mksXQ?si=iZ7F0UjRvHzGbbeW&t=248)
+- Enemies and entities should react to stimulus instead of specific events. [Youtube: The Rise of Systemic Games - Game Maker's Toolkit](https://youtu.be/SnpAAX9CkIc?si=kfrU1zWJrXrY1Cr-&t=370)
+	- [Youtube: GCAP 2016: Systems Are Everywhere - Aleissia Laidacker](https://youtu.be/Gelpn4mksXQ?si=iZ7F0UjRvHzGbbeW&t=248)
 	- Example: Entities have a temperature, when a fire nearby it increases and when it hits a certain temperature it catches fire that also increase temperature further.
 	- Example: Enemy being on alert when hears a sound nearby, or an animal gets scared and runs from fire
 - Need to find a proper way to document interactions(Maybe a graph view?)
 - Enemies also take part in automatic missions and develop themselves with time and somewhat stay balanced considering the player
-	- [How the Nemesis System Creates Stories - Game Maker's Toolkit](https://www.youtube.com/watch?v=Lm_AzK27mZY)
+	- [Youtube: How the Nemesis System Creates Stories - Game Maker's Toolkit](https://www.youtube.com/watch?v=Lm_AzK27mZY)
 
 
 ##### Map
