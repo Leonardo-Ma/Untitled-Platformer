@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_20wir"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_o8plj"]
 [ext_resource type="PackedScene" uid="uid://nd1uo24vt6d5" path="res://src/entities/enemies/barbarian/barbarian.tscn" id="5_v0l6h"]
-[ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="6_vrmu0"]
-[ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="7_f4fwa"]
 [ext_resource type="MeshLibrary" uid="uid://b73gxi8hvl7se" path="res://src/environment/dungeon_assets/mesh_library/tiles.meshlib" id="7_uu2w2"]
 [ext_resource type="ArrayMesh" uid="uid://bduf3ad71475q" path="res://src/environment/dungeon_assets/meshes/pillar_001.tres" id="8_ejpyw"]
 [ext_resource type="ArrayMesh" uid="uid://b7wauquydj40k" path="res://src/environment/dungeon_assets/meshes/brick_wall_001.tres" id="9_drd34"]
@@ -15,23 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://c6on7cp5w028m" path="res://src/environment/dungeon_assets/individual_assets/spikes.tscn" id="13_xegw8"]
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="14_qm0tq"]
 
-[sub_resource type="Resource" id="Resource_ivd6t"]
-resource_local_to_scene = true
-script = ExtResource("6_vrmu0")
-type = 1
-damage = 10
-metadata/_custom_type_script = "uid://cxqsapbic2imr"
-
-[sub_resource type="Resource" id="Resource_c18x5"]
-resource_local_to_scene = true
-script = ExtResource("7_f4fwa")
-max_health = 20
-health_regen = 2.0
-metadata/_custom_type_script = "uid://njkofl5g11k7"
-
 [sub_resource type="NavigationMesh" id="NavigationMesh_dhjrq"]
-vertices = PackedVector3Array(-3.5530949, 6.87781, -3.5530949, -3.5530949, 6.87781, 15.446905, 33.446907, 6.87781, 15.446905, 33.446907, 6.87781, -3.5530949, 11.446905, 0.37780982, 2.9469051, 13.196905, 0.37780982, 2.6969051, 13.196905, 0.37780982, -3.5530949, -1.5530949, 0.37780982, -3.5530949, -1.8030949, 0.37780982, -1.5530949, 13.196905, 0.37780982, 15.446905, 13.196905, 0.37780982, 5.696905, 11.446905, 0.37780982, 5.446905, -1.5530949, 0.37780982, 13.196905, -1.5530949, 0.37780982, 15.446905, -3.5530949, 0.37780982, -1.5530949, -3.5530949, 0.37780982, 12.946905, 14.696905, 0.37780982, 2.9469051, 31.446905, 0.37780982, -1.8030949, 31.446905, 0.37780982, -3.5530949, 14.696905, 0.37780982, 5.446905, 31.446905, 0.37780982, 13.196905, 33.446907, 0.37780982, 12.946905, 33.446907, 0.37780982, -1.5530949, 31.446905, 0.37780982, 15.446905)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 13, 12), PackedInt32Array(11, 8, 4), PackedInt32Array(14, 8, 15), PackedInt32Array(15, 8, 12), PackedInt32Array(9, 12, 11), PackedInt32Array(11, 12, 8), PackedInt32Array(5, 6, 16), PackedInt32Array(16, 6, 17), PackedInt32Array(17, 6, 18), PackedInt32Array(9, 10, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 17), PackedInt32Array(17, 20, 19), PackedInt32Array(19, 20, 9), PackedInt32Array(19, 16, 17), PackedInt32Array(20, 23, 9)]
+vertices = PackedVector3Array(-3.5530949, 6.871552, -3.5530953, -3.5530949, 6.871552, 15.446905, 33.446907, 6.871552, 15.446905, 33.446907, 6.871552, -3.5530953, -1.8030949, 0.62155175, -1.5530953, -3.5530949, 0.62155175, -1.5530953, -3.5530949, 0.62155175, 2.6969047, 7.196905, 0.62155175, 2.4469047, 7.696905, 0.62155175, 1.4469047, 8.946905, 0.62155175, 1.1969047, 8.946905, 0.62155175, -3.5530953, -1.5530949, 0.62155175, -3.5530953, 10.946905, 0.62155175, 3.1969047, 11.446905, 0.62155175, 3.4469047, 11.696905, 0.62155175, 2.6969047, 10.696905, 0.62155175, 1.9469047, 17.946905, 0.62155175, -0.05309534, 18.696905, 0.62155175, -0.80309534, 19.696905, 0.62155175, -3.5530953, 9.946905, 0.62155175, 1.1969047, 18.946905, 0.62155175, 4.4469047, 19.446905, 0.62155175, 2.9469047, 17.946905, 0.62155175, 1.9469047, 16.696905, 0.62155175, 4.1969047, 14.696905, 0.62155175, 2.9469047, 14.446905, 0.62155175, 5.6969047, 15.946905, 0.62155175, 4.9469047, 19.696905, 0.62155175, -0.80309534, 13.696905, 0.62155175, 9.196905, 14.446905, 0.62155175, 10.196905, 16.946905, 0.62155175, 7.6969047, 15.946905, 0.62155175, 6.9469047, 11.946905, 0.62155175, 5.6969047, 11.946905, 0.62155175, 9.196905, 19.696905, 0.62155175, 5.4469047, 20.946905, 0.62155175, 2.6969047, 20.696905, 0.62155175, -0.80309534, 19.446905, 0.62155175, 7.1969047, 18.196905, 0.62155175, 7.9469047, 14.446905, 0.62155175, 12.196905, 12.696905, 0.62155175, 15.446905, 31.446905, 0.62155175, 15.446905, 31.446905, 0.62155175, 13.196905, 12.696905, 0.62155175, 12.946905, 21.446905, 0.62155175, -0.05309534, 31.446905, 0.62155175, -1.8030953, 31.446905, 0.62155175, -3.5530953, 21.696905, 0.62155175, 1.4469047, 33.446907, 0.62155175, -1.5530953, 33.446907, 0.62155175, 12.946905, 10.196905, 0.62155175, 4.6969047, 11.446905, 0.62155175, 5.4469047, 10.946905, 0.62155175, 9.946905, 8.196905, 0.62155175, 4.9469047, 7.196905, 0.62155175, 3.9469047, 10.946905, 0.62155175, 11.946905, -1.5530949, 0.62155175, 13.196905, -1.5530949, 0.62155175, 15.446905, -3.5530949, 0.62155175, 12.946905)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 7, 10), PackedInt32Array(10, 7, 4), PackedInt32Array(10, 4, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(14, 15, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(23, 24, 22), PackedInt32Array(22, 24, 16), PackedInt32Array(18, 27, 17), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(26, 31, 25), PackedInt32Array(19, 9, 10), PackedInt32Array(25, 31, 32), PackedInt32Array(32, 31, 28), PackedInt32Array(32, 28, 33), PackedInt32Array(14, 19, 24), PackedInt32Array(24, 19, 16), PackedInt32Array(16, 19, 10), PackedInt32Array(16, 10, 18), PackedInt32Array(20, 21, 34), PackedInt32Array(34, 21, 35), PackedInt32Array(36, 27, 18), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 40), PackedInt32Array(40, 37, 42), PackedInt32Array(40, 42, 41), PackedInt32Array(40, 43, 39), PackedInt32Array(36, 18, 44), PackedInt32Array(44, 18, 45), PackedInt32Array(45, 18, 46), PackedInt32Array(30, 38, 29), PackedInt32Array(29, 38, 39), PackedInt32Array(35, 47, 34), PackedInt32Array(34, 47, 37), PackedInt32Array(45, 48, 47), PackedInt32Array(47, 48, 37), PackedInt32Array(37, 48, 42), PackedInt32Array(42, 48, 49), PackedInt32Array(47, 44, 45), PackedInt32Array(12, 13, 50), PackedInt32Array(50, 13, 51), PackedInt32Array(52, 54, 53), PackedInt32Array(53, 50, 51), PackedInt32Array(51, 32, 53), PackedInt32Array(53, 32, 33), PackedInt32Array(53, 33, 52), PackedInt32Array(43, 40, 55), PackedInt32Array(55, 40, 56), PackedInt32Array(56, 40, 57), PackedInt32Array(52, 55, 54), PackedInt32Array(54, 55, 56), PackedInt32Array(54, 56, 58), PackedInt32Array(54, 58, 6), PackedInt32Array(6, 7, 54)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qlb32"]
 size = Vector3(0.008948197, 0.008948197, 0.030889511)
@@ -357,8 +341,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 55)
 
 [node name="Barbarian" parent="." unique_id=280064195 instance=ExtResource("5_v0l6h")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.0838919, 0.12219049, 8.40078)
-attack = SubResource("Resource_ivd6t")
-health = SubResource("Resource_c18x5")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1158209114]
 transform = Transform3D(-6.119594e-08, 0, 1.4, 0, 1.4, 0, -1.4, 0, -6.119594e-08, -8, 0, 47)
@@ -453,6 +435,22 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Pillars/Pillar_01_04" unique_id=1452091031]
 transform = Transform3D(200, 0, 0, 0, 200, 1.4210855e-12, 0, -1.4210855e-12, 200, 0, 2.1948318e-14, 3.0735064)
 shape = SubResource("BoxShape3D_qlb32")
+
+[node name="Traps" type="Node3D" parent="NavigationRegion3D" unique_id=1430383319]
+
+[node name="Spikes" type="Node3D" parent="NavigationRegion3D/Traps" unique_id=1052531009]
+
+[node name="Spikes_01" parent="NavigationRegion3D/Traps/Spikes" unique_id=883976889 instance=ExtResource("13_xegw8")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 8.967434, 0.25877738, 3.0494943)
+
+[node name="Spikes_02" parent="NavigationRegion3D/Traps/Spikes" unique_id=765098820 instance=ExtResource("13_xegw8")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 12.73865, 0.25877738, 11.01001)
+
+[node name="Spikes_03" parent="NavigationRegion3D/Traps/Spikes" unique_id=573613324 instance=ExtResource("13_xegw8")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 17.738651, 0.25877738, 6.01001)
+
+[node name="Spikes_04" parent="NavigationRegion3D/Traps/Spikes" unique_id=1183027425 instance=ExtResource("13_xegw8")]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 19.738651, 0.25877738, 1.0100098)
 
 [node name="Walls" type="Node3D" parent="." unique_id=885531893]
 transform = Transform3D(-6.119594e-08, 0, 1.4, 0, 1.407, 0, -1.4, 0, -6.119594e-08, -8, 0, 47)
@@ -618,23 +616,6 @@ transform = Transform3D(99.03089, 13.888227, 2.2351742e-06, 7.4505806e-07, -2.38
 transform = Transform3D(1, 0, 0, 0, 1, 2.842171e-14, 0, -1.4210855e-14, 1, 0.0003415048, -0.00048508495, -0.0008327033)
 mesh = SubResource("ArrayMesh_qlb32")
 skeleton = NodePath("")
-
-[node name="Traps" type="Node3D" parent="." unique_id=1430383319]
-transform = Transform3D(-6.119594e-08, 0, 1.4, 0, 1.4, 0, -1.4, 0, -6.119594e-08, -8, 0, 47)
-
-[node name="Spikes" type="Node3D" parent="Traps" unique_id=1052531009]
-
-[node name="Spikes_01" parent="Traps/Spikes" unique_id=883976889 instance=ExtResource("13_xegw8")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 8.967434, 0.25877738, 3.0494943)
-
-[node name="Spikes_02" parent="Traps/Spikes" unique_id=765098820 instance=ExtResource("13_xegw8")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 12.73865, 0.25877738, 11.01001)
-
-[node name="Spikes_03" parent="Traps/Spikes" unique_id=573613324 instance=ExtResource("13_xegw8")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 17.738651, 0.25877738, 6.01001)
-
-[node name="Spikes_04" parent="Traps/Spikes" unique_id=1183027425 instance=ExtResource("13_xegw8")]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 19.738651, 0.25877738, 1.0100098)
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=785218821]
 transform = Transform3D(-6.119594e-08, 0, 1.4, 0, 1.4, 0, -1.4, 0, -6.119594e-08, -8, 0, 47)
