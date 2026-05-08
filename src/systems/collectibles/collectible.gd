@@ -21,7 +21,7 @@ func _on_body_entered(body: Node3D) -> void:
 		SoundManager.play_sound(collect_sounds.pick_random(), SoundManager.SoundCategory.SFX, global_position)
 		_apply_effect(body as PlayerEntity)
 		if data is StatusCollectible:
-			_respawn_collectible()
+			await _respawn_collectible()
 		else:
 			queue_free()
 

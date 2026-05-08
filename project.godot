@@ -72,6 +72,7 @@ folder_colors={
 "res://src/entities/resources/": "purple",
 "res://src/entities/systems/": "gray",
 "res://src/environment/": "orange",
+"res://src/environment/mechanics/": "gray",
 "res://src/globals/": "gray",
 "res://src/icons/": "green",
 "res://src/sound/": "blue",

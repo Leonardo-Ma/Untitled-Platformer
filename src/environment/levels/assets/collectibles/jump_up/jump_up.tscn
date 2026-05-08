@@ -58,7 +58,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dmu61")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5fwg"]
-size = Vector3(0.46916252, 0.4597718, 0.22851563)
+size = Vector3(0.58618164, 0.566359, 0.3017578)
 
 [node name="JumpUp" type="Area3D" unique_id=707485280]
 script = ExtResource("1_vv5ev")
@@ -70,7 +70,7 @@ mesh = SubResource("ArrayMesh_2o410")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2110685710]
-transform = Transform3D(-0.038276047, 0.9992585, -0.004176556, -0.99754757, -0.03796476, 0.05880053, 0.058598362, 0.0064169653, 0.99826115, -0.008535134, 0.22618887, -0.0010760361)
+transform = Transform3D(-0.038276047, 0.9992585, -0.004176556, -0.99754757, -0.03796476, 0.05880053, 0.058598362, 0.0064169653, 0.99826115, 0.010091137, 0.21587709, 0.0013212499)
 shape = SubResource("BoxShape3D_i5fwg")
 
 [node name="Arrow2" type="MeshInstance3D" parent="." unique_id=1108557511]
