@@ -34,7 +34,7 @@ func _ready() -> void:
 
 
 func on_game_started() -> void:
-	# Recapture the mouse for 3D gameplay
+	# Recapture the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	menus.visible = false
@@ -57,13 +57,14 @@ func on_game_paused() -> void:
 	get_tree().paused = true
 
 
+# BUG TODO Web version esc releases mouse and ignores this input
+# Works on second esc presses
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		# If MainMenu is open, Esc should do nothing (or maybe open a quit prompt, but standard is nothing or quit).
+	if event.is_action_pressed("ui_cancel"):  # Esc
 		if menus.visible and menus.get_node("MainMenu").visible:
 			return
 
-		# Toggle pause/unpause if we are in game or already in the pause menu
+		# Toggle pause/unpause
 		if not get_tree().paused:
 			on_game_paused()
 		else:
