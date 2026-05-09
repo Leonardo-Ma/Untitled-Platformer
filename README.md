@@ -6,6 +6,10 @@
 [![Semantion Version (SemVer)][semver_badge]][semver_url]
 [![Docs With Zensical][zensical_badge]][zensical_url]
 
+[![Codeberg][godeberg_badge]][codeberg_url]
+[![Gitlab][gitlab_badge]][gitlab_url]
+[![Github][github_badge]][github_url]
+
 [![Pre-commit][pre_commit_badge]][pre_commit_url]
 [![git-cliff - Git Changelog Generator][git_cliff_badge]][git_cliff_url]  
 
@@ -133,6 +137,16 @@ Refer to [ACKNOWLEDGMENTS.md](docs/ACKNOWLEDGMENTS.md).
 
 [zensical_badge]: https://img.shields.io/badge/Docs%20With%20Zensical-gray?logo=senzical&logoColor=gray
 [zensical_url]: https://zensical.org/
+
+[godeberg_badge]: https://img.shields.io/badge/Codeberg-144B49?logo=codeberg&logoColor=white
+[codeberg_url]: https://codeberg.org/leonardo-ma/Untitled-Platformer
+
+[gitlab_badge]: https://img.shields.io/badge/Gitlab-gray?logo=gitlab
+[gitlab_url]: https://gitlab.com/Leonardo-ma/Untitled-Platformer
+
+[github_badge]: https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white
+[github_url]: https://github.com/Leonardo-Ma/Untitled-Platformer
+
 
 [pre_commit_badge]: https://img.shields.io/badge/Pre--Commit-enabled-green?logo=pre-commit
 [pre_commit_url]: https://pre-commit.com/
