@@ -1,18 +1,30 @@
 ## Handles player score and applies a visual animation
 extends HBoxContainer
 
+var _current_score: int = 0
+
 @onready var _score_label: Label = get_node_or_null("%ScoreLabel") as Label
 @onready var _score_icon: TextureRect = get_node_or_null("%ScoreIcon") as TextureRect
 
 
 func _ready() -> void:
+	_current_score = GameEvents.player_score
 	GameEvents.score_updated.connect(_on_score_updated)
-	_update_ui(GameEvents.player_score)
+	_update_ui(_current_score)
 
 
-func _on_score_updated(new_score: int, _added_points: int) -> void:
+func _on_score_updated(new_score: int) -> void:
+	var score_diff: int = new_score - _current_score
+	_current_score = new_score
 	_update_ui(new_score)
-	_play_score_animation()
+
+	var target_color: Color = Color.WHITE
+	if score_diff > 0:
+		target_color = Color.GREEN
+	elif score_diff < 0:
+		target_color = Color.RED
+
+	_play_score_animation(target_color)
 
 
 func _update_ui(score: int) -> void:
@@ -20,11 +32,13 @@ func _update_ui(score: int) -> void:
 		_score_label.text = str(score)
 
 
-func _play_score_animation() -> void:
+func _play_score_animation(target_color: Color) -> void:
 	var tween: Tween = create_tween().set_parallel(true)
 
 	if _score_label:
 		_score_label.pivot_offset = _score_label.size / 2.0
+		_score_label.modulate = target_color
+		tween.tween_property(_score_label, "modulate", Color.WHITE, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		tween.tween_property(_score_label, "scale", Vector2(1.5, 1.5), 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(_score_label, "scale", Vector2.ONE, 0.2).set_delay(0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 

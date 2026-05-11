@@ -8,7 +8,7 @@ signal counter_collectible_collected(identifier: StringName, amount: int, icon: 
 @warning_ignore("unused_signal")
 signal status_buff_collected(status_effect: StatusEffect, icon: Texture2D)
 @warning_ignore("unused_signal")
-signal score_updated(new_score: int, added_points: int)
+signal score_updated(new_score: int)
 @warning_ignore("unused_signal")
 signal player_respawning(duration: float)
 
@@ -18,4 +18,12 @@ var player_score: int = 0
 
 func add_score(points: int) -> void:
 	player_score += points
-	score_updated.emit(player_score, points)
+	score_updated.emit(player_score)
+
+
+func remove_score(points: int) -> void:
+	player_score -= points
+	# TODO Improve
+	if player_score <= 0:
+		player_score = 0
+	score_updated.emit(player_score)
