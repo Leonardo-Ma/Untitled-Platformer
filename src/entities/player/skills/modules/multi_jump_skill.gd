@@ -11,7 +11,11 @@ var _jumps_made: int = 0
 
 
 func get_icon() -> Texture2D:
-	return preload("uid://01223baevlix")
+	return preload("uid://01223baevlix")  # jump.png
+
+
+func get_custom_input_hint() -> String:
+	return "Multi Jump"
 
 
 func get_action_name() -> String:

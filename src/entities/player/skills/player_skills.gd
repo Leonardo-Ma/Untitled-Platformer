@@ -7,7 +7,7 @@ signal skill_unlocked(skill_name: String)
 @export_group("Multi Jump")
 @export var can_double_jump: bool = false
 @export var can_triple_jump: bool = false
-@export var extra_jump_velocity: float = 6.0
+@export var extra_jump_velocity: float = 12.0
 @export var jump_fov_increase: float = 8.0
 @export var jump_fov_duration: float = 0.2
 
