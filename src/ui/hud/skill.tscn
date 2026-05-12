@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://dih45d4ygmyww"]
 
 [ext_resource type="Texture2D" uid="uid://bnq8if00xnf2p" path="res://src/icons/16x16/bomb.png" id="1_hwd1u"]
+[ext_resource type="Script" uid="uid://cgaxqb86skq7v" path="res://src/ui/hud/hud_skill_slot.gd" id="2_slot"]
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=1806796059]
 offset_right = 90.0
 offset_bottom = 111.0
+script = ExtResource("2_slot")
 
-[node name="Ability" type="TextureRect" parent="." unique_id=1660509414]
+[node name="Skill" type="TextureRect" parent="." unique_id=1660509414]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(50, 64)
@@ -15,7 +17,7 @@ texture = ExtResource("1_hwd1u")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CooldownProgress" type="TextureProgressBar" parent="Ability" unique_id=1920979956]
+[node name="CooldownProgress" type="TextureProgressBar" parent="Skill" unique_id=1920979956]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

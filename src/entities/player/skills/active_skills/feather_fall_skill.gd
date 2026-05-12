@@ -1,5 +1,5 @@
 class_name PlayerFeatherFallSkill
-extends PlayerSkillModule
+extends ActivePlayerSkill
 
 signal feather_fall_toggled(toggled: bool)
 

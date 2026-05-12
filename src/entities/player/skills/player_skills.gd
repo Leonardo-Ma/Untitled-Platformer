@@ -1,7 +1,9 @@
 @icon("uid://bhbhlf4t28wyo")  # glow.png
 ## Contains unlockable flags and parameters for player abilities.
-class_name PlayerSkills extends Resource
+class_name PlayerSkills
+extends Resource
 
+@warning_ignore("unused_signal")
 signal skill_unlocked(skill_name: String)
 
 @export_group("Multi Jump")

@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://c30uhilu8tn5v" path="res://src/ui/hud/score.gd" id="2_cl4jo"]
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://src/icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://src/ui/hud/collectibles_interface.gd" id="6_l3ger"]
-[ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/abilities_interface.gd" id="7_8stm2"]
+[ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/skills_interface.gd" id="7_8stm2"]
 [ext_resource type="PackedScene" uid="uid://4dnhjq8r5f03" path="res://src/ui/hud/powerup.tscn" id="7_qtkbr"]
 [ext_resource type="Script" uid="uid://cb1h0wlra5gti" path="res://src/ui/hud/power_up_interface.gd" id="7_raafm"]
 [ext_resource type="PackedScene" uid="uid://ied3ddlblq1x" path="res://src/ui/hud/collectible.tscn" id="8_1rhup"]
-[ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://src/ui/hud/ability.tscn" id="13_gy4ue"]
+[ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://src/ui/hud/skill.tscn" id="13_gy4ue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
 
@@ -149,7 +149,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Abilities" type="Panel" parent="HBoxContainer/VBoxContainer2" unique_id=1095038458]
+[node name="Skills" type="Panel" parent="HBoxContainer/VBoxContainer2" unique_id=1095038458]
 self_modulate = Color(1, 1, 1, 0.5137255)
 custom_minimum_size = Vector2(0, 110)
 custom_maximum_size = Vector2(460, -1)
@@ -157,7 +157,7 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("7_8stm2")
 
-[node name="AbilitiesContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/Abilities" unique_id=1910653337]
+[node name="SkillsContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/Skills" unique_id=1910653337]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -167,19 +167,19 @@ offset_right = -0.10003662
 offset_bottom = 1.0
 columns = 10
 
-[node name="Ability1" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1660509414 instance=ExtResource("13_gy4ue")]
+[node name="Skill" parent="HBoxContainer/VBoxContainer2/Skills/SkillsContainer" unique_id=1660509414 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability2" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=216017026 instance=ExtResource("13_gy4ue")]
+[node name="Skill2" parent="HBoxContainer/VBoxContainer2/Skills/SkillsContainer" unique_id=216017026 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability3" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1030572130 instance=ExtResource("13_gy4ue")]
+[node name="Skill3" parent="HBoxContainer/VBoxContainer2/Skills/SkillsContainer" unique_id=1030572130 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability4" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1027499728 instance=ExtResource("13_gy4ue")]
+[node name="Skill4" parent="HBoxContainer/VBoxContainer2/Skills/SkillsContainer" unique_id=1027499728 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
-[node name="Ability5" parent="HBoxContainer/VBoxContainer2/Abilities/AbilitiesContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
+[node name="Skill5" parent="HBoxContainer/VBoxContainer2/Skills/SkillsContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
 
 [connection signal="timeout" from="HBoxContainer/VBoxContainer/PlayerHealthbar/Timer" to="HBoxContainer/VBoxContainer/PlayerHealthbar" method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-class_name PlayerMultiJumpSkill extends PlayerSkillModule
+class_name PlayerMultiJumpSkill extends ActivePlayerSkill
 
 signal multi_jump_executed
 

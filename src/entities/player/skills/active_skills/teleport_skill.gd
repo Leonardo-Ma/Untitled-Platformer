@@ -1,5 +1,5 @@
 class_name PlayerTeleportSkill
-extends PlayerSkillModule
+extends ActivePlayerSkill
 
 signal teleport_charges_updated(charges: int)
 signal teleport_cooldown_started(duration: float)

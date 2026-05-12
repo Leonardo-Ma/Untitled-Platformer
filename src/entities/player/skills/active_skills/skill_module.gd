@@ -1,7 +1,7 @@
 ## Abstract base class for individual player skill modules.
 ## Handled and processed centrally by the SkillsController.
-@abstract
-class_name PlayerSkillModule extends RefCounted
+@abstract class_name ActivePlayerSkill
+extends RefCounted
 
 ## The central SkillsController node handling all state orchestration.
 var skills_controller: SkillsController

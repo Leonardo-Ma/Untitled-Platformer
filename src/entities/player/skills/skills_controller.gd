@@ -3,7 +3,7 @@ extends Node
 
 var is_sliding: bool = false
 var base_fov: float = 0.0
-var modules: Array[PlayerSkillModule] = []
+var active_skills: Array[ActivePlayerSkill] = []
 
 @onready var entity: CharacterBody3D = owner
 @onready var movement_controller: MovementController = %MovementController
@@ -20,7 +20,7 @@ func _ready() -> void:
 		camera = camera_controller.get_node("SpringArm3D/Camera3D")
 		base_fov = camera.fov
 
-	_initialize_modules()
+	_initialize_active_skills()
 
 	# Hook into MovementController signals to reset aerial limits
 	movement_controller.landed.connect(_on_landed)
@@ -42,21 +42,21 @@ func process_skills(body: CharacterBody3D, delta: float) -> void:
 	if not skills:
 		return
 
-	for module: PlayerSkillModule in modules:
-		module.process_timers(skills, delta)
-		module.process_passive(body, skills, delta)
-		module.handle_input(body, skills)
-		module.apply_logic(body, skills)
+	for active_skill: ActivePlayerSkill in active_skills:
+		active_skill.process_timers(skills, delta)
+		active_skill.process_passive(body, skills, delta)
+		active_skill.handle_input(body, skills)
+		active_skill.apply_logic(body, skills)
 
 
-func _initialize_modules() -> void:
-	modules.append(PlayerMultiJumpSkill.new(self))
-	modules.append(PlayerGroundDashSkill.new(self))
-	modules.append(PlayerAirDashSkill.new(self))
-	modules.append(PlayerTeleportSkill.new(self))
-	modules.append(PlayerFeatherFallSkill.new(self))
+func _initialize_active_skills() -> void:
+	active_skills.append(PlayerMultiJumpSkill.new(self))
+	active_skills.append(PlayerGroundDashSkill.new(self))
+	active_skills.append(PlayerAirDashSkill.new(self))
+	active_skills.append(PlayerTeleportSkill.new(self))
+	active_skills.append(PlayerFeatherFallSkill.new(self))
 
 
 func _on_landed() -> void:
-	for module: PlayerSkillModule in modules:
-		module.on_landed()
+	for active_skill: ActivePlayerSkill in active_skills:
+		active_skill.on_landed()
