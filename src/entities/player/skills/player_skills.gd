@@ -2,6 +2,8 @@
 ## Contains unlockable flags and parameters for player abilities.
 class_name PlayerSkills extends Resource
 
+signal skill_unlocked(skill_name: String)
+
 @export_group("Multi Jump")
 @export var can_double_jump: bool = false
 @export var can_triple_jump: bool = false

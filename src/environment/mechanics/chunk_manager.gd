@@ -23,7 +23,10 @@ class ChunkData:
 
 # BUG: TODO: Consider if there's better approach instead of hardcore path
 const CHUNK_DIRECTORIES: Array[String] = [
-	"res://src/environment/levels/easy/", "res://src/environment/levels/medium/", "res://src/environment/levels/hard/"
+	"res://src/environment/levels/easy/",
+	"res://src/environment/levels/medium/",
+	"res://src/environment/levels/hard/",
+	"res://src/environment/levels/skills/",
 ]
 const CHUNK_SPAWN_AMOUNT: int = 8
 const MAX_VERTICAL_DEVIATION: float = 40.0
@@ -109,6 +112,8 @@ func _load_chunk_metadata_from_disk() -> void:
 									data.difficulty_points = 30
 								elif "/hard/" in full_path:
 									data.difficulty_points = 50
+								elif "/skills/" in full_path:
+									data.difficulty_points = 0
 								else:
 									assert(false, "Difficulty not found for this level chunk " + data.scene_path)
 

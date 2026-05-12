@@ -1,4 +1,5 @@
 # BUG Need to heavily improve this garbage
+# TODO Rename to skills
 extends Control
 
 var ability_uis: Dictionary = {}  # { module_instance : { icon, charge_label, cooldown_progress } }
@@ -54,6 +55,8 @@ func _on_player_spawned(player: CharacterBody3D) -> void:
 	var slot_index: int = 0
 
 	var player_skills: PlayerSkills = player.get("skills")
+	if player_skills and not player_skills.skill_unlocked.is_connected(_on_skill_unlocked.bind(player)):
+		player_skills.skill_unlocked.connect(_on_skill_unlocked.bind(player))
 
 	for module: PlayerSkillModule in skills_controller.modules:
 		if player_skills and not module.is_unlocked(player_skills):
@@ -89,6 +92,10 @@ func _on_player_spawned(player: CharacterBody3D) -> void:
 
 		_connect_module_signals(module, slot_node)
 		slot_index += 1
+
+
+func _on_skill_unlocked(_skill_name: String, player: CharacterBody3D) -> void:
+	_on_player_spawned(player)
 
 
 func _module_uses_cooldown(module: PlayerSkillModule) -> bool:
