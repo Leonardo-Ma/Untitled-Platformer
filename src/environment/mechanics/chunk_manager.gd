@@ -2,25 +2,6 @@
 ## Manages object pooling, async loading, and sequential connecting of procedural level chunks
 extends Node
 
-
-## Helper definition to cache chunk layout data at startup without constantly instantiating
-class ChunkData:
-	extends RefCounted
-	var scene_path: String
-	var entrance_transform: Transform3D
-	var height_shift: float = 0.0
-	var is_turn: bool = false
-	var has_checkpoint: bool = false
-	var requires_multi_jump: bool
-	var requires_ground_dash: bool
-	var requires_air_dash: bool
-	var requires_teleport: bool
-	var requires_slow_fall: bool
-	var difficulty_points: int = 0
-	var skill_points: int = 0
-	var score_multiplier: float = 1.0
-
-
 # BUG: TODO: Consider if there's better approach instead of hardcore path
 const CHUNK_DIRECTORIES: Array[String] = [
 	"res://src/environment/levels/easy/",
@@ -29,8 +10,6 @@ const CHUNK_DIRECTORIES: Array[String] = [
 	"res://src/environment/levels/skills/",
 ]
 const CHUNK_SPAWN_AMOUNT: int = 8
-const MAX_VERTICAL_DEVIATION: float = 40.0
-const MIN_VERTICAL_DEVIATION: float = -40.0
 
 const LEVEL_COMPLETE_SOUNDS: Array[AudioStream] = [
 	preload("uid://wsw31trreg3k"),  # chequered_ink/brass_level_complete.wav
@@ -47,9 +26,8 @@ const LEVEL_COMPLETE_SOUNDS: Array[AudioStream] = [
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
-var _chunk_pool: Dictionary = {}  # Key: scene_path (String), Value: Array[LevelChunk]
-var _recent_chunk_paths: Array[String] = []
-var _chunks_since_turn: int = 5
+var _chunk_pool: Dictionary = {}  # Key: String (scene_path), Value: Array[LevelChunk]
+var _chunk_selector: ChunkSelector
 
 
 func _ready() -> void:
@@ -79,9 +57,7 @@ func _load_chunk_metadata_from_disk() -> void:
 							var temp_instance: Node = scene.instantiate()
 							if temp_instance is LevelChunk:
 								add_child(temp_instance)
-
 								var checkpoints: Array[Node] = temp_instance.find_children("*", "Checkpoint", true, false)
-
 								var data: ChunkData = ChunkData.new()
 								data.has_checkpoint = checkpoints.size() > 0
 
@@ -90,7 +66,6 @@ func _load_chunk_metadata_from_disk() -> void:
 								if entrance_trigger and exit_trigger:
 									data.height_shift = exit_trigger.position.y - entrance_trigger.position.y
 									data.entrance_transform = temp_instance.global_transform.affine_inverse() * entrance_trigger.global_transform
-
 									var in_z: Vector3 = entrance_trigger.global_transform.basis.z.normalized()
 									var out_z: Vector3 = exit_trigger.global_transform.basis.z.normalized()
 									data.is_turn = in_z.angle_to(out_z) > 0.1
@@ -101,21 +76,22 @@ func _load_chunk_metadata_from_disk() -> void:
 								data.requires_air_dash = temp_instance.requires_air_dash
 								data.requires_teleport = temp_instance.requires_teleport
 								data.requires_slow_fall = temp_instance.requires_slow_fall
-
+								if "unlocks_skill" in temp_instance:
+									data.unlocks_skill = temp_instance.unlocks_skill
 								if "score_multiplier" in temp_instance:
 									data.score_multiplier = temp_instance.score_multiplier
 
-								# TODO Change to switch statement (match)
-								if "/easy/" in full_path:
-									data.difficulty_points = 10
-								elif "/medium/" in full_path:
-									data.difficulty_points = 30
-								elif "/hard/" in full_path:
-									data.difficulty_points = 50
-								elif "/skills/" in full_path:
-									data.difficulty_points = 0
-								else:
-									assert(false, "Difficulty not found for this level chunk " + data.scene_path)
+								match dir_path:
+									"res://src/environment/levels/easy/":
+										data.difficulty_points = 10
+									"res://src/environment/levels/medium/":
+										data.difficulty_points = 30
+									"res://src/environment/levels/hard/":
+										data.difficulty_points = 50
+									"res://src/environment/levels/skills/":
+										data.difficulty_points = 0
+									_:
+										assert(false, "Difficulty not found for this level chunk " + data.scene_path)
 
 								var skills_count: int = 0
 								if data.requires_multi_jump:
@@ -139,6 +115,7 @@ func _load_chunk_metadata_from_disk() -> void:
 							temp_instance.free()
 				file_name = dir.get_next()
 	assert(_all_chunks.size() > 0, "No valid LevelChunks found in directories.")
+	_chunk_selector = ChunkSelector.new(_rng, _all_chunks)
 
 
 func _get_chunk_data_by_path(path: String) -> ChunkData:
@@ -154,8 +131,8 @@ func clear_level() -> void:
 		if is_instance_valid(chunk):
 			_pool_chunk(chunk)
 	_active_chunks.clear()
-	_recent_chunk_paths.clear()
-	_chunks_since_turn = 5
+	if _chunk_selector:
+		_chunk_selector.reset()
 
 
 func _get_player_skills() -> Dictionary:
@@ -272,103 +249,13 @@ func _pool_chunk(chunk: LevelChunk) -> void:
 
 func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	var skills: Dictionary = _get_player_skills()
-	var valid_pool: Array[ChunkData] = []
-	var strict_pool: Array[ChunkData] = []
-	var current_y_height: float = target_transform.origin.y
-
-	print("\n==================== Chunk Selection Debug ====================")
-	print("Target Y: ", current_y_height, " | Chunks since turn: ", _chunks_since_turn)
-	print("Recent paths: ", _recent_chunk_paths)
-
-	for data: ChunkData in _all_chunks:
-		var reject_reason: String = ""
-
-		if data.requires_multi_jump and not skills.get("multi_jump", false):
-			reject_reason += "missing multi_jump "
-			continue
-		if data.requires_ground_dash and not skills.get("ground_dash", false):
-			reject_reason += "missing ground_dash "
-			continue
-		if data.requires_air_dash and not skills.get("air_dash", false):
-			reject_reason += "missing air_dash "
-			continue
-		if data.requires_teleport and not skills.get("teleport", false):
-			reject_reason += "missing teleport "
-			continue
-		if data.requires_slow_fall and not skills.get("slow_fall", false):
-			reject_reason += "missing slow_fall "
-			continue
-
-		if reject_reason:
-			print("  ✗ REJECTED [%s]: %s" % [data.scene_path.get_file(), reject_reason])
-
-		# Prevent back-to-back turns
-		if data.is_turn and _chunks_since_turn < 5:
-			continue
-
-		valid_pool.push_back(data)
-
-		# Prevent level from going too high or too low
-		if current_y_height + data.height_shift > MAX_VERTICAL_DEVIATION and data.height_shift > 0:
-			print("  ✗ STRICT-REJECTED [%s]: would exceed MAX_VERTICAL_DEVIATION" % data.scene_path.get_file())
-			continue
-		if current_y_height + data.height_shift < MIN_VERTICAL_DEVIATION and data.height_shift < 0:
-			print("  ✗ STRICT-REJECTED [%s]: would exceed MIN_VERTICAL_DEVIATION" % data.scene_path.get_file())
-			continue
-
-		strict_pool.push_back(data)
-
-	print("Pool sizes → valid: %d, strict: %d, total available: %d" % [valid_pool.size(), strict_pool.size(), _all_chunks.size()])
-
-	# Soft fallbacks to prevent crash if constraints box the generator into a corner
-	if strict_pool.size() > 0:
-		print("  → Using STRICT pool")
-		valid_pool = strict_pool
-	elif valid_pool.size() == 0:
-		print("  → EMERGENCY FALLBACK: using ALL chunks")
-		valid_pool = _all_chunks
-	else:
-		print("  → Using BASIC valid pool (some chunks may violate vertical/AABB)")
-
-	# Try to filter out all recent chunks
-	var non_recent: Array[ChunkData] = valid_pool.filter(func(d: ChunkData) -> bool: return not d.scene_path in _recent_chunk_paths)
-	if non_recent.size() > 0:
-		print("  → Filtered out recent chunks, %d remain" % valid_pool.size())
-		valid_pool = non_recent
-	else:
-		print("  → WARNING: All valid chunks were recent! Relaxing filter to exclude only last chunk")
-		# Fallback: at least try to avoid the very last chunk played
-		var non_last: Array[ChunkData] = valid_pool.filter(
-			func(d: ChunkData) -> bool: return _recent_chunk_paths.size() == 0 or d.scene_path != _recent_chunk_paths.back()
-		)
-		if non_last.size() > 0:
-			valid_pool = non_last
-
-	var random_idx: int = _rng.randi_range(0, valid_pool.size() - 1)
-	var chosen_data: ChunkData = valid_pool[random_idx]
-	print("  ✓ SELECTED: [%s] (is_turn: %s, height_shift: %.1f)" % [chosen_data.scene_path.get_file(), chosen_data.is_turn, chosen_data.height_shift])
-	print("====================================================\n")
-	_recent_chunk_paths.push_back(chosen_data.scene_path)
-	if _recent_chunk_paths.size() > 5:
-		_recent_chunk_paths.pop_front()
-
-	if chosen_data.is_turn:
-		_chunks_since_turn = 0
-	else:
-		_chunks_since_turn += 1
-
-	# Check if suspended instance in the pool
+	var chosen_data: ChunkData = _chunk_selector.select_chunk_data(target_transform, skills, GameEvents.player_score)
 	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():
 		return _chunk_pool[chosen_data.scene_path].pop_back()
-
-	# Else fetch the asynchronously loaded scene and instantiate it
 	var scene: PackedScene
 	var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(chosen_data.scene_path)
-
 	if load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		scene = ResourceLoader.load_threaded_get(chosen_data.scene_path) as PackedScene
 	else:
-		# Fallback if it hasn't finished loading yet or failed
 		scene = load(chosen_data.scene_path) as PackedScene
-
 	return scene.instantiate() as LevelChunk
