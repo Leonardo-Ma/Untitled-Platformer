@@ -18,6 +18,7 @@ var current_speed: float = 0.0
 var movement_enabled: bool = true
 var coyote_timer: float = 0.0
 var disable_timer: float = 0.0
+var _was_on_floor: bool = false
 
 
 ## This is executed by entity's _physics_process
@@ -67,9 +68,12 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 
 func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
-	if not body.is_on_floor():
+	var is_on_floor_now: bool = body.is_on_floor()
+
+	if not is_on_floor_now:
 		coyote_timer -= delta
-		in_air.emit()
+		if _was_on_floor:
+			in_air.emit()
 		body.velocity.y -= gravity * delta
 
 		# Jump cutting: if jump button is released while moving upwards, cut velocity
@@ -77,7 +81,10 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 			body.velocity.y *= 0.5
 	else:
 		coyote_timer = COYOTE_TIME
-		landed.emit()
+		if not _was_on_floor:
+			landed.emit()
+
+	_was_on_floor = is_on_floor_now
 
 	if not movement_enabled:
 		return
