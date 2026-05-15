@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		elif tracker.remaining_time <= 3.0 and not tracker.has("flash_tween"):
 			var icon_node: TextureRect = tracker.node.get_node("PowerUp") as TextureRect
 			if icon_node:
-				var flash_tween: Tween = create_tween().set_loops()
+				var flash_tween: Tween = create_tween().bind_node(icon_node).set_loops()
 				flash_tween.tween_property(icon_node, "modulate", Color(1.5, 1.5, 0.5, 1.0), 0.2)
 				flash_tween.tween_property(icon_node, "modulate", Color.WHITE, 0.2)
 				tracker["flash_tween"] = flash_tween

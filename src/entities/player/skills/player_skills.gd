@@ -15,7 +15,7 @@ signal skill_unlocked(skill_name: String)
 
 @export_group("Ground Dash")
 @export var can_ground_dash: bool = false
-@export var ground_dash_velocity_multiplier: float = 2.5
+@export var ground_dash_velocity_multiplier: float = 5.0
 @export var ground_dash_duration: float = 0.4
 @export var ground_dash_cooldown: float = 1.0
 

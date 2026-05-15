@@ -76,7 +76,6 @@ blend_point_4/pos = Vector2(1, 0)
 blend_point_4/name = &"movement_Running_A 3"
 
 [resource]
-graph_offset = Vector2(-673, 17)
 nodes/output/position = Vector2(520, 380)
 nodes/damaged/node = SubResource("AnimationNodeAnimation_u2sm2")
 nodes/damaged/position = Vector2(-60, 800)
