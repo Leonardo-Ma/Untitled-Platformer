@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://c170bytojwce5"]
+
+[ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_6xsp5"]
+[ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_tp2n3"]
+[ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_dts3b"]
+[ext_resource type="PackedScene" uid="uid://7ugwdowsimwr" path="res://src/environment/levels/assets/static_platforms/hexagon_stone_platform.tscn" id="4_f7573"]
+[ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="5_4taiq"]
+[ext_resource type="PackedScene" uid="uid://c5advesecca53" path="res://src/environment/levels/assets/ground_button/button_rounded.tscn" id="6_vglmt"]
+[ext_resource type="PackedScene" uid="uid://pngs12a0famd" path="res://src/environment/levels/assets/doors/large_door.tscn" id="7_hayea"]
+
+[node name="LevelChunk" type="Node3D" unique_id=1016321493]
+script = ExtResource("1_6xsp5")
+difficulty = 1
+score_multiplier = 2.0
+requires_ground_dash = true
+
+[node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_tp2n3")]
+unique_name_in_owner = true
+
+[node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_dts3b")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 109.083)
+
+[node name="HexagonStonePlatform" parent="." unique_id=537577895 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 2)
+
+[node name="HexagonStonePlatform2" parent="." unique_id=1796871457 instance=ExtResource("4_f7573")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0, -2, 13)
+
+[node name="HexagonStonePlatform3" parent="." unique_id=1006831694 instance=ExtResource("4_f7573")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 11, -2, 13)
+
+[node name="HexagonStonePlatform4" parent="." unique_id=1518673226 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2, 25)
+
+[node name="HexagonStonePlatform8" parent="." unique_id=1196444999 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -2, 25)
+
+[node name="HexagonStonePlatform5" parent="." unique_id=695852490 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56920624, -2, 25)
+
+[node name="HexagonStonePlatform6" parent="." unique_id=291459202 instance=ExtResource("4_f7573")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -11, -2, 13)
+
+[node name="HexagonStonePlatform7" parent="." unique_id=1281797048 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -2, 25)
+
+[node name="HexagonStonePlatform9" parent="." unique_id=2016388475 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -2, 25)
+
+[node name="HexagonStonePlatform10" parent="." unique_id=137541580 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2, 42)
+
+[node name="HexagonStonePlatform11" parent="." unique_id=2019713358 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -2, 37)
+
+[node name="HexagonStonePlatform12" parent="." unique_id=908123016 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56920624, -2, 49)
+
+[node name="HexagonStonePlatform6" parent="HexagonStonePlatform12" unique_id=370824681 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 13)
+
+[node name="Checkpoint" parent="HexagonStonePlatform12/HexagonStonePlatform6" unique_id=742215115 instance=ExtResource("5_4taiq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.2735834, 0)
+
+[node name="HexagonStonePlatform7" parent="HexagonStonePlatform12" unique_id=845399560 instance=ExtResource("4_f7573")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0, 0, 23)
+
+[node name="HexagonStonePlatform5" parent="HexagonStonePlatform12" unique_id=1934420454 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
+
+[node name="Button2" parent="HexagonStonePlatform12/HexagonStonePlatform5" unique_id=2110582536 instance=ExtResource("6_vglmt")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.39106166, -2)
+
+[node name="HexagonStonePlatform8" parent="HexagonStonePlatform12" unique_id=182198215 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41)
+
+[node name="HexagonStonePlatform9" parent="HexagonStonePlatform12" unique_id=186523733 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="LargeDoor2" parent="HexagonStonePlatform12/HexagonStonePlatform9" unique_id=1399175764 node_paths=PackedStringArray("_button") instance=ExtResource("7_hayea")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0.5129981, 3)
+_button = NodePath("../../HexagonStonePlatform5/Button2")
+
+[node name="HexagonStonePlatform15" parent="." unique_id=1106355886 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56920624, -2, 49)
+
+[node name="HexagonStonePlatform13" parent="." unique_id=325886899 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -2, 42)
+
+[node name="HexagonStonePlatform14" parent="." unique_id=1587572562 instance=ExtResource("4_f7573")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -2, 37)
