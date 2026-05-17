@@ -4,6 +4,6 @@
 class_name Movement
 extends Resource
 
-@export_range(3.0, 100.0, 0.1, "suffix:meters/second?") var walk_speed: float = 3.0
-@export_range(5.0, 150.0, 0.1, "suffix:meters/second?") var run_speed: float = 5.0
-@export_range(6.5, 150.0, 0.1, "suffix:meters/second?") var jump_velocity: float = 6.5
+@export_range(3.0, 100.0, 0.1, "suffix:meters/second?") var walk_speed: float = 5.5
+@export_range(5.0, 150.0, 0.1, "suffix:meters/second?") var run_speed: float = 5.5
+@export_range(6.5, 150.0, 0.1, "suffix:meters/second?") var jump_velocity: float = 7.0
