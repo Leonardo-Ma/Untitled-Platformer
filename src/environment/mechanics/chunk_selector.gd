@@ -4,6 +4,7 @@ extends RefCounted
 
 const MAX_VERTICAL_DEVIATION: float = 300.0
 const MIN_VERTICAL_DEVIATION: float = -40.0
+const SKILL_UNLOCK_SCORE_STEP: int = 50
 
 var _rng: RandomNumberGenerator
 var _all_chunks: Array[ChunkData]
@@ -29,7 +30,7 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 	var valid_pool: Array[ChunkData] = []
 	var strict_pool: Array[ChunkData] = []
 	var current_y_height: float = target_transform.origin.y
-	var force_skill_unlock: bool = current_score >= _last_skill_score_threshold + 10
+	var force_skill_unlock: bool = current_score >= _last_skill_score_threshold + SKILL_UNLOCK_SCORE_STEP
 
 	print("\n==================== Chunk Selection Debug ====================")
 	print("Target Y: ", current_y_height, " | Chunks since turn: ", _chunks_since_turn, " | Last skill score unlock: ", _last_skill_score_threshold)
@@ -124,7 +125,7 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 	print("====================================================\n")
 
 	if force_skill_unlock:
-		_last_skill_score_threshold += 10
+		_last_skill_score_threshold += SKILL_UNLOCK_SCORE_STEP
 
 	_recent_chunk_paths.push_back(chosen_data.scene_path)
 	if _recent_chunk_paths.size() > 5:

@@ -4,9 +4,7 @@ extends Node
 
 # BUG: TODO: Consider if there's better approach instead of hardcore path
 const CHUNK_DIRECTORIES: Array[String] = [
-	"res://src/environment/levels/easy/",
-	"res://src/environment/levels/medium/",
-	"res://src/environment/levels/hard/",
+	"res://src/environment/levels/base_levels/",
 	"res://src/environment/levels/skills/",
 ]
 const CHUNK_SPAWN_AMOUNT: int = 8
@@ -28,6 +26,7 @@ var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
 var _chunk_pool: Dictionary = {}  # Key: String (scene_path), Value: Array[LevelChunk]
 var _chunk_selector: ChunkSelector
+var _chunk_exit_connections: Dictionary = {}
 
 
 func _ready() -> void:
@@ -54,68 +53,69 @@ func _load_chunk_metadata_from_disk() -> void:
 						# Ideally, this metadata would be in a separate Resource (.tres) to avoid loading the full scene.
 						var scene: PackedScene = load(full_path) as PackedScene
 						if scene:
-							var temp_instance: Node = scene.instantiate()
-							if temp_instance is LevelChunk:
-								add_child(temp_instance)
-								var checkpoints: Array[Node] = temp_instance.find_children("*", "Checkpoint", true, false)
+							var chunk: LevelChunk = scene.instantiate() as LevelChunk
+							if chunk:
+								var checkpoints: Array[Node] = chunk.find_children("*", "Checkpoint", true, false)
 								var data: ChunkData = ChunkData.new()
 								data.has_checkpoint = checkpoints.size() > 0
 
-								var entrance_trigger: Node3D = temp_instance.get_node_or_null("%EntranceTrigger")
-								var exit_trigger: Node3D = temp_instance.get_node_or_null("%ExitTrigger")
-								if entrance_trigger and exit_trigger:
-									data.height_shift = exit_trigger.position.y - entrance_trigger.position.y
-									data.entrance_transform = temp_instance.global_transform.affine_inverse() * entrance_trigger.global_transform
-									var in_z: Vector3 = entrance_trigger.global_transform.basis.z.normalized()
-									var out_z: Vector3 = exit_trigger.global_transform.basis.z.normalized()
-									data.is_turn = in_z.angle_to(out_z) > 0.1
+								var entrance_trigger: Node3D = chunk.get_node("%EntranceTrigger")
+								var exit_trigger: Node3D = chunk.get_node("%ExitTrigger")
+								data.height_shift = exit_trigger.position.y - entrance_trigger.position.y
+								data.entrance_transform = chunk.transform.affine_inverse() * entrance_trigger.transform
+								var in_z: Vector3 = entrance_trigger.transform.basis.z.normalized()
+								var out_z: Vector3 = exit_trigger.transform.basis.z.normalized()
+								data.is_turn = in_z.angle_to(out_z) > 0.1
 
 								data.scene_path = full_path
-								data.requires_multi_jump = temp_instance.requires_multi_jump
-								data.requires_ground_dash = temp_instance.requires_ground_dash
-								data.requires_air_dash = temp_instance.requires_air_dash
-								data.requires_teleport = temp_instance.requires_teleport
-								data.requires_slow_fall = temp_instance.requires_slow_fall
-								if "unlocks_skill" in temp_instance:
-									data.unlocks_skill = temp_instance.unlocks_skill
-								if "score_multiplier" in temp_instance:
-									data.score_multiplier = temp_instance.score_multiplier
+								data.requires_multi_jump = chunk.requires_multi_jump
+								data.requires_ground_dash = chunk.requires_ground_dash
+								data.requires_air_dash = chunk.requires_air_dash
+								data.requires_teleport = chunk.requires_teleport
+								data.requires_slow_fall = chunk.requires_slow_fall
+								data.unlocks_skill = chunk.unlocks_skill
+								data.score_multiplier = chunk.score_multiplier
 
-								match dir_path:
-									"res://src/environment/levels/easy/":
-										data.difficulty_points = 10
-									"res://src/environment/levels/medium/":
-										data.difficulty_points = 30
-									"res://src/environment/levels/hard/":
-										data.difficulty_points = 50
-									"res://src/environment/levels/skills/":
-										data.difficulty_points = 0
-									_:
-										assert(false, "Difficulty not found for this level chunk " + data.scene_path)
-
-								var skills_count: int = 0
-								if data.requires_multi_jump:
-									skills_count += 1
-								if data.requires_ground_dash:
-									skills_count += 1
-								if data.requires_air_dash:
-									skills_count += 1
-								if data.requires_teleport:
-									skills_count += 1
-								if data.requires_slow_fall:
-									skills_count += 1
-								data.skill_points = skills_count * 2
+								data.difficulty_points = _get_difficulty_points(chunk, data)
+								data.skill_points = _count_required_skills(data) * 2
 
 								_all_chunks.push_back(data)
 
 								# Start async loading the scene so it's ready in memory when needed
 								ResourceLoader.load_threaded_request(full_path)
 
-								remove_child(temp_instance)
-							temp_instance.free()
+								chunk.free()
 				file_name = dir.get_next()
 	assert(_all_chunks.size() > 0, "No valid LevelChunks found in directories.")
 	_chunk_selector = ChunkSelector.new(_rng, _all_chunks)
+
+
+func _get_difficulty_points(chunk: LevelChunk, data: ChunkData) -> int:
+	match chunk.difficulty:
+		LevelChunk.Difficulty.EASY:
+			return 10
+		LevelChunk.Difficulty.MEDIUM:
+			return 30
+		LevelChunk.Difficulty.HARD:
+			return 50
+
+	assert(false, "Difficulty not found for this level chunk " + data.scene_path)
+	return 0
+
+
+func _count_required_skills(data: ChunkData) -> int:
+	var required_skills: Array[bool] = [
+		data.requires_multi_jump,
+		data.requires_ground_dash,
+		data.requires_air_dash,
+		data.requires_teleport,
+		data.requires_slow_fall,
+	]
+	var count: int = 0
+	for required: bool in required_skills:
+		if required:
+			count += 5
+	return count
 
 
 func _get_chunk_data_by_path(path: String) -> ChunkData:
@@ -137,6 +137,7 @@ func clear_level() -> void:
 
 func _get_player_skills() -> Dictionary:
 	var player: Node = get_tree().get_first_node_in_group(Groups.PLAYERS)
+	assert(player != null, "Player missing in " + self.name)
 	return player.get_skills()
 
 
@@ -167,23 +168,19 @@ func initialize_level(parent_world: Node) -> void:
 
 
 func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D) -> void:
-	var entrance_node: Node3D = chunk.get_node_or_null("%EntranceTrigger")
+	var entrance_node: Node3D = chunk.get_node("%EntranceTrigger")
 
 	# Snap position and maintain the chunk native rotation
-	if entrance_node:
-		var rel_entrance: Transform3D = chunk.global_transform.affine_inverse() * entrance_node.global_transform
-		chunk.global_transform = target_transform * rel_entrance.affine_inverse()
-	else:
-		chunk.global_transform = target_transform
+	var rel_entrance: Transform3D = chunk.global_transform.affine_inverse() * entrance_node.global_transform
+	chunk.global_transform = target_transform * rel_entrance.affine_inverse()
 
 
 func _setup_chunk_trigger(chunk: LevelChunk, parent_world: Node) -> void:
 	var trigger: Area3D = chunk.get_node("%ExitTrigger")
-	if trigger:
-		# Disconnect previous connections if recycled
-		if trigger.body_entered.is_connected(_on_chunk_exit_reached):
-			trigger.body_entered.disconnect(_on_chunk_exit_reached)
-		trigger.body_entered.connect(_on_chunk_exit_reached.bind(parent_world, chunk))
+	_disconnect_chunk_trigger(chunk)
+	var callable: Callable = _on_chunk_exit_reached.bind(parent_world, chunk)
+	_chunk_exit_connections[chunk.get_instance_id()] = callable
+	trigger.body_entered.connect(callable)
 
 
 func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: LevelChunk) -> void:
@@ -232,6 +229,7 @@ func recycle_oldest_chunk(parent_world: Node) -> void:
 
 func _pool_chunk(chunk: LevelChunk) -> void:
 	# Disable processing and hide the chunk to save performance
+	_disconnect_chunk_trigger(chunk)
 	chunk.process_mode = Node.PROCESS_MODE_DISABLED
 	chunk.visible = false
 	if chunk.has_meta("scored"):
@@ -245,6 +243,18 @@ func _pool_chunk(chunk: LevelChunk) -> void:
 	if not _chunk_pool.has(path):
 		_chunk_pool[path] = []
 	_chunk_pool[path].push_back(chunk)
+
+
+func _disconnect_chunk_trigger(chunk: LevelChunk) -> void:
+	var chunk_id: int = chunk.get_instance_id()
+	if not _chunk_exit_connections.has(chunk_id):
+		return
+
+	var trigger: Area3D = chunk.get_node("%ExitTrigger")
+	var callable: Callable = _chunk_exit_connections[chunk_id]
+	if trigger.body_entered.is_connected(callable):
+		trigger.body_entered.disconnect(callable)
+	_chunk_exit_connections.erase(chunk_id)
 
 
 func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
