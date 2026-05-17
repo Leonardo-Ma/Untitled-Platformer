@@ -7,7 +7,6 @@
 
 [node name="LevelChunk" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_lwggr")
-score_multiplier = 0.3
 
 [node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_2yt5n")]
 unique_name_in_owner = true
@@ -15,7 +14,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 1)
 
 [node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_uxx65")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 9.9, 73.083)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, 73.083)
 
 [node name="GrassPlatform" parent="." unique_id=537577895 instance=ExtResource("4_q120s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 3)
