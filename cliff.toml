@@ -1,3 +1,4 @@
+git-cliff = "2.13.1"
 # git-cliff ~ configuration file
 # https://git-cliff.org/docs/configuration
 
@@ -18,7 +19,7 @@ body = """
 {% macro print_commit(commit) -%}
     - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
         {{ commit.message | upper_first }} \
-        ([{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }}))\
+        ([{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }}) -> {{ commit.statistics.files_changed }} files, +{{ commit.statistics.additions }}, -{{ commit.statistics.deletions }})\ 
 {% endmacro -%}
 
 {% if version %}\
@@ -38,10 +39,27 @@ body = """
     {{ self::print_commit(commit=commit) }}
   {%- endfor %}
 {% endfor -%}
+
+### Release Statistics
+
+- {{ statistics.commit_count }} commit(s) contributed to the release.
+- {{ statistics.commits_timespan | default(value=0) }} day(s) passed between the first and last commit.
+- {{ statistics.conventional_commit_count }} commit(s) parsed as conventional.
+- {{ statistics.links | length }} linked issue(s) detected in commits.
+{%- if statistics.links | length > 0 %}
+	{%- for link in statistics.links %}
+        {{ "  " }}- [{{ link.text }}]({{ link.href }}) (referenced {{ link.count }} time(s))
+	{%- endfor %}
+{%- endif %}
+{%- if statistics.days_passed_since_last_release %}
+	- {{ statistics.days_passed_since_last_release }} day(s) passed between releases.
+{%- endif %}
 """
 # A Tera template to be rendered as the changelog's footer.
 # See https://keats.github.io/tera/docs/#introduction
-#footer = ""
+#footer = 
+
+
 # Remove leading and trailing whitespaces from the changelog's body.
 trim = true
 # An array of regex based postprocessors to modify the changelog.
@@ -67,22 +85,16 @@ commit_preprocessors = [
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 commit_parsers = [
+  { message = "^Chore|^Style", skip = true },
   { message = "^Feat", group = "<!-- 0 -->⛰️  Features" },
   { message = "^Fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+  { message = "^Refactor", group = "<!-- 2 -->🚜 Refactor" },
   { message = "^Docs", group = "<!-- 3 -->📚 Documentation" },
   { message = "^Perf", group = "<!-- 4 -->⚡ Performance" },
-  { message = "^Refactor\\(clippy\\)", skip = true },
-  { message = "^Refactor", group = "<!-- 2 -->🚜 Refactor" },
-  { message = "^Style", group = "<!-- 5 -->🎨 Styling" },
-  { message = "^Test", group = "<!-- 6 -->🧪 Testing" },
-  { message = "^Chore\\(release\\): prepare for", skip = true },
-  { message = "^Chore\\(deps.*\\)", skip = true },
-  { message = "^Chore\\(pr\\)", skip = true },
-  { message = "^Chore\\(pull\\)", skip = true },
-  { message = "^Chore\\(npm\\).*yarn\\.lock", skip = true },
-  { message = "^Chore|^Ci|^Build", skip = true },
-  { message = "^Remove", group = "<!-- 7 -->🗑️ Removes" },
-  { body = ".*Security", group = "<!-- 8 -->🛡️ Security" },
+  { message = "^Test", group = "<!-- 5 -->🧪 Testing" },
+  { body = ".*Security", group = "<!-- 6 -->🛡️ Security" },
+  { message = "^CI|^Build", group = "<!-- 7 -->🔧 CI" },
+  { message = "^Remove", group = "<!-- 8 -->🗑️ Removes" },
   { message = "^Revert", group = "<!-- 9 -->◀️ Revert" },
 ]
 # Prevent commits that are breaking from being excluded by commit parsers.
