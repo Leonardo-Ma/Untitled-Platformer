@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_kl51u"]
 [ext_resource type="PackedScene" uid="uid://bb1l6ibw3ab5y" path="res://src/environment/levels/assets/static_platforms/hexagon_grass_platform.tscn" id="5_wpoxf"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="5_xufyi"]
+[ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="6_xufyi"]
 
 [node name="MediumTemplate" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_siqpa")
@@ -21,7 +22,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 40, 214)
 
 [node name="HexagonGrassPlatform4" parent="." unique_id=141208030 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -6, 9)
+transform = Transform3D(1.9318516, 0, 0.5176381, 0, 2, 0, -0.5176381, 0, 1.9318516, 0, -8, 11)
 
 [node name="HexagonGrassPlatform5" parent="." unique_id=537577895 instance=ExtResource("5_wpoxf")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, 34)
@@ -40,6 +41,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.356741, 0)
 
 [node name="HexagonGrassPlatform9" parent="." unique_id=1112239081 instance=ExtResource("5_wpoxf")]
 transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 1, 24, 98)
+
+[node name="SpeedUp" parent="HexagonGrassPlatform9" unique_id=707485280 instance=ExtResource("6_xufyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="HexagonGrassPlatform10" parent="." unique_id=1776945566 instance=ExtResource("5_wpoxf")]
 transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 14, 24, 128)
