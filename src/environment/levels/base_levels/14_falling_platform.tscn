@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://sxipwajvwib3"]
+
+[ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_2qulf"]
+[ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_klmti"]
+[ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_682oq"]
+[ext_resource type="PackedScene" uid="uid://7ugwdowsimwr" path="res://src/environment/levels/assets/static_platforms/hexagon_stone.tscn" id="5_cwx7u"]
+[ext_resource type="PackedScene" uid="uid://cmhy34flmgu50" path="res://src/environment/levels/assets/disappearing_platforms/hexagon_orange.tscn" id="5_gbj1j"]
+[ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="6_c02qk"]
+
+[node name="MediumTemplate" type="Node3D" unique_id=1016321493]
+script = ExtResource("1_2qulf")
+difficulty = 1
+score_multiplier = 1.5
+
+[node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_klmti")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_682oq")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 185)
+
+[node name="HexagonStonePlatform" parent="." unique_id=1449429058 instance=ExtResource("5_cwx7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="HexagonOrangePlatform" parent="." unique_id=537577895 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="HexagonOrangePlatform2" parent="." unique_id=2093381424 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+
+[node name="HexagonOrangePlatform3" parent="." unique_id=265119983 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 28)
+
+[node name="HexagonOrangePlatform4" parent="." unique_id=2074506667 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 28)
+
+[node name="HexagonOrangePlatform5" parent="." unique_id=1038253009 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 39)
+
+[node name="HexagonOrangePlatform6" parent="." unique_id=394039836 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 39)
+
+[node name="HexagonOrangePlatform7" parent="." unique_id=379678307 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 51)
+
+[node name="HexagonOrangePlatform14" parent="." unique_id=331057907 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 51)
+
+[node name="HexagonOrangePlatform8" parent="." unique_id=2087253613 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 51)
+
+[node name="HexagonOrangePlatform13" parent="." unique_id=575180365 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 51)
+
+[node name="HexagonOrangePlatform9" parent="." unique_id=128927074 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 63)
+
+[node name="HexagonStonePlatform2" parent="." unique_id=917477647 instance=ExtResource("5_cwx7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 63)
+
+[node name="Checkpoint" parent="HexagonStonePlatform2" unique_id=742215115 instance=ExtResource("6_c02qk")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.42397928, 0)
+
+[node name="HexagonStonePlatform3" parent="." unique_id=691030009 instance=ExtResource("5_cwx7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 124)
+
+[node name="Checkpoint" parent="HexagonStonePlatform3" unique_id=1717295083 instance=ExtResource("6_c02qk")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.42397928, 0)
+
+[node name="HexagonStonePlatform4" parent="." unique_id=1366631797 instance=ExtResource("5_cwx7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 178)
+
+[node name="HexagonOrangePlatform16" parent="." unique_id=319224340 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 80)
+fade_in_seconds = 5
+fade_out_seconds = 6
+
+[node name="HexagonOrangePlatform10" parent="." unique_id=623697288 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 63)
+
+[node name="HexagonOrangePlatform11" parent="." unique_id=1871816060 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 75)
+
+[node name="HexagonOrangePlatform18" parent="." unique_id=259191281 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 75)
+
+[node name="HexagonOrangePlatform12" parent="." unique_id=1680239977 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 75)
+
+[node name="HexagonOrangePlatform17" parent="." unique_id=932693472 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 75)
+
+[node name="HexagonOrangePlatform19" parent="." unique_id=2043123610 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 93)
+
+[node name="HexagonOrangePlatform23" parent="." unique_id=1657621241 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 105)
+
+[node name="HexagonOrangePlatform20" parent="." unique_id=1072989932 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 93)
+
+[node name="HexagonOrangePlatform21" parent="." unique_id=506601857 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 105)
+
+[node name="HexagonOrangePlatform24" parent="." unique_id=764283929 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 113)
+
+[node name="HexagonOrangePlatform25" parent="." unique_id=462750417 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 135)
+
+[node name="HexagonOrangePlatform27" parent="." unique_id=1261127117 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 145)
+
+[node name="HexagonOrangePlatform28" parent="." unique_id=1332623293 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 145)
+
+[node name="HexagonOrangePlatform31" parent="." unique_id=1896342628 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 168)
+
+[node name="HexagonOrangePlatform32" parent="." unique_id=648000774 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 168)
+
+[node name="HexagonOrangePlatform33" parent="." unique_id=241598774 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 156)
+
+[node name="HexagonOrangePlatform36" parent="." unique_id=1572463825 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 169)
+
+[node name="HexagonOrangePlatform34" parent="." unique_id=1960864926 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 156)
+
+[node name="HexagonOrangePlatform35" parent="." unique_id=998897057 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 169)
+
+[node name="HexagonOrangePlatform29" parent="." unique_id=1739673209 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 156)
+
+[node name="HexagonOrangePlatform30" parent="." unique_id=1118931932 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 156)
+
+[node name="HexagonOrangePlatform22" parent="." unique_id=1871454227 instance=ExtResource("5_gbj1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 105)
