@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="ArrayMesh"
 importer_version=1
-type="PackedScene"
+type="ArrayMesh"
 uid="uid://cel68jd7ltlp4"
-path="res://.godot/imported/stone_platform.glb-38d066e7cfe8ec8d81b8ff5e99aa6351.scn"
+path="res://.godot/imported/stone_platform.glb-38d066e7cfe8ec8d81b8ff5e99aa6351.res"
 
 [deps]
 
 source_file="res://src/environment/small_platformer_kit_j_toastie/stone_platform.glb"
-dest_files=["res://.godot/imported/stone_platform.glb-38d066e7cfe8ec8d81b8ff5e99aa6351.scn"]
+dest_files=["res://.godot/imported/stone_platform.glb-38d066e7cfe8ec8d81b8ff5e99aa6351.res"]
 
 [params]
 

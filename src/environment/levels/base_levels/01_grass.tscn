@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="3_2ygvv"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="4_vtepi"]
 [ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="5_a8thv"]
-[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass_platform.tscn" id="5_nvqb6"]
+[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass.tscn" id="5_nvqb6"]
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="6_00qwv"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="6_udiej"]
 [ext_resource type="PackedScene" uid="uid://cyk7txgkpg83" path="res://src/environment/levels/assets/collectibles/jump_up/jump_up.tscn" id="7_bkyes"]
@@ -15,11 +15,11 @@ score_multiplier = 1.2
 
 [node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("3_2ygvv")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("4_vtepi")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 13.30714, 185.74878)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 16.30714, 184.74878)
 
 [node name="GrassPlatform9" parent="." unique_id=261631060 instance=ExtResource("5_nvqb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 4.5830317)

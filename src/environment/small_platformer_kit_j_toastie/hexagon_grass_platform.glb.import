@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="ArrayMesh"
 importer_version=1
-type="PackedScene"
+type="ArrayMesh"
 uid="uid://oqwkdvedalca"
-path="res://.godot/imported/hexagon_grass_platform.glb-5f44715f0bafb4721f8a7689abebc2f3.scn"
+path="res://.godot/imported/hexagon_grass_platform.glb-5f44715f0bafb4721f8a7689abebc2f3.res"
 
 [deps]
 
 source_file="res://src/environment/small_platformer_kit_j_toastie/hexagon_grass_platform.glb"
-dest_files=["res://.godot/imported/hexagon_grass_platform.glb-5f44715f0bafb4721f8a7689abebc2f3.scn"]
+dest_files=["res://.godot/imported/hexagon_grass_platform.glb-5f44715f0bafb4721f8a7689abebc2f3.res"]
 
 [params]
 

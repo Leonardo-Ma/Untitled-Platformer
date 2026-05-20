@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_siqpa"]
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_50y4p"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_kl51u"]
-[ext_resource type="PackedScene" uid="uid://bb1l6ibw3ab5y" path="res://src/environment/levels/assets/static_platforms/hexagon_grass_platform.tscn" id="5_wpoxf"]
+[ext_resource type="PackedScene" uid="uid://bb1l6ibw3ab5y" path="res://src/environment/levels/assets/static_platforms/hexagon_grass.tscn" id="5_wpoxf"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="5_xufyi"]
 [ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="6_xufyi"]
 

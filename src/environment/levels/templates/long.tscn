@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_7yqde"]
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_1th63"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_a8s4g"]
-[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass_platform.tscn" id="4_e387u"]
+[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass.tscn" id="4_e387u"]
 
 [node name="MediumTemplate" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_7yqde")

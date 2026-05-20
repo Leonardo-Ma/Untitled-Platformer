@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_6xsp5"]
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_tp2n3"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_dts3b"]
-[ext_resource type="PackedScene" uid="uid://7ugwdowsimwr" path="res://src/environment/levels/assets/static_platforms/hexagon_stone_platform.tscn" id="4_f7573"]
+[ext_resource type="PackedScene" uid="uid://7ugwdowsimwr" path="res://src/environment/levels/assets/static_platforms/hexagon_stone.tscn" id="4_f7573"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="5_4taiq"]
 [ext_resource type="PackedScene" uid="uid://c5advesecca53" path="res://src/environment/levels/assets/ground_button/button_rounded.tscn" id="6_vglmt"]
 [ext_resource type="PackedScene" uid="uid://pngs12a0famd" path="res://src/environment/levels/assets/doors/large_door.tscn" id="7_hayea"]
@@ -16,10 +16,11 @@ requires_ground_dash = true
 
 [node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_tp2n3")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_dts3b")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 109.083)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 107.083)
 
 [node name="HexagonStonePlatform" parent="." unique_id=537577895 instance=ExtResource("4_f7573")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 2)
@@ -79,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
 [node name="LargeDoor2" parent="HexagonStonePlatform12/HexagonStonePlatform9" unique_id=1399175764 node_paths=PackedStringArray("_button") instance=ExtResource("7_hayea")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0.5129981, 3)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0.46276832, 3)
 _button = NodePath("../../HexagonStonePlatform5/Button2")
 
 [node name="HexagonStonePlatform15" parent="." unique_id=1106355886 instance=ExtResource("4_f7573")]

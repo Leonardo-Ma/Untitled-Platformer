@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_spnry"]
 [ext_resource type="PackedScene" uid="uid://cyk7txgkpg83" path="res://src/environment/levels/assets/collectibles/jump_up/jump_up.tscn" id="5_0dcht"]
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="5_lkvch"]
-[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass_platform.tscn" id="6_71ha2"]
+[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass.tscn" id="6_71ha2"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="7_7cl11"]
 
 [node name="LevelChunk" type="Node3D" unique_id=1016321493]
