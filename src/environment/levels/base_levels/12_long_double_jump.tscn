@@ -19,43 +19,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_kl51u")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 40, 214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 36, 214)
 
 [node name="HexagonGrassPlatform4" parent="." unique_id=141208030 instance=ExtResource("5_wpoxf")]
 transform = Transform3D(1.9318516, 0, 0.5176381, 0, 2, 0, -0.5176381, 0, 1.9318516, 0, -8, 11)
 
 [node name="HexagonGrassPlatform5" parent="." unique_id=537577895 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, 34)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 34)
 
 [node name="HexagonGrassPlatform6" parent="." unique_id=1720102324 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 13, 34)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 9, 34)
 
 [node name="HexagonGrassPlatform7" parent="." unique_id=216931312 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 27, 18, 62)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 27, 14, 62)
 
 [node name="HexagonGrassPlatform8" parent="." unique_id=313896962 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 24, 62)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 20, 62)
 
 [node name="Checkpoint" parent="HexagonGrassPlatform8" unique_id=742215115 instance=ExtResource("5_xufyi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.356741, 0)
 
 [node name="HexagonGrassPlatform9" parent="." unique_id=1112239081 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 1, 24, 98)
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 1, 20, 98)
 
 [node name="SpeedUp" parent="HexagonGrassPlatform9" unique_id=707485280 instance=ExtResource("6_xufyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="HexagonGrassPlatform10" parent="." unique_id=1776945566 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 14, 24, 128)
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 14, 20, 128)
 
 [node name="HexagonGrassPlatform11" parent="." unique_id=1652755912 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 14, 31, 154)
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 14, 27, 154)
 
 [node name="HexagonGrassPlatform12" parent="." unique_id=1529491482 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, -13, 35, 154)
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, -13, 31, 154)
 
 [node name="HexagonGrassPlatform13" parent="." unique_id=183781456 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, -13, 40, 183)
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, -13, 36, 183)
 
 [node name="HexagonGrassPlatform14" parent="." unique_id=1904350627 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 7, 29, 198)
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 7, 25, 198)

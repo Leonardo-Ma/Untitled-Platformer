@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dvyt2mgm7c8vo"]
 
 [ext_resource type="MeshLibrary" uid="uid://bdu2s5gh3xtei" path="res://src/environment/platformer_kit_kenney/mesh_libraries/base_blocks.meshlib" id="2_r5vxs"]
-[ext_resource type="MeshLibrary" uid="uid://cri7xxj8sey1e" path="res://src/environment/platformer_kit_kenney/mesh_libraries/alternative_blocks.meshlib" id="3_rhoci"]
 [ext_resource type="MeshLibrary" uid="uid://dk0v5pvpbvmsg" path="res://src/environment/platformer_kit_kenney/mesh_libraries/scenery.meshlib" id="5_3d14f"]
 [ext_resource type="PackedScene" uid="uid://nd1uo24vt6d5" path="res://src/entities/enemies/barbarian/barbarian.tscn" id="7_86ne4"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="8_86ne4"]
@@ -17,14 +16,14 @@
 vertices = PackedVector3Array(-0.078499794, 4.5, 1.3599548, -0.078499794, 4.5, 0.85995483, -0.8284998, 4.5, 0.60995483, -1.8284998, 4.5, 1.3599548, -0.8284998, 4.5, -0.64004517, 0.1715002, 4.5, -0.89004517, 0.1715002, 4.5, -4.390045, -3.3284998, 4.5, 0.60995483, -2.3284998, 4.5, -4.390045, -3.5784998, 4.5, -3.3900452, 0.9215002, 4.5, 0.35995483, 3.1715002, 4.5, 0.85995483, 0.9215002, 4.5, -0.39004517, 3.6715002, 4.5, -0.14004517, 3.6715002, 4.5, -3.1400452, 3.1715002, 4.5, -4.140045)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 2, 3), PackedInt32Array(3, 7, 4), PackedInt32Array(4, 7, 9), PackedInt32Array(4, 9, 8), PackedInt32Array(4, 8, 6), PackedInt32Array(1, 10, 0), PackedInt32Array(0, 10, 11), PackedInt32Array(12, 5, 13), PackedInt32Array(13, 5, 14), PackedInt32Array(14, 5, 15), PackedInt32Array(15, 5, 6), PackedInt32Array(10, 12, 11), PackedInt32Array(11, 12, 13)]
 
-[sub_resource type="Resource" id="Resource_618sk"]
+[sub_resource type="Resource" id="Resource_wu2d1"]
 resource_local_to_scene = true
 script = ExtResource("8_86ne4")
 type = 1
 damage = 10
 metadata/_custom_type_script = "uid://cxqsapbic2imr"
 
-[sub_resource type="Resource" id="Resource_wu2d1"]
+[sub_resource type="Resource" id="Resource_86ne4"]
 resource_local_to_scene = true
 script = ExtResource("9_mi8ch")
 max_health = 20
@@ -47,7 +46,7 @@ size = Vector3(246, 426, 1)
 
 [node name="Surface" type="Node3D" parent="." unique_id=561122848]
 
-[node name="BaseBlocks" type="GridMap" parent="Surface" unique_id=1033060690]
+[node name="Floor" type="GridMap" parent="Surface" unique_id=1033060690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0372162, 0.9171803, 1.4500691)
 mesh_library = ExtResource("2_r5vxs")
 cell_size = Vector3(0.5, 0.25, 0.5)
@@ -68,21 +67,23 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="AlternativeBlocks" type="GridMap" parent="Surface" unique_id=1091692435]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0372162, 0.9171803, 1.4500691)
-mesh_library = ExtResource("3_rhoci")
-cell_size = Vector3(0.5, 0.25, 0.5)
-metadata/_editor_floor_ = Vector3(0, 0, 0)
-
 [node name="TutorialLabels" type="Node3D" parent="." unique_id=1448234022]
 
 [node name="WASDToMove" type="Label3D" parent="TutorialLabels" unique_id=1866496999]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3, 2, -15)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3, 2, -12)
 pixel_size = 0.01
 billboard = 1
 double_sided = false
 text = "W A S D
 Move"
+
+[node name="MoveTheMouseLookAround" type="Label3D" parent="TutorialLabels" unique_id=1165768585]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3, 2, -15)
+pixel_size = 0.01
+billboard = 1
+double_sided = false
+text = "Move the mouse
+Look around"
 
 [node name="SpacebarToJump" type="Label3D" parent="TutorialLabels" unique_id=1615290325]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 2.0796409, -6.378471)
@@ -104,12 +105,12 @@ double_sided = false
 text = "Don't forget 
 the coins!"
 
-[node name="LeftClickToAttack" type="Label3D" parent="TutorialLabels" unique_id=692226076]
+[node name="LeftMouseClickToAttack" type="Label3D" parent="TutorialLabels" unique_id=692226076]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 7, 32.770695)
 pixel_size = 0.01
 double_sided = false
-text = "Left click 
-to attack"
+text = "Left mouse 
+click to attack"
 
 [node name="Platforms" type="Node3D" parent="." unique_id=1443371602]
 
@@ -133,8 +134,8 @@ navigation_mesh = SubResource("NavigationMesh_mi8ch")
 
 [node name="Barbarian" parent="Platforms/NavigationRegion3D/GrassPlatform3" unique_id=280064195 instance=ExtResource("7_86ne4")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4, 0)
-attack = SubResource("Resource_618sk")
-health = SubResource("Resource_wu2d1")
+attack = SubResource("Resource_wu2d1")
+health = SubResource("Resource_86ne4")
 
 [node name="Checkpoint" parent="." unique_id=742215115 instance=ExtResource("13_b41y6")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.1004279, 4.115602, 10.484676)

@@ -31,24 +31,8 @@
 [ext_resource type="Script" uid="uid://iyeemya81j8m" path="res://src/entities/player/skills/skills_controller.gd" id="29_skills"]
 [ext_resource type="Script" uid="uid://cpusxg43clwxv" path="res://src/entities/player/controller/vfx_controller.gd" id="31_gxh5t"]
 
-[sub_resource type="Resource" id="Resource_lxeum"]
+[sub_resource type="Resource" id="Resource_4tw7w"]
 script = ExtResource("2_wjvoe")
-can_double_jump = true
-can_triple_jump = true
-extra_jump_velocity = 40.0
-jump_fov_increase = 10.0
-can_ground_dash = true
-ground_dash_velocity_multiplier = 10.0
-ground_dash_cooldown = 0.1
-can_air_dash = true
-air_dash_velocity_multiplier = 5.0
-air_dash_cooldown = 0.1
-can_teleport_dash = true
-teleport_max_charges = 5
-teleport_charge_regen_time = 1.0
-teleport_distance = 10.0
-can_feather_fall = true
-feather_fall_gravity_mult = 0.01
 metadata/_custom_type_script = "uid://b4pk3vfyqba1t"
 
 [sub_resource type="Resource" id="Resource_wjvoe"]
@@ -66,8 +50,6 @@ metadata/_custom_type_script = "uid://njkofl5g11k7"
 
 [sub_resource type="Resource" id="Resource_qo2tj"]
 script = ExtResource("8_gxh5t")
-walk_speed = 5.5
-jump_velocity = 7.0
 metadata/_custom_type_script = "uid://dlbf4w8moqj2j"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wjvoe"]
@@ -220,7 +202,7 @@ radius = 0.24023438
 [node name="Player" type="CharacterBody3D" unique_id=922527968]
 collision_mask = 11
 script = ExtResource("1_tpvn4")
-skills = SubResource("Resource_lxeum")
+skills = SubResource("Resource_4tw7w")
 attack = SubResource("Resource_wjvoe")
 health = SubResource("Resource_bw0fr")
 movement = SubResource("Resource_qo2tj")

@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_v2gel"]
 script = ExtResource("3_n7xey")
+amount = 10
 identifier = &"gold_coin"
 icon = ExtResource("2_v2gel")
 metadata/_custom_type_script = "uid://jk4f3mtctg5r"

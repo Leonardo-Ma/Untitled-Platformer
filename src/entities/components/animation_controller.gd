@@ -38,7 +38,7 @@ func _ready() -> void:
 	entity.melee_attacked.connect(_on_melee_attack)
 	health.damaged.connect(_on_damaged)
 	health.died.connect(_on_death)
-	health.revived.connect(_on_revived)
+	#health.revived.connect(_on_revived)
 
 
 # Only if multiple idle animations (Need to create new connection in tree)
@@ -93,8 +93,8 @@ func _on_death() -> void:
 
 
 # TODO Add new revive animation and state
-func _on_revived() -> void:
-	self.set(PARAM_IS_ALIVE_TRANSITION, "alive")
+#func _on_revived() -> void:
+#	self.set(PARAM_IS_ALIVE_TRANSITION, "alive")
 
 
 func _abort_attack() -> void:
