@@ -4,8 +4,7 @@
 
 [resource]
 script = ExtResource("1_4vc1q")
-id = &"speed_boost"
-name = "speed_boost"
+bonus_speed = 3.8
 type = 0
-duration = 10.0
+duration = 16.0
 metadata/_custom_type_script = "uid://sx06xo701l0n"
