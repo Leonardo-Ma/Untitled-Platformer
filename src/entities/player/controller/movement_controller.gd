@@ -77,8 +77,8 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 		body.velocity.y -= gravity * delta
 
 		# Jump cutting: if jump button is released while moving upwards, cut velocity
-		if Input.is_action_just_released("jump") and body.velocity.y > 0.0:
-			body.velocity.y *= 0.5
+		#if Input.is_action_just_released("jump") and body.velocity.y > 0.0:
+		#body.velocity.y *= 0.5
 	else:
 		coyote_timer = COYOTE_TIME
 		if not _was_on_floor:
