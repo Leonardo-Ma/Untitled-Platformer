@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="9_mi8ch"]
 [ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass.tscn" id="11_obxih"]
 [ext_resource type="PackedScene" uid="uid://db7v7h36s030i" path="res://src/environment/levels/assets/static_platforms/snow.tscn" id="12_tt1wy"]
+[ext_resource type="Script" uid="uid://dnn3ght7dj6t2" path="res://src/environment/free_tutorial.gd" id="12_wu2d1"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="13_b41y6"]
 [ext_resource type="PackedScene" uid="uid://bhvmo3w7rkqa3" path="res://src/environment/dungeon_assets/individual_assets/box.tscn" id="13_qe5du"]
 
@@ -29,6 +30,18 @@ script = ExtResource("9_mi8ch")
 max_health = 20
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hukf"]
+size = Vector3(364, 426, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wu2d1"]
+size = Vector3(370, 426, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_86ne4"]
+size = Vector3(251, 426, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mi8ch"]
+size = Vector3(246, 426, 1)
 
 [node name="Tutorial" type="Node3D" unique_id=1297917088]
 
@@ -77,28 +90,22 @@ pixel_size = 0.01
 double_sided = false
 text = "Spacebar to jump"
 
-[node name="HoldSpacebarToJumpHigher" type="Label3D" parent="TutorialLabels" unique_id=1230455494]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 4.317599, 2.6781392)
-pixel_size = 0.01
-double_sided = false
-text = "Hold Spacebar to jump higher"
-
 [node name="TouchCheckpointToActivate" type="Label3D" parent="TutorialLabels" unique_id=3613384]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 7, 17.6342)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 5, 8.634199)
 pixel_size = 0.01
 double_sided = false
 text = "Touch checkpoint
 to activate!"
 
 [node name="DontForgetTheCoins" type="Label3D" parent="TutorialLabels" unique_id=1750691630]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 9, 26.634201)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 7, 17.634201)
 pixel_size = 0.01
 double_sided = false
 text = "Don't forget 
 the coins!"
 
 [node name="LeftClickToAttack" type="Label3D" parent="TutorialLabels" unique_id=692226076]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 9, 41.770695)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9699366, 7, 32.770695)
 pixel_size = 0.01
 double_sided = false
 text = "Left click 
@@ -109,20 +116,17 @@ to attack"
 [node name="GrassPlatform" parent="Platforms" unique_id=537577895 instance=ExtResource("11_obxih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1.495564, 0)
 
-[node name="SnowBlock" parent="Platforms" unique_id=1587671283 instance=ExtResource("12_tt1wy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.6268425, 9.05661)
-
-[node name="Box" parent="Platforms/SnowBlock" unique_id=1345912249 instance=ExtResource("13_qe5du")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.2252479, 4.3118696, 0)
+[node name="Box" parent="Platforms/GrassPlatform" unique_id=1345912249 instance=ExtResource("13_qe5du")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.2252479, 4.434276, -2.94339)
 
 [node name="GrassPlatform2" parent="Platforms" unique_id=18912568 instance=ExtResource("11_obxih")]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2, 0.504436, 22)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2, -1.495564, 13)
 
 [node name="SnowBlock2" parent="Platforms" unique_id=571541883 instance=ExtResource("12_tt1wy")]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2, 2.504436, 35)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2, 0.504436, 26)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Platforms" unique_id=1031225863]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 0.504436, 53)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, -1.495564, 44)
 navigation_mesh = SubResource("NavigationMesh_mi8ch")
 
 [node name="GrassPlatform3" parent="Platforms/NavigationRegion3D" unique_id=1176620490 instance=ExtResource("11_obxih")]
@@ -133,7 +137,7 @@ attack = SubResource("Resource_618sk")
 health = SubResource("Resource_wu2d1")
 
 [node name="Checkpoint" parent="." unique_id=742215115 instance=ExtResource("13_b41y6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.1004279, 6.115602, 19.484676)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.1004279, 4.115602, 10.484676)
 
 [node name="Props" type="Node3D" parent="." unique_id=1904790884]
 
@@ -146,4 +150,24 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.05
 [node name="Collectibles" type="Node3D" parent="." unique_id=1554077165]
 
 [node name="GoldCoin" parent="Collectibles" unique_id=1971537253 instance=ExtResource("8_hs7um")]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -2.3841858e-07, 9.504435, 34)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0.99999976, 6.5044346, 25)
+
+[node name="FreeTutorial" type="Area3D" parent="." unique_id=743318126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.5, -18.179657, 130)
+script = ExtResource("12_wu2d1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeTutorial" unique_id=1525977117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -31.5, 0)
+shape = SubResource("BoxShape3D_4hukf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="FreeTutorial" unique_id=992885480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -31.5, -246)
+shape = SubResource("BoxShape3D_wu2d1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="FreeTutorial" unique_id=705389966]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -198.00002, -31.5, -124)
+shape = SubResource("BoxShape3D_86ne4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="FreeTutorial" unique_id=1209399722]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 160.99998, -31.5, -121)
+shape = SubResource("BoxShape3D_mi8ch")
