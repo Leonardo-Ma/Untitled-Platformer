@@ -55,11 +55,9 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 		if data.requires_multi_jump and not skills.get("multi_jump", false):
 			reject_reason += "missing multi_jump "
 			continue
-		if data.requires_ground_dash and not skills.get("ground_dash", false):
-			reject_reason += "missing ground_dash "
-			continue
-		if data.requires_air_dash and not skills.get("air_dash", false):
-			reject_reason += "missing air_dash "
+		if data.requires_dash and not skills.get("dash", false):
+			reject_reason += "missing dash "
+
 			continue
 		if data.requires_teleport and not skills.get("teleport", false):
 			reject_reason += "missing teleport "

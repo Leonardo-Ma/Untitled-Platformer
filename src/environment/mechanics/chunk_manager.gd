@@ -69,8 +69,7 @@ func _load_chunk_metadata_from_disk() -> void:
 
 								data.scene_path = full_path
 								data.requires_multi_jump = chunk.requires_multi_jump
-								data.requires_ground_dash = chunk.requires_ground_dash
-								data.requires_air_dash = chunk.requires_air_dash
+								data.requires_dash = chunk.requires_dash
 								data.requires_teleport = chunk.requires_teleport
 								data.requires_slow_fall = chunk.requires_slow_fall
 								data.unlocks_skill = chunk.unlocks_skill
@@ -106,8 +105,7 @@ func _get_difficulty_points(chunk: LevelChunk, data: ChunkData) -> int:
 func _count_required_skills(data: ChunkData) -> int:
 	var required_skills: Array[bool] = [
 		data.requires_multi_jump,
-		data.requires_ground_dash,
-		data.requires_air_dash,
+		data.requires_dash,
 		data.requires_teleport,
 		data.requires_slow_fall,
 	]

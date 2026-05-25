@@ -38,7 +38,7 @@ func setup(skill: ActivePlayerSkill) -> void:
 
 
 func _skill_uses_cooldown(skill: ActivePlayerSkill) -> bool:
-	return skill is PlayerGroundDashSkill or skill is PlayerAirDashSkill or skill is PlayerTeleportSkill or skill is PlayerMultiJumpSkill
+	return skill is PlayerDashSkill or skill is PlayerTeleportSkill or skill is PlayerMultiJumpSkill
 
 
 func _get_action_key(action_name: String, fallback: String) -> String:
@@ -58,15 +58,10 @@ func _connect_and_track(sig: Signal, callable: Callable) -> void:
 
 
 func _connect_skill_signals() -> void:
-	if tracked_skill is PlayerGroundDashSkill:
-		var ground_dash: PlayerGroundDashSkill = tracked_skill as PlayerGroundDashSkill
-		_connect_and_track(ground_dash.ground_dash_cooldown_started, _start_cooldown)
-		_connect_and_track(ground_dash.ground_dash_cooldown_finished, _finish_cooldown)
-
-	elif tracked_skill is PlayerAirDashSkill:
-		var air_dash: PlayerAirDashSkill = tracked_skill as PlayerAirDashSkill
-		_connect_and_track(air_dash.air_dash_cooldown_started, _start_cooldown)
-		_connect_and_track(air_dash.air_dash_cooldown_finished, _finish_cooldown)
+	if tracked_skill is PlayerDashSkill:
+		var dash: PlayerDashSkill = tracked_skill as PlayerDashSkill
+		_connect_and_track(dash.dash_cooldown_started, _start_cooldown)
+		_connect_and_track(dash.dash_cooldown_finished, _finish_cooldown)
 
 	elif tracked_skill is PlayerTeleportSkill:
 		var teleport: PlayerTeleportSkill = tracked_skill as PlayerTeleportSkill

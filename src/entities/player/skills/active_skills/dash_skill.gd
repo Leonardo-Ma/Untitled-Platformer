@@ -1,8 +1,9 @@
-class_name PlayerGroundDashSkill
+## Unified dash skill for both ground and air movement
+class_name PlayerDashSkill
 extends ActivePlayerSkill
 
-signal ground_dash_cooldown_started(duration: float)
-signal ground_dash_cooldown_finished
+signal dash_cooldown_started(duration: float)
+signal dash_cooldown_finished
 
 const DASH_SOUND: AudioStream = preload("uid://vo301kuo1mby")  # whoosh_2.wav
 const DOUBLE_TAP_THRESHOLD: float = 0.3
@@ -23,7 +24,7 @@ func get_custom_input_hint() -> String:
 
 
 func is_unlocked(skills: PlayerSkills) -> bool:
-	return skills.can_ground_dash
+	return skills.can_dash
 
 
 func process_timers(_skills: PlayerSkills, delta: float) -> void:
@@ -35,14 +36,14 @@ func process_timers(_skills: PlayerSkills, delta: float) -> void:
 	if _dash_cooldown > 0.0:
 		_dash_cooldown -= delta
 		if _dash_cooldown <= 0.0:
-			ground_dash_cooldown_finished.emit()
+			dash_cooldown_finished.emit()
 
 
 func handle_input(body: CharacterBody3D, skills: PlayerSkills) -> void:
 	if skills_controller.is_sliding or not skills_controller.movement_controller.movement_enabled:
 		return
 
-	if not body.is_on_floor() or not skills.can_ground_dash or _dash_cooldown > 0.0:
+	if not skills.can_dash or _dash_cooldown > 0.0:
 		return
 
 	# Double tap
@@ -64,17 +65,18 @@ func apply_logic(body: CharacterBody3D, _skills: PlayerSkills) -> void:
 	if skills_controller.is_sliding and _dash_timer > 0.0:
 		body.velocity.x = _dash_direction.x
 		body.velocity.z = _dash_direction.z
+		body.velocity.y = 0.0  # Ignore gravity during dash
 
 
 func _start_dash(body: CharacterBody3D, skills: PlayerSkills, action_dir: String) -> void:
 	skills_controller.is_sliding = true
-	_dash_timer = skills.ground_dash_duration
+	_dash_timer = skills.dash_duration
 
 	SoundManager.play_sound(DASH_SOUND, SoundManager.SoundCategory.SFX)
-
 	skills_controller.spawn_ghost_trail(0.4)
-	_dash_cooldown = skills.ground_dash_cooldown
-	ground_dash_cooldown_started.emit(_dash_cooldown)
+
+	_dash_cooldown = skills.dash_cooldown
+	dash_cooldown_started.emit(_dash_cooldown)
 
 	var input_vec: Vector2 = Vector2.ZERO
 	match action_dir:
@@ -89,5 +91,5 @@ func _start_dash(body: CharacterBody3D, skills: PlayerSkills, action_dir: String
 
 	var forward: Vector3 = (body.transform.basis * Vector3(input_vec.x, 0, input_vec.y)).normalized()
 
-	_dash_direction = forward * skills_controller.movement_controller.current_speed * skills.ground_dash_velocity_multiplier
-	skills_controller.movement_controller.disable_movement(skills.ground_dash_duration)
+	_dash_direction = forward * skills_controller.movement_controller.current_speed * skills.dash_velocity_multiplier
+	skills_controller.movement_controller.disable_movement(skills.dash_duration)

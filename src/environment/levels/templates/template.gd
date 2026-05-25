@@ -1,9 +1,9 @@
-## Base class for all procedural level chunks.
+## Base class for all procedural level chunks
 class_name LevelChunk extends Node3D
 
 enum Difficulty { EASY, MEDIUM, HARD }
 
-enum Skill { NONE, MULTI_JUMP, GROUND_DASH, AIR_DASH, TELEPORT, SLOW_FALL }
+enum Skill { NONE, MULTI_JUMP, DASH, TELEPORT, SLOW_FALL }
 
 @export_category("Difficulty")
 @export var difficulty: Difficulty = Difficulty.EASY
@@ -14,8 +14,7 @@ enum Skill { NONE, MULTI_JUMP, GROUND_DASH, AIR_DASH, TELEPORT, SLOW_FALL }
 
 @export_category("Skills Required")
 @export var requires_multi_jump: bool = false
-@export var requires_ground_dash: bool = false
-@export var requires_air_dash: bool = false
+@export var requires_dash: bool = false
 @export var requires_teleport: bool = false
 @export var requires_slow_fall: bool = false
 

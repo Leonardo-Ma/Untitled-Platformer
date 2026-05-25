@@ -51,8 +51,7 @@ func process_skills(body: CharacterBody3D, delta: float) -> void:
 
 func _initialize_active_skills() -> void:
 	active_skills.append(PlayerMultiJumpSkill.new(self))
-	active_skills.append(PlayerGroundDashSkill.new(self))
-	active_skills.append(PlayerAirDashSkill.new(self))
+	active_skills.append(PlayerDashSkill.new(self))
 	active_skills.append(PlayerTeleportSkill.new(self))
 	active_skills.append(PlayerFeatherFallSkill.new(self))
 

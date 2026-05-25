@@ -33,7 +33,7 @@ In order to reduce scope and actually finish and publish it, I gave myself a ~ t
 xx is a simple 3d low poly plataformer. The core game loop is a partially procedural endless runner around evolving player abilities.
 
 ## Main Features:  
-- Skills: Multi jump, ground/air dash, feather fall, teleport
+- Skills: Multi jump, dash, feather fall, teleport
 - Jump cutting, coyote time, knockback
 - Basic sound system
 - Checkpoint and collectibles

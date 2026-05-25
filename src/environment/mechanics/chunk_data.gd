@@ -11,8 +11,7 @@ var is_turn: bool = false
 var has_checkpoint: bool = false
 
 var requires_multi_jump: bool
-var requires_ground_dash: bool
-var requires_air_dash: bool
+var requires_dash: bool = false
 var requires_teleport: bool
 var requires_slow_fall: bool
 
