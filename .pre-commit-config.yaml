@@ -43,14 +43,14 @@ repos:
           )
 
   - repo: https://github.com/qoomon/git-conventional-commits
-    rev: v2.7.2
+    rev: f00599350f1d22c14f431b4e458f1076124c0c0d # 2.9.0
     hooks:
       - id: conventional-commits
         stages: [commit-msg]
 
 
   - repo: https://github.com/Scony/godot-gdscript-toolkit
-    rev: 4.5.0
+    rev: b7a4935fc6483d51837f7080598dad456f4f7645 # 4.5.0
     hooks:
       - id: gdformat
         name: Check gdscript format
@@ -61,7 +61,7 @@ repos:
         files: \.gd$
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
     hooks:
       - id: detect-private-key # Detect the presence of private keys
       - id: check-added-large-files # Check for files that are larger than a threshold
@@ -85,7 +85,7 @@ repos:
       - id: check-symlinks # Checks for symlinks which do not point to anything
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.2
+    rev: 2ccb47ff45ad361a21071a7eedda4c37e6ae8c5a # v2.4.2
     hooks:
       - id: codespell
         exclude: \.(tscn|tres|res)$
