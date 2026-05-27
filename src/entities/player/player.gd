@@ -2,7 +2,7 @@ class_name PlayerEntity
 extends AggressiveEntity
 
 @export_category("Skills")
-@export var skills: PlayerSkills
+@export var startup_skill_ids: Array[StringName] = []
 
 @onready var movement_controller: MovementController = %MovementController
 @onready var input_controller: InputController = %InputController
@@ -11,7 +11,6 @@ extends AggressiveEntity
 
 func _physics_process(delta: float) -> void:
 	movement_controller.move(self, delta)
-	skills_controller.process_skills(self, delta)
 	move_and_slide()
 
 	# Apply physics collision with rigid bodies
@@ -20,7 +19,6 @@ func _physics_process(delta: float) -> void:
 		var collider: Object = collision.get_collider()
 		if collider is RigidBody3D:
 			var push_force: float = movement.run_speed * 0.1
-
 			var push_dir: Vector3 = -collision.get_normal()
 			push_dir.y = 0.0  # Prevent pushing into the ground or sky
 			if push_dir.length_squared() > 0.001:
@@ -37,18 +35,6 @@ func _entity_ready() -> void:
 
 func _requires_goap() -> bool:
 	return false
-
-
-func get_skills() -> Dictionary:
-	if skills == null:
-		return {}
-
-	return {
-		"multi_jump": skills.can_double_jump or skills.can_triple_jump,
-		"dash": skills.can_dash,
-		"teleport": skills.can_teleport_dash,
-		"slow_fall": skills.can_feather_fall
-	}
 
 
 func _on_attack_pressed() -> void:

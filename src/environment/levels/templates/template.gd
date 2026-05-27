@@ -10,13 +10,9 @@ enum Skill { NONE, MULTI_JUMP, DASH, TELEPORT, SLOW_FALL }
 @export var score_multiplier: float = 1.0
 
 @export_category("Skills")
-@export var unlocks_skill: Skill = Skill.NONE
+@export var unlocks_skill_id: StringName = &""
 
-@export_category("Skills Required")
-@export var requires_multi_jump: bool = false
-@export var requires_dash: bool = false
-@export var requires_teleport: bool = false
-@export var requires_slow_fall: bool = false
+@export var required_skill_ids: Array[StringName] = []
 
 @onready var exit_trigger: Area3D = %ExitTrigger
 

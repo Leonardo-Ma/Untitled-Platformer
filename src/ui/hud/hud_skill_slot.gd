@@ -2,7 +2,7 @@
 class_name HUDSkillSlot
 extends VBoxContainer
 
-var tracked_skill: ActivePlayerSkill
+var _tracked_skill: BaseSkill
 var _connections: Array[Dictionary] = []
 var _tweens: Array[Tween] = []
 
@@ -12,33 +12,44 @@ var _tweens: Array[Tween] = []
 @onready var input_hint: Label = %InputHint
 
 
-func setup(skill: ActivePlayerSkill) -> void:
+func setup(skill: BaseSkill) -> void:
 	cleanup()
-	tracked_skill = skill
+	_tracked_skill = skill
 	show()
-	skill_icon.texture = skill.get_icon()
+	skill_icon.texture = skill.definition.icon
 
-	var custom_hint: String = skill.get_custom_input_hint()
-	if custom_hint != "":
-		input_hint.text = custom_hint
-	else:
-		var mapped_action: String = skill.get_action_name()
-		if mapped_action != "":
-			input_hint.text = _get_action_key(mapped_action, mapped_action).to_upper()
-		else:
-			assert(false, "Input hint missing for " + self.name)
+	var action: StringName = skill.definition.input_action
+	assert(InputMap.has_action(action), "HUDSkillSlot: input_action '%s' not in InputMap in %s" % [action, name])
+	input_hint.text = _get_action_key(action, action).to_upper()
 
 	charge_label.hide()
 
-	cooldown_progress.texture_progress = skill.get_icon()
-	cooldown_progress.visible = _skill_uses_cooldown(skill)
+	var mode: BaseSkill.HUDMode = skill.get_hud_mode()
+	cooldown_progress.texture_progress = skill.definition.icon
+	cooldown_progress.visible = mode == BaseSkill.HUDMode.COOLDOWN or mode == BaseSkill.HUDMode.COOLDOWN_SOFT
 	cooldown_progress.value = 0.0
 
-	_connect_skill_signals()
+	_connect_skill_signals(skill, mode)
 
 
-func _skill_uses_cooldown(skill: ActivePlayerSkill) -> bool:
-	return skill is PlayerDashSkill or skill is PlayerTeleportSkill or skill is PlayerMultiJumpSkill
+func _connect_skill_signals(skill: BaseSkill, mode: BaseSkill.HUDMode) -> void:
+	match mode:
+		BaseSkill.HUDMode.COOLDOWN:
+			_connect_and_track(skill.cooldown_started, _start_cooldown)
+			_connect_and_track(skill.cooldown_finished, _finish_cooldown)
+
+		BaseSkill.HUDMode.COOLDOWN_SOFT:
+			_connect_and_track(skill.cooldown_soft_started, _start_cooldown_unblocked)
+
+		BaseSkill.HUDMode.CHARGES:
+			_connect_and_track(skill.charges_updated, _update_charge_display)
+			_connect_and_track(skill.cooldown_soft_started, _start_cooldown_unblocked)
+
+		BaseSkill.HUDMode.TOGGLE:
+			_connect_and_track(skill.toggled, _update_toggle_display)
+
+		BaseSkill.HUDMode.NONE:
+			pass
 
 
 func _get_action_key(action_name: String, fallback: String) -> String:
@@ -57,39 +68,13 @@ func _connect_and_track(sig: Signal, callable: Callable) -> void:
 	_connections.append({"signal": sig, "callable": callable})
 
 
-func _connect_skill_signals() -> void:
-	if tracked_skill is PlayerDashSkill:
-		var dash: PlayerDashSkill = tracked_skill as PlayerDashSkill
-		_connect_and_track(dash.dash_cooldown_started, _start_cooldown)
-		_connect_and_track(dash.dash_cooldown_finished, _finish_cooldown)
-
-	elif tracked_skill is PlayerTeleportSkill:
-		var teleport: PlayerTeleportSkill = tracked_skill as PlayerTeleportSkill
-		_connect_and_track(teleport.teleport_charges_updated, _update_charge_display)
-		_connect_and_track(teleport.teleport_cooldown_started, _start_cooldown_unblocked)
-		if "_teleport_charges" in teleport:
-			_update_charge_display(teleport.get("_teleport_charges"))
-
-	elif tracked_skill is PlayerFeatherFallSkill:
-		var feather: PlayerFeatherFallSkill = tracked_skill as PlayerFeatherFallSkill
-		_connect_and_track(feather.feather_fall_toggled, _update_toggle_display)
-		if "_is_toggled" in feather:
-			_update_toggle_display(feather.get("_is_toggled"))
-
-	elif tracked_skill is PlayerMultiJumpSkill:
-		var multi_jump: PlayerMultiJumpSkill = tracked_skill as PlayerMultiJumpSkill
-		_connect_and_track(multi_jump.multi_jump_executed, _play_pulse_animation)
-		if multi_jump.has_signal("multi_jump_cooldown_started"):
-			_connect_and_track(multi_jump.multi_jump_cooldown_started, _start_cooldown_unblocked)
-
-
 func cleanup() -> void:
 	for conn: Dictionary in _connections:
 		if conn.signal.is_connected(conn.callable):
 			conn.signal.disconnect(conn.callable)
 	_connections.clear()
 
-	tracked_skill = null
+	_tracked_skill = null
 
 	for t: Tween in _tweens:
 		if is_instance_valid(t):

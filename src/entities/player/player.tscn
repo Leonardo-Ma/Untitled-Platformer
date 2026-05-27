@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://dwxbechemu2kl"]
 
 [ext_resource type="Script" uid="uid://bo0feed2mfho2" path="res://src/entities/player/player.gd" id="1_tpvn4"]
-[ext_resource type="Script" uid="uid://b4pk3vfyqba1t" path="res://src/entities/player/skills/player_skills.gd" id="2_wjvoe"]
 [ext_resource type="Script" uid="uid://ce8ig2j71kitw" path="res://src/entities/player/controller/camera_controller.gd" id="5_2wg8a"]
 [ext_resource type="Script" uid="uid://csig12422io62" path="res://src/entities/components/combat/hitbox.gd" id="5_w2bk0"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="6_qo2tj"]
@@ -30,10 +29,6 @@
 [ext_resource type="Script" uid="uid://bll0orhps41m6" path="res://src/entities/components/combat/knockback_controller.gd" id="28_voi68"]
 [ext_resource type="Script" uid="uid://iyeemya81j8m" path="res://src/entities/player/skills/skills_controller.gd" id="29_skills"]
 [ext_resource type="Script" uid="uid://cpusxg43clwxv" path="res://src/entities/player/controller/vfx_controller.gd" id="31_gxh5t"]
-
-[sub_resource type="Resource" id="Resource_4tw7w"]
-script = ExtResource("2_wjvoe")
-metadata/_custom_type_script = "uid://b4pk3vfyqba1t"
 
 [sub_resource type="Resource" id="Resource_wjvoe"]
 script = ExtResource("6_qo2tj")
@@ -202,7 +197,6 @@ radius = 0.24023438
 [node name="Player" type="CharacterBody3D" unique_id=922527968]
 collision_mask = 11
 script = ExtResource("1_tpvn4")
-skills = SubResource("Resource_4tw7w")
 attack = SubResource("Resource_wjvoe")
 health = SubResource("Resource_bw0fr")
 movement = SubResource("Resource_qo2tj")

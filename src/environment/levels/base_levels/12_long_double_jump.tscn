@@ -11,7 +11,7 @@
 script = ExtResource("1_siqpa")
 difficulty = 1
 score_multiplier = 1.5
-requires_multi_jump = true
+required_skill_ids = Array[StringName]([&"double_jump"])
 
 [node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_50y4p")]
 unique_name_in_owner = true

@@ -5,7 +5,7 @@ class_name MovementController extends Node3D
 
 # These signals go to animation controller, debug...
 signal movement_direction_changed(direction: Vector2, speed_factor: float)
-signal jumped
+signal jumped  # emitted only in first ground jump
 signal in_air
 signal landed
 
@@ -30,6 +30,12 @@ func move(body: CharacterBody3D, delta: float) -> void:
 
 	movement_logic(body)
 	jump_air_logic(body, delta)
+
+
+func disable_movement(duration: float) -> void:
+	movement_enabled = false
+	if duration > disable_timer:
+		disable_timer = duration
 
 
 func movement_logic(body: CharacterBody3D) -> void:
@@ -89,14 +95,14 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 	if not movement_enabled:
 		return
 
+	# Ground jump, only when coyote time is still valid
 	if Input.is_action_just_pressed("jump") and coyote_timer > 0.0:
+		jump(owner.movement.jump_velocity, body)
+		# Emit the ground‑jump signal
 		jumped.emit()
-		body.velocity.y = owner.movement.jump_velocity
-		# Reset timer to 0 so the player can't jump multiple times in the air
-		coyote_timer = 0.0
 
 
-func disable_movement(duration: float) -> void:
-	movement_enabled = false
-	if duration > disable_timer:
-		disable_timer = duration
+## Doesn't emit signal so callers can decide what to announce.
+func jump(velocity_y: float, body: CharacterBody3D) -> void:
+	body.velocity.y = velocity_y
+	coyote_timer = 0.0

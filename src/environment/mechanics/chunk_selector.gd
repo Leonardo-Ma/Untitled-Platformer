@@ -26,7 +26,11 @@ func reset() -> void:
 	_spawned_skills.clear()
 
 
-func select_chunk_data(target_transform: Transform3D, skills: Dictionary, current_score: int) -> ChunkData:
+func select_chunk_data(
+	target_transform: Transform3D,
+	unlocked_ids: Array[StringName],
+	current_score: int,
+) -> ChunkData:
 	var valid_pool: Array[ChunkData] = []
 	var strict_pool: Array[ChunkData] = []
 	var current_y_height: float = target_transform.origin.y
@@ -39,34 +43,20 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 
 	for data: ChunkData in _all_chunks:
 		# --------------- skill unlock filtering ---------------
-		if data.unlocks_skill != LevelChunk.Skill.NONE:
+		if data.unlocks_skill_id != &"":
 			if not force_skill_unlock:
 				continue
-			var skill_name: String = LevelChunk.Skill.keys()[data.unlocks_skill].to_lower()
-
-			if skills.get(skill_name, false) or _spawned_skills.get(skill_name, false):
+			if unlocked_ids.has(data.unlocks_skill_id) or _spawned_skills.has(data.unlocks_skill_id):
 				continue
 		else:
 			if force_skill_unlock:
 				continue
 
 		# --------------- required skills check ---------------
-		var reject_reason: String = ""
-		if data.requires_multi_jump and not skills.get("multi_jump", false):
-			reject_reason += "missing multi_jump "
+		var missing: Array[StringName] = data.required_skill_ids.filter(func(id: StringName) -> bool: return not unlocked_ids.has(id))
+		if not missing.is_empty():
+			print("  ✗ REJECTED [%s]: missing %s" % [data.scene_path.get_file(), missing])
 			continue
-		if data.requires_dash and not skills.get("dash", false):
-			reject_reason += "missing dash "
-
-			continue
-		if data.requires_teleport and not skills.get("teleport", false):
-			reject_reason += "missing teleport "
-			continue
-		if data.requires_slow_fall and not skills.get("slow_fall", false):
-			reject_reason += "missing slow_fall "
-			continue
-		if reject_reason:
-			print("  ✗ REJECTED [%s]: %s" % [data.scene_path.get_file(), reject_reason])
 
 		# Prevent back-to-back turns
 		if data.is_turn and _chunks_since_turn < 5:
@@ -92,7 +82,7 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 		valid_pool = strict_pool
 	elif valid_pool.size() == 0:
 		print("  → EMERGENCY FALLBACK: using all basic chunks")
-		valid_pool = _all_chunks.filter(func(d: ChunkData) -> bool: return d.unlocks_skill == LevelChunk.Skill.NONE)
+		valid_pool = _all_chunks.filter(func(d: ChunkData) -> bool: return d.unlocks_skill_id == &"")
 		# If everything fails
 		if valid_pool.size() == 0:
 			valid_pool = _all_chunks
@@ -107,7 +97,7 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 	else:
 		print("  → WARNING: All valid chunks were recent! Relaxing filter to exclude only last chunk")
 		var non_last: Array[ChunkData] = valid_pool.filter(
-			func(d: ChunkData) -> bool: return _recent_chunk_paths.size() == 0 or d.scene_path != _recent_chunk_paths.back()
+			func(d: ChunkData) -> bool: return _recent_chunk_paths.is_empty() or d.scene_path != _recent_chunk_paths.back()
 		)
 		if non_last.size() > 0:
 			valid_pool = non_last
@@ -115,9 +105,8 @@ func select_chunk_data(target_transform: Transform3D, skills: Dictionary, curren
 	var random_idx: int = _rng.randi_range(0, valid_pool.size() - 1)
 	var chosen_data: ChunkData = valid_pool[random_idx]
 
-	if chosen_data.unlocks_skill != LevelChunk.Skill.NONE:
-		var skill_name: String = LevelChunk.Skill.keys()[chosen_data.unlocks_skill].to_lower()
-		_spawned_skills[skill_name] = true
+	if chosen_data.unlocks_skill_id != &"":
+		_spawned_skills[chosen_data.unlocks_skill_id] = true
 
 	print("  ✓ SELECTED: [%s] (is_turn: %s, height_shift: %.1f)" % [chosen_data.scene_path.get_file(), chosen_data.is_turn, chosen_data.height_shift])
 	print("====================================================\n")

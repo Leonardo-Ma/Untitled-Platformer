@@ -13,13 +13,12 @@
 
 [sub_resource type="Resource" id="Resource_5h0lt"]
 script = ExtResource("7_vpwyn")
-skill_to_unlock = "can_dash"
 identifier = &"dash_unlock"
 metadata/_custom_type_script = "uid://si0x0kj8w7kf"
 
 [node name="MediumTemplate" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_jj27o")
-unlocks_skill = 2
+unlocks_skill_id = &"dash"
 
 [node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_567ft")]
 unique_name_in_owner = true

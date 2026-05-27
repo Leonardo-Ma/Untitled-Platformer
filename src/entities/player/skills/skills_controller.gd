@@ -1,61 +1,85 @@
+## Manages unlocked skills and routes input actions to the correct skill by id
 class_name SkillsController
 extends Node
 
+signal skill_unlocked(hud_order: int, definition: SkillDefinition)
+
 var is_sliding: bool = false
 var base_fov: float = 0.0
-var active_skills: Array[ActivePlayerSkill] = []
 
-@onready var entity: CharacterBody3D = owner
+var _skills: Dictionary = {}
+
+@onready var entity: PlayerEntity = owner
 @onready var movement_controller: MovementController = %MovementController
-@onready var camera_controller: Node3D = %CamRoot
-@onready var health: Health = owner.health
-@onready var camera: Camera3D = null
+@onready var camera: Camera3D = %Camera3D
+@onready var _vfx_controller: VFXController = %VFXController
 
 
 func _ready() -> void:
-	if not entity.skills:
-		return
-
-	if camera_controller.has_node("SpringArm3D/Camera3D"):
-		camera = camera_controller.get_node("SpringArm3D/Camera3D")
-		base_fov = camera.fov
-
-	_initialize_active_skills()
-
-	# Hook into MovementController signals to reset aerial limits
+	base_fov = camera.fov
 	movement_controller.landed.connect(_on_landed)
+	_initialize_from_entity()
 
 
-#region Visual effect
+func _physics_process(_delta: float) -> void:
+	for skill: BaseSkill in _skills.values():
+		skill.process_input()
 
 
+# TODO Double check this
+## Replaces any existing skill with the same id
+func unlock(definition: SkillDefinition) -> void:
+	assert(definition.input_action != &"" or definition.id == &"dash", "SkillsController: '%s' has no input_action in %s" % [definition.id, name])
+
+	if _skills.has(definition.id):
+		(_skills[definition.id] as BaseSkill).queue_free()
+
+	var skill: BaseSkill = definition.skill_script.new()
+	skill.name = definition.id
+	skill.definition = definition
+	skill.skills_controller = self
+	add_child(skill)
+	_skills[definition.id] = skill
+	skill_unlocked.emit(definition.hud_order, definition)
+
+
+func get_skills_ordered() -> Array[BaseSkill]:
+	var result: Array[BaseSkill] = []
+	for skill: BaseSkill in _skills.values():
+		result.append(skill)
+	result.sort_custom(func(a: BaseSkill, b: BaseSkill) -> bool: return a.definition.hud_order < b.definition.hud_order)
+	return result
+
+
+func get_skill(skill_id: StringName) -> BaseSkill:
+	return _skills.get(skill_id) as BaseSkill
+
+
+func get_unlocked_ids() -> Array[StringName]:
+	var ids: Array[StringName] = []
+	for id: StringName in _skills:
+		ids.append(id)
+	return ids
+
+
+# TODO Reconsider where to place this
+## Forwards ghost trail request to VFXController (used by dash/teleport skills).
 func spawn_ghost_trail(duration: float = 0.5, color: Color = Color(0.8, 1.0, 1.5, 0.4)) -> void:
-	var vfx: Node = get_node("%VFXController")
-	vfx.spawn_ghost_trail(duration, color)
+	_vfx_controller.spawn_ghost_trail(duration, color)
 
 
-#endregion
-
-
-func process_skills(body: CharacterBody3D, delta: float) -> void:
-	var skills: PlayerSkills = entity.skills
-	if not skills:
+## Unlocks startup skills sorted by hud_order for consistent display order
+func _initialize_from_entity() -> void:
+	if entity.startup_skill_ids.is_empty():
 		return
-
-	for active_skill: ActivePlayerSkill in active_skills:
-		active_skill.process_timers(skills, delta)
-		active_skill.process_passive(body, skills, delta)
-		active_skill.handle_input(body, skills)
-		active_skill.apply_logic(body, skills)
-
-
-func _initialize_active_skills() -> void:
-	active_skills.append(PlayerMultiJumpSkill.new(self))
-	active_skills.append(PlayerDashSkill.new(self))
-	active_skills.append(PlayerTeleportSkill.new(self))
-	active_skills.append(PlayerFeatherFallSkill.new(self))
+	var definitions: Array[SkillDefinition] = []
+	for id: StringName in entity.startup_skill_ids:
+		definitions.append(SkillRegistry.get_definition(id))
+	definitions.sort_custom(func(a: SkillDefinition, b: SkillDefinition) -> bool: return a.hud_order < b.hud_order)
+	for definition: SkillDefinition in definitions:
+		unlock(definition)
 
 
 func _on_landed() -> void:
-	for active_skill: ActivePlayerSkill in active_skills:
-		active_skill.on_landed()
+	for skill: BaseSkill in _skills.values():
+		skill.on_landed()

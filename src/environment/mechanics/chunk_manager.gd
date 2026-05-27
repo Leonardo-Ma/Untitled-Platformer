@@ -68,11 +68,8 @@ func _load_chunk_metadata_from_disk() -> void:
 								data.is_turn = in_z.angle_to(out_z) > 0.1
 
 								data.scene_path = full_path
-								data.requires_multi_jump = chunk.requires_multi_jump
-								data.requires_dash = chunk.requires_dash
-								data.requires_teleport = chunk.requires_teleport
-								data.requires_slow_fall = chunk.requires_slow_fall
-								data.unlocks_skill = chunk.unlocks_skill
+								data.required_skill_ids = chunk.required_skill_ids.duplicate()
+								data.unlocks_skill_id = chunk.unlocks_skill_id
 								data.score_multiplier = chunk.score_multiplier
 
 								data.difficulty_points = _get_difficulty_points(chunk, data)
@@ -102,18 +99,9 @@ func _get_difficulty_points(chunk: LevelChunk, data: ChunkData) -> int:
 	return 0
 
 
+# TODO Double check this
 func _count_required_skills(data: ChunkData) -> int:
-	var required_skills: Array[bool] = [
-		data.requires_multi_jump,
-		data.requires_dash,
-		data.requires_teleport,
-		data.requires_slow_fall,
-	]
-	var count: int = 0
-	for required: bool in required_skills:
-		if required:
-			count += 5
-	return count
+	return data.required_skill_ids.size() * 2
 
 
 func _get_chunk_data_by_path(path: String) -> ChunkData:
@@ -133,10 +121,10 @@ func clear_level() -> void:
 		_chunk_selector.reset()
 
 
-func _get_player_skills() -> Dictionary:
-	var player: Node = get_tree().get_first_node_in_group(Groups.PLAYERS)
+func _get_player_skills() -> Array[StringName]:
+	var player: PlayerEntity = get_tree().get_first_node_in_group(Groups.PLAYERS)
 	assert(player != null, "Player missing in " + self.name)
-	return player.get_skills()
+	return player.skills_controller.get_unlocked_ids()
 
 
 ## Load chunks to be kept in memory, save them in active chunks
@@ -256,8 +244,9 @@ func _disconnect_chunk_trigger(chunk: LevelChunk) -> void:
 
 
 func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
-	var skills: Dictionary = _get_player_skills()
-	var chosen_data: ChunkData = _chunk_selector.select_chunk_data(target_transform, skills, GameEvents.player_score)
+	var unlocked_ids: Array[StringName] = _get_player_skills()
+	var chosen_data: ChunkData = _chunk_selector.select_chunk_data(target_transform, unlocked_ids, GameEvents.player_score)
+
 	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():
 		return _chunk_pool[chosen_data.scene_path].pop_back()
 	var scene: PackedScene

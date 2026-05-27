@@ -10,12 +10,9 @@ var height_shift: float = 0.0
 var is_turn: bool = false
 var has_checkpoint: bool = false
 
-var requires_multi_jump: bool
-var requires_dash: bool = false
-var requires_teleport: bool
-var requires_slow_fall: bool
+var required_skill_ids: Array[StringName] = []
 
-var unlocks_skill: LevelChunk.Skill = LevelChunk.Skill.NONE
+var unlocks_skill_id: StringName = &""
 
 var difficulty_points: int = 0
 var skill_points: int = 0
