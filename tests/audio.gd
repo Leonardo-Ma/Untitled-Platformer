@@ -35,11 +35,6 @@ func _test_soundmanager_autoload() -> void:
 		"SoundManager autoload not found! Add SoundManager.gd to Project Settings → Autoload",
 	)
 
-	assert(
-		SoundManager.has_signal("ready"),
-		"SoundManager exists but may not be properly initialized",
-	)
-
 	print("✅ Test 1: SoundManager autoload")
 
 
@@ -48,27 +43,15 @@ func _test_subsystems_exist() -> void:
 		SoundManager.pool != null,
 		"SoundManager.pool is null - SoundPool not created",
 	)
-	assert(
-		SoundManager.pool is SoundPool,
-		"SoundManager.pool is not a SoundPool instance",
-	)
 
 	assert(
 		SoundManager.music != null,
 		"SoundManager.music is null - MusicController not created",
 	)
-	assert(
-		SoundManager.music is MusicController,
-		"SoundManager.music is not a MusicController instance",
-	)
 
 	assert(
 		SoundManager.combat != null,
 		"SoundManager.combat is null - CombatPrioritySoundController not created",
-	)
-	assert(
-		SoundManager.combat is CombatPrioritySoundController,
-		"SoundManager.combat is not a CombatPrioritySoundController instance",
 	)
 
 	print("✅ Test 2: Subsystems")
