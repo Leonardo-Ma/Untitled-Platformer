@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7ugwdowsimwr" path="res://src/environment/levels/assets/static_platforms/hexagon_stone.tscn" id="5_cwx7u"]
 [ext_resource type="PackedScene" uid="uid://cmhy34flmgu50" path="res://src/environment/levels/assets/disappearing_platforms/hexagon_orange.tscn" id="5_gbj1j"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="6_c02qk"]
+[ext_resource type="PackedScene" uid="uid://trd7ogx3xpwh" path="res://src/environment/levels/assets/props/arrow_sign.tscn" id="7_ix5br"]
 
 [node name="MediumTemplate" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_2qulf")
@@ -70,6 +71,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.42397928, 0)
 
 [node name="HexagonStonePlatform4" parent="." unique_id=1366631797 instance=ExtResource("5_cwx7u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 178)
+
+[node name="ArrowSign" parent="HexagonStonePlatform4" unique_id=975612369 instance=ExtResource("7_ix5br")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -3, 0.37587965, 0)
 
 [node name="HexagonOrangePlatform16" parent="." unique_id=319224340 instance=ExtResource("5_gbj1j")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 80)

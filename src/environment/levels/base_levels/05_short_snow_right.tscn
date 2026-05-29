@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://db7v7h36s030i" path="res://src/environment/levels/assets/static_platforms/snow.tscn" id="4_x68wg"]
 [ext_resource type="PackedScene" uid="uid://cyk7txgkpg83" path="res://src/environment/levels/assets/collectibles/jump_up/jump_up.tscn" id="5_65o1l"]
 [ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="6_x68wg"]
+[ext_resource type="PackedScene" uid="uid://trd7ogx3xpwh" path="res://src/environment/levels/assets/props/arrow_sign.tscn" id="7_xlp2f"]
 
 [node name="LevelChunk" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_klhbu")
@@ -51,3 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, -1, 47)
 
 [node name="GrassPlatform10" parent="." unique_id=1003535736 instance=ExtResource("4_x68wg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.91936, 1, 54)
+
+[node name="ArrowSign" parent="GrassPlatform10" unique_id=975612369 instance=ExtResource("7_xlp2f")]
+transform = Transform3D(2.6226832e-07, 0, 2, 0, 2, 0, -2, 0, 2.6226832e-07, 3, 4, -2)

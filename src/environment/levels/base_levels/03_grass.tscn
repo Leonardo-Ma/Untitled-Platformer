@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_y6j3w"]
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="3_ypmmd"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="4_hj6vk"]
+[ext_resource type="PackedScene" uid="uid://trd7ogx3xpwh" path="res://src/environment/levels/assets/props/arrow_sign.tscn" id="5_3l4hs"]
 [ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass.tscn" id="5_8ekpc"]
 [ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="5_33rl1"]
 [ext_resource type="PackedScene" uid="uid://cvcxve456vw1e" path="res://src/environment/levels/assets/collectibles/speed_up/speed_up.tscn" id="6_5k8j0"]
@@ -37,6 +38,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.774742, -4, 11.084906)
 
 [node name="GrassPlatform9" parent="." unique_id=261631060 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0139542, -4, 5)
+
+[node name="ArrowSign" parent="GrassPlatform9" unique_id=975612369 instance=ExtResource("5_3l4hs")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 3, 4, -2)
 
 [node name="GrassPlatform4" parent="." unique_id=397787695 instance=ExtResource("5_8ekpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.910973, -3, 21)

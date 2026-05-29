@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_dts3b"]
 [ext_resource type="PackedScene" uid="uid://7ugwdowsimwr" path="res://src/environment/levels/assets/static_platforms/hexagon_stone.tscn" id="4_f7573"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="5_4taiq"]
+[ext_resource type="PackedScene" uid="uid://trd7ogx3xpwh" path="res://src/environment/levels/assets/props/arrow_sign.tscn" id="5_kqh8w"]
 [ext_resource type="PackedScene" uid="uid://c5advesecca53" path="res://src/environment/levels/assets/ground_button/button_rounded.tscn" id="6_vglmt"]
 [ext_resource type="PackedScene" uid="uid://pngs12a0famd" path="res://src/environment/levels/assets/doors/large_door.tscn" id="7_hayea"]
 
@@ -24,6 +25,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 107.083)
 
 [node name="HexagonStonePlatform" parent="." unique_id=537577895 instance=ExtResource("4_f7573")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 2)
+
+[node name="ArrowSign" parent="HexagonStonePlatform" unique_id=975612369 instance=ExtResource("5_kqh8w")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -3, 0.41698503, 0)
 
 [node name="HexagonStonePlatform2" parent="." unique_id=1796871457 instance=ExtResource("4_f7573")]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0, -2, 13)
