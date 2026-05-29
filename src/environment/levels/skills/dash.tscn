@@ -16,7 +16,7 @@ script = ExtResource("7_vpwyn")
 identifier = &"dash_unlock"
 metadata/_custom_type_script = "uid://si0x0kj8w7kf"
 
-[node name="MediumTemplate" type="Node3D" unique_id=1016321493]
+[node name="UnlockDash" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_jj27o")
 unlocks_skill_id = &"dash"
 

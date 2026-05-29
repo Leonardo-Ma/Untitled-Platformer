@@ -13,9 +13,9 @@ metadata/_custom_type_script = "uid://bm1gkgun5gr70"
 
 [sub_resource type="Resource" id="Resource_ltgpi"]
 script = ExtResource("3_qyq2a")
+icon = ExtResource("2_14i74")
 status_effect = SubResource("Resource_ywgu6")
 identifier = &"jump_boost"
-icon = ExtResource("2_14i74")
 metadata/_custom_type_script = "uid://cqo4vne1iqdw4"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ruxq6"]

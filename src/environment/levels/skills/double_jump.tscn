@@ -7,13 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bb1l6ibw3ab5y" path="res://src/environment/levels/assets/static_platforms/hexagon_grass.tscn" id="5_67730"]
 [ext_resource type="PackedScene" uid="uid://bhbjsqv8pu1x8" path="res://src/environment/mechanics/checkpoint_flag.tscn" id="6_oire8"]
 [ext_resource type="PackedScene" uid="uid://cfm0nge5vjc0d" path="res://src/environment/levels/assets/collectibles/unlock_skill/unlock_skill.tscn" id="7_tjswu"]
+[ext_resource type="Resource" uid="uid://dw6jynnbqeedp" path="res://src/entities/player/skills/active_skills/double_jump.tres" id="8_8mpxv"]
 [ext_resource type="Script" uid="uid://si0x0kj8w7kf" path="res://src/systems/collectibles/collectibles_data/skill_collectible.gd" id="8_rx0ml"]
 
-[sub_resource type="Resource" id="Resource_rx0ml"]
+[sub_resource type="Resource" id="Resource_iqpq7"]
 script = ExtResource("8_rx0ml")
+definition = ExtResource("8_8mpxv")
 metadata/_custom_type_script = "uid://si0x0kj8w7kf"
 
-[node name="LevelChunk" type="Node3D" unique_id=1016321493]
+[node name="UnlockDoubleJump" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_u651q")
 score_multiplier = 0.0
 unlocks_skill_id = &"double_jump"
@@ -37,7 +39,7 @@ transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 3.5,
 
 [node name="UnlockSkill" parent="HexagonGrassPlatform" unique_id=707485280 instance=ExtResource("7_tjswu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-data = SubResource("Resource_rx0ml")
+data = SubResource("Resource_iqpq7")
 
 [node name="HexagonGrassPlatform2" parent="." unique_id=966116243 instance=ExtResource("5_67730")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22, -1, 29)
