@@ -1,6 +1,8 @@
 class_name StatusCollectible
 extends CollectibleData
 
+@export var icon: Texture2D
+
 @export_category("Buff Mechanics")
 @export var status_effect: StatusEffect
 
