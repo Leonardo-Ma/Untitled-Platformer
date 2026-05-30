@@ -28,4 +28,5 @@ func _requires_goap() -> bool:
 
 
 func _on_death_complete() -> void:
+	GameEvents.add_score(5)
 	queue_free()
