@@ -39,14 +39,13 @@ var _damage_material: StandardMaterial3D
 var _damage_tween: Tween
 var _prev_health: int = 0
 
-# TODO Consider @onready collision layer and mask (Maybe in a parent Entity class?)
-@onready var hitbox: Hitbox = %Hitbox
-@onready var hurtbox: Hurtbox = %Hurtbox
-@onready var status_manager: StatusManager = %StatusManager
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
-@onready var navigation_controller: Node = get_node_or_null("%NavigationController")
-@onready var goap_controller: GoapMemory = get_node_or_null("%GoapController")
-@onready var perception_system: PerceptionSystem = get_node_or_null("%PerceptionSystem")
+@onready var hitbox: Hitbox = %Hitbox  # Player and NPC
+@onready var hurtbox: Hurtbox = %Hurtbox  # Player and NPC
+@onready var status_manager: StatusManager = %StatusManager  # Player and NPC
+@onready var animation_player: AnimationPlayer = %AnimationPlayer  # Player and NPC
+@onready var navigation_controller: Node = get_node_or_null("%NavigationController")  # NPC
+@onready var goap_controller: GoapMemory = get_node_or_null("%GoapController")  # NPC
+@onready var perception_system: PerceptionSystem = get_node_or_null("%PerceptionSystem")  # NPC
 
 
 ## Inherited artifacts should override _entity_ready instead of this
@@ -59,13 +58,13 @@ func _ready() -> void:
 	assert(health and health.health > 0, "Health property incorrect for " + self.name)
 	assert(movement, "Movement incorrect for " + self.name)
 
-	# Damage visual feedback
-	_setup_damage_material()
+	_setup_damage_feedback_visual_material()
 
 	_prev_health = health.health
 	health.died.connect(_on_death)
-	health.damaged.connect(_on_damaged)
+	health.damaged.connect(_on_damaged_effects_feedback)
 	health.health_changed.connect(_on_health_changed)
+	# TODO Double check this
 	# Inject timer creation capability into health resource - Dependency Injection
 	health.initialize_timer_callback(_create_timer)
 
@@ -81,13 +80,11 @@ func _ready() -> void:
 		var goals: Array[GoapGoal] = ai_config.create_goals()
 		var actions: Array[GoapAction] = ai_config.create_actions()
 
-		# Helps with debugging
-		goap_agent.name = "GoapAgent"
+		goap_agent.name = self.name
+		print("Registering GOAP agent: ", goap_agent.name)
 
 		goap_agent.init(self, goals, goap_controller, actions)
 		add_child(goap_agent)
-
-		register_goap_agent(goap_agent)
 
 		# Disable navigation as goap will enable it when an action has movement
 		navigation_controller.set_physics_process(false)
@@ -101,46 +98,42 @@ func _ready() -> void:
 ## False for Player class
 @abstract func _requires_goap() -> bool
 
+## To Override [br]
+## Async post-death behavior (e.g. respawn, scene transition) [br]
+## Called when _on_death is finished
+@abstract func _on_death_complete() -> void
+
 
 # TODO Disable navigation for GOAP, disable player controller
 # Maybe transform into abstract method to force override?
 # Player already overrides this
 func _on_death() -> void:
-	print_debug(str(self.name) + " is dead, Jim!")
+	print(str(self.name) + " is dead, Jim!")
 
 	if _damage_tween and _damage_tween.is_valid():
 		_damage_tween.kill()
 
 	if goap_agent:
-		print_debug("Disabling GOAP agent ", goap_agent.name)
+		print("Disabling GOAP agent ", goap_agent.name)
 		goap_agent.set_process(false)
-	else:
-		print_debug("GOAP agent not found")
 
-	if hitbox:
-		hitbox.set_deferred("monitoring", false)
-		hitbox.set_deferred("monitorable", false)
-
-	if hurtbox:
-		hurtbox.set_deferred("monitoring", false)
-		hurtbox.set_deferred("monitorable", false)
+	hitbox.set_deferred("monitoring", false)
+	hitbox.set_deferred("monitorable", false)
+	hurtbox.set_deferred("monitoring", false)
+	hurtbox.set_deferred("monitorable", false)
 
 	var death_tween: Tween = create_tween()
 
 	death_tween.tween_interval(2.0)
 	death_tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 1.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
-	await get_tree().create_timer(5.0).timeout
-	self.queue_free()
+	await death_tween.finished
 
-
-func register_goap_agent(agent: GoapAgent) -> void:
-	print_debug("Registering GOAP agent: ", agent.name)
-	goap_agent = agent
+	_on_death_complete()
 
 
 #region Visual damage effect
-func _setup_damage_material() -> void:
+func _setup_damage_feedback_visual_material() -> void:
 	_damage_material = StandardMaterial3D.new()
 	_damage_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	_damage_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -150,7 +143,7 @@ func _setup_damage_material() -> void:
 		mesh.material_overlay = _damage_material
 
 
-func _on_damaged(_attack: Attack) -> void:
+func _on_damaged_effects_feedback(_attack: Attack) -> void:
 	if _damage_tween and _damage_tween.is_valid():
 		_damage_tween.kill()
 

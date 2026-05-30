@@ -25,3 +25,7 @@ func _entity_ready() -> void:
 
 func _requires_goap() -> bool:
 	return true
+
+
+func _on_death_complete() -> void:
+	queue_free()

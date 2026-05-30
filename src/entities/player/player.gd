@@ -29,28 +29,26 @@ func _entity_ready() -> void:
 	add_to_group(Groups.PLAYERS)
 	GameEvents.player_spawned.emit(self)
 
-	# Connect controllers directly to each other
 	input_controller.attack_pressed.connect(_on_attack_pressed)
-
-
-func _requires_goap() -> bool:
-	return false
+	health.died.connect(movement_controller.disable_movement.bind(5.0))
 
 
 func _on_attack_pressed() -> void:
 	melee_attacked.emit()
 
 
-func _on_death() -> void:
+func _requires_goap() -> bool:
+	return false
+
+
+func _on_death_complete() -> void:
 	GameEvents.remove_score(10)
-	await respawn(5.0, CheckpointManager.get_respawn_position(), true)
+	await respawn(2.0, CheckpointManager.get_respawn_position(), true)
 
 
 func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> void:
 	GameEvents.player_respawning.emit(delay)
 
-	input_controller.set_process_input(false)
-	input_controller.set_process_unhandled_input(false)
 	movement_controller.disable_movement(delay)
 	velocity = Vector3.ZERO
 
@@ -62,6 +60,13 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 	if is_death:
 		health.reset()
 		status_manager.clear_temporary_statuses()
+		scale = Vector3.ONE
 
 	input_controller.set_process_input(true)
 	input_controller.set_process_unhandled_input(true)
+
+	hitbox.set_deferred("monitoring", true)
+	hitbox.set_deferred("monitorable", true)
+
+	hurtbox.set_deferred("monitoring", true)
+	hurtbox.set_deferred("monitorable", true)
