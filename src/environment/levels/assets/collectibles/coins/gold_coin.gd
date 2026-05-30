@@ -19,5 +19,5 @@ func _on_body_entered(body: Node3D) -> void:
 
 
 # Overriding
-func _apply_effect(player: PlayerEntity) -> void:
-	data.apply_effect(player)
+func _apply_effect(_player: PlayerEntity) -> void:
+	GameEvents.add_gold(data.amount)

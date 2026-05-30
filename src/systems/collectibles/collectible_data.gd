@@ -6,5 +6,7 @@ extends Resource
 @export_category("General")
 @export var identifier: StringName
 
+
 ## To override
-@abstract func apply_effect(_player: PlayerEntity) -> void
+func apply_effect(_player: PlayerEntity) -> void:
+	pass
