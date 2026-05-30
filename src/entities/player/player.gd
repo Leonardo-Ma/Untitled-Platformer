@@ -30,6 +30,7 @@ func _entity_ready() -> void:
 	GameEvents.player_spawned.emit(self)
 
 	input_controller.attack_pressed.connect(_on_attack_pressed)
+	# TODO Also disable input controller, player can attack between death and respawn
 	health.died.connect(movement_controller.disable_movement.bind(5.0))
 
 

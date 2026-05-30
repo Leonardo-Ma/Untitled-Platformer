@@ -3,15 +3,12 @@ class_name InputController extends Node
 
 signal attack_pressed
 
-@onready var camera_controller: Node = $"../../CamRoot"
+@onready var camera_controller: Node3D = %CamRoot
 
 
 func _ready() -> void:
-	if not is_instance_valid(camera_controller):
-		assert(false, "InputController: CamRoot not found")
-		return
-	camera_controller.connect("capture_mouse_requested", Callable(self, "_on_capture_mouse_requested"))
-	camera_controller.connect("release_mouse_requested", Callable(self, "_on_release_mouse_requested"))
+	camera_controller.capture_mouse_requested.connect(_on_capture_mouse_requested)
+	camera_controller.release_mouse_requested.connect(_on_release_mouse_requested)
 
 
 func _on_capture_mouse_requested() -> void:
