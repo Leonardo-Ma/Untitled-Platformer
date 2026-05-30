@@ -5,20 +5,18 @@ extends StaticBody3D
 
 var _is_cycle_running: bool = false
 var _mesh_parts: Array[MeshInstance3D] = []
-var _base_scale: Vector3 = Vector3.ONE
-var _part_base_scales: Dictionary[MeshInstance3D, Vector3] = {}
-var _part_base_positions: Dictionary[MeshInstance3D, Vector3] = {}
+var _part_original_overlays: Dictionary[MeshInstance3D, Material] = {}
+var _part_white_overlays: Dictionary[MeshInstance3D, StandardMaterial3D] = {}
 
 @onready var surface: Area3D = $Surface
 @onready var body_collision: CollisionShape3D = $CollisionShape3D
 
 
 func _ready() -> void:
-	_base_scale = scale
 	_mesh_parts = _collect_mesh_parts()
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		_part_base_scales[mesh_part] = mesh_part.scale
-		_part_base_positions[mesh_part] = mesh_part.position
+		_part_original_overlays[mesh_part] = mesh_part.material_overlay
+		_part_white_overlays[mesh_part] = _create_white_overlay()
 	surface.body_entered.connect(_on_character_step)
 
 
@@ -27,21 +25,19 @@ func _on_character_step(body: Node3D) -> void:
 		return
 	_is_cycle_running = true
 	surface.set_deferred("monitoring", false)
-	await get_tree().create_timer(fade_out_seconds).timeout
-	surface.set_deferred("monitoring", true)
-	await _play_vanish_effect()
+	await _play_vanish_effect(float(fade_out_seconds))
 	disable()
 	await get_tree().create_timer(fade_in_seconds).timeout
-	await _play_appear_effect()
+	surface.set_deferred("monitoring", true)
+	await _play_appear_effect(float(fade_in_seconds))
 	enable()
 	_is_cycle_running = false
 
 
 func enable() -> void:
-	scale = _base_scale
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		mesh_part.scale = _part_base_scales[mesh_part]
-		mesh_part.position = _part_base_positions[mesh_part]
+		mesh_part.material_overlay = _part_original_overlays[mesh_part]
+		mesh_part.transparency = 0.0
 	visible = true
 	body_collision.disabled = false
 
@@ -51,33 +47,28 @@ func disable() -> void:
 	body_collision.disabled = true
 
 
-func _play_vanish_effect() -> void:
+func _play_vanish_effect(duration: float) -> void:
+	visible = true
+	for mesh_part: MeshInstance3D in _mesh_parts:
+		var white_overlay: StandardMaterial3D = _part_white_overlays[mesh_part]
+		white_overlay.albedo_color = Color(1, 1, 1, 0.0)
+		mesh_part.material_overlay = white_overlay
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(self, "scale", _base_scale * 0.92, 0.25)
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		var part_base_scale: Vector3 = _part_base_scales[mesh_part]
-		var part_base_position: Vector3 = _part_base_positions[mesh_part]
-		tween.tween_property(mesh_part, "scale", part_base_scale * 0.08, 0.3)
-		tween.tween_property(mesh_part, "position", part_base_position + Vector3(0.0, -0.7, 0.0), 0.3)
+		tween.tween_property(_part_white_overlays[mesh_part], "albedo_color:a", 1.0, duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	await tween.finished
 
 
-func _play_appear_effect() -> void:
+func _play_appear_effect(duration: float) -> void:
 	visible = true
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		var part_base_scale: Vector3 = _part_base_scales[mesh_part]
-		var part_base_position: Vector3 = _part_base_positions[mesh_part]
-		mesh_part.scale = part_base_scale * 0.08
-		mesh_part.position = part_base_position + Vector3(0.0, -0.7, 0.0)
+		mesh_part.material_overlay = _part_original_overlays[mesh_part]
+		mesh_part.transparency = 1.0
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(self, "scale", _base_scale, 0.25)
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		var part_base_scale: Vector3 = _part_base_scales[mesh_part]
-		var part_base_position: Vector3 = _part_base_positions[mesh_part]
-		tween.tween_property(mesh_part, "scale", part_base_scale, 0.28)
-		tween.tween_property(mesh_part, "position", part_base_position, 0.28)
+		tween.tween_property(mesh_part, "transparency", 0.0, duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	await tween.finished
 
 
@@ -86,3 +77,11 @@ func _collect_mesh_parts() -> Array[MeshInstance3D]:
 	for child: Node in find_children("*", "MeshInstance3D", true, false):
 		result.append(child as MeshInstance3D)
 	return result
+
+
+func _create_white_overlay() -> StandardMaterial3D:
+	var material: StandardMaterial3D = StandardMaterial3D.new()
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = Color.WHITE
+	return material
