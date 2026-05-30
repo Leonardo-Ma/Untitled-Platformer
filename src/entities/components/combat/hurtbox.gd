@@ -14,7 +14,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	connect("area_entered", self._on_area_entered)
+	area_entered.connect(_on_area_entered)
 
 
 func _on_area_entered(hitbox: Hitbox) -> void:

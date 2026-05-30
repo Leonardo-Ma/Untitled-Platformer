@@ -48,7 +48,7 @@ var _prev_health: int = 0
 @onready var perception_system: PerceptionSystem = get_node_or_null("%PerceptionSystem")  # NPC
 
 
-## Inherited artifacts should override _entity_ready instead of this
+## Children should override _entity_ready instead of this
 func _ready() -> void:
 	assert(hitbox, "Hitbox incorrect for " + self.name)
 	assert(hurtbox, "Hurtbox incorrect for " + self.name)
@@ -122,17 +122,12 @@ func _on_death() -> void:
 	hurtbox.set_deferred("monitoring", false)
 	hurtbox.set_deferred("monitorable", false)
 
-	var death_tween: Tween = create_tween()
-
-	death_tween.tween_interval(2.0)
-	death_tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 1.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-
-	await death_tween.finished
+	await _death_animation()
 
 	_on_death_complete()
 
 
-#region Visual damage effect
+#region Visual effects and animations
 func _setup_damage_feedback_visual_material() -> void:
 	_damage_material = StandardMaterial3D.new()
 	_damage_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -152,6 +147,15 @@ func _on_damaged_effects_feedback(_attack: Attack) -> void:
 	_damage_material.albedo_color = Color(1.0, 1.0, 1.0, 0.5)
 	_damage_tween = create_tween()
 	_damage_tween.tween_property(_damage_material, "albedo_color:a", 0.0, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+func _death_animation() -> void:
+	var death_tween: Tween = create_tween()
+
+	death_tween.tween_interval(2.0)
+	death_tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), 1.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+	await death_tween.finished
 
 
 func _on_health_changed(new_health: int) -> void:
