@@ -11,3 +11,8 @@ func _entity_ready() -> void:
 
 func _requires_goap() -> bool:
 	return true
+
+
+func _on_death_complete() -> void:
+	GameEvents.add_score(5)
+	queue_free()
