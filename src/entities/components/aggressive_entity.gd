@@ -26,12 +26,14 @@ const ATTACK_SOUNDS: Array[AudioStream] = [
 @export var health: Health
 @export var movement: Movement
 
-@export_category("Perception System")
+@export_group("Is NPC?")
+@export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var is_npc: bool = true
+@export_subgroup("Perception System")
 @export var perception_config: PerceptionConfig
 @export var target_groups: Array[String] = ["players"]
 @export var debug_perception: bool = false
 
-@export_category("AI System")
+@export_subgroup("AI System")
 @export var ai_config: AIConfig
 
 var goap_agent: GoapAgent = null

@@ -247,6 +247,7 @@ blend_shape_mode = 0
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 attack = SubResource("Resource_oiqqw")
 health = SubResource("Resource_cin2i")
+debug_perception = false
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=369935479]
 libraries/combat = ExtResource("5_0ifyg")

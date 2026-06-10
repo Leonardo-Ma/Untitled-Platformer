@@ -200,6 +200,7 @@ script = ExtResource("1_tpvn4")
 attack = SubResource("Resource_wjvoe")
 health = SubResource("Resource_bw0fr")
 movement = SubResource("Resource_qo2tj")
+is_npc = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=680952906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.542, 0)
