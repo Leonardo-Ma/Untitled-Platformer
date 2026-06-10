@@ -3,12 +3,12 @@ extends HBoxContainer
 
 var _current_score: int = 0
 
-@onready var _score_label: Label = get_node_or_null("%ScoreLabel") as Label
-@onready var _score_icon: TextureRect = get_node_or_null("%ScoreIcon") as TextureRect
+@onready var _score_label: Label = %ScoreCounter as Label
+@onready var _score_icon: TextureRect = %ScoreIcon as TextureRect
 
 
 func _ready() -> void:
-	_current_score = GameEvents.player_score
+	_current_score = GameEvents.score
 	GameEvents.score_updated.connect(_on_score_updated)
 	_update_ui(_current_score)
 

@@ -34,14 +34,12 @@ func _ready() -> void:
 
 
 func on_game_started() -> void:
-	# Recapture the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	menus.visible = false
 	hud.visible = true
 	overlays.visible = true
 
-	# Ensure the tree plays
 	get_tree().paused = false
 
 
@@ -64,7 +62,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if menus.visible and menus.get_node("MainMenu").visible:
 			return
 
-		# Toggle pause/unpause
 		if not get_tree().paused:
 			on_game_paused()
 		else:

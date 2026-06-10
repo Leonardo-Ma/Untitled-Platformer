@@ -245,7 +245,7 @@ func _disconnect_chunk_trigger(chunk: LevelChunk) -> void:
 
 func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	var unlocked_ids: Array[StringName] = _get_player_skills()
-	var chosen_data: ChunkData = _chunk_selector.select_chunk_data(target_transform, unlocked_ids, GameEvents.player_score)
+	var chosen_data: ChunkData = _chunk_selector.select_chunk_data(target_transform, unlocked_ids, GameEvents.score)
 
 	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():
 		return _chunk_pool[chosen_data.scene_path].pop_back()
