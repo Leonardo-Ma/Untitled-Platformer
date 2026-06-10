@@ -3,7 +3,11 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_cqtv1"]
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="1_mainmenu"]
 [ext_resource type="Script" uid="uid://b8xklo3ubuprp" path="res://src/ui/menus/main_menu/new_game.gd" id="2_esfjp"]
+[ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/icons/neobie_icons/play_128px.png" id="3_ir4mu"]
 [ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://src/ui/menus/main_menu/quit_to_desktop.gd" id="4_gdklf"]
+[ext_resource type="Texture2D" uid="uid://c0wvklinahbsr" path="res://src/icons/neobie_icons/settings_128px.png" id="5_ir4mu"]
+[ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/icons/neobie_icons/cross_128px.png" id="6_ir4mu"]
+[ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="8_fpg57"]
 
 [node name="MainMenu" type="Control" unique_id=1634997965]
 z_index = 1
@@ -31,9 +35,9 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
+offset_left = -250.0
 offset_top = 25.0
-offset_right = 200.0
+offset_right = 250.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -45,36 +49,35 @@ script = ExtResource("1_mainmenu")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 15
-text = "Untitled Platformer"
+text = "Ludus Saltuum"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewGame" type="Button" parent="VBoxContainer" unique_id=1538141097]
+[node name="NewGame" type="TextureButton" parent="VBoxContainer" unique_id=1042016797]
+modulate = Color(0, 0.36078432, 0, 0.7137255)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-size_flags_vertical = 7
-text = "New Game"
+size_flags_vertical = 3
+texture_normal = ExtResource("3_ir4mu")
+stretch_mode = 5
 script = ExtResource("2_esfjp")
 
-[node name="QuitDesktop" type="Button" parent="VBoxContainer" unique_id=184267010]
+[node name="Settings" type="TextureButton" parent="VBoxContainer" unique_id=2017775997]
+modulate = Color(0, 0, 0, 0.4)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-size_flags_vertical = 7
-text = "Quit to Desktop"
+size_flags_vertical = 3
+texture_normal = ExtResource("5_ir4mu")
+stretch_mode = 5
+
+[node name="QuitDesktop" type="TextureButton" parent="VBoxContainer" unique_id=320188407]
+modulate = Color(0.6745098, 0, 0, 0.9411765)
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("6_ir4mu")
+stretch_mode = 5
 script = ExtResource("4_gdklf")
 
-[node name="VersionLabel" type="Label" parent="." unique_id=1238666747]
+[node name="VersionLabel" parent="." unique_id=854464690 instance=ExtResource("8_fpg57")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -64.0
-offset_right = -13.0
-offset_bottom = -6.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 42
-text = "v0.0.0"
-horizontal_alignment = 3
-vertical_alignment = 3

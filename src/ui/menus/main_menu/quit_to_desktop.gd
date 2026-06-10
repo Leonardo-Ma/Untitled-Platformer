@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 const SHUT_DOWN_SOUND: AudioStream = preload("uid://yvujl2l3onjt")  # synth_shut_down.wav
 

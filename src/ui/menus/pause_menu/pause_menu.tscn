@@ -3,8 +3,11 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_tb8x8"]
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="2_pmc0i"]
 [ext_resource type="Script" uid="uid://mqguyiauncmr" path="res://src/ui/menus/pause_menu/resume.gd" id="2_vsi4c"]
+[ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/icons/neobie_icons/play_128px.png" id="3_4yoom"]
 [ext_resource type="Script" uid="uid://buikwklv2j3ub" path="res://src/ui/menus/main_menu/quit_main_menu.gd" id="4_qmph6"]
-[ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://src/ui/menus/main_menu/quit_to_desktop.gd" id="5_an2k7"]
+[ext_resource type="Texture2D" uid="uid://c0wvklinahbsr" path="res://src/icons/neobie_icons/settings_128px.png" id="5_7nd55"]
+[ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/icons/neobie_icons/cross_128px.png" id="7_577b3"]
+[ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="11_0tjqn"]
 
 [node name="PauseMenu" type="Control" unique_id=2117240021]
 layout_mode = 3
@@ -38,7 +41,6 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1757805895]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 40
@@ -46,20 +48,35 @@ alignment = 1
 script = ExtResource("2_pmc0i")
 metadata/_edit_use_anchors_ = true
 
-[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer" unique_id=118607783]
+[node name="Resume" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1213342530]
+modulate = Color(0, 0.36078432, 0, 0.7137255)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Resume"
+texture_normal = ExtResource("3_4yoom")
+stretch_mode = 5
 script = ExtResource("2_vsi4c")
 
-[node name="Quit_Main_Menu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1385652931]
+[node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=337163810]
+modulate = Color(0, 0, 0, 0.4)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Quit to Main Menu"
+texture_normal = ExtResource("5_7nd55")
+stretch_mode = 5
+
+[node name="QuitMainMenu" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1093762851]
+modulate = Color(0.6745098, 0, 0, 0.9411765)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("7_577b3")
+stretch_mode = 5
 script = ExtResource("4_qmph6")
 
-[node name="Quit to Desktop" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1278642220]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Quit to Desktop"
-script = ExtResource("5_an2k7")
+[node name="VersionLabel" parent="." unique_id=854464690 instance=ExtResource("11_0tjqn")]
+layout_mode = 1
+offset_left = -117.0
+offset_top = -58.0
+offset_right = 0.0
+offset_bottom = 0.0

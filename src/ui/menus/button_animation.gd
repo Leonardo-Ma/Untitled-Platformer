@@ -7,17 +7,20 @@ const POP_SOUNDS: Array[AudioStream] = [
 	preload("uid://dyr0xhho2e7pv"),  # pop_4.wav
 ]
 
+var _button_original_modulate: Dictionary = {}
+
 
 func _ready() -> void:
-	var buttons: Array = find_children("*", "Button", true, false)
+	var buttons: Array = find_children("*", "TextureButton", true, false)
 
-	for button: Button in buttons:
+	for button: TextureButton in buttons:
+		_button_original_modulate[button] = button.modulate
 		button.mouse_entered.connect(_on_hover.bind(button))
 		button.mouse_exited.connect(_on_exit.bind(button))
 		button.pressed.connect(_on_pressed.bind(button))
 
 
-func _on_pressed(_button: Button) -> void:
+func _on_pressed(_button: TextureButton) -> void:
 	(
 		SoundManager
 		. play_sound(
@@ -27,7 +30,7 @@ func _on_pressed(_button: Button) -> void:
 	)
 
 
-func _on_hover(button: Button) -> void:
+func _on_hover(button: TextureButton) -> void:
 	(
 		SoundManager
 		. play_sound(
@@ -41,10 +44,10 @@ func _on_hover(button: Button) -> void:
 	tween.parallel().tween_property(button, "modulate", Color.DARK_ORANGE.darkened(0.2), 0.1)
 
 
-func _on_exit(button: Button) -> void:
+func _on_exit(button: TextureButton) -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(button, "modulate", Color.WHITE, 0.1)
+	tween.parallel().tween_property(button, "modulate", _button_original_modulate[button], 0.1)
 
 
 func _on_new_game_pressed() -> void:
