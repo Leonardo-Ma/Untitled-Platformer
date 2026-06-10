@@ -78,6 +78,7 @@ folder_colors={
 "res://src/icons/": "green",
 "res://src/sound/": "blue",
 "res://src/sound/helpers/": "gray",
+"res://src/steam/": "red",
 "res://src/systems/": "gray",
 "res://src/ui/": "green",
 "res://src/ui/debug/": "gray"
@@ -208,3 +209,10 @@ buffering/agile_event_flushing=true
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+
+[steam]
+
+initialization/app_id=4832410
+initialization/initialize_on_startup=true
+initialization/embed_callbacks=false
+multiplayer_peer/max_channels=4
