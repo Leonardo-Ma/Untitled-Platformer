@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 const POP_SOUNDS: Array[AudioStream] = [
 	preload("uid://bmmjv51rywjed"),  # pop_1.wav
@@ -11,7 +11,7 @@ var _button_original_modulate: Dictionary = {}
 
 
 func _ready() -> void:
-	var buttons: Array = find_children("*", "TextureButton", true, false)
+	var buttons: Array = get_parent().find_children("*", "TextureButton", true, false)
 
 	for button: TextureButton in buttons:
 		_button_original_modulate[button] = button.modulate

@@ -1,9 +1,11 @@
 extends TextureButton
 
 const SHUT_DOWN_SOUND: AudioStream = preload("uid://yvujl2l3onjt")  # synth_shut_down.wav
+const CLOSE_COLOR: Color = Color.RED
 
 
 func _ready() -> void:
+	modulate = CLOSE_COLOR
 	pressed.connect(_on_pressed)
 
 

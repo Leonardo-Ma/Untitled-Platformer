@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://ujv84xenekf7"]
 
+[ext_resource type="Script" uid="uid://blv3o6kyvqkrm" path="res://src/ui/menus/menus.gd" id="1_4usyi"]
 [ext_resource type="Script" uid="uid://btijgca3wb05d" path="res://src/ui/menus/button_animation.gd" id="1_6ceeu"]
 [ext_resource type="PackedScene" uid="uid://ckhxplf4oi0ca" path="res://src/ui/menus/main_menu/main_menu.tscn" id="2_mugxh"]
+[ext_resource type="PackedScene" uid="uid://cwtagwmeoqbd5" path="res://src/ui/menus/settings_menu/settings_menu.tscn" id="4_tueqh"]
 [ext_resource type="PackedScene" uid="uid://cqn880fmg3p7l" path="res://src/ui/menus/pause_menu/pause_menu.tscn" id="6_rygc3"]
 
 [node name="Menus" type="Control" unique_id=217563089]
@@ -12,11 +14,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4usyi")
+
+[node name="ButtonAnimation" type="Node" parent="." unique_id=314480580]
 script = ExtResource("1_6ceeu")
 
 [node name="MainMenu" parent="." unique_id=1634997965 instance=ExtResource("2_mugxh")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="SettingsMenu" parent="." unique_id=377762507 instance=ExtResource("4_tueqh")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="PauseMenu" parent="." unique_id=2117240021 instance=ExtResource("6_rygc3")]
+unique_name_in_owner = true
 visible = false
+z_index = 1
 layout_mode = 1

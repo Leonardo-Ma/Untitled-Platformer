@@ -16,6 +16,7 @@ z_index = 3
 
 [node name="Overlays" parent="." unique_id=1930051961 instance=ExtResource("3_cywme")]
 unique_name_in_owner = true
+visible = false
 
 [node name="DebugInterface" parent="." unique_id=1832192178 instance=ExtResource("4_bi8hs")]
 unique_name_in_owner = true
@@ -27,4 +28,5 @@ z_index = 100
 
 [node name="HUD" parent="." unique_id=1333227325 instance=ExtResource("3_dakun")]
 unique_name_in_owner = true
+visible = false
 z_index = 1
