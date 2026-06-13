@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg1bttvmgkbv5"
-path="res://.godot/imported/previous_frame_128px.png-68fd21243d4768f39ba0fdf95b4d2dc5.ctex"
+uid="uid://dasfo85wh6qx1"
+path="res://.godot/imported/cursor_diagonal_resize2_128px.png-6ecd03c73d38f5e0ab5b21c794e56ec0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/icons/neobie_icons/previous_frame_128px.png"
-dest_files=["res://.godot/imported/previous_frame_128px.png-68fd21243d4768f39ba0fdf95b4d2dc5.ctex"]
+source_file="res://src/icons/neobie_icons/editing_tools/cursor_diagonal_resize2_128px.png"
+dest_files=["res://.godot/imported/cursor_diagonal_resize2_128px.png-6ecd03c73d38f5e0ab5b21c794e56ec0.ctex"]
 
 [params]
 

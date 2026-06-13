@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0wvklinahbsr"
-path="res://.godot/imported/settings_128px.png-089b4186c0c8357fa415bf16e5317a34.ctex"
+uid="uid://bnd847y0s1nvd"
+path="res://.godot/imported/tick_128px.png-b470d2d1186c1dc895080cf5f0f4600a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/icons/neobie_icons/settings_128px.png"
-dest_files=["res://.godot/imported/settings_128px.png-089b4186c0c8357fa415bf16e5317a34.ctex"]
+source_file="res://src/icons/neobie_icons/ui/tick_128px.png"
+dest_files=["res://.godot/imported/tick_128px.png-b470d2d1186c1dc895080cf5f0f4600a.ctex"]
 
 [params]
 

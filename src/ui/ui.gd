@@ -21,14 +21,7 @@ func _ready() -> void:
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	# Default state when the game first launches (Show Main Menu)
-	menus.visible = true
-	menus.get_node("MainMenu").visible = true
-	menus.get_node("PauseMenu").visible = false
-
-	hud.visible = false
-	overlays.visible = false
-
+	# TODO Check if this should pause the game tree here instead of main
 	# Pause the game tree while main menu is open
 	get_tree().paused = true
 

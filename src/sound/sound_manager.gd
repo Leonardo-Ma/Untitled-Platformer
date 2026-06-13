@@ -1,6 +1,14 @@
 extends Node
 
-enum SoundCategory { MUSIC, SFX, AMBIENT, UI, VOICE }
+enum SoundCategory {
+	UNASSIGNED,
+	GLOBAL,
+	MUSIC,
+	SFX,
+	AMBIENT,
+	UI,
+	VOICE,
+}
 
 var music: MusicController
 var combat: CombatPrioritySoundController
@@ -85,8 +93,14 @@ func pause_all_sfx(paused: bool) -> void:
 
 
 #region Private helpers
+# gdlint: disable=max-returns
 func _get_bus_for_category(category: SoundCategory) -> String:
 	match category:
+		SoundCategory.UNASSIGNED:
+			#assert(false, "SoundManager: category is UNASSIGNED in " + name)
+			return ""
+		SoundCategory.GLOBAL:
+			return "Master"
 		SoundCategory.MUSIC:
 			return "Music"
 		SoundCategory.SFX:
@@ -98,7 +112,8 @@ func _get_bus_for_category(category: SoundCategory) -> String:
 		SoundCategory.VOICE:
 			return "Voice"
 		_:
-			return "Master"
+			assert(false, "SoundManager: unhandled SoundCategory in " + name)
+			return ""
 
 
 func _load_volume_settings() -> void:

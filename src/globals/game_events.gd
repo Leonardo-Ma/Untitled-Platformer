@@ -1,6 +1,7 @@
 # https://refactoring.guru/design-patterns/observer
 extends Node
 
+#region Player
 @warning_ignore("unused_signal")
 signal player_spawned(player: Node)
 @warning_ignore("unused_signal")
@@ -13,6 +14,14 @@ signal score_updated(new_score: int)
 signal player_respawning(duration: float)
 @warning_ignore("unused_signal")
 signal gold_updated(new_total: int)
+#endregion
+
+#region UI
+@warning_ignore("unused_signal")
+signal settings_opened
+@warning_ignore("unused_signal")
+signal settings_closed
+#endregion
 
 var procedural_seed: int = 0
 var score: int = 0
