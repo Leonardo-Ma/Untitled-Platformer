@@ -97,7 +97,7 @@ func pause_all_sfx(paused: bool) -> void:
 func _get_bus_for_category(category: SoundCategory) -> String:
 	match category:
 		SoundCategory.UNASSIGNED:
-			#assert(false, "SoundManager: category is UNASSIGNED in " + name)
+			assert(false, "SoundManager: category is UNASSIGNED in " + name)
 			return ""
 		SoundCategory.GLOBAL:
 			return "Master"
@@ -120,6 +120,8 @@ func _load_volume_settings() -> void:
 	var config: ConfigFile = ConfigFile.new()
 	if config.load("user://audio_settings.cfg") == OK:
 		for category: int in SoundCategory.values():
+			if category == SoundCategory.UNASSIGNED:
+				continue
 			var bus: String = _get_bus_for_category(category as SoundCategory)
 			var volume: float = config.get_value("volumes", bus, 0.0)
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), volume)
@@ -128,6 +130,8 @@ func _load_volume_settings() -> void:
 func _save_volume_settings() -> void:
 	var config: ConfigFile = ConfigFile.new()
 	for category: int in SoundCategory.values():
+		if category == SoundCategory.UNASSIGNED:
+			continue
 		var bus: String = _get_bus_for_category(category as SoundCategory)
 		var volume: float = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus))
 		config.set_value("volumes", bus, volume)

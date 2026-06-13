@@ -190,6 +190,7 @@ func _test_combat_system() -> void:
 
 func _test_volume_controls() -> void:
 	var categories: Array[Dictionary] = [
+		{"enum": SoundManager.SoundCategory.GLOBAL, "bus": "Master"},
 		{"enum": SoundManager.SoundCategory.MUSIC, "bus": "Music"},
 		{"enum": SoundManager.SoundCategory.SFX, "bus": "SFX"},
 		{"enum": SoundManager.SoundCategory.AMBIENT, "bus": "Ambient"},
