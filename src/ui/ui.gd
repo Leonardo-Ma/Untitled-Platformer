@@ -52,5 +52,5 @@ func show_settings() -> void:
 	_menus.show_settings()
 
 
-func set_hud_visible(visible: bool) -> void:
-	_hud.visible = visible
+func set_hud_visible(is_visible: bool) -> void:
+	_hud.visible = is_visible

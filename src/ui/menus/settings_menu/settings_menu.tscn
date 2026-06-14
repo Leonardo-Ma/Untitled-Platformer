@@ -306,19 +306,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="CheckButton" type="CheckButton" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer" unique_id=1057472892]
+[node name="CheckButton" type="CheckButton" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer" unique_id=1057472892 node_paths=PackedStringArray("preview_hud")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 icon = ExtResource("20_stfgh")
 expand_icon = true
 script = ExtResource("21_lcw02")
+preview_hud = NodePath("../BoxContainer/HUD")
 
 [node name="BoxContainer" type="BoxContainer" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer" unique_id=886567556]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="HUD" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer/BoxContainer" unique_id=1333227325 instance=ExtResource("20_1ltwp")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="CameraOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=412193868]
