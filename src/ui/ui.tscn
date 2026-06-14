@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwgqh61gpa36j"]
 
-[ext_resource type="Script" uid="uid://dbv6ox0nun76t" path="res://src/ui/ui.gd" id="1_dakun"]
+[ext_resource type="Script" uid="uid://bmknyjp632uhu" path="res://src/ui/ui.gd" id="1_7abqo"]
 [ext_resource type="PackedScene" uid="uid://ujv84xenekf7" path="res://src/ui/menus/menus.tscn" id="2_dakun"]
 [ext_resource type="PackedScene" uid="uid://b7xvg4dfpcw5y" path="res://src/ui/overlays/overlays.tscn" id="3_cywme"]
 [ext_resource type="PackedScene" uid="uid://l8tfyp2lpc7o" path="res://src/ui/hud/hud.tscn" id="3_dakun"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bhj0ppml5rqfl" path="res://src/ui/shop/shop.tscn" id="6_7abqo"]
 
 [node name="UI" type="CanvasLayer" unique_id=670172270]
-script = ExtResource("1_dakun")
+script = ExtResource("1_7abqo")
 
 [node name="Shop" parent="." unique_id=1103614617 instance=ExtResource("6_7abqo")]
 visible = false

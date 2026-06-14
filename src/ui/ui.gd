@@ -1,63 +1,58 @@
-class_name UIManager
+## View controller UI scene root. Implements View of MVC
+## Registers itself to UIManager
+class_name UIView
 extends CanvasLayer
 
-static var instance: UIManager
+@onready var _menus: Control = %Menus
+@onready var _hud: Control = %HUD
+@onready var _overlays: Control = %Overlays
 
-@onready var menus: Control = %Menus
-@onready var hud: Control = %HUD
-@onready var overlays: Control = %Overlays
-@onready var debug_interface: Control = %DebugInterface
-
-
-# TODO Study this better, it is a 'locally declared singleton' globally accessible
-func _enter_tree() -> void:
-	instance = self
+@onready var _main_menu: Control = %MainMenu
+@onready var _pause_menu: Control = %PauseMenu
 
 
-# TODO Check if this is the correct approach, probably not
-# But idk a better way, send help :(
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-	# TODO Check if this should pause the game tree here instead of main
-	# Pause the game tree while main menu is open
-	get_tree().paused = true
-
-
-func on_game_started() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	menus.visible = false
-	hud.visible = true
-	overlays.visible = true
-
-	get_tree().paused = false
-
-
-func on_game_paused() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-	menus.visible = true
-	menus.get_node("MainMenu").visible = false
-	menus.get_node("PauseMenu").visible = true
-
-	hud.visible = false
-	overlays.visible = false
-	get_tree().paused = true
+	GameEvents.hud_visibility_toggled.connect(_on_hud_visibility_toggled)
+	UIManager.register_ui(self)
 
 
 # BUG TODO Web version esc releases mouse and ignores this input
-# Works on second esc presses
+# Works on second esc press
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):  # Esc
-		if menus.visible and menus.get_node("MainMenu").visible:
-			return
+	if not event.is_action_pressed("ui_cancel"):
+		return
+	if _main_menu.visible:
+		return
+	if not PauseManager.is_paused():
+		UIManager.on_game_paused()
+	else:
+		UIManager.on_game_started()
+	get_viewport().set_input_as_handled()
 
-		if not get_tree().paused:
-			on_game_paused()
-		else:
-			on_game_started()
 
-		get_viewport().set_input_as_handled()
+func show_main_menu() -> void:
+	_menus.visible = true
+	_main_menu.visible = true
+	_pause_menu.visible = false
+	_hud.visible = false
+	_overlays.visible = false
+
+
+func show_game() -> void:
+	_menus.visible = false
+	_hud.visible = GameEvents.hud_visible
+	_overlays.visible = true
+
+
+func show_pause_menu() -> void:
+	_menus.visible = true
+	_main_menu.visible = false
+	_pause_menu.visible = true
+	_hud.visible = false
+	_overlays.visible = false
+
+
+func _on_hud_visibility_toggled(visible: bool) -> void:
+	GameEvents.hud_visible = visible
+	_hud.visible = visible

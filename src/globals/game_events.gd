@@ -21,11 +21,14 @@ signal gold_updated(new_total: int)
 signal settings_opened
 @warning_ignore("unused_signal")
 signal settings_closed
+@warning_ignore("unused_signal")
+signal hud_visibility_toggled(visible: bool)
 #endregion
 
 var procedural_seed: int = 0
 var score: int = 0
 var gold: int = 0
+var hud_visible: bool = true
 
 
 func add_score(points: int) -> void:
