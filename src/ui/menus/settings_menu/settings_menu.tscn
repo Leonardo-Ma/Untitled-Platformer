@@ -188,7 +188,7 @@ icon = ExtResource("14_lcw02")
 icon_alignment = 1
 expand_icon = true
 
-[node name="CloseButton" type="TextureButton" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1971545603]
+[node name="CloseSettingsButton" type="TextureButton" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1971545603]
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = ExtResource("6_nxapy")

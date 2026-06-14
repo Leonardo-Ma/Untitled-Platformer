@@ -1,18 +1,25 @@
+## Controls menus visibility
+class_name MenusView
 extends Control
 
-@onready var pause_menu: Control = %PauseMenu
-@onready var settings_menu: Control = %SettingsMenu
+@onready var _main_menu: Control = %MainMenu
+@onready var _pause_menu: Control = %PauseMenu
+@onready var _settings_menu: Control = %SettingsMenu
 
 
-func _ready() -> void:
-	GameEvents.settings_opened.connect(_on_settings_opened)
-	GameEvents.settings_closed.connect(_on_settings_closed)
+func show_main_menu() -> void:
+	_main_menu.visible = true
+	_pause_menu.visible = false
+	_settings_menu.visible = false
 
 
-func _on_settings_opened() -> void:
-	settings_menu.show()
-	pause_menu.hide()
+func show_pause_menu() -> void:
+	_main_menu.visible = false
+	_pause_menu.visible = true
+	_settings_menu.visible = false
 
 
-func _on_settings_closed() -> void:
-	settings_menu.hide()
+func show_settings() -> void:
+	_main_menu.visible = false
+	_pause_menu.visible = false
+	_settings_menu.visible = true

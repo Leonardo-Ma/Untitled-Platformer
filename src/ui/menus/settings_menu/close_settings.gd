@@ -1,4 +1,5 @@
 extends TextureButton
+
 # TODO Change this variable to a global theme
 const CLOSE_COLOR: Color = Color.RED
 
@@ -9,4 +10,4 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	GameEvents.settings_closed.emit()
+	UIManager.close_settings()

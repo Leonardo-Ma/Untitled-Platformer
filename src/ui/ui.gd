@@ -3,26 +3,22 @@
 class_name UIView
 extends CanvasLayer
 
-@onready var _menus: Control = %Menus
+@onready var _menus: MenusView = %Menus
 @onready var _hud: Control = %HUD
 @onready var _overlays: Control = %Overlays
-
-@onready var _main_menu: Control = %MainMenu
-@onready var _pause_menu: Control = %PauseMenu
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	GameEvents.hud_visibility_toggled.connect(_on_hud_visibility_toggled)
 	UIManager.register_ui(self)
 
 
-# BUG TODO Web version esc releases mouse and ignores this input
-# Works on second esc press
+# BUG Web version: ESC releases mouse and ignores this on first press.
+# Works on second ESC press.
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_cancel"):
 		return
-	if _main_menu.visible:
+	if UIManager.is_in_main_menu():
 		return
 	if not PauseManager.is_paused():
 		UIManager.on_game_paused()
@@ -33,26 +29,28 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func show_main_menu() -> void:
 	_menus.visible = true
-	_main_menu.visible = true
-	_pause_menu.visible = false
+	_menus.show_main_menu()
 	_hud.visible = false
 	_overlays.visible = false
 
 
 func show_game() -> void:
 	_menus.visible = false
-	_hud.visible = GameEvents.hud_visible
+	_hud.visible = UIManager.hud_visible
 	_overlays.visible = true
 
 
 func show_pause_menu() -> void:
 	_menus.visible = true
-	_main_menu.visible = false
-	_pause_menu.visible = true
+	_menus.show_pause_menu()
 	_hud.visible = false
 	_overlays.visible = false
 
 
-func _on_hud_visibility_toggled(visible: bool) -> void:
-	GameEvents.hud_visible = visible
+func show_settings() -> void:
+	_menus.visible = true
+	_menus.show_settings()
+
+
+func set_hud_visible(visible: bool) -> void:
 	_hud.visible = visible

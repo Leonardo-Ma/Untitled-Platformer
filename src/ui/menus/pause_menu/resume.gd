@@ -6,5 +6,4 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	assert(UIManager.instance, "UIManager.instance is null")
-	UIManager.instance.on_game_started()
+	UIManager.on_game_started()
