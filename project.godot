@@ -28,6 +28,7 @@ buses/default_bus_layout="uid://plxel2xf671u"
 
 SteamWorks="*uid://bj75q73hkheqo"
 Groups="*uid://bwr6mdd41t0pc"
+UIManager="*uid://dbv6ox0nun76t"
 PauseManager="*res://src/globals/pause_manager.gd"
 GameEvents="*res://src/globals/game_events.gd"
 SkillRegistry="*uid://bkcavof5u4wiy"
