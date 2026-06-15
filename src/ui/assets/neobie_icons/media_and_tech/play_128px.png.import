@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwe1ncbnsdntn"
-path="res://.godot/imported/expand3_128px.png-870282b69ac7499d22f4fb539403c76e.ctex"
+uid="uid://d2ly3lbocdhhe"
+path="res://.godot/imported/play_128px.png-6c96b7f2f1114ef6b2e3ae1daac209ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/icons/neobie_icons/ui/expand3_128px.png"
-dest_files=["res://.godot/imported/expand3_128px.png-870282b69ac7499d22f4fb539403c76e.ctex"]
+source_file="res://src/ui/assets/neobie_icons/media_and_tech/play_128px.png"
+dest_files=["res://.godot/imported/play_128px.png-6c96b7f2f1114ef6b2e3ae1daac209ce.ctex"]
 
 [params]
 

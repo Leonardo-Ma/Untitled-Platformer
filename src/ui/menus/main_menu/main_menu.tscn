@@ -3,11 +3,13 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_cqtv1"]
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="1_mainmenu"]
 [ext_resource type="Script" uid="uid://b8xklo3ubuprp" path="res://src/ui/menus/main_menu/new_game.gd" id="2_esfjp"]
-[ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/icons/neobie_icons/media_and_tech/play_128px.png" id="3_ir4mu"]
+[ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/ui/assets/neobie_icons/media_and_tech/play_128px.png" id="3_ir4mu"]
 [ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://src/ui/menus/quit_to_desktop.gd" id="4_gdklf"]
-[ext_resource type="Texture2D" uid="uid://c0wvklinahbsr" path="res://src/icons/neobie_icons/ui/settings_128px.png" id="5_ir4mu"]
+[ext_resource type="Texture2D" uid="uid://c0wvklinahbsr" path="res://src/ui/assets/neobie_icons/ui/settings_128px.png" id="5_ir4mu"]
+[ext_resource type="Texture2D" uid="uid://pfmkppm3ecuw" path="res://src/ui/assets/fantasy_ui_borders/PNG/Double/Border/panel-border-010.png" id="5_n5ore"]
 [ext_resource type="Script" uid="uid://u2p8jay56jmx" path="res://src/ui/menus/open_settings.gd" id="6_30lnw"]
-[ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/icons/neobie_icons/ui/cross_128px.png" id="6_ir4mu"]
+[ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/ui/assets/neobie_icons/ui/cross_128px.png" id="6_ir4mu"]
+[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="6_l674l"]
 [ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="8_fpg57"]
 
 [node name="MainMenu" type="Control" unique_id=1634997965]
@@ -46,38 +48,65 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 40
 script = ExtResource("1_mainmenu")
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1802350550]
+[node name="TitleLabel" type="TextureRect" parent="VBoxContainer" unique_id=1604708838]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 15
-text = "Ludus Saltuum"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_vertical = 3
+texture = ExtResource("3_ghpsr")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="NewGame" type="TextureButton" parent="VBoxContainer" unique_id=1042016797]
+unique_name_in_owner = true
 modulate = Color(0, 0.36078432, 0, 0.7137255)
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../QuitDesktop")
+focus_neighbor_top = NodePath("../QuitDesktop")
+focus_neighbor_right = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../QuitDesktop")
 texture_normal = ExtResource("3_ir4mu")
+texture_focused = ExtResource("5_n5ore")
 stretch_mode = 5
 script = ExtResource("2_esfjp")
 
+[node name="FocusOnVisible" parent="VBoxContainer/NewGame" unique_id=494770207 instance=ExtResource("6_l674l")]
+layout_mode = 0
+
 [node name="Settings" type="TextureButton" parent="VBoxContainer" unique_id=2017775997]
+unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.4)
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../NewGame")
+focus_neighbor_top = NodePath("../NewGame")
+focus_neighbor_right = NodePath("../QuitDesktop")
+focus_neighbor_bottom = NodePath("../QuitDesktop")
+focus_next = NodePath("../QuitDesktop")
+focus_previous = NodePath("../NewGame")
 texture_normal = ExtResource("5_ir4mu")
+texture_focused = ExtResource("5_n5ore")
 stretch_mode = 5
 script = ExtResource("6_30lnw")
 
 [node name="QuitDesktop" type="TextureButton" parent="VBoxContainer" unique_id=320188407]
+unique_name_in_owner = true
 modulate = Color(0.6745098, 0, 0, 0.9411765)
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Settings")
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_right = NodePath("../NewGame")
+focus_neighbor_bottom = NodePath("../NewGame")
+focus_next = NodePath("../NewGame")
+focus_previous = NodePath("../Settings")
 texture_normal = ExtResource("6_ir4mu")
+texture_focused = ExtResource("5_n5ore")
 stretch_mode = 5
 script = ExtResource("4_gdklf")
 

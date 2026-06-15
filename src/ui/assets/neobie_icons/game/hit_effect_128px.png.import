@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://n4nsijc1pebb"
-path="res://.godot/imported/hit_effect_128px.png-7bf2836917fff97204dcaa3561b824c9.ctex"
+path="res://.godot/imported/hit_effect_128px.png-7fd03b6391574dd10ede5a38fab7d414.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/icons/neobie_icons/game/hit_effect_128px.png"
-dest_files=["res://.godot/imported/hit_effect_128px.png-7bf2836917fff97204dcaa3561b824c9.ctex"]
+source_file="res://src/ui/assets/neobie_icons/game/hit_effect_128px.png"
+dest_files=["res://.godot/imported/hit_effect_128px.png-7fd03b6391574dd10ede5a38fab7d414.ctex"]
 
 [params]
 
