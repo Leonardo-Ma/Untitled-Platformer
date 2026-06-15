@@ -7,12 +7,14 @@ func request_pause(source_name: String) -> void:
 	if not _pause_sources.has(source_name):
 		_pause_sources[source_name] = true
 		_update_pause_state()
+		push_warning("Pausing ", source_name)
 
 
 func release_pause(source_name: String) -> void:
 	if _pause_sources.has(source_name):
 		_pause_sources.erase(source_name)
 		_update_pause_state()
+		push_warning("Unpausing ", source_name)
 
 
 func _update_pause_state() -> void:

@@ -27,6 +27,7 @@ func register_ui(ui: UIView) -> void:
 func on_game_started() -> void:
 	assert(_ui != null, "UIManager: no UIView registered in " + name)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	print_debug("Mouse captured by " + name)
 	PauseManager.release_pause("main_menu")
 	PauseManager.release_pause("pause_menu")
 	_set_state(State.PLAYING)

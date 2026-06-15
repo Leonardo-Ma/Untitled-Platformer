@@ -14,10 +14,12 @@ func _ready() -> void:
 func _on_capture_mouse_requested() -> void:
 	if not _is_ui_interacting():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		print_debug("Mouse captured by " + name)
 
 
 func _on_release_mouse_requested() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	print_debug("Mouse released by " + name)
 
 
 func _is_ui_interacting() -> bool:
