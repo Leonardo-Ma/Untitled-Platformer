@@ -9,7 +9,7 @@ signal release_mouse_requested
 @export_range(0.0, 1.0, 0.1) var horizontal_sensibility: float = 0.2
 @export_range(0.0, 1.0, 0.1) var vertical_sensibility: float = 0.2
 
-@export_range(0.0, 1.0, 0.01) var gamepad_look_sensitivity: float = 0.3
+@export_range(0.0, 1.0, 0.01) var gamepad_look_sensitivity: float = 0.35
 @export var gamepad_look_invert_y: bool = false
 
 var mouse_look_enabled: bool = false
