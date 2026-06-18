@@ -12,7 +12,7 @@ var extra_jump_velocity: float = 12.0
 var jump_fov_increase: float = 8.0
 var jump_fov_duration: float = 0.2
 
-var _jumps_remaining: int = 0
+var _jumps_remaining: int
 var _frame_of_last_jump: int = -1
 
 
@@ -23,6 +23,8 @@ func get_hud_mode() -> HUDMode:
 func _ready() -> void:
 	# Listen only for the first ground jump signal
 	skills_controller.movement_controller.jumped.connect(_on_jumped)
+	# Grant multi jump when falling without jumping
+	skills_controller.movement_controller.in_air.connect(_on_in_air)
 
 
 func on_landed() -> void:
@@ -36,13 +38,13 @@ func process_input() -> void:
 
 
 func _can_extra_jump() -> bool:
+	if not Input.is_action_just_pressed("jump"):
+		return false
 	if _jumps_remaining <= 0:
 		return false
 	# TODO Double check this or find better approach
 	# One jump per physics frame (prevents double‑process of same press)
 	if Engine.get_physics_frames() == _frame_of_last_jump:
-		return false
-	if not Input.is_action_just_pressed("jump"):
 		return false
 	if not skills_controller.movement_controller.movement_enabled:
 		return false
@@ -66,6 +68,13 @@ func _on_jumped() -> void:
 	_frame_of_last_jump = Engine.get_physics_frames()
 
 
+## Grant charges on any air entry (jump or fall)
+func _on_in_air() -> void:
+	_jumps_remaining = definition.max_charges
+	charges_updated.emit(_jumps_remaining)
+
+
+#region Visual and sound effects
 func _play_jump_feedback() -> void:
 	multi_jump_executed.emit()
 	SoundManager.play_sound(MULTI_JUMP_SOUNDS.pick_random(), SoundManager.SoundCategory.SFX)
@@ -84,3 +93,4 @@ func _animate_jump_fov() -> void:
 	tween.tween_property(skills_controller.camera, "fov", skills_controller.base_fov, jump_fov_duration * 0.7).set_trans(Tween.TRANS_SINE).set_ease(
 		Tween.EASE_IN_OUT
 	)
+#endregion
