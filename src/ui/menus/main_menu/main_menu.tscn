@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_cqtv1"]
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="1_mainmenu"]
 [ext_resource type="Script" uid="uid://b8xklo3ubuprp" path="res://src/ui/menus/main_menu/new_game.gd" id="2_esfjp"]
-[ext_resource type="Texture2D" uid="uid://b67vuihbgjja6" path="res://src/art_assets/game_logo_no_background.png" id="3_ghpsr"]
+[ext_resource type="Texture2D" uid="uid://c38n7tbohbvyk" path="res://src/ui/assets/game_logo_no_background.png" id="3_ewdsk"]
 [ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/ui/assets/neobie_icons/media_and_tech/play_128px.png" id="3_ir4mu"]
 [ext_resource type="Script" uid="uid://uh7ikvq5pxya" path="res://src/ui/menus/quit_to_desktop.gd" id="4_gdklf"]
 [ext_resource type="Texture2D" uid="uid://c0wvklinahbsr" path="res://src/ui/assets/neobie_icons/ui/settings_128px.png" id="5_ir4mu"]
@@ -65,7 +65,7 @@ script = ExtResource("1_mainmenu")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-texture = ExtResource("3_ghpsr")
+texture = ExtResource("3_ewdsk")
 expand_mode = 3
 stretch_mode = 5
 
