@@ -44,4 +44,6 @@ func _sync_selection() -> void:
 
 
 func _on_item_selected(index: int) -> void:
-	DisplayServer.window_set_mode(get_item_metadata(index))
+	SettingsManager.window_mode = get_item_metadata(index)
+	DisplayServer.window_set_mode(SettingsManager.window_mode)
+	SettingsManager.save()

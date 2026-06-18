@@ -26,6 +26,7 @@ buses/default_bus_layout="uid://plxel2xf671u"
 
 [autoload]
 
+SettingsManager="*uid://caq4tmrxugaw7"
 SteamWorks="*uid://bj75q73hkheqo"
 Groups="*uid://bwr6mdd41t0pc"
 InputManager="*uid://dkueywuxvkn4k"
