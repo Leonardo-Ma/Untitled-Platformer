@@ -1,18 +1,21 @@
 [gd_resource type="Theme" format=3 uid="uid://cikfldg8du084"]
 
-[ext_resource type="StyleBox" uid="uid://be5kfmdwueww0" path="res://src/ui/themes/base_style_box_texture.tres" id="1_lvuq4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hukf"]
+bg_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [resource]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 5
 Button/font_sizes/font_size = 24
-Button/styles/focus = ExtResource("1_lvuq4")
-Button/styles/hover = ExtResource("1_lvuq4")
-Button/styles/normal = ExtResource("1_lvuq4")
 HSlider/styles/slider = null
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 5
 Label/font_sizes/font_size = 32
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4hukf")
 TabBar/constants/h_separation = 0
 TabContainer/constants/icon_max_width = 150
 TabContainer/constants/icon_separation = 50

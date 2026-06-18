@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dpc6wcewh3ft" path="res://src/ui/menus/settings_menu/audio/volume_slider.gd" id="5_nap5k"]
 [ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/ui/assets/neobie_icons/ui/cross_128px.png" id="6_nxapy"]
 [ext_resource type="Texture2D" uid="uid://d2qt4l064p8c" path="res://src/ui/assets/neobie_icons/media_and_tech/gamepad_128px.png" id="6_s8b3e"]
+[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="7_8i7sm"]
 [ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="8_4yx6g"]
 [ext_resource type="Script" uid="uid://djxnnbvmilpar" path="res://src/ui/menus/settings_menu/close_settings.gd" id="8_jw1je"]
 [ext_resource type="Texture2D" uid="uid://kkysfnikwks4" path="res://src/ui/assets/neobie_icons/media_and_tech/music_128px.png" id="9_jw1je"]
@@ -101,6 +102,10 @@ layout_mode = 2
 [node name="GameplayTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=818776271]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../CloseSettingsButton")
+focus_neighbor_right = NodePath("../AudioTab")
+focus_next = NodePath("../AudioTab")
+focus_previous = NodePath("../CloseSettingsButton")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -108,9 +113,18 @@ icon = ExtResource("4_ftg2j")
 icon_alignment = 1
 expand_icon = true
 
+[node name="FocusOnVisible" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer/GameplayTab" unique_id=494770207 instance=ExtResource("7_8i7sm")]
+layout_mode = 0
+
 [node name="AudioTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1997371650]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../GameplayTab")
+focus_neighbor_top = NodePath("../../../Tabs/AudioOptions/UIVolume/UISlider")
+focus_neighbor_right = NodePath("../HUDTab")
+focus_neighbor_bottom = NodePath("../../../Tabs/AudioOptions/GlobalVolume/GlobalVolumeSlider")
+focus_next = NodePath("../HUDTab")
+focus_previous = NodePath("../GameplayTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -121,6 +135,12 @@ expand_icon = true
 [node name="HUDTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=2090510106]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../AudioTab")
+focus_neighbor_top = NodePath("../../../Tabs/HudOptions/VBoxContainer/CheckButton")
+focus_neighbor_right = NodePath("../CameraTab")
+focus_neighbor_bottom = NodePath("../../../Tabs/HudOptions/VBoxContainer/CheckButton")
+focus_next = NodePath("../CameraTab")
+focus_previous = NodePath("../AudioTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -131,6 +151,10 @@ expand_icon = true
 [node name="CameraTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1020966248]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../HUDTab")
+focus_neighbor_right = NodePath("../VideoTab")
+focus_next = NodePath("../VideoTab")
+focus_previous = NodePath("../HUDTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -141,6 +165,12 @@ expand_icon = true
 [node name="VideoTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1382191094]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../CameraTab")
+focus_neighbor_top = NodePath("../../../Tabs/VideoOptions/FullScreen/FullScreenOption")
+focus_neighbor_right = NodePath("../AccessibilityTab")
+focus_neighbor_bottom = NodePath("../../../Tabs/VideoOptions/Resolution/ResolutionOption")
+focus_next = NodePath("../AccessibilityTab")
+focus_previous = NodePath("../CameraTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -151,6 +181,10 @@ expand_icon = true
 [node name="AccessibilityTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1249037183]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../VideoTab")
+focus_neighbor_right = NodePath("../CreditsTab")
+focus_next = NodePath("../CreditsTab")
+focus_previous = NodePath("../VideoTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -161,6 +195,10 @@ expand_icon = true
 [node name="CreditsTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1821142584]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../AccessibilityTab")
+focus_neighbor_right = NodePath("../ControlsTab")
+focus_next = NodePath("../ControlsTab")
+focus_previous = NodePath("../AccessibilityTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -171,6 +209,10 @@ expand_icon = true
 [node name="ControlsTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1774065017]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../CreditsTab")
+focus_neighbor_right = NodePath("../StatisticsTab")
+focus_next = NodePath("../StatisticsTab")
+focus_previous = NodePath("../CreditsTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -181,6 +223,10 @@ expand_icon = true
 [node name="StatisticsTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1561313159]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../ControlsTab")
+focus_neighbor_right = NodePath("../CloseSettingsButton")
+focus_next = NodePath("../CloseSettingsButton")
+focus_previous = NodePath("../ControlsTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -191,6 +237,10 @@ expand_icon = true
 [node name="CloseSettingsButton" type="TextureButton" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1971545603]
 layout_mode = 2
 size_flags_horizontal = 8
+focus_neighbor_left = NodePath("../StatisticsTab")
+focus_neighbor_right = NodePath("../GameplayTab")
+focus_next = NodePath("../GameplayTab")
+focus_previous = NodePath("../StatisticsTab")
 texture_normal = ExtResource("6_nxapy")
 stretch_mode = 5
 script = ExtResource("8_jw1je")
@@ -207,8 +257,8 @@ alignment = 1
 [node name="GameplayOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1001225224]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 6
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
@@ -235,6 +285,10 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_neighbor_bottom = NodePath("../../MusicVolume/MusicSlider")
+focus_next = NodePath("../../MusicVolume/MusicSlider")
+focus_previous = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 1
@@ -255,6 +309,10 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../GlobalVolume/GlobalVolumeSlider")
+focus_neighbor_bottom = NodePath("../../EffectsVolume/EffectsSlider")
+focus_next = NodePath("../../EffectsVolume/EffectsSlider")
+focus_previous = NodePath("../../GlobalVolume/GlobalVolumeSlider")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 2
@@ -272,6 +330,10 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../MusicVolume/MusicSlider")
+focus_neighbor_bottom = NodePath("../../UIVolume/UISlider")
+focus_next = NodePath("../../UIVolume/UISlider")
+focus_previous = NodePath("../../MusicVolume/MusicSlider")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 3
@@ -289,11 +351,16 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../EffectsVolume/EffectsSlider")
+focus_neighbor_bottom = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_next = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_previous = NodePath("../../EffectsVolume/EffectsSlider")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 5
 
 [node name="HudOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1253832284]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -351,6 +418,10 @@ expand_mode = 2
 [node name="ResolutionOption" type="OptionButton" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Resolution" unique_id=1724809319]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_neighbor_bottom = NodePath("../../FullScreen/FullScreenOption")
+focus_next = NodePath("../../FullScreen/FullScreenOption")
+focus_previous = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
 theme_override_font_sizes/font_size = 32
 script = ExtResource("9_nxapy")
 
@@ -369,6 +440,10 @@ expand_mode = 2
 [node name="FullScreenOption" type="OptionButton" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/FullScreen" unique_id=929539239]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../Resolution/ResolutionOption")
+focus_neighbor_bottom = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_next = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_previous = NodePath("../../Resolution/ResolutionOption")
 theme = SubResource("Theme_4yx6g")
 theme_override_constants/icon_max_width = 80
 script = ExtResource("12_dt2xc")
@@ -381,7 +456,6 @@ exclusive_fullscreen_icon = ExtResource("9_stv84")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
 theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""

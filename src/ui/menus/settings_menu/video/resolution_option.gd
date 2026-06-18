@@ -1,7 +1,5 @@
 extends OptionButton
 
-# Ordered by Steam survey popularity (April 2026)
-# https://store.steampowered.com/hwsurvey
 const RESOLUTIONS: Array[Vector2i] = [
 	# 16:9
 	Vector2i(1280, 720),

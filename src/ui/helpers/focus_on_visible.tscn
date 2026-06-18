@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b6ednpu0kwboc"]
+
+[ext_resource type="Script" uid="uid://ehownvdjncqu" path="res://src/ui/helpers/focus_on_visible.gd" id="1_77f3d"]
+
+[node name="FocusOnVisible" type="Control" unique_id=494770207]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_77f3d")

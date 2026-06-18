@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="2_pmc0i"]
 [ext_resource type="Script" uid="uid://mqguyiauncmr" path="res://src/ui/menus/pause_menu/resume.gd" id="2_vsi4c"]
 [ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/ui/assets/neobie_icons/media_and_tech/play_128px.png" id="3_4yoom"]
+[ext_resource type="Texture2D" uid="uid://pfmkppm3ecuw" path="res://src/ui/assets/fantasy_ui_borders/PNG/Double/Border/panel-border-010.png" id="4_7nd55"]
 [ext_resource type="Script" uid="uid://buikwklv2j3ub" path="res://src/ui/menus/quit_main_menu.gd" id="4_qmph6"]
 [ext_resource type="Texture2D" uid="uid://c0wvklinahbsr" path="res://src/ui/assets/neobie_icons/ui/settings_128px.png" id="5_7nd55"]
+[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="5_fclkf"]
 [ext_resource type="Script" uid="uid://u2p8jay56jmx" path="res://src/ui/menus/open_settings.gd" id="6_577b3"]
 [ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/ui/assets/neobie_icons/ui/cross_128px.png" id="7_577b3"]
 [ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="11_0tjqn"]
@@ -54,16 +56,33 @@ modulate = Color(0, 0.36078432, 0, 0.7137255)
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../QuitMainMenu")
+focus_neighbor_top = NodePath("../QuitMainMenu")
+focus_neighbor_right = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../QuitMainMenu")
 texture_normal = ExtResource("3_4yoom")
+texture_focused = ExtResource("4_7nd55")
 stretch_mode = 5
 script = ExtResource("2_vsi4c")
+
+[node name="FocusOnVisible" parent="MarginContainer/VBoxContainer/Resume" unique_id=494770207 instance=ExtResource("5_fclkf")]
+layout_mode = 0
 
 [node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=337163810]
 modulate = Color(0, 0, 0, 0.4)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Resume")
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_right = NodePath("../QuitMainMenu")
+focus_neighbor_bottom = NodePath("../QuitMainMenu")
+focus_next = NodePath("../QuitMainMenu")
+focus_previous = NodePath("../Resume")
 texture_normal = ExtResource("5_7nd55")
+texture_focused = ExtResource("4_7nd55")
 stretch_mode = 5
 script = ExtResource("6_577b3")
 
@@ -72,7 +91,14 @@ modulate = Color(0.6745098, 0, 0, 0.9411765)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Settings")
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_right = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Resume")
+focus_next = NodePath("../Resume")
+focus_previous = NodePath("../Settings")
 texture_normal = ExtResource("7_577b3")
+texture_focused = ExtResource("4_7nd55")
 stretch_mode = 5
 script = ExtResource("4_qmph6")
 
@@ -81,4 +107,3 @@ layout_mode = 1
 offset_left = -117.0
 offset_top = -58.0
 offset_right = 0.0
-offset_bottom = 0.0

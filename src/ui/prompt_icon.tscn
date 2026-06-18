@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dc4emcvac7toq"]
+
+[ext_resource type="Script" uid="uid://cj7q6x6qfonxd" path="res://src/ui/prompt_icon.gd" id="1_ojmjs"]
+
+[node name="PromptIcon" type="TextureRect" unique_id=192685747]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ojmjs")

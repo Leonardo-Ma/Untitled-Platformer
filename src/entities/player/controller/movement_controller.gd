@@ -10,6 +10,7 @@ signal in_air
 signal landed
 
 const COYOTE_TIME: float = 0.05
+const DEADZONE: float = 0.3  # deadzone to prevent drift
 
 @export var camera: Node3D
 
@@ -45,15 +46,29 @@ func movement_logic(body: CharacterBody3D) -> void:
 		body.velocity.z = move_toward(body.velocity.z, 0, current_speed)
 		return
 
+	# Get raw input vector (works for keyboard and gamepad left stick)
 	var input_direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
-	if input_direction.length() > 0:
+	var input_length := input_direction.length()
+
+	# Apply deadzone – ignore tiny stick movements (keyboard always gives 1.0)
+	if input_length < DEADZONE:
+		input_length = 0.0
+		input_direction = Vector2.ZERO
+
+	if input_length > 0.0:
 		var direction: Vector3 = (body.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 
 		var is_running: bool = Input.is_action_pressed("run")
+
+		# Speed scales with stick deflection (0..1); keyboard always produces 1.0
+		var speed_mult: float = input_length
 		if is_running:
-			current_speed = owner.movement.run_speed
+			current_speed = speed_mult * owner.movement.run_speed
 		else:
-			current_speed = owner.movement.walk_speed
+			current_speed = speed_mult * owner.movement.walk_speed
+
+		# Clamp to allowed maximum
+		current_speed = clamp(current_speed, 0.0, owner.movement.run_speed)
 
 		var normalized_input: Vector2 = input_direction.normalized()
 		var speed_factor: float = current_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
