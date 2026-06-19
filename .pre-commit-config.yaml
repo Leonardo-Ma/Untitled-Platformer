@@ -42,12 +42,111 @@ repos:
               \script_templates/|
           )
 
+      # Scenes / Resources
+      - id: no-custom-maximum-size
+        name: "ban custom_maximum_size | breaks different resolution layouts | use anchors, size_flags, and custom_minimum_size"
+        language: pygrep
+        entry: 'custom_maximum_size'
+        files: \.(tscn|tres)$
+
+      - id: no-editor-signal-connections
+        name: "ban editor signal connections | couples scene structure to logic | use signal.connect() in code"
+        language: pygrep
+        entry: '^\[connection '
+        files: \.tscn$
+
+      # Architecture
+      - id: no-scene-tree-traversal
+        name: "ban scene tree climbing | assumes scene structure and breaks on refactor | use @export, Groups, or Autoloads"
+        language: pygrep
+        entry: '(get_parent\(\)\.get_parent\(\)|find_parent\(|get_node\(\s*"\.\.)'
+        files: \.gd$
+
+      - id: no-get-node-or-null
+        name: "ban get_node_or_null | fails silently | use get_node()"
+        language: pygrep
+        entry: 'get_node_or_null\('
+        files: \.gd$
+
+      - id: no-string-group-names
+        name: "ban raw string group names | silent fail | use Groups autoload constants"
+        language: pygrep
+        entry: '(add_to_group|remove_from_group|is_in_group|get_tree\(\)\.get_nodes_in_group)\(\s*"'
+        files: \.gd$
+
+      - id: no-hardcoded-res-paths
+        name: "ban hardcoded res:// paths | breaks on export and bypasses UID system | use preload with uid"
+        language: pygrep
+        entry: '(load|preload)\(\s*"res://'
+        files: \.gd$
+
+      - id: no-runtime-load
+        name: "ban ResourceLoader.load at runtime | causes performance drop and bypasses UID preloading | use preload"
+        language: pygrep
+        entry: 'ResourceLoader\.load\('
+        files: \.gd$
+
+      - id: no-input-action-in-ui
+        name: "ban Input.is_action in UI scripts | UI must not poll input directly | use _unhandled_input or signals"
+        language: pygrep
+        entry: 'Input\.(is_action_pressed|is_action_just_pressed|is_key_pressed)\('
+        files: src/ui/.*\.gd$
+
+      - id: no-os-execute
+        name: "ban OS.execute | unsafe | use Godot APIs"
+        language: pygrep
+        entry: 'OS\.execute\s*\('
+        files: \.gd$
+
+      - id: no-super-ready
+        name: "ban super._ready() | fail prone | use @abstract func _child_ready()"
+        language: pygrep
+        entry: 'super\._ready\(\)'
+        files: \.gd$
+
+      - id: no-magic-numbers-wait
+        name: "ban create_timer with magic numbers | error prone | extract duration to a const with proper naming"
+        language: pygrep
+        entry: 'create_timer\(\s*[0-9]'
+        files: \.gd$
+
+      - id: no-delta-on-impulse
+        name: "ban delta on impulse calls | impulses are instant and must not scale with frame rate | remove delta multiplication"
+        language: pygrep
+        entry: 'apply_(impulse|central_impulse|torque_impulse)\(.*\*\s*delta'
+        files: \.gd$
+
+      - id: no-delta-missing-on-continuous-movement
+        name: "ban frame dependent continuous movement | position changes accumulate per frame and must be frame independent | multiply by delta"
+        language: pygrep
+        entry: '(position|translation)\s*\+=\s*(?!.*\*\s*delta)(?!.*delta\s*\*)'
+        files: \.gd$
+
+      # Godot 3 syntax
+
+      - id: no-godot3-yield
+        name: "ban yield() | Godot 3 coroutine syntax | use await"
+        language: pygrep
+        entry: '\byield\s*\('
+        files: \.gd$
+
+      - id: no-godot3-randomize
+        name: "ban randomize() | read docs | use RandomNumberGenerator or randf()"
+        language: pygrep
+        entry: '\brandomize\s*\(\)'
+        files: \.gd$
+
+      - id: no-godot3-connect-syntax
+        name: "ban old connect() with string method | Godot 3 signal syntax | use signal.connect()"
+        language: pygrep
+        entry: '\.connect\(\s*"'
+        files: \.gd$
+
   - repo: https://github.com/qoomon/git-conventional-commits
     rev: f00599350f1d22c14f431b4e458f1076124c0c0d # 2.9.0
     hooks:
       - id: conventional-commits
         stages: [commit-msg]
-
 
   - repo: https://github.com/Scony/godot-gdscript-toolkit
     rev: b7a4935fc6483d51837f7080598dad456f4f7645 # 4.5.0
