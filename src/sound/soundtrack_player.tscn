@@ -1,5 +1,3 @@
 [gd_scene format=3 uid="uid://dbra2y6toqyyx"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=869066423]
-
-[connection signal="finished" from="." to="." method="_on_finished"]

@@ -12,6 +12,7 @@ var health_resource: Health
 
 func _ready() -> void:
 	GameEvents.player_spawned.connect(_on_player_spawned)
+	timer.timeout.connect(_on_timer_timeout)
 
 	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
 	if not players.is_empty():

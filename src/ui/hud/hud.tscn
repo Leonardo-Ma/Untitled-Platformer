@@ -366,5 +366,3 @@ layout_mode = 2
 
 [node name="Skill5" parent="HBoxContainer/VBoxContainer2/Skills/SkillsContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
-
-[connection signal="timeout" from="HBoxContainer/LeftSideContainer/PlayerHealthbar/Timer" to="HBoxContainer/LeftSideContainer/PlayerHealthbar" method="_on_timer_timeout"]
