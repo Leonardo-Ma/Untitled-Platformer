@@ -35,12 +35,10 @@ PauseManager="*res://src/globals/pause_manager.gd"
 GameEvents="*res://src/globals/game_events.gd"
 SkillRegistry="*uid://bkcavof5u4wiy"
 SoundManager="*uid://c6aviitsw1wa"
-GoapWorldState="*uid://clan8pwdcjgaj"
 LevelManager="*uid://qsxf8ht6hmse"
 CheckpointManager="*uid://cimfiv457vauf"
 TestGoapConsistency="*res://tests/goap.gd"
 TestAudio="*uid://cxi4v122jd7b6"
-GraphBuilder="*res://src/entities/ai/goap/goap_graph_builder.gd"
 
 [debug]
 
