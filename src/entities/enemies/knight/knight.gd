@@ -5,7 +5,7 @@
 extends AggressiveEntity
 
 
-func _entity_ready() -> void:
+func _child_ready() -> void:
 	pass
 
 

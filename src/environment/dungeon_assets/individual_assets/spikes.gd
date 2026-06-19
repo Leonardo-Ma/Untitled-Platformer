@@ -5,9 +5,7 @@ extends Hazard
 @onready var spike_mesh_initial_position: Vector3 = spike_mesh.position
 
 
-func _ready() -> void:
-	super._ready()
-
+func _child_ready() -> void:
 	activate.connect(_on_spike_up)
 	deactivate.connect(_on_spike_down)
 

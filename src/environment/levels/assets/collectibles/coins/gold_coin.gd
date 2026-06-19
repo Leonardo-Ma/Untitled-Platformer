@@ -1,8 +1,7 @@
 extends Collectible
 
 
-func _ready() -> void:
-	super._ready()
+func _child_ready() -> void:
 	collect_sounds = [
 		preload("uid://cwptti4mle3g0"),  # coin.wav
 		preload("uid://dgdotgk6kwxi"),  # coin_3.wav

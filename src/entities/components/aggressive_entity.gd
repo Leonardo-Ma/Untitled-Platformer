@@ -50,7 +50,7 @@ var _prev_health: int = 0
 @onready var perception_system: PerceptionSystem = get_node_or_null("%PerceptionSystem")  # NPC
 
 
-## Children should override _entity_ready instead of this
+## Children should override _child_ready instead of this
 func _ready() -> void:
 	assert(hitbox, "Hitbox incorrect for " + self.name)
 	assert(hurtbox, "Hurtbox incorrect for " + self.name)
@@ -70,7 +70,7 @@ func _ready() -> void:
 	# Inject timer creation capability into health resource - Dependency Injection
 	health.initialize_timer_callback(_create_timer)
 
-	_entity_ready()
+	_child_ready()
 
 	if _requires_goap():
 		assert(ai_config, "GOAP Not properly configured for " + self.name)
@@ -95,7 +95,7 @@ func _ready() -> void:
 
 
 ## Virtual method for subclasses to override instead of _ready()
-@abstract func _entity_ready() -> void
+@abstract func _child_ready() -> void
 
 ## False for Player class
 @abstract func _requires_goap() -> bool

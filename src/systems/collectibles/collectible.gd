@@ -9,6 +9,9 @@ var collect_sounds: Array[AudioStream] = []
 var float_tween: Tween
 var rot_tween: Tween
 
+## Children should override this instead of _ready()
+@abstract func _child_ready() -> void
+
 
 func _ready() -> void:
 	assert(data != null, "Collectible data missing on " + self.name)

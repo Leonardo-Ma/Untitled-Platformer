@@ -1,4 +1,4 @@
-class_name Hazard
+@abstract class_name Hazard
 extends Node3D
 
 signal activate
@@ -7,6 +7,9 @@ signal deactivate
 @export var attack: Attack
 
 @onready var hitbox: Hitbox = %Hitbox
+
+## Children should override this instead of _ready()
+@abstract func _child_ready() -> void
 
 
 func _ready() -> void:
@@ -17,6 +20,7 @@ func _ready() -> void:
 		self.body_exited.connect(_on_body_exited)
 	else:
 		assert(false, "I am not Area3D or StaticBody3D " + self.name)
+	_child_ready()
 
 
 func _on_body_entered(body: Node3D) -> void:

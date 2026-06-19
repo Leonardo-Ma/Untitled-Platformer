@@ -19,7 +19,8 @@ func _physics_process(_delta: float) -> void:
 				collider.apply_impulse(push_dir.normalized() * push_force, collision.get_position() - collider.global_position)
 
 
-func _entity_ready() -> void:
+## Children should override this instead of _ready()
+func _child_ready() -> void:
 	pass
 
 
