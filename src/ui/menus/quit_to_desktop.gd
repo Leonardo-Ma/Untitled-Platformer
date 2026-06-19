@@ -1,6 +1,7 @@
 extends TextureButton
 
 const SHUT_DOWN_SOUND: AudioStream = preload("uid://yvujl2l3onjt")  # synth_shut_down.wav
+const SHUTDOWN_DELAY: float = 0.4
 const CLOSE_COLOR: Color = Color.RED
 
 
@@ -11,5 +12,5 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	SoundManager.play_sound(SHUT_DOWN_SOUND, SoundManager.SoundCategory.UI)
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(SHUTDOWN_DELAY).timeout
 	get_tree().quit()

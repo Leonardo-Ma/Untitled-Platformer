@@ -12,6 +12,8 @@ enum MusicState {
 	NIGHT,
 	SILENCE,
 }
+# TODO Maybe an export instead?
+const _TRANSITION_COOLDOWN_DURATION: float = 1.0
 
 var music_library: Dictionary = {
 	MusicState.EXPLORATION:
@@ -107,7 +109,7 @@ func change_state(new_state: MusicState, immediate: bool = false, track_key: Str
 
 		# Prevent state change spam
 		_transition_cooldown = true
-		get_tree().create_timer(1.0).timeout.connect(_on_transition_cooldown_finished)
+		get_tree().create_timer(_TRANSITION_COOLDOWN_DURATION).timeout.connect(_on_transition_cooldown_finished)
 
 
 func stop(fade_duration: float = 1.0) -> void:
