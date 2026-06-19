@@ -143,6 +143,7 @@ script = ExtResource("22_ju7vx")
 metadata/_custom_type_script = "uid://cpusxg43clwxv"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1218537899]
+unique_name_in_owner = true
 target_desired_distance = 1.2
 path_height_offset = 0.25
 avoidance_enabled = true
@@ -179,6 +180,3 @@ double_sided = false
 font_size = 24
 outline_size = 8
 script = ExtResource("26_5e42j")
-
-[connection signal="target_reached" from="NavigationAgent3D" to="Controllers/NavigationController" method="_on_navigation_agent_3d_target_reached"]
-[connection signal="velocity_computed" from="NavigationAgent3D" to="Controllers/NavigationController" method="_on_navigation_agent_3d_velocity_computed"]
