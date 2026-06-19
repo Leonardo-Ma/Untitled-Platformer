@@ -17,6 +17,7 @@ func _ready() -> void:
 	assert(data != null, "Collectible data missing on " + self.name)
 	body_entered.connect(_on_body_entered)
 	_setup_float_animation()
+	_child_ready()
 
 
 func _on_body_entered(body: Node3D) -> void:
