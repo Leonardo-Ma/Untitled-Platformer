@@ -128,7 +128,6 @@ layout_mode = 1
 
 [node name="GamepadPromptsMargin" type="MarginContainer" parent="." unique_id=186216965]
 custom_minimum_size = Vector2(138, 138)
-propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
