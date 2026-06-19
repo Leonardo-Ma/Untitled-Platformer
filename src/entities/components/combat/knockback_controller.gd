@@ -18,6 +18,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
+# TODO Improve this
 func apply_knockback(impulse: Vector3) -> void:
 	if impulse.length_squared() > 0.01:
 		# Add to existing knockback to allow combo juggling/multihits
@@ -26,15 +27,10 @@ func apply_knockback(impulse: Vector3) -> void:
 		# Estimate duration based on friction slowing to 0 using the new total magnitude
 		var duration: float = _current_knockback.length() / friction
 
-		# Disable player movement
-		var movement_ctrl: Node = owner.get_node_or_null("%MovementController")
-		if movement_ctrl and movement_ctrl.has_method("disable_movement"):
-			movement_ctrl.disable_movement(duration)
-
-		# Disable enemy navigation
-		var nav_ctrl: Node = owner.get_node_or_null("%NavigationController")
-		if nav_ctrl and nav_ctrl.has_method("disable_movement"):
-			nav_ctrl.disable_movement(duration)
+		if owner is PlayerEntity:
+			owner.movement_controller.disable_movement(duration)
+		elif owner is AggressiveEntity:
+			owner.navigation_controller.disable_movement(duration)
 
 		set_physics_process(true)
 

@@ -41,13 +41,14 @@ var _damage_material: StandardMaterial3D
 var _damage_tween: Tween
 var _prev_health: int = 0
 
-@onready var hitbox: Hitbox = %Hitbox  # Player and NPC
-@onready var hurtbox: Hurtbox = %Hurtbox  # Player and NPC
-@onready var status_manager: StatusManager = %StatusManager  # Player and NPC
-@onready var animation_player: AnimationPlayer = %AnimationPlayer  # Player and NPC
-@onready var navigation_controller: Node = get_node_or_null("%NavigationController")  # NPC
-@onready var goap_controller: GoapMemory = get_node_or_null("%GoapController")  # NPC
-@onready var perception_system: PerceptionSystem = get_node_or_null("%PerceptionSystem")  # NPC
+@onready var hitbox: Hitbox = %Hitbox
+@onready var hurtbox: Hurtbox = %Hurtbox
+@onready var status_manager: StatusManager = %StatusManager
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+@onready var navigation_controller: Node
+@onready var goap_controller: GoapMemory
+@onready var perception_system: PerceptionSystem
 
 
 ## Children should override _child_ready instead of this
@@ -73,6 +74,9 @@ func _ready() -> void:
 	_child_ready()
 
 	if _requires_goap():
+		navigation_controller = $%NavigationController
+		goap_controller = $%GoapController
+		perception_system = $%PerceptionSystem
 		assert(ai_config, "GOAP Not properly configured for " + self.name)
 		assert(goap_controller, "GoapController missing for " + self.name)
 		assert(navigation_controller, "NavigationController missing for " + self.name)

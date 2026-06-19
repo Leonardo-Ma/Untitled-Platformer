@@ -20,11 +20,9 @@ const PARAM_IS_DAMAGED_REQUEST: String = "parameters/is_damaged/request"
 
 
 func _ready() -> void:
-	var movement_controller: Node3D = get_node_or_null("%MovementController")
-	var navigation_controller: Node = get_node_or_null("%NavigationController")
-	assert(movement_controller || navigation_controller, "Movement or navigation controller missing for " + owner.name)
-
 	if entity is PlayerEntity:
+		var movement_controller: Node3D = $%MovementController
+		assert(movement_controller, "movement_controller missing for " + owner.name)
 #		movement_controller.move_stopped.connect(_on_move_stopped)
 		movement_controller.movement_direction_changed.connect(_on_movement_direction_changed)
 		movement_controller.jumped.connect(_on_jumped)
@@ -32,8 +30,11 @@ func _ready() -> void:
 		movement_controller.landed.connect(_on_landed)
 #		magic_controller.casted.connect(_on_magic_casted)
 	elif entity is AggressiveEntity:
+		var navigation_controller: Node = $%NavigationController
+		assert(navigation_controller, "navigation_controller missing for " + owner.name)
 		navigation_controller.movement_direction_changed.connect(_on_movement_direction_changed)
-
+	else:
+		assert(false, "Entity " + owner.name + "not supported but has animation controller")
 	_validate_animation_parameters()
 	entity.melee_attacked.connect(_on_melee_attack)
 	health.damaged.connect(_on_damaged)
