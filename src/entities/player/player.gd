@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 		var collision: KinematicCollision3D = get_slide_collision(i)
 		var collider: Object = collision.get_collider()
 		if collider is RigidBody3D:
-			var push_force: float = movement.run_speed * 0.1
+			var push_force: float = movement.speed * 0.1
 			var push_dir: Vector3 = -collision.get_normal()
 			push_dir.y = 0.0  # Prevent pushing into the ground or sky
 			if push_dir.length_squared() > 0.001:

@@ -80,11 +80,8 @@ func _get_player_info_text() -> String:
 	var is_in_air: bool = not player_entity.is_on_floor()
 	output += "In Air: %s\n" % str(is_in_air)
 
-	var current_speed: float = player_entity.movement_controller.current_speed
-	output += "Move Speed: %.1f\n" % current_speed
-
-	var is_running: bool = current_speed > player_entity.movement.walk_speed + 0.1
-	output += "Running: %s\n" % ("Yes" if is_running else "No")
+	var speed: float = player_entity.movement.speed
+	output += "Move Speed: %.1f\n" % speed
 
 	output += "Health: %.2f / %.2f\n" % [player_entity.health.health, player_entity.health.max_health]
 	output += "Invulnerable: %s\n" % ("YES" if player_entity.health.invulnerable else "NO")

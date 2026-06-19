@@ -48,7 +48,7 @@ func movement_logic(body: CharacterBody3D) -> void:
 
 	# Get raw input vector (works for keyboard and gamepad left stick)
 	var input_direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
-	var input_length := input_direction.length()
+	var input_length: float = input_direction.length()
 
 	# Apply deadzone – ignore tiny stick movements (keyboard always gives 1.0)
 	if input_length < DEADZONE:
@@ -58,20 +58,14 @@ func movement_logic(body: CharacterBody3D) -> void:
 	if input_length > 0.0:
 		var direction: Vector3 = (body.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 
-		var is_running: bool = Input.is_action_pressed("run")
-
 		# Speed scales with stick deflection (0..1); keyboard always produces 1.0
 		var speed_mult: float = input_length
-		if is_running:
-			current_speed = speed_mult * owner.movement.run_speed
-		else:
-			current_speed = speed_mult * owner.movement.walk_speed
-
+		current_speed = speed_mult * owner.movement.speed
 		# Clamp to allowed maximum
-		current_speed = clamp(current_speed, 0.0, owner.movement.run_speed)
+		current_speed = clamp(current_speed, 0.0, owner.movement.speed)
 
 		var normalized_input: Vector2 = input_direction.normalized()
-		var speed_factor: float = current_speed / owner.movement.run_speed  # 0.6 for walk (3/5), 1.0 for run (5/5)
+		var speed_factor: float = current_speed / owner.movement.speed
 		var blend_direction: Vector2 = Vector2(normalized_input.x, -normalized_input.y) * speed_factor
 
 		movement_direction_changed.emit(blend_direction, speed_factor)
@@ -113,11 +107,10 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 	# Ground jump, only when coyote time is still valid
 	if Input.is_action_just_pressed("jump") and coyote_timer > 0.0:
 		jump(owner.movement.jump_velocity, body)
-		# Emit the ground‑jump signal
 		jumped.emit()
 
 
-## Doesn't emit signal so callers can decide what to announce.
+## Doesn't emit signal so caller decide what to announce
 func jump(velocity_y: float, body: CharacterBody3D) -> void:
 	body.velocity.y = velocity_y
 	coyote_timer = 0.0

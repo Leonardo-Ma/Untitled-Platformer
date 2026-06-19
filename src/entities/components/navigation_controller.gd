@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	direction.y = 0.0
 	direction = direction.normalized()
 
-	var new_velocity: Vector3 = direction * owner.movement.run_speed
+	var new_velocity: Vector3 = direction * owner.movement.speed
 
 	if direction.length_squared() > 0.001:
 		var target_rotation_y: float = atan2(direction.x, direction.z)
@@ -71,7 +71,7 @@ func stop() -> void:
 	movement_direction_changed.emit(Vector2.ZERO, 0.0)
 
 
-# TODO Change run_speed to use a variable that is defined by goap action instead
+# TODO Change speed to use a variable that is defined by goap action instead
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_physics_processing() or _disable_timer > 0.0:
 		return

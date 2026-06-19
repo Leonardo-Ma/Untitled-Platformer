@@ -30,7 +30,7 @@ func _on_player_spawned(spawned_player: Node) -> void:
 	assert(player != null, "Invalid player node for Shop")
 
 	_stat_targets = {
-		&"walk_speed": player.movement,
+		&"speed": player.movement,
 		&"jump_velocity": player.movement,
 		&"damage": player.attack,
 		&"max_health": player.health,
