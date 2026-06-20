@@ -1,0 +1,106 @@
+## Manages key rebinding and persists bindings
+extends Node
+
+signal binding_changed(action: StringName)
+
+const _SAVE_PATH: String = "user://key_bindings.cfg"
+const _SECTION: String = "bindings"
+
+## In display order
+const REBINDABLE_ACTIONS: Array[StringName] = [
+	&"move_left",
+	&"move_right",
+	&"move_forward",
+	&"move_backward",
+	&"jump",
+	&"attack",
+	&"interact",
+	&"ui_accept",
+	&"ui_cancel",
+	&"teleport",
+	&"feather_fall",
+	&"open_shop",
+	#&"look_left",
+	#&"look_right",
+	#&"look_up",
+	#&"look_down",
+]
+
+## Before user overrides
+var _defaults: Dictionary = {}
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	_cache_defaults()
+	_load()
+
+
+## Replaces the first keyboard binding for [param action] with [param event]
+## Gamepad bindings are preserved
+func rebind(action: StringName, event: InputEvent) -> void:
+	assert(InputMap.has_action(action), "InputBindingManager: unknown action " + action)
+	_remove_keyboard_bindings(action)
+	InputMap.action_add_event(action, event)
+	_save()
+	binding_changed.emit(action)
+
+
+## Resets rebindable action to project default
+func reset_action(action: StringName) -> void:
+	assert(_defaults.has(action), "InputBindingManager: no default cached for " + action)
+	InputMap.action_erase_events(action)
+	for event: InputEvent in _defaults[action]:
+		InputMap.action_add_event(action, event)
+	_save()
+	binding_changed.emit(action)
+
+
+## Resets all rebindable actions to defaults
+func reset_all() -> void:
+	for action: StringName in REBINDABLE_ACTIONS:
+		reset_action(action)
+
+
+## Returns first keyboard [InputEventKey] for [param action], or null if none
+func get_keyboard_event(action: StringName) -> InputEventKey:
+	assert(InputMap.has_action(action), "InputBindingManager: unknown action " + action)
+	for event: InputEvent in InputMap.action_get_events(action):
+		if event is InputEventKey:
+			return event
+	return null
+
+
+func _cache_defaults() -> void:
+	for action: StringName in REBINDABLE_ACTIONS:
+		assert(InputMap.has_action(action), "InputBindingManager: action missing from project InputMap: " + action)
+		_defaults[action] = InputMap.action_get_events(action).duplicate()
+
+
+func _remove_keyboard_bindings(action: StringName) -> void:
+	for event: InputEvent in InputMap.action_get_events(action).duplicate():
+		if event is InputEventKey:
+			InputMap.action_erase_event(action, event)
+
+
+func _save() -> void:
+	var config: ConfigFile = ConfigFile.new()
+	for action: StringName in REBINDABLE_ACTIONS:
+		var event: InputEventKey = get_keyboard_event(action)
+		if event != null:
+			config.set_value(_SECTION, action, event.keycode)
+	config.save(_SAVE_PATH)
+
+
+func _load() -> void:
+	var config: ConfigFile = ConfigFile.new()
+	if config.load(_SAVE_PATH) != OK:
+		return
+	for action: StringName in REBINDABLE_ACTIONS:
+		var keycode: Variant = config.get_value(_SECTION, action, null)
+		if keycode == null:
+			continue
+		var event: InputEventKey = InputEventKey.new()
+		event.keycode = keycode
+		_remove_keyboard_bindings(action)
+		InputMap.action_add_event(action, event)

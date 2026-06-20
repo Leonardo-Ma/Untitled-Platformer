@@ -22,7 +22,7 @@ var mouse_look_enabled: bool = false
 # Handle camera x and y movement
 # TODO Confirm if this should be on _input instead of _unhandled_input or _physics_process
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
+	if event.is_action_pressed("ui_cancel"):
 		release_mouse_requested.emit()
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

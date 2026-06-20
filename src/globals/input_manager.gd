@@ -1,4 +1,5 @@
-## Detects active input and switches between keyboard/mouse and gamepad
+## Detects active input device and switches between keyboard/mouse and gamepad brands
+## Defaults to keyboard/mouse and only switches on first gamepad input event
 extends Node
 
 signal device_changed(device: Device)
@@ -21,28 +22,11 @@ var _switch_timer: SceneTreeTimer
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
-	# Deferred check to catch gamepads that were already connected at boot
-	call_deferred("_check_initial_gamepads")
-
-
-func _check_initial_gamepads() -> void:
-	var joypads: Array[int] = Input.get_connected_joypads()
-	if joypads.size() > 0:
-		var incoming: Device = _get_gamepad_device_type(joypads[0])
-		if active_device != incoming:
-			active_device = incoming
-			_apply_mouse_mode()
-			device_changed.emit(active_device)
 
 
 func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
 	if connected:
 		print_debug("Gamepad: ", Input.get_joy_name(device_id), " connected!")
-		var incoming: Device = _get_gamepad_device_type(device_id)
-		active_device = incoming
-		_apply_mouse_mode()
-		device_changed.emit(active_device)
-		print_debug("Gamepad connected, switching to GAMEPAD")
 	else:
 		# Gamepad disconnected, check if any other gamepads remain
 		var still_connected: Array[int] = Input.get_connected_joypads()
@@ -52,6 +36,7 @@ func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
 			device_changed.emit(active_device)
 			print_debug("Last gamepad disconnected, switching to KEYBOARD_MOUSE")
 			# TODO Change this warning to a popup
+
 		push_warning("Game paused due to gamepad disconnect")
 		UIManager.on_game_paused()
 
@@ -100,7 +85,7 @@ func _get_gamepad_device_type(device_id: int) -> Device:
 
 func _apply_mouse_mode() -> void:
 	# TODO Double check this
-	# Only manage visibility here. Captured mode is owned by UIManager/game state
+	# Only manage visibility, captured mode is owned by UIManager/game state
 	print(Input.mouse_mode)
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return

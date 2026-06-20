@@ -47,7 +47,7 @@ func movement_logic(body: CharacterBody3D) -> void:
 		return
 
 	# Get raw input vector (works for keyboard and gamepad left stick)
-	var input_direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
+	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var input_length: float = input_direction.length()
 
 	# Apply deadzone – ignore tiny stick movements (keyboard always gives 1.0)
