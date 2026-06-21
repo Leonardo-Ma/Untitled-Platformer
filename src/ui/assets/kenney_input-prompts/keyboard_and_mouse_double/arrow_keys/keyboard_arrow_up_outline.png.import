@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d03h8ktveg3x1"
-path="res://.godot/imported/keyboard_arrow_down_outline.png-625caef78388ea6f5b6db1632efadc7f.ctex"
+uid="uid://de308rriw58px"
+path="res://.godot/imported/keyboard_arrow_up_outline.png-0daa4412d483da9806ca5bf7ccb7e516.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/keyboard_arrow_down_outline.png"
-dest_files=["res://.godot/imported/keyboard_arrow_down_outline.png-625caef78388ea6f5b6db1632efadc7f.ctex"]
+source_file="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/arrow_keys/keyboard_arrow_up_outline.png"
+dest_files=["res://.godot/imported/keyboard_arrow_up_outline.png-0daa4412d483da9806ca5bf7ccb7e516.ctex"]
 
 [params]
 
