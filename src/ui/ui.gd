@@ -20,6 +20,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if UIManager.is_in_main_menu():
 		return
+	if UIManager.is_in_settings():
+		UIManager.close_settings()
+		get_viewport().set_input_as_handled()
+		return
 	if not PauseManager.is_paused():
 		UIManager.on_game_paused()
 	else:

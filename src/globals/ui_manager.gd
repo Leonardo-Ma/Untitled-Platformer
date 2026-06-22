@@ -61,6 +61,10 @@ func is_in_main_menu() -> bool:
 	return _state == State.MAIN_MENU
 
 
+func is_in_settings() -> bool:
+	return _state == State.SETTINGS
+
+
 func _set_state(state: State) -> void:
 	_state = state
 	match state:
