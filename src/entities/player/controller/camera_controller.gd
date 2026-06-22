@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("attack"):  # Left mouse click
 		capture_mouse_requested.emit()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
