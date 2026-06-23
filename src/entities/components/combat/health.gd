@@ -14,15 +14,15 @@ signal revived
 	set(val):
 		max_health = val
 		max_health_changed.emit(max_health)
-		health = max_health
+		current_health = max_health
 @export_range(0, 9999, 0.01, "suffix:health/second") var health_regen: float
 
-var health: int = max_health:
+var current_health: int = max_health:
 	set(val):
-		var prev: int = health
-		health = clamp(val, 0, max_health)
-		if health != prev:
-			health_changed.emit(health)
+		var prev: int = current_health
+		current_health = clamp(val, 0, max_health)
+		if current_health != prev:
+			health_changed.emit(current_health)
 
 var invulnerable: bool = false
 var _timer_callback: Callable  # Reference to entity's timer creation method
@@ -37,15 +37,15 @@ func take_damage(attack: Attack) -> void:
 	if invulnerable:
 		return
 	if attack.hitkill:
-		health = 0
+		current_health = 0
 	else:
-		health -= attack.damage
+		current_health -= attack.damage
 	_last_damage_time = Time.get_ticks_msec()
 	damaged.emit(attack)
 	enable_invulnerability(1.0)
 	stop_regeneration()  # Stop any active regen and reset delay
 
-	if health <= 0:
+	if current_health <= 0:
 		died.emit()
 	else:
 		schedule_regeneration()
@@ -53,8 +53,8 @@ func take_damage(attack: Attack) -> void:
 
 # Revived warns HUD
 func reset() -> void:
-	var was_dead: bool = health <= 0
-	health = max_health
+	var was_dead: bool = current_health <= 0
+	current_health = max_health
 	if was_dead:
 		revived.emit()
 	stop_regeneration()
@@ -122,18 +122,18 @@ func apply_regeneration_tick() -> void:
 	if not _is_regenerating:
 		return
 
-	if health >= max_health:
+	if current_health >= max_health:
 		_is_regenerating = false
 		return
 
-	health += int(health_regen * _regen_tick_rate)
+	current_health += int(health_regen * _regen_tick_rate)
 
-	if health < max_health and health_regen > 0:
+	if current_health < max_health and health_regen > 0:
 		_timer_callback.call(_regen_tick_rate, apply_regeneration_tick)
 	else:
 		_is_regenerating = false
 
 
 func _can_regenerate() -> bool:
-	return health_regen > 0 and _timer_callback.is_valid() and health < max_health
+	return health_regen > 0 and _timer_callback.is_valid() and current_health < max_health
 #endregion

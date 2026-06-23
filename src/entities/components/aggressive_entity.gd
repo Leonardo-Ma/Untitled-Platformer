@@ -58,12 +58,12 @@ func _ready() -> void:
 	assert(status_manager, "Status Manager missing for " + self.name)
 	assert(animation_player, "Animation player missing for " + self.name)
 	assert(attack and attack.damage > 0 and attack.type != null, "Attack property incorrect for " + self.name)
-	assert(health and health.health > 0, "Health property incorrect for " + self.name)
+	assert(health and health.current_health > 0, "Health property incorrect for " + self.name)
 	assert(movement, "Movement incorrect for " + self.name)
 
 	_setup_damage_feedback_visual_material()
 
-	_prev_health = health.health
+	_prev_health = health.current_health
 	health.died.connect(_on_death)
 	health.damaged.connect(_on_damaged_effects_feedback)
 	health.health_changed.connect(_on_health_changed)

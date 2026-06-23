@@ -38,7 +38,7 @@ func _on_player_spawned(player: Node) -> void:
 	timer.wait_time *= 2.0
 
 	# Explicitly call _set_health setter or do it dynamically via self
-	self.health = health_resource.health
+	self.health = health_resource.current_health
 
 
 func _set_health(new_health: float) -> void:

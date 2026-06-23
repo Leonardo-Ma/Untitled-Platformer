@@ -2,7 +2,6 @@ extends Label
 
 var event_text: String = ""
 
-var _tracked_health: Health = null
 var _damage_indicator_timer: float = 0.0
 
 
@@ -15,11 +14,7 @@ func _ready() -> void:
 
 
 func _on_player_spawned(player: Node) -> void:
-	if player is PlayerEntity and player.health != null:
-		if _tracked_health != player.health:
-			_tracked_health = player.health
-			if not _tracked_health.damaged.is_connected(_on_player_damaged):
-				_tracked_health.damaged.connect(_on_player_damaged)
+	player.health.damaged.connect(_on_player_damaged)
 
 
 func _on_player_damaged(_attack: Attack) -> void:
@@ -83,7 +78,7 @@ func _get_player_info_text() -> String:
 	var speed: float = player_entity.movement.speed
 	output += "Move Speed: %.1f\n" % speed
 
-	output += "Health: %.2f / %.2f\n" % [player_entity.health.health, player_entity.health.max_health]
+	output += "Health: %.2f / %.2f\n" % [player_entity.health.current_health, player_entity.health.max_health]
 	output += "Invulnerable: %s\n" % ("YES" if player_entity.health.invulnerable else "NO")
 
 	var recently_damaged: String = "Yes" if _damage_indicator_timer > 0.0 else "No"

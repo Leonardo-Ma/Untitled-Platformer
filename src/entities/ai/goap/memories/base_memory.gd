@@ -36,7 +36,7 @@ func _get_health_percentage() -> float:
 	var health: Variant = _get_health()
 	if health == null:
 		return 1.0
-	return health.health / health.max_health
+	return health.current_health / health.max_health
 
 
 func _is_low_health() -> bool:
@@ -85,7 +85,7 @@ func update_blackboard() -> void:
 	var in_melee_range: bool = true_distance_squared <= MELEE_RANGE_SQUARED
 	var enemy_nearby: bool = distance_to_last_known_squared < NEARBY_RANGE_SQUARED
 
-	var enemy_alive: bool = current_target.health.health > 0.0
+	var enemy_alive: bool = current_target.health.current_health > 0.0
 	var in_combat: bool = in_melee_range and enemy_alive
 
 	_blackboard["enemy_position"] = enemy_pos

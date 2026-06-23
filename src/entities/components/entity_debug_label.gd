@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 	if animation_tree.get("parameters/is_damaged/active"):
 		is_damaged = "damaged"
 	label_text = is_damaged + " \n "
-	label_text += str(owner.health.health) + "\n"
+	label_text += str(owner.health.current_health) + "\n"
 
 	label_text += "GOAP:\n"
 	#for values in goap_controller.get_blackboard().values():
