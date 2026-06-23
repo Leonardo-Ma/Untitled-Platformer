@@ -24,9 +24,18 @@ const _BUTTONS: Dictionary = {
 	JoyButton.JOY_BUTTON_DPAD_RIGHT: preload("uid://cipfqkfteovgw"),
 }
 
+const LEFT_STICK_ICON: CompressedTexture2D = preload("uid://bx4ijaov68u63")
+const RIGHT_STICK_ICON: CompressedTexture2D = preload("uid://d1aopeglq7q3y")
+const L2_ICON: CompressedTexture2D = preload("uid://fv54oc8li7ql")
+const R2_ICON: CompressedTexture2D = preload("uid://d2kmi1yrbny0v")
+
 const _AXES: Dictionary = {
-	JoyAxis.JOY_AXIS_TRIGGER_LEFT: preload("uid://fv54oc8li7ql"),
-	JoyAxis.JOY_AXIS_TRIGGER_RIGHT: preload("uid://d2kmi1yrbny0v"),
+	JoyAxis.JOY_AXIS_LEFT_X: LEFT_STICK_ICON,
+	JoyAxis.JOY_AXIS_LEFT_Y: LEFT_STICK_ICON,
+	JoyAxis.JOY_AXIS_RIGHT_X: RIGHT_STICK_ICON,
+	JoyAxis.JOY_AXIS_RIGHT_Y: RIGHT_STICK_ICON,
+	JoyAxis.JOY_AXIS_TRIGGER_LEFT: L2_ICON,
+	JoyAxis.JOY_AXIS_TRIGGER_RIGHT: R2_ICON,
 }
 
 

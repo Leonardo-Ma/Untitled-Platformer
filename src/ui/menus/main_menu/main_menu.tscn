@@ -13,8 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="6_l674l"]
 [ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="8_fpg57"]
 [ext_resource type="PackedScene" uid="uid://dc4emcvac7toq" path="res://src/ui/prompt_icon.tscn" id="13_ridtu"]
+[ext_resource type="Texture2D" uid="uid://de308rriw58px" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/arrow_keys/keyboard_arrow_up_outline.png" id="14_ua5hf"]
 [ext_resource type="Texture2D" uid="uid://bfcny5u3eltby" path="res://src/ui/assets/kenney_input-prompts/generic_double/generic_joystick_horizontal.png" id="15_r4c6q"]
-[ext_resource type="Texture2D" uid="uid://bl4nqtj657kqo" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/keyboard_arrows_all.png" id="17_wbona"]
+[ext_resource type="Texture2D" uid="uid://c8hmnvosvyqyc" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/arrow_keys/keyboard_arrow_left_outline.png" id="15_rq6ct"]
+[ext_resource type="Texture2D" uid="uid://d03h8ktveg3x1" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/arrow_keys/keyboard_arrow_down_outline.png" id="16_mt6gl"]
+[ext_resource type="Texture2D" uid="uid://cj46q2iha4i2" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/arrow_keys/keyboard_arrow_right_outline.png" id="17_ewdsk"]
+[ext_resource type="Texture2D" uid="uid://cgiss7x7cle55" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_move.png" id="19_rq6ct"]
 [ext_resource type="Texture2D" uid="uid://bx4ijaov68u63" path="res://src/ui/assets/kenney_input-prompts/sticks/stick_left.png" id="19_ua5hf"]
 [ext_resource type="Texture2D" uid="uid://bgf4oeuykl8jh" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_left.png" id="20_rq6ct"]
 [ext_resource type="Texture2D" uid="uid://bnd847y0s1nvd" path="res://src/ui/assets/neobie_icons/ui/tick_128px.png" id="24_ewdsk"]
@@ -148,43 +152,56 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Inputs2" type="HBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel" unique_id=1770359804]
+[node name="HBoxContainer" type="HBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel" unique_id=1751509723]
 layout_mode = 2
 
-[node name="MoveForward" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/Inputs2" unique_id=192685747 instance=ExtResource("13_ridtu")]
+[node name="MovementInput" type="VBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer" unique_id=669311322]
+layout_mode = 2
+
+[node name="Inputs" type="HBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInput" unique_id=912107201]
+layout_mode = 2
+
+[node name="UiUp" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInput/Inputs" unique_id=192685747 instance=ExtResource("13_ridtu")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("17_wbona")
-expand_mode = 3
-stretch_mode = 5
-action = &"move_forward"
+texture = ExtResource("14_ua5hf")
+action = &"ui_up"
 
-[node name="MoveRight" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/Inputs2" unique_id=673712400 instance=ExtResource("13_ridtu")]
+[node name="UiLeft" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInput/Inputs" unique_id=558785123 instance=ExtResource("13_ridtu")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("15_rq6ct")
+action = &"ui_left"
+
+[node name="Inputs2" type="HBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInput" unique_id=1105837869]
+layout_mode = 2
+
+[node name="UiDown" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInput/Inputs2" unique_id=946841828 instance=ExtResource("13_ridtu")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_mt6gl")
+action = &"ui_down"
+
+[node name="UiRight" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInput/Inputs2" unique_id=1896841250 instance=ExtResource("13_ridtu")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("17_ewdsk")
+action = &"ui_right"
+
+[node name="MovementInputStick" type="VBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer" unique_id=865484670]
+layout_mode = 2
+
+[node name="Inputs" type="HBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInputStick" unique_id=293230792]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Stick" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/HBoxContainer/MovementInputStick/Inputs" unique_id=1325649877 instance=ExtResource("13_ridtu")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("19_ua5hf")
-expand_mode = 3
-stretch_mode = 5
-action = &"move_right"
-
-[node name="Inputs3" type="HBoxContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel" unique_id=1787069498]
-layout_mode = 2
-
-[node name="MoveBackward" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/Inputs3" unique_id=1435236508 instance=ExtResource("13_ridtu")]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("17_wbona")
-expand_mode = 3
-stretch_mode = 5
-action = &"move_backward"
-
-[node name="MoveLeft" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu/PromptsPanel/Inputs3" unique_id=1890932367 instance=ExtResource("13_ridtu")]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("19_ua5hf")
-expand_mode = 3
-stretch_mode = 5
-action = &"move_left"
+action = &"ui_left"
+prefer_axis = true
+keyb_texture_override = ExtResource("19_rq6ct")
 
 [node name="InstructionsPanel" type="PanelContainer" parent="GamepadPromptsMargin/VBoxContainer/NavigateMenu" unique_id=154940992]
 custom_minimum_size = Vector2(64, 64)
@@ -214,17 +231,13 @@ layout_mode = 2
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("20_rq6ct")
-expand_mode = 3
-stretch_mode = 5
-action = &"ui_confirm"
+action = &"ui_accept"
 
 [node name="Enter" parent="GamepadPromptsMargin/VBoxContainer/Confirm/PromptsPanel/Inputs" unique_id=5174448 instance=ExtResource("13_ridtu")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = SubResource("CompressedTexture2D_mt6gl")
-expand_mode = 3
-stretch_mode = 5
-action = &"ui_confirm"
+action = &"ui_select"
 
 [node name="InstructionsPanel" type="PanelContainer" parent="GamepadPromptsMargin/VBoxContainer/Confirm" unique_id=1445397606]
 custom_minimum_size = Vector2(64, 64)

@@ -67,13 +67,16 @@ const KEYBOARD_ICONS: Dictionary = {
 	Key.KEY_F11: preload("uid://dj6jm3rhr0ipv"),
 	Key.KEY_F12: preload("uid://foxvuoo3mvx5"),
 }
-
 const MOUSE_ICONS: Dictionary = {
 	MouseButton.MOUSE_BUTTON_LEFT: preload("uid://hduaes5faspr"),
 	MouseButton.MOUSE_BUTTON_RIGHT: preload("uid://cvgmkj3g4p4xs"),
 	MouseButton.MOUSE_BUTTON_MIDDLE: preload("uid://jcob2uig6tfe"),
 	MouseButton.MOUSE_BUTTON_WHEEL_UP: preload("uid://baea5nadbwwc5"),
 	MouseButton.MOUSE_BUTTON_WHEEL_DOWN: preload("uid://87umqfqk4m0c"),
+}
+## Maps known implicit mouse-motion actions to a static icon (not rebindable)
+const MOUSE_MOTION_ICONS: Dictionary = {
+	&"look_around": preload("uid://cgiss7x7cle55"),  # mouse_right_motion
 }
 
 
@@ -83,3 +86,7 @@ static func get_keyboard_icon(key: Key) -> Texture2D:
 
 static func get_mouse_icon(button: MouseButton) -> Texture2D:
 	return MOUSE_ICONS.get(button, null)
+
+
+static func get_mouse_motion_icon(action: StringName) -> Texture2D:
+	return MOUSE_MOTION_ICONS.get(action, null)
