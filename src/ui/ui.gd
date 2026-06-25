@@ -16,6 +16,11 @@ func _ready() -> void:
 # BUG Web version: ESC releases mouse and ignores this on first press.
 # Works on second ESC press.
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_hud"):
+		UIManager.set_hud_visible(not UIManager.hud_visible)
+		get_viewport().set_input_as_handled()
+		return
+
 	if not event.is_action_pressed("ui_cancel"):
 		return
 	if UIManager.is_in_main_menu():
