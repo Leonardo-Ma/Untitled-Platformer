@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="5_fclkf"]
 [ext_resource type="Script" uid="uid://u2p8jay56jmx" path="res://src/ui/menus/open_settings.gd" id="6_577b3"]
 [ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/ui/assets/neobie_icons/ui/cross_128px.png" id="7_577b3"]
-[ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="11_0tjqn"]
 
 [node name="PauseMenu" type="Control" unique_id=2117240021]
 layout_mode = 3
@@ -101,9 +100,3 @@ texture_normal = ExtResource("7_577b3")
 texture_focused = ExtResource("4_7nd55")
 stretch_mode = 5
 script = ExtResource("4_qmph6")
-
-[node name="VersionLabel" parent="." unique_id=854464690 instance=ExtResource("11_0tjqn")]
-layout_mode = 1
-offset_left = -117.0
-offset_top = -58.0
-offset_right = 0.0
