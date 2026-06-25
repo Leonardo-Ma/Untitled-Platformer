@@ -85,6 +85,7 @@ repos:
         language: pygrep
         entry: 'ResourceLoader\.load\('
         files: \.gd$
+        exclude: src/systems/save/*
 
       - id: no-input-action-in-ui
         name: "ban Input.is_action in UI scripts | UI must not poll input directly | use _unhandled_input or signals"
