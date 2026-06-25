@@ -24,6 +24,9 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 	var attack_used: Attack = attacker.attack
 	owner.health.take_damage(attack_used)
 	print(owner.name, " Hurt by ", hitbox.owner.name, " For ", attack_used.damage)
+	if owner is PlayerEntity:
+		# TODO Change the gamepad index to the actual player gamepad?
+		Input.start_joy_vibration(0, 0.5, 0.5, 0.7)
 
 	hitbox.on_hit_connected(float(attack_used.damage))
 
