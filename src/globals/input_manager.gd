@@ -27,16 +27,17 @@ func _ready() -> void:
 func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
 	if connected:
 		print_debug("Gamepad: ", Input.get_joy_name(device_id), " connected!")
-	else:
-		# Gamepad disconnected, check if any other gamepads remain
-		var still_connected: Array[int] = Input.get_connected_joypads()
-		if still_connected.size() == 0 and active_device != Device.KEYBOARD_MOUSE:
-			active_device = Device.KEYBOARD_MOUSE
-			_apply_mouse_mode()
-			device_changed.emit(active_device)
-			print_debug("Last gamepad disconnected, switching to KEYBOARD_MOUSE")
-			# TODO Change this warning to a popup
+		return
 
+	var still_connected: Array[int] = Input.get_connected_joypads()
+	if still_connected.size() == 0 and active_device != Device.KEYBOARD_MOUSE:
+		active_device = Device.KEYBOARD_MOUSE
+		_apply_mouse_mode()
+		device_changed.emit(active_device)
+		print_debug("Last gamepad disconnected, switching to KEYBOARD_MOUSE")
+
+	# Only pause mid-game — not during menus
+	if UIManager.is_playing():
 		push_warning("Game paused due to gamepad disconnect")
 		UIManager.on_game_paused()
 
