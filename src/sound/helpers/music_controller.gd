@@ -36,7 +36,12 @@ var current_state: MusicState = MusicState.SILENCE
 var current_track: AudioStream
 var is_playing: bool = false
 
+## Two pre-created players swapped on crossfade, avoids adding child
+var _player_a: AudioStreamPlayer
+var _player_b: AudioStreamPlayer
 var _current_player: AudioStreamPlayer
+var _staging_player: AudioStreamPlayer
+
 var _fade_tween: Tween
 var _transition_cooldown: bool = false
 var _sound_pool: SoundPool
@@ -49,9 +54,18 @@ func initialize(pool: SoundPool) -> void:
 
 
 func _create_music_player() -> void:
-	_current_player = AudioStreamPlayer.new()
-	_current_player.bus = "Music"
-	add_child(_current_player)
+	_player_a = AudioStreamPlayer.new()
+	_player_a.bus = "Music"
+	_player_a.volume_db = -80.0
+	add_child(_player_a)
+
+	_player_b = AudioStreamPlayer.new()
+	_player_b.bus = "Music"
+	_player_b.volume_db = -80.0
+	add_child(_player_b)
+
+	_current_player = _player_a
+	_staging_player = _player_b
 
 
 # Public API
@@ -64,22 +78,26 @@ func play(track: AudioStream, fade_duration: float = 1.0) -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 
-	var new_player: AudioStreamPlayer = AudioStreamPlayer.new()
-	new_player.bus = "Music"
-	new_player.stream = track
-	new_player.volume_db = -80  # Start silent
-	add_child(new_player)
-	new_player.finished.connect(_on_track_finished)
-	new_player.play()
+	# Disconnect finished from outgoing player before swap
+	if _current_player.finished.is_connected(_on_track_finished):
+		_current_player.finished.disconnect(_on_track_finished)
+
+	var old_player: AudioStreamPlayer = _current_player
+	_current_player = _staging_player
+	_staging_player = old_player
+
+	_current_player.stop()
+	_current_player.stream = track
+	_current_player.volume_db = -80.0
+	_current_player.play()
 	is_playing = true
+	_current_player.finished.connect(_on_track_finished, CONNECT_ONE_SHOT)
 
-	# Crossfade to new player
+	var fading_out: AudioStreamPlayer = _staging_player
 	_fade_tween = create_tween()
-	_fade_tween.tween_property(new_player, "volume_db", _current_player.volume_db, fade_duration)
-	_fade_tween.parallel().tween_property(_current_player, "volume_db", -80, fade_duration)
-	_fade_tween.tween_callback(_cleanup_old_player.bind(_current_player))
-
-	_current_player = new_player
+	_fade_tween.tween_property(_current_player, "volume_db", 0.0, fade_duration)
+	_fade_tween.parallel().tween_property(fading_out, "volume_db", -80.0, fade_duration)
+	_fade_tween.tween_callback(func() -> void: fading_out.stop())
 
 
 # TODO: Maybe new parameter to loop song?
@@ -119,9 +137,16 @@ func stop(fade_duration: float = 1.0) -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 
+	if _current_player.finished.is_connected(_on_track_finished):
+		_current_player.finished.disconnect(_on_track_finished)
+
+	_staging_player.stop()
+	_staging_player.volume_db = -80.0
+
+	var fading_out: AudioStreamPlayer = _current_player
 	_fade_tween = create_tween()
-	_fade_tween.tween_property(_current_player, "volume_db", -80, fade_duration)
-	_fade_tween.tween_callback(_stop_current_player)
+	_fade_tween.tween_property(fading_out, "volume_db", -80.0, fade_duration)
+	_fade_tween.tween_callback(func() -> void: fading_out.stop())
 	is_playing = false
 
 
@@ -164,12 +189,3 @@ func _on_track_finished() -> void:
 
 func _on_transition_cooldown_finished() -> void:
 	_transition_cooldown = false
-
-
-func _cleanup_old_player(old_player: AudioStreamPlayer) -> void:
-	old_player.stop()
-	old_player.queue_free()
-
-
-func _stop_current_player() -> void:
-	_current_player.stop()
