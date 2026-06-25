@@ -45,7 +45,7 @@ func process_input() -> void:
 		return
 
 	var current_time: float = Time.get_ticks_msec() / 1000.0
-	var actions: Array[String] = ["forward", "backward", "left", "right"]
+	var actions: Array[String] = ["move_forward", "move_backward", "move_left", "move_right"]
 
 	for action: String in actions:
 		if Input.is_action_just_pressed(action):
@@ -71,14 +71,16 @@ func _start_dash(action_dir: String) -> void:
 
 	var input_vec: Vector2 = Vector2.ZERO
 	match action_dir:
-		"forward":
+		"move_forward":
 			input_vec = Vector2(0, -1)
-		"backward":
+		"move_backward":
 			input_vec = Vector2(0, 1)
-		"left":
+		"move_left":
 			input_vec = Vector2(-1, 0)
-		"right":
+		"move_right":
 			input_vec = Vector2(1, 0)
+		_:
+			assert(false, "Dash direction didn't match options")
 
 	var forward: Vector3 = (body.transform.basis * Vector3(input_vec.x, 0, input_vec.y)).normalized()
 	_dash_direction = forward * skills_controller.movement_controller.current_speed * dash_velocity_multiplier
