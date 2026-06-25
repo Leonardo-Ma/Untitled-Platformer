@@ -20,6 +20,7 @@ var _pre_settings_state: State = State.MAIN_MENU
 
 func register_ui(ui: UIView) -> void:
 	_ui = ui
+	hud_visible = SettingsManager.hud_visible
 	_set_state(State.MAIN_MENU)
 	PauseManager.request_pause("main_menu")
 
@@ -53,6 +54,8 @@ func close_settings() -> void:
 
 func set_hud_visible(visible: bool) -> void:
 	hud_visible = visible
+	SettingsManager.hud_visible = visible
+	SettingsManager.save()
 	assert(_ui != null, "UIManager: no UIView registered in " + name)
 	_ui.set_hud_visible(visible)
 

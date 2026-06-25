@@ -6,6 +6,7 @@ const _CONFIG_PATH: String = "user://settings.cfg"
 
 const _SECTION_VIDEO: String = "video"
 const _SECTION_AUDIO: String = "audio"
+const _SECTION_UI: String = "ui"
 
 var resolution: Vector2i = Vector2i(1920, 1080)
 var window_mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_WINDOWED
@@ -13,6 +14,7 @@ var volume_global: float = 1.0
 var volume_music: float = 1.0
 var volume_effects: float = 1.0
 var volume_ui: float = 1.0
+var hud_visible: bool = true
 
 var _config: ConfigFile = ConfigFile.new()
 
@@ -29,6 +31,7 @@ func save() -> void:
 	_config.set_value(_SECTION_AUDIO, "volume_music", volume_music)
 	_config.set_value(_SECTION_AUDIO, "volume_effects", volume_effects)
 	_config.set_value(_SECTION_AUDIO, "volume_ui", volume_ui)
+	_config.set_value(_SECTION_UI, "hud_visible", hud_visible)
 	_config.save(_CONFIG_PATH)
 
 
@@ -42,6 +45,7 @@ func _load() -> void:
 	volume_music = _config.get_value(_SECTION_AUDIO, "volume_music", 1.0)
 	volume_effects = _config.get_value(_SECTION_AUDIO, "volume_effects", 1.0)
 	volume_ui = _config.get_value(_SECTION_AUDIO, "volume_ui", 1.0)
+	hud_visible = _config.get_value(_SECTION_UI, "hud_visible", true)
 
 
 func _apply() -> void:
