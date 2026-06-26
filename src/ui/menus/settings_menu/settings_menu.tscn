@@ -43,6 +43,8 @@ anti_aliasing = false
 [sub_resource type="Theme" id="Theme_4yx6g"]
 PopupMenu/constants/icon_max_width = 80
 
+[sub_resource type="Theme" id="Theme_6geaa"]
+
 [node name="SettingsMenu" type="Control" unique_id=1634997965]
 z_index = 1
 layout_mode = 3
@@ -249,7 +251,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CloseSettingsButton" type="TextureButton" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1971545603]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -422,6 +424,7 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="VideoOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=697717083]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -501,9 +504,150 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="KeyBindingOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=310175671]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 metadata/_tab_index = 0
 metadata/_tab_name = ""
+
+[node name="ScrollContainer" type="ScrollContainer" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions" unique_id=1153882471]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer" unique_id=1048626977]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Player1" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer" unique_id=505145198]
+layout_mode = 2
+theme = SubResource("Theme_6geaa")
+
+[node name="Action" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1" unique_id=1930660180]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Column" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1421536434]
+layout_mode = 2
+text = "Player 1"
+
+[node name="LabelRight" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=936777458]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Right"
+vertical_alignment = 1
+
+[node name="LabelLeft" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=509867195]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Left"
+vertical_alignment = 1
+
+[node name="LabelUp" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1561279811]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Up"
+vertical_alignment = 1
+
+[node name="LabelDown" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1400690339]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Down"
+vertical_alignment = 1
+
+[node name="LabelAimRight" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=795096413]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Aim Right"
+vertical_alignment = 1
+
+[node name="LabelAimLeft" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1259044089]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Aim Left"
+vertical_alignment = 1
+
+[node name="LabelAimUp" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1247265789]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Aim Up"
+vertical_alignment = 1
+
+[node name="LabelAimDown" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=901818585]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Aim Down"
+vertical_alignment = 1
+
+[node name="LabelShoot" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1440708364]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Shoot
+"
+vertical_alignment = 1
+
+[node name="LabelDash" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=870401471]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Dash"
+vertical_alignment = 1
+
+[node name="LabelNext" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1536562289]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Next"
+vertical_alignment = 1
+
+[node name="LabelPrevious" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=1262234760]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Previous"
+vertical_alignment = 1
+
+[node name="LabelPause" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=983411993]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Pause"
+vertical_alignment = 1
+
+[node name="ButtonReset" type="Button" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/Action" unique_id=700569041]
+custom_minimum_size = Vector2(60, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Reset"
+flat = true
+
+[node name="KeyboardKey" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1" unique_id=1430856951]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Column" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/KeyboardKey" unique_id=786170390]
+layout_mode = 2
+text = "Keyboard"
+
+[node name="GamepadKey" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1" unique_id=52573557]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Column" type="Label" parent="RootContainer/SettingsContainer/Tabs/KeyBindingOptions/ScrollContainer/HBoxContainer/Player1/GamepadKey" unique_id=1951498880]
+layout_mode = 2
+text = "Gamepad"
