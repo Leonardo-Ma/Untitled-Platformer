@@ -29,15 +29,14 @@ func _on_character_step(body: Node3D) -> void:
 	disable()
 	await get_tree().create_timer(fade_in_seconds).timeout
 	surface.set_deferred("monitoring", true)
+	body_collision.disabled = false  # collision before visual — no texture visible yet
 	await _play_appear_effect(float(fade_in_seconds))
-	enable()
+	_restore_original_overlays()
 	_is_cycle_running = false
 
 
 func enable() -> void:
-	for mesh_part: MeshInstance3D in _mesh_parts:
-		mesh_part.material_overlay = _part_original_overlays[mesh_part]
-		mesh_part.transparency = 0.0
+	_restore_original_overlays()
 	visible = true
 	body_collision.disabled = false
 
@@ -51,7 +50,7 @@ func _play_vanish_effect(duration: float) -> void:
 	visible = true
 	for mesh_part: MeshInstance3D in _mesh_parts:
 		var white_overlay: StandardMaterial3D = _part_white_overlays[mesh_part]
-		white_overlay.albedo_color = Color(1, 1, 1, 0.0)
+		white_overlay.albedo_color = Color(1.0, 1.0, 1.0, 0.0)
 		mesh_part.material_overlay = white_overlay
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
@@ -61,15 +60,22 @@ func _play_vanish_effect(duration: float) -> void:
 
 
 func _play_appear_effect(duration: float) -> void:
+	# White overlay starts fully opaque (platform hidden), fades to reveal
 	visible = true
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		mesh_part.material_overlay = _part_original_overlays[mesh_part]
-		mesh_part.transparency = 1.0
+		var white_overlay: StandardMaterial3D = _part_white_overlays[mesh_part]
+		white_overlay.albedo_color = Color(1.0, 1.0, 1.0, 1.0)
+		mesh_part.material_overlay = white_overlay
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	for mesh_part: MeshInstance3D in _mesh_parts:
-		tween.tween_property(mesh_part, "transparency", 0.0, duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.tween_property(_part_white_overlays[mesh_part], "albedo_color:a", 0.0, duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	await tween.finished
+
+
+func _restore_original_overlays() -> void:
+	for mesh_part: MeshInstance3D in _mesh_parts:
+		mesh_part.material_overlay = _part_original_overlays[mesh_part]
 
 
 func _collect_mesh_parts() -> Array[MeshInstance3D]:
