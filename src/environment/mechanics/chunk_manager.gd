@@ -73,7 +73,7 @@ func _load_chunk_metadata_from_disk() -> void:
 								data.score_multiplier = chunk.score_multiplier
 
 								data.difficulty_points = _get_difficulty_points(chunk, data)
-								data.skill_points = _count_required_skills(data) * 2
+								data.skill_points = _count_required_skills(data)
 
 								_all_chunks.push_back(data)
 
@@ -128,7 +128,8 @@ func _get_player_skills() -> Array[StringName]:
 
 
 ## Load chunks to be kept in memory, save them in active chunks
-func initialize_level(parent_world: Node) -> void:
+func initialize_level() -> void:
+	var parent_world: Node = get_tree().root.get_node("Main")
 	assert(_all_chunks.size() > 0, "No chunks available in LevelManager AutoLoad " + self.name)
 	clear_level()
 
@@ -148,7 +149,7 @@ func initialize_level(parent_world: Node) -> void:
 		_align_chunk_to_transform(chunk_instance, next_spawn_transform)
 		_active_chunks.push_back(chunk_instance)
 
-		_setup_chunk_trigger(chunk_instance, parent_world)
+		_setup_chunk_trigger(chunk_instance)
 
 		next_spawn_transform = chunk_instance.get_node("%ExitTrigger").global_transform
 
@@ -161,15 +162,15 @@ func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D)
 	chunk.global_transform = target_transform * rel_entrance.affine_inverse()
 
 
-func _setup_chunk_trigger(chunk: LevelChunk, parent_world: Node) -> void:
+func _setup_chunk_trigger(chunk: LevelChunk) -> void:
 	var trigger: Area3D = chunk.get_node("%ExitTrigger")
 	_disconnect_chunk_trigger(chunk)
-	var callable: Callable = _on_chunk_exit_reached.bind(parent_world, chunk)
+	var callable: Callable = _on_chunk_exit_reached.bind(chunk)
 	_chunk_exit_connections[chunk.get_instance_id()] = callable
 	trigger.body_entered.connect(callable)
 
 
-func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: LevelChunk) -> void:
+func _on_chunk_exit_reached(body: Node3D, passed_chunk: LevelChunk) -> void:
 	if not body.is_in_group(Groups.PLAYERS):
 		return
 
@@ -185,11 +186,12 @@ func _on_chunk_exit_reached(body: Node3D, parent_world: Node, passed_chunk: Leve
 
 	# Only start recycling after the third chunk
 	if _active_chunks.size() > 2 and _active_chunks[2] == passed_chunk:
-		recycle_oldest_chunk(parent_world)
+		recycle_oldest_chunk()
 
 
 ## Triggers by exit trigger world collision boundary
-func recycle_oldest_chunk(parent_world: Node) -> void:
+func recycle_oldest_chunk() -> void:
+	var parent_world: Node = get_tree().root.get_node("Main")
 	assert(not _active_chunks.is_empty(), "Cannot recycle empty pool in " + self.name)
 
 	var oldest: LevelChunk = _active_chunks.pop_front()
@@ -210,7 +212,7 @@ func recycle_oldest_chunk(parent_world: Node) -> void:
 	_align_chunk_to_transform(next_chunk, target_transform)
 
 	_active_chunks.push_back(next_chunk)
-	_setup_chunk_trigger(next_chunk, parent_world)
+	_setup_chunk_trigger(next_chunk)
 
 
 func _pool_chunk(chunk: LevelChunk) -> void:
@@ -256,3 +258,71 @@ func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	else:
 		scene = load(chosen_data.scene_path) as PackedScene
 	return scene.instantiate() as LevelChunk
+
+
+func get_save_data() -> Dictionary:
+	var paths: Array[String] = []
+	var scored_indices: Array[int] = []
+
+	for i: int in _active_chunks.size():
+		var chunk: LevelChunk = _active_chunks[i]
+		paths.push_back(chunk.scene_file_path)
+		if chunk.has_meta("scored"):
+			scored_indices.push_back(i)
+
+	return {
+		"active_chunk_paths": paths,
+		"scored_indices": scored_indices,
+		"selector_state": _chunk_selector.get_save_state(),
+	}
+
+
+func load_save_data(
+	active_chunk_paths: Array[String],
+	scored_indices: Array[int],
+	selector_state: Dictionary,
+) -> void:
+	var parent_world: Node = get_tree().root.get_node("Main")
+
+	clear_level()
+
+	assert(_chunk_selector != null, "load_save_data called before metadata was loaded")
+	_chunk_selector.load_save_state(selector_state)
+
+	if active_chunk_paths.is_empty():
+		return
+
+	var next_spawn_transform: Transform3D = Transform3D()
+
+	for i: int in active_chunk_paths.size():
+		var path: String = active_chunk_paths[i]
+
+		var chunk: LevelChunk
+		if _chunk_pool.has(path) and not _chunk_pool[path].is_empty():
+			chunk = _chunk_pool[path].pop_back() as LevelChunk
+		else:
+			var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(path)
+			var scene: PackedScene
+			if load_status == ResourceLoader.THREAD_LOAD_LOADED:
+				scene = ResourceLoader.load_threaded_get(path) as PackedScene
+			else:
+				scene = load(path) as PackedScene
+			assert(scene != null, "ChunkManager: chunk scene not found '%s'" % path)
+			chunk = scene.instantiate() as LevelChunk
+
+		if chunk.get_parent() != null:
+			chunk.get_parent().remove_child(chunk)
+		parent_world.add_child(chunk)
+		chunk.process_mode = Node.PROCESS_MODE_INHERIT
+		chunk.visible = true
+
+		_align_chunk_to_transform(chunk, next_spawn_transform)
+
+		if scored_indices.has(i):
+			chunk.set_meta("scored", true)
+
+		_active_chunks.push_back(chunk)
+
+		_setup_chunk_trigger(chunk)
+
+		next_spawn_transform = (chunk.get_node("%ExitTrigger") as Node3D).global_transform

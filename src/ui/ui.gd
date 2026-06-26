@@ -21,6 +21,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 
+	if event.is_action_pressed("quick_save") and UIManager.is_playing():
+		SaveManager.save_to_quick_slot()
+		get_viewport().set_input_as_handled()
+		return
+
 	if not event.is_action_pressed("ui_cancel"):
 		return
 	if UIManager.is_in_main_menu():
@@ -39,6 +44,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func show_main_menu() -> void:
 	_menus.visible = true
 	_menus.show_main_menu()
+	_hud.visible = false
+	_overlays.visible = false
+
+
+func show_save_menu() -> void:
+	_menus.visible = true
+	_menus.show_save_menu()
 	_hud.visible = false
 	_overlays.visible = false
 

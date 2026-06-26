@@ -1,3 +1,4 @@
+class_name EnemyTemplate
 # TODO: Consider abstract class?
 ## Template Class intended to right click scene > make new inherited
 ## Basic functionality meant to be changed within the exported variables in inspector
@@ -12,7 +13,6 @@ func _physics_process(_delta: float) -> void:
 		var collider: Object = collision.get_collider()
 		if collider is RigidBody3D:
 			var push_force: float = movement.speed * 0.1
-
 			var push_dir: Vector3 = -collision.get_normal()
 			push_dir.y = 0.0  # Prevent pushing into the ground or sky
 			if push_dir.length_squared() > 0.001:
@@ -30,4 +30,5 @@ func _requires_goap() -> bool:
 
 func _on_death_complete() -> void:
 	GameEvents.add_score(5)
+	GameEvents.enemy_killed.emit(spawn_position)
 	queue_free()

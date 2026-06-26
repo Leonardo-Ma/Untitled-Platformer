@@ -5,6 +5,7 @@ extends Node
 
 enum State {
 	MAIN_MENU,
+	SAVE_MENU,
 	PLAYING,
 	PAUSED,
 	SETTINGS,
@@ -41,6 +42,25 @@ func on_game_paused() -> void:
 	_set_state(State.PAUSED)
 
 
+func is_playing() -> bool:
+	return _state == State.PLAYING
+
+
+#region Save menu
+func open_save_menu() -> void:
+	assert(_ui != null, "UIManager: no UIView registered in " + name)
+	_set_state(State.SAVE_MENU)
+
+
+func close_save_menu() -> void:
+	assert(_ui != null, "UIManager: no UIView registered in " + name)
+	_set_state(State.MAIN_MENU)
+
+
+#endregion
+
+
+#region Settings menu
 func open_settings() -> void:
 	assert(_ui != null, "UIManager: no UIView registered in " + name)
 	_pre_settings_state = _state
@@ -52,6 +72,9 @@ func close_settings() -> void:
 	_set_state(_pre_settings_state)
 
 
+#endregion
+
+
 func set_hud_visible(visible: bool) -> void:
 	hud_visible = visible
 	SettingsManager.hud_visible = visible
@@ -60,6 +83,7 @@ func set_hud_visible(visible: bool) -> void:
 	_ui.set_hud_visible(visible)
 
 
+#region Getters
 func is_in_main_menu() -> bool:
 	return _state == State.MAIN_MENU
 
@@ -68,11 +92,16 @@ func is_in_settings() -> bool:
 	return _state == State.SETTINGS
 
 
+#endregion
+
+
 func _set_state(state: State) -> void:
 	_state = state
 	match state:
 		State.MAIN_MENU:
 			_ui.show_main_menu()
+		State.SAVE_MENU:
+			_ui.show_save_menu()
 		State.PLAYING:
 			_ui.show_game()
 		State.PAUSED:

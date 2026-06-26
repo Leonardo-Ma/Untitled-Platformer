@@ -37,6 +37,7 @@ const ATTACK_SOUNDS: Array[AudioStream] = [
 @export var ai_config: AIConfig
 
 var goap_agent: GoapAgent = null
+var spawn_position: Vector3  # saved after chunk alignment; used for save/load matching
 var _damage_material: StandardMaterial3D
 var _damage_tween: Tween
 var _prev_health: int = 0
@@ -92,10 +93,12 @@ func _ready() -> void:
 		goap_agent.init(self, goals, goap_controller, actions)
 		add_child(goap_agent)
 
-		# Disable navigation as goap will enable it when an action has movement
 		navigation_controller.set_physics_process(false)
 
 		assert(goap_agent != null, "NPCs must have GoapAgent. " + self.name)
+		add_to_group(Groups.ENEMIES)
+		# chunk is not yet aligned when _ready() fires
+		call_deferred("_record_spawn_position")
 
 
 ## Virtual method for subclasses to override instead of _ready()
@@ -131,6 +134,10 @@ func _on_death() -> void:
 	await _death_animation()
 
 	_on_death_complete()
+
+
+func _record_spawn_position() -> void:
+	spawn_position = global_position
 
 
 #region Visual effects and animations

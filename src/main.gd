@@ -1,6 +1,6 @@
-extends Node
+class_name Main extends Node
 
 
 func _ready() -> void:
-	LevelManager.initialize_level(self)
+	LevelChunkManager.initialize_level()
 	SoundManager.change_music_state(MusicController.MusicState.EXPLORATION, false, "blossom")

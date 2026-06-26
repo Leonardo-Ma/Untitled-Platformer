@@ -124,3 +124,29 @@ func select_chunk_data(
 		_chunks_since_turn += 1
 
 	return chosen_data
+
+
+func get_save_state() -> Dictionary:
+	return {
+		"recent_chunk_paths": _recent_chunk_paths.duplicate(),
+		"chunks_since_turn": _chunks_since_turn,
+		"last_skill_score_threshold": _last_skill_score_threshold,
+		"spawned_skill_ids": _spawned_skills.keys(),
+		"rng_state": _rng.state
+	}
+
+
+func load_save_state(state: Dictionary) -> void:
+	_recent_chunk_paths = state.get("recent_chunk_paths", []).duplicate()
+
+	_chunks_since_turn = state.get("chunks_since_turn", 5)
+
+	_last_skill_score_threshold = state.get("last_skill_score_threshold", 0)
+
+	_spawned_skills.clear()
+
+	for id: StringName in state.get("spawned_skill_ids", []):
+		_spawned_skills[id] = true
+
+	if state.has("rng_state"):
+		_rng.state = state["rng_state"]

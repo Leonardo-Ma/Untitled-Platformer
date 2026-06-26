@@ -4,6 +4,9 @@ extends Area3D
 @export var data: CollectibleData
 @export var respawn_delay: float = 5.0
 
+## set after chunk alignment via call_deferred
+var spawn_position: Vector3
+
 var collect_sounds: Array[AudioStream] = []
 
 var float_tween: Tween
@@ -14,10 +17,18 @@ var rot_tween: Tween
 
 
 func _ready() -> void:
-	assert(data != null, "Collectible data missing on " + self.name)
+	assert(data != null, "Collectible data missing on " + name)
 	body_entered.connect(_on_body_entered)
+	add_to_group(Groups.COLLECTIBLES)
+	_child_ready()
+	# chunk may not be aligned yet when _ready() fires
+	call_deferred("_record_spawn_position")
 	_setup_float_animation()
 	_child_ready()
+
+
+func _record_spawn_position() -> void:
+	spawn_position = global_position
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -28,6 +39,7 @@ func _on_body_entered(body: Node3D) -> void:
 		if data is StatusCollectible:
 			await _respawn_collectible()
 		else:
+			GameEvents.collectible_consumed.emit(spawn_position)
 			queue_free()
 
 

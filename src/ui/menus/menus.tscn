@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ckhxplf4oi0ca" path="res://src/ui/menus/main_menu/main_menu.tscn" id="2_mugxh"]
 [ext_resource type="PackedScene" uid="uid://cwtagwmeoqbd5" path="res://src/ui/menus/settings_menu/settings_menu.tscn" id="4_tueqh"]
 [ext_resource type="PackedScene" uid="uid://cqn880fmg3p7l" path="res://src/ui/menus/pause_menu/pause_menu.tscn" id="6_rygc3"]
+[ext_resource type="PackedScene" uid="uid://bxslugfiis2aq" path="res://src/ui/menus/save_menu/save_menu.tscn" id="7_l4a2c"]
 
 [node name="Menus" type="Control" unique_id=217563089]
 editor_description = "The menus will be instantiated as child of this node (Main menu, options, pause...)"
@@ -34,4 +35,9 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 z_index = 1
+layout_mode = 1
+
+[node name="SaveMenu" parent="." unique_id=1667891420 instance=ExtResource("7_l4a2c")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1

@@ -21,9 +21,6 @@ func _ready() -> void:
 	combat.initialize(pool)
 	music.initialize(pool)
 
-	if not OS.is_debug_build():
-		_load_volume_settings()
-
 
 func _create_subsystems() -> void:
 	pool = SoundPool.new()
