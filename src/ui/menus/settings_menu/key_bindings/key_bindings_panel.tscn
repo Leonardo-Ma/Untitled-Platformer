@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://2hl38t107acd"]
+
+[ext_resource type="Script" uid="uid://hbi1r0khsj42" path="res://src/ui/menus/settings_menu/key_bindings/key_bindings_panel.gd" id="1_kbp"]
+[ext_resource type="PackedScene" path="res://src/ui/menus/settings_menu/key_bindings/rebinding_row.tscn" id="2_kbp"]
+
+[node name="KeyBindingsPanel" type="VBoxContainer" unique_id=200001]
+size_flags_vertical = 3
+script = ExtResource("1_kbp")
+_row_scene = ExtResource("2_kbp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=200002]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="RowsContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=200003]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=200004]
+layout_mode = 2
+
+[node name="ResetAllButton" type="Button" parent="." unique_id=200005]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset All Bindings"

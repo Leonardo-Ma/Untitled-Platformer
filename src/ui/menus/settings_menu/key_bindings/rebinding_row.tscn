@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://di80ffb0v6qrw"]
+
+[ext_resource type="Script" uid="uid://ohr3c42qg5v7" path="res://src/ui/menus/settings_menu/key_bindings/rebinding_row.gd" id="1_rebrow"]
+
+[node name="RebindingRow" type="PanelContainer" unique_id=100001]
+custom_minimum_size = Vector2(0, 72)
+script = ExtResource("1_rebrow")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=100002]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=100003]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ActionLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=100004]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 6
+vertical_alignment = 1
+
+[node name="KeyButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=100005]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+icon_alignment = 1
+expand_icon = true
+
+[node name="GamepadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=100006]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ResetButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=100007]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "↩"
+flat = true

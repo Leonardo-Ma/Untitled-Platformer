@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://l8tfyp2lpc7o" path="res://src/ui/hud/hud.tscn" id="20_1ltwp"]
 [ext_resource type="Texture2D" uid="uid://bvllafmidr1tq" path="res://src/ui/assets/neobie_icons/ui/visible_128px.png" id="20_stfgh"]
 [ext_resource type="Script" uid="uid://37a0isl6jamo" path="res://src/ui/menus/settings_menu/hud/hud_visibility_toggle.gd" id="21_lcw02"]
+[ext_resource type="PackedScene" path="res://src/ui/menus/settings_menu/key_bindings/key_bindings_panel.tscn" id="28_6geaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftg2j"]
 content_margin_top = 12.0
@@ -80,8 +81,8 @@ layout_mode = 2
 [node name="SettingsContainer" type="VBoxContainer" parent="RootContainer" unique_id=1404946993 node_paths=PackedStringArray("tabs", "panels")]
 layout_mode = 2
 script = ExtResource("3_bx78x")
-tabs = [NodePath("TabMarginContainer/TabContainer/GameplayTab"), NodePath("TabMarginContainer/TabContainer/AudioTab"), NodePath("TabMarginContainer/TabContainer/HUDTab"), NodePath("TabMarginContainer/TabContainer/CameraTab"), NodePath("TabMarginContainer/TabContainer/VideoTab"), NodePath("TabMarginContainer/TabContainer/AccessibilityTab"), NodePath("TabMarginContainer/TabContainer/CreditsTab"), NodePath("TabMarginContainer/TabContainer/ControlsTab"), NodePath("TabMarginContainer/TabContainer/StatisticsTab")]
-panels = [NodePath("Tabs/GameplayOptions"), NodePath("Tabs/AudioOptions"), NodePath("Tabs/HudOptions"), NodePath("Tabs/CameraOptions"), NodePath("Tabs/VideoOptions"), NodePath("Tabs/AccessibilityOptions"), NodePath("Tabs/Credits"), NodePath("Tabs/Statistics"), NodePath("Tabs/KeyBindingOptions")]
+tabs = [NodePath("TabMarginContainer/TabContainer/GameplayTab"), NodePath("TabMarginContainer/TabContainer/AudioTab"), NodePath("TabMarginContainer/TabContainer/HUDTab"), NodePath("TabMarginContainer/TabContainer/CameraTab"), NodePath("TabMarginContainer/TabContainer/VideoTab"), NodePath("TabMarginContainer/TabContainer/AccessibilityTab"), NodePath("TabMarginContainer/TabContainer/CreditsTab"), NodePath("TabMarginContainer/TabContainer/KeyBindingsTab"), NodePath("TabMarginContainer/TabContainer/StatisticsTab")]
+panels = [NodePath("Tabs/GameplayOptions"), NodePath("Tabs/AudioOptions"), NodePath("Tabs/HudOptions"), NodePath("Tabs/CameraOptions"), NodePath("Tabs/VideoOptions"), NodePath("Tabs/AccessibilityOptions"), NodePath("Tabs/Credits"), NodePath("Tabs/KeyBindingsPanel"), NodePath("Tabs/Statistics")]
 
 [node name="TabMarginContainer" type="MarginContainer" parent="RootContainer/SettingsContainer" unique_id=1464652048]
 layout_mode = 2
@@ -206,8 +207,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 focus_neighbor_left = NodePath("../AccessibilityTab")
-focus_neighbor_right = NodePath("../ControlsTab")
-focus_next = NodePath("../ControlsTab")
+focus_neighbor_right = NodePath("../KeyBindingsTab")
+focus_next = NodePath("../KeyBindingsTab")
 focus_previous = NodePath("../AccessibilityTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
@@ -216,7 +217,7 @@ icon = ExtResource("12_stfgh")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ControlsTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1774065017]
+[node name="KeyBindingsTab" type="Button" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1774065017]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -237,10 +238,10 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-focus_neighbor_left = NodePath("../ControlsTab")
+focus_neighbor_left = NodePath("../KeyBindingsTab")
 focus_neighbor_right = NodePath("../CloseSettingsButton")
 focus_next = NodePath("../CloseSettingsButton")
-focus_previous = NodePath("../ControlsTab")
+focus_previous = NodePath("../KeyBindingsTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
@@ -249,7 +250,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CloseSettingsButton" type="TextureButton" parent="RootContainer/SettingsContainer/TabMarginContainer/TabContainer" unique_id=1971545603]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -422,6 +423,7 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="VideoOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=697717083]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -500,10 +502,5 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="KeyBindingOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=310175671]
-visible = false
+[node name="KeyBindingsPanel" parent="RootContainer/SettingsContainer/Tabs" unique_id=600000001 instance=ExtResource("28_6geaa")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-metadata/_tab_index = 0
-metadata/_tab_name = ""
