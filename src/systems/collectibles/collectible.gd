@@ -24,7 +24,6 @@ func _ready() -> void:
 	# chunk may not be aligned yet when _ready() fires
 	call_deferred("_record_spawn_position")
 	_setup_float_animation()
-	_child_ready()
 
 
 func _record_spawn_position() -> void:

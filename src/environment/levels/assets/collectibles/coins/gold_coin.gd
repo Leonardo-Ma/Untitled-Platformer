@@ -14,6 +14,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is PlayerEntity:
 		SoundManager.play_sound(collect_sounds.pick_random(), SoundManager.SoundCategory.SFX, global_position)
 		_apply_effect(body as PlayerEntity)
+		GameEvents.collectible_consumed.emit(spawn_position)
 		queue_free()
 
 
