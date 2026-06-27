@@ -490,9 +490,9 @@ script = ExtResource("16_b2jeh")
 unique_name_in_owner = true
 script = ExtResource("29_skills")
 
-[node name="KnockbackController" type="Node" parent="Controllers" unique_id=477450996]
+[node name="KnockbackController" type="Node" parent="Controllers" unique_id=222396921]
+unique_name_in_owner = true
 script = ExtResource("28_voi68")
-metadata/_custom_type_script = "uid://bll0orhps41m6"
 
 [node name="VFXController" type="Node" parent="Controllers" unique_id=476175254]
 unique_name_in_owner = true
@@ -500,10 +500,9 @@ script = ExtResource("31_gxh5t")
 
 [node name="Status" type="Node" parent="." unique_id=1830557303]
 
-[node name="StatusManager" type="Node" parent="Status" unique_id=925848542]
+[node name="StatusManager" type="Node" parent="Status" unique_id=972557881]
 unique_name_in_owner = true
 script = ExtResource("19_s033l")
-metadata/_custom_type_script = "uid://rpbdsks54nbp"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=58706734]
 unique_name_in_owner = true

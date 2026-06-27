@@ -19,9 +19,8 @@ attack = SubResource("Resource_g6x07")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74139295]
 shape = SubResource("BoxShape3D_g6x07")
 
-[node name="Hitbox" type="Area3D" parent="." unique_id=787957096]
+[node name="Hitbox" type="Area3D" parent="." unique_id=982130054]
 script = ExtResource("2_ojqax")
-metadata/_custom_type_script = "uid://csig12422io62"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=741375312]
 shape = SubResource("BoxShape3D_g6x07")

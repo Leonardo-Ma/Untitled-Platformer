@@ -113,10 +113,9 @@ skeleton = NodePath("")
 transform = Transform3D(0.010000002, 0, 0, 0, -4.3711434e-10, -0.010000005, 0, 0.010000005, -4.3711434e-10, 0, 0, 0)
 shape = SubResource("BoxShape3D_1hd0d")
 
-[node name="Hitbox" type="Area3D" parent="." unique_id=1000461069]
+[node name="Hitbox" type="Area3D" parent="." unique_id=1284920304]
 unique_name_in_owner = true
 script = ExtResource("3_fqofb")
-metadata/_custom_type_script = "uid://csig12422io62"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1655419782]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, 0, 0, 0)

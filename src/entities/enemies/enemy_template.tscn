@@ -95,7 +95,6 @@ attack = SubResource("Resource_wefi8")
 health = SubResource("Resource_hp5pt")
 movement = SubResource("Resource_rbcv5")
 perception_config = SubResource("Resource_k6n52")
-debug_perception = true
 ai_config = SubResource("Resource_f7hab")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1263244351]
@@ -127,20 +126,17 @@ script = ExtResource("18_h6n62")
 unique_name_in_owner = true
 script = ExtResource("19_nw04b")
 
-[node name="PerceptionSystem" type="Node" parent="Controllers" unique_id=255216185]
-unique_name_in_owner = true
-script = ExtResource("20_tbbw0")
-metadata/_custom_type_script = "uid://r2b3ysikxov0"
-
-[node name="KnockbackController" type="Node" parent="Controllers" unique_id=1106279333]
+[node name="KnockbackController" type="Node" parent="Controllers" unique_id=2141613769]
 unique_name_in_owner = true
 script = ExtResource("21_q7i4y")
-metadata/_custom_type_script = "uid://bll0orhps41m6"
 
-[node name="VFXController" type="Node" parent="Controllers" unique_id=692832492]
+[node name="VFXController" type="Node" parent="Controllers" unique_id=92317038]
 unique_name_in_owner = true
 script = ExtResource("22_ju7vx")
-metadata/_custom_type_script = "uid://cpusxg43clwxv"
+
+[node name="PerceptionSystem" type="Node" parent="Controllers" unique_id=1183982017]
+unique_name_in_owner = true
+script = ExtResource("20_tbbw0")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1218537899]
 unique_name_in_owner = true
@@ -151,10 +147,9 @@ debug_enabled = true
 
 [node name="Status" type="Node" parent="." unique_id=295181189]
 
-[node name="StatusManager" type="Node" parent="Status" unique_id=2000296191]
+[node name="StatusManager" type="Node" parent="Status" unique_id=1436513430]
 unique_name_in_owner = true
 script = ExtResource("23_o0y4x")
-metadata/_custom_type_script = "uid://rpbdsks54nbp"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=998701689]
 unique_name_in_owner = true
