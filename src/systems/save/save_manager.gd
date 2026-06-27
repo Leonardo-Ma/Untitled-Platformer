@@ -20,6 +20,8 @@ var _auto_timer: Timer
 var _pending_load_data: SaveData = null
 var _consumed_collectible_positions: Array[Vector3] = []
 var _killed_enemy_positions: Array[Vector3] = []
+var _pending_player: PlayerEntity = null
+var _pending_checkpoint: Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -64,6 +66,8 @@ func save_to_slot(slot_index: int) -> bool:
 func save_to_quick_slot() -> bool:
 	var player: PlayerEntity = get_tree().get_first_node_in_group(Groups.PLAYERS) as PlayerEntity
 	assert(player != null, "SaveManager: no player found for quick save in " + name)
+	if player.health.current_health <= 0:
+		return false
 	return _write_slot(QUICK_SAVE_SLOT, false, player)
 
 
@@ -131,7 +135,7 @@ func _on_auto_save() -> void:
 	if get_tree().paused:
 		return
 	var player: PlayerEntity = get_tree().get_first_node_in_group(Groups.PLAYERS) as PlayerEntity
-	if player == null:
+	if player == null or player.health.current_health <= 0:
 		return
 	var target_slot: int = MANUAL_SLOTS + _next_auto_slot
 	_write_slot(target_slot, true, player)
@@ -185,7 +189,7 @@ func _build(player: PlayerEntity, slot_index: int, is_auto: bool) -> SaveData:
 	data.save_version = CURRENT_SAVE_VERSION
 	data.slot_index = slot_index
 	data.is_auto_save = is_auto
-	data.save_timestamp = Time.get_unix_time_from_system()
+	data.save_timestamp = int(Time.get_unix_time_from_system())
 
 	data.score = GameEvents.score
 	data.gold = GameEvents.gold
@@ -211,9 +215,6 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 	GameEvents.score_updated.emit(data.score)
 	GameEvents.gold_updated.emit(data.gold)
 
-	if data.checkpoint_position != Vector3.ZERO:
-		player.global_position = data.checkpoint_position
-
 	player.health.current_health = data.player_health
 
 	for id: StringName in data.unlocked_skill_ids:
@@ -233,10 +234,25 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 		)
 	)
 
-	# Deferred: enemies/collectibles record their spawn positions via call_deferred in _ready()
-	# These must run after those deferred calls complete
+	# Position set after chunk physics settle; also resets death movement state
+	if data.checkpoint_position != Vector3.ZERO:
+		_pending_player = player
+		_pending_checkpoint = data.checkpoint_position
+		_place_player_at_checkpoint.call_deferred()
+
 	_disable_killed_enemies.call_deferred()
 	_disable_consumed_collectibles.call_deferred()
+
+
+func _place_player_at_checkpoint() -> void:
+	if not is_instance_valid(_pending_player) or _pending_checkpoint == Vector3.ZERO:
+		return
+	_pending_player.global_position = _pending_checkpoint
+	_pending_player.velocity = Vector3.ZERO
+	_pending_player.movement_controller.movement_enabled = true
+	_pending_player.movement_controller.disable_timer = 0.0
+	_pending_checkpoint = Vector3.ZERO
+	_pending_player = null
 
 
 func _disable_consumed_collectibles() -> void:
@@ -245,7 +261,7 @@ func _disable_consumed_collectibles() -> void:
 			var collectible: Collectible = c as Collectible
 			if collectible == null:
 				continue
-			if pos.distance_squared_to(collectible.base_position) < _COLLECTIBLE_MATCH_SQ:
+			if pos.distance_squared_to(collectible.spawn_position) < _COLLECTIBLE_MATCH_SQ:
 				c.queue_free()
 				break
 

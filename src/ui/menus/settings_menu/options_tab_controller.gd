@@ -7,6 +7,7 @@ extends VBoxContainer
 @export var panels: Array[VBoxContainer] = []
 
 
+# TODO Add assert to check if all panels and options are filled
 func _ready() -> void:
 	assert(tabs.size() == panels.size(), "Tab/panel count mismatch in " + name)
 	var group: ButtonGroup = ButtonGroup.new()

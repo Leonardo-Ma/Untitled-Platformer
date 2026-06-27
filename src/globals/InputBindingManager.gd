@@ -56,8 +56,9 @@ func reset_action(action: StringName) -> void:
 	binding_changed.emit(action)
 
 
-## Resets all rebindable actions to defaults
+## Resets all rebindable actions to default
 func reset_all() -> void:
+	print_debug("Key bindings reset to default")
 	for action: StringName in REBINDABLE_ACTIONS:
 		reset_action(action)
 
