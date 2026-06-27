@@ -55,6 +55,19 @@ repos:
         entry: '^\[connection '
         files: \.tscn$
 
+      - id: no-custom-type-nodes
+        name: ban non unique custom type nodes | editor caches class and misses script changes | use generic Node + attach script
+        language: system
+        entry: >
+          awk '
+            /^\[/ { in_node = ($0 ~ /^\[node /) }
+            in_node && /metadata\/_custom_type_script/ {
+              print FILENAME ":" NR ": custom node found"
+              exit 1
+            }
+          '
+        files: \.tscn$
+
       # Architecture
       - id: no-scene-tree-traversal
         name: "ban scene tree climbing | assumes scene structure and breaks on refactor | use @export, Groups, or Autoloads"
