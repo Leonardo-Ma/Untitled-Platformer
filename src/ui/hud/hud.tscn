@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bgf4oeuykl8jh" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_left.png" id="12_tvn8q"]
 [ext_resource type="Texture2D" uid="uid://cn5mglaiekqhk" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/keyboard_space_outline.png" id="12_xy2nf"]
 [ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://src/ui/hud/skill.tscn" id="13_gy4ue"]
-[ext_resource type="Texture2D" uid="uid://byq7gera6e0bf" path="res://src/ui/assets/neobie_icons/items/sword_128px.png" id="15_t210l"]
+[ext_resource type="Texture2D" uid="uid://b0mjdtfcu0v1r" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/3_gear/sword.png" id="15_lb1pd"]
 [ext_resource type="Texture2D" uid="uid://01223baevlix" path="res://src/icons/16x16/jump.png" id="15_ulf7a"]
 [ext_resource type="Texture2D" uid="uid://bx4ijaov68u63" path="res://src/ui/assets/kenney_input-prompts/sticks/stick_left.png" id="16_s7scb"]
 [ext_resource type="Texture2D" uid="uid://c12ohnfx80foq" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/letters/keyboard_w_outline.png" id="16_whmeo"]
@@ -24,9 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://b1nromu08hj3y" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/letters/keyboard_s_outline.png" id="18_air4j"]
 [ext_resource type="Texture2D" uid="uid://cqww5kwjrck3d" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/letters/keyboard_d_outline.png" id="19_lb1pd"]
 [ext_resource type="Texture2D" uid="uid://cgiss7x7cle55" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_move.png" id="19_ljgop"]
+[ext_resource type="Texture2D" uid="uid://dy53jq6k08rjq" path="res://src/ui/assets/kenney_input-prompts/xbox_series_double/xbox_button_back_icon_outline.png" id="22_air4j"]
 [ext_resource type="Texture2D" uid="uid://d1aopeglq7q3y" path="res://src/ui/assets/kenney_input-prompts/sticks/stick_right.png" id="22_t210l"]
+[ext_resource type="Texture2D" uid="uid://bx6r2tioul5ru" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/6_buildings/flag.png" id="23_lb1pd"]
 [ext_resource type="Texture2D" uid="uid://btbdty1xbpcap" path="res://src/ui/assets/kenney_input-prompts/flairs_double/flair_arrow_3.png" id="25_gcgkn"]
-[ext_resource type="Texture2D" uid="uid://bvllafmidr1tq" path="res://src/ui/assets/neobie_icons/ui/visible_128px.png" id="26_lt7hv"]
+[ext_resource type="Texture2D" uid="uid://csssgfxl235ik" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/visible.png" id="27_lb1pd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
 
@@ -256,7 +258,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("15_t210l")
+texture = ExtResource("15_lb1pd")
 expand_mode = 3
 stretch_mode = 5
 
@@ -377,7 +379,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("26_lt7hv")
+texture = ExtResource("27_lb1pd")
 expand_mode = 3
 stretch_mode = 5
 

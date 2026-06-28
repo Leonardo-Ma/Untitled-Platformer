@@ -3,31 +3,31 @@
 [ext_resource type="Script" uid="uid://b6ywxkq47cgy5" path="res://src/ui/menus/main_menu/scale_font_size.gd" id="2_stv84"]
 [ext_resource type="Script" uid="uid://c28r7m4rv68ob" path="res://src/ui/menus/settings_menu/options_tab_controller.gd" id="3_bx78x"]
 [ext_resource type="Theme" uid="uid://c3cx0udnofecq" path="res://src/ui/menus/settings_menu/tabs.tres" id="4_bx78x"]
-[ext_resource type="Texture2D" uid="uid://bmux8jf7ca1hu" path="res://src/ui/assets/neobie_icons/media_and_tech/volume_128px.png" id="4_fh7mx"]
-[ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/ui/assets/neobie_icons/media_and_tech/play_128px.png" id="4_ftg2j"]
+[ext_resource type="Texture2D" uid="uid://cqgd6g3oujuj" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/play.png" id="5_863by"]
 [ext_resource type="ButtonGroup" uid="uid://ctkeu7278wn6a" path="res://src/ui/menus/settings_menu/settings_button_group.tres" id="5_b1okk"]
 [ext_resource type="Script" uid="uid://dpc6wcewh3ft" path="res://src/ui/menus/settings_menu/audio/volume_slider.gd" id="5_nap5k"]
-[ext_resource type="Texture2D" uid="uid://c1l7tgqaxu15t" path="res://src/ui/assets/neobie_icons/ui/cross_128px.png" id="6_nxapy"]
-[ext_resource type="Texture2D" uid="uid://d2qt4l064p8c" path="res://src/ui/assets/neobie_icons/media_and_tech/gamepad_128px.png" id="6_s8b3e"]
+[ext_resource type="Texture2D" uid="uid://bcak65oijluxt" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/volume.png" id="7_6geaa"]
 [ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="7_8i7sm"]
 [ext_resource type="Script" uid="uid://djxnnbvmilpar" path="res://src/ui/menus/settings_menu/close_settings.gd" id="8_jw1je"]
-[ext_resource type="Texture2D" uid="uid://kkysfnikwks4" path="res://src/ui/assets/neobie_icons/media_and_tech/music_128px.png" id="9_jw1je"]
+[ext_resource type="Texture2D" uid="uid://cbxbqyffu50mm" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/camera.png" id="9_6geaa"]
 [ext_resource type="Script" uid="uid://cbn2pmfg88g7l" path="res://src/ui/menus/settings_menu/video/resolution_option.gd" id="9_nxapy"]
-[ext_resource type="Texture2D" uid="uid://0sso62gr4mua" path="res://src/ui/assets/neobie_icons/media_and_tech/camera_128px.png" id="9_pi2tp"]
-[ext_resource type="Texture2D" uid="uid://bu5mlfnvsd33a" path="res://src/ui/assets/neobie_icons/media_and_tech/display_128px.png" id="9_stv84"]
-[ext_resource type="Texture2D" uid="uid://n4nsijc1pebb" path="res://src/ui/assets/neobie_icons/game/hit_effect_128px.png" id="10_bx78x"]
-[ext_resource type="Texture2D" uid="uid://ddvnyoic3nw6s" path="res://src/ui/assets/neobie_icons/media_and_tech/tablet_128px.png" id="10_erkbg"]
-[ext_resource type="Texture2D" uid="uid://k25o5l7l040d" path="res://src/ui/assets/neobie_icons/ui/user_avatar_128px.png" id="11_1ltwp"]
+[ext_resource type="Texture2D" uid="uid://bkg1s07hgwn6s" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/display.png" id="10_863by"]
+[ext_resource type="Texture2D" uid="uid://oh27q86ougww" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/user_avatar.png" id="11_6geaa"]
+[ext_resource type="Texture2D" uid="uid://e32brruy5p0w" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/document.png" id="12_6geaa"]
 [ext_resource type="Script" uid="uid://dxpn7sqmdu0w5" path="res://src/ui/menus/settings_menu/video/full_screen_option.gd" id="12_dt2xc"]
-[ext_resource type="Texture2D" uid="uid://cjj4g2id26el2" path="res://src/ui/assets/neobie_icons/editing_tools/outline_128px.png" id="12_gucvx"]
-[ext_resource type="Texture2D" uid="uid://co5884oa1qyww" path="res://src/ui/assets/neobie_icons/media_and_tech/document_128px.png" id="12_stfgh"]
-[ext_resource type="Texture2D" uid="uid://dasfo85wh6qx1" path="res://src/ui/assets/neobie_icons/editing_tools/cursor_diagonal_resize2_128px.png" id="13_gucvx"]
-[ext_resource type="Texture2D" uid="uid://b5lli6e4uwrid" path="res://src/ui/assets/neobie_icons/ui/menu7_128px.png" id="14_lcw02"]
+[ext_resource type="Texture2D" uid="uid://gfd0uy3kkxkn" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/1_game/controller.png" id="13_6geaa"]
+[ext_resource type="Texture2D" uid="uid://b7eyvxyhsw0wf" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/menu_07.png" id="14_6geaa"]
+[ext_resource type="Texture2D" uid="uid://7p2j8n842i0a" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/cross.png" id="15_6geaa"]
 [ext_resource type="Texture2D" uid="uid://pfmkppm3ecuw" path="res://src/ui/assets/fantasy_ui_borders/PNG/Double/Border/panel-border-010.png" id="17_6geaa"]
 [ext_resource type="PackedScene" uid="uid://l8tfyp2lpc7o" path="res://src/ui/hud/hud.tscn" id="20_1ltwp"]
-[ext_resource type="Texture2D" uid="uid://bvllafmidr1tq" path="res://src/ui/assets/neobie_icons/ui/visible_128px.png" id="20_stfgh"]
+[ext_resource type="Texture2D" uid="uid://cvw72qmip5r4d" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/music.png" id="20_6geaa"]
+[ext_resource type="Texture2D" uid="uid://box0h5kam6d5h" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/1_game/hit-effect.png" id="21_6geaa"]
 [ext_resource type="Script" uid="uid://37a0isl6jamo" path="res://src/ui/menus/settings_menu/hud/hud_visibility_toggle.gd" id="21_lcw02"]
-[ext_resource type="PackedScene" path="res://src/ui/menus/settings_menu/key_bindings/key_bindings_panel.tscn" id="28_6geaa"]
+[ext_resource type="Texture2D" uid="uid://csssgfxl235ik" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/visible.png" id="22_863by"]
+[ext_resource type="Texture2D" uid="uid://b4o6e8o8yeh1r" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/tablet.png" id="25_ha0b3"]
+[ext_resource type="Texture2D" uid="uid://bre2mn436fkul" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/10_editing/outline.png" id="26_6geaa"]
+[ext_resource type="Texture2D" uid="uid://q7hsua5cyk4y" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/10_editing/cursor-diagonal-resize-02.png" id="27_6geaa"]
+[ext_resource type="PackedScene" uid="uid://2hl38t107acd" path="res://src/ui/menus/settings_menu/key_bindings/key_bindings_panel.tscn" id="28_6geaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftg2j"]
 content_margin_top = 12.0
@@ -108,7 +108,7 @@ focus_previous = NodePath("../CloseSettingsButton")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("4_ftg2j")
+icon = ExtResource("5_863by")
 icon_alignment = 1
 expand_icon = true
 
@@ -129,7 +129,7 @@ focus_previous = NodePath("../GameplayTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("4_fh7mx")
+icon = ExtResource("7_6geaa")
 icon_alignment = 1
 expand_icon = true
 
@@ -147,7 +147,7 @@ focus_previous = NodePath("../AudioTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("10_erkbg")
+icon = ExtResource("25_ha0b3")
 icon_alignment = 1
 expand_icon = true
 
@@ -163,7 +163,7 @@ focus_previous = NodePath("../HUDTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("9_pi2tp")
+icon = ExtResource("9_6geaa")
 icon_alignment = 1
 expand_icon = true
 
@@ -181,7 +181,7 @@ focus_previous = NodePath("../CameraTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("9_stv84")
+icon = ExtResource("10_863by")
 icon_alignment = 1
 expand_icon = true
 
@@ -197,7 +197,7 @@ focus_previous = NodePath("../VideoTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("11_1ltwp")
+icon = ExtResource("11_6geaa")
 icon_alignment = 1
 expand_icon = true
 
@@ -213,7 +213,7 @@ focus_previous = NodePath("../AccessibilityTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("12_stfgh")
+icon = ExtResource("12_6geaa")
 icon_alignment = 1
 expand_icon = true
 
@@ -229,7 +229,7 @@ focus_previous = NodePath("../CreditsTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("6_s8b3e")
+icon = ExtResource("13_6geaa")
 icon_alignment = 1
 expand_icon = true
 
@@ -245,7 +245,7 @@ focus_previous = NodePath("../KeyBindingsTab")
 theme = ExtResource("4_bx78x")
 toggle_mode = true
 button_group = ExtResource("5_b1okk")
-icon = ExtResource("14_lcw02")
+icon = ExtResource("14_6geaa")
 icon_alignment = 1
 expand_icon = true
 
@@ -258,7 +258,7 @@ focus_neighbor_left = NodePath("../StatisticsTab")
 focus_neighbor_right = NodePath("../GameplayTab")
 focus_next = NodePath("../GameplayTab")
 focus_previous = NodePath("../StatisticsTab")
-texture_normal = ExtResource("6_nxapy")
+texture_normal = ExtResource("15_6geaa")
 texture_focused = ExtResource("17_6geaa")
 ignore_texture_size = true
 stretch_mode = 5
@@ -282,12 +282,6 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="GuidanceArrowToggle" type="CheckButton" parent="RootContainer/SettingsContainer/Tabs/GameplayOptions" unique_id=2075433448]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-icon = ExtResource("20_stfgh")
-expand_icon = true
-
 [node name="AudioOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1811562513]
 visible = false
 layout_mode = 2
@@ -302,7 +296,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/GlobalVolume" unique_id=977982703]
 layout_mode = 2
-texture = ExtResource("4_fh7mx")
+texture = ExtResource("7_6geaa")
 expand_mode = 2
 
 [node name="GlobalVolumeSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/GlobalVolume" unique_id=90230376]
@@ -326,7 +320,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/MusicVolume" unique_id=1948026632]
 layout_mode = 2
-texture = ExtResource("9_jw1je")
+texture = ExtResource("20_6geaa")
 expand_mode = 2
 
 [node name="MusicSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/MusicVolume" unique_id=1941083232]
@@ -347,7 +341,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/EffectsVolume" unique_id=350975670]
 layout_mode = 2
-texture = ExtResource("10_bx78x")
+texture = ExtResource("21_6geaa")
 expand_mode = 2
 
 [node name="EffectsSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/EffectsVolume" unique_id=425235765]
@@ -368,7 +362,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/UIVolume" unique_id=383704298]
 layout_mode = 2
-texture = ExtResource("9_stv84")
+texture = ExtResource("10_863by")
 expand_mode = 2
 
 [node name="UISlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/UIVolume" unique_id=56946327]
@@ -401,7 +395,7 @@ size_flags_vertical = 3
 [node name="CheckButton" type="CheckButton" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer" unique_id=1057472892 node_paths=PackedStringArray("preview_hud")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-icon = ExtResource("20_stfgh")
+icon = ExtResource("22_863by")
 expand_icon = true
 script = ExtResource("21_lcw02")
 preview_hud = NodePath("../BoxContainer/HUD")
@@ -423,7 +417,6 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="VideoOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=697717083]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -437,7 +430,7 @@ theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Resolution" unique_id=1926409826]
 layout_mode = 2
-texture = ExtResource("9_stv84")
+texture = ExtResource("10_863by")
 expand_mode = 2
 
 [node name="ResolutionOption" type="OptionButton" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Resolution" unique_id=1724809319]
@@ -458,7 +451,7 @@ theme_override_constants/separation = 40
 [node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/FullScreen" unique_id=533257910]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-texture = ExtResource("10_erkbg")
+texture = ExtResource("25_ha0b3")
 expand_mode = 2
 
 [node name="FullScreenOption" type="OptionButton" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/FullScreen" unique_id=929539239]
@@ -471,10 +464,10 @@ focus_previous = NodePath("../../Resolution/ResolutionOption")
 theme = SubResource("Theme_4yx6g")
 theme_override_constants/icon_max_width = 80
 script = ExtResource("12_dt2xc")
-windowed_icon = ExtResource("12_gucvx")
-maximized_icon = ExtResource("10_erkbg")
-fullscreen_icon = ExtResource("13_gucvx")
-exclusive_fullscreen_icon = ExtResource("9_stv84")
+windowed_icon = ExtResource("26_6geaa")
+maximized_icon = ExtResource("25_ha0b3")
+fullscreen_icon = ExtResource("27_6geaa")
+exclusive_fullscreen_icon = ExtResource("10_863by")
 
 [node name="AccessibilityOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1262244019]
 visible = false

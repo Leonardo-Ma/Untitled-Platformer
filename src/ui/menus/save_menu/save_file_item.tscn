@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cjtdgmmp28fgb"]
 
 [ext_resource type="Script" uid="uid://bpniia35v8mod" path="res://src/ui/menus/save_menu/save_file_item.gd" id="1_06awo"]
-[ext_resource type="Texture2D" uid="uid://bd8s2mvu8fgc3" path="res://src/ui/assets/neobie_icons/ui/save_128px.png" id="1_tuovo"]
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://src/icons/16x16/star.png" id="2_06awo"]
-[ext_resource type="Texture2D" uid="uid://d2ly3lbocdhhe" path="res://src/ui/assets/neobie_icons/media_and_tech/play_128px.png" id="2_yenkp"]
+[ext_resource type="Texture2D" uid="uid://dj6mk6ic8le0p" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/save.png" id="2_auyt5"]
 [ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://src/icons/16x16/coins.png" id="3_auyt5"]
-[ext_resource type="Texture2D" uid="uid://cptqhjctcrrqi" path="res://src/ui/assets/neobie_icons/media_and_tech/trash_128px.png" id="3_xrl4u"]
+[ext_resource type="Texture2D" uid="uid://cqgd6g3oujuj" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/play.png" id="5_06awo"]
+[ext_resource type="Texture2D" uid="uid://biqkiy2y3opd2" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/trash.png" id="6_06awo"]
 
 [node name="SaveFileItem" type="AspectRatioContainer" unique_id=332637846]
 custom_minimum_size = Vector2(500, 150)
@@ -45,7 +45,7 @@ layout_mode = 2
 [node name="DiskIcon" type="TextureRect" parent="OuterMarginContainer/VBoxContainer/SaveFileMarginContainer/VBoxContainer/SaveContainer" unique_id=727825609]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-texture = ExtResource("1_tuovo")
+texture = ExtResource("2_auyt5")
 expand_mode = 3
 stretch_mode = 5
 
@@ -163,7 +163,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 size_flags_horizontal = 3
-icon = ExtResource("2_yenkp")
+icon = ExtResource("5_06awo")
 icon_alignment = 1
 expand_icon = true
 
@@ -172,6 +172,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 size_flags_horizontal = 3
-icon = ExtResource("3_xrl4u")
+icon = ExtResource("6_06awo")
 icon_alignment = 1
 expand_icon = true
