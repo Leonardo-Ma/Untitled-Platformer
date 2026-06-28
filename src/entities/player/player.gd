@@ -30,6 +30,7 @@ func _child_ready() -> void:
 	GameEvents.player_spawned.emit(self)
 
 	input_controller.attack_pressed.connect(_on_attack_pressed)
+	health.damaged.connect(_on_damaged_vibration)
 	# TODO Also disable input controller, player can attack between death and respawn
 	health.died.connect(movement_controller.disable_movement.bind(5.0))
 
@@ -71,3 +72,8 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 
 	hurtbox.set_deferred("monitoring", true)
 	hurtbox.set_deferred("monitorable", true)
+
+
+func _on_damaged_vibration(_attack: Attack) -> void:
+	# TODO Change the gamepad index to the actual player gamepad?
+	Input.start_joy_vibration(0, 0.5, 0.5, 0.7)
