@@ -9,7 +9,7 @@ signal release_mouse_requested
 @export_range(0.0, 1.0, 0.1) var horizontal_sensibility: float = 0.2
 @export_range(0.0, 1.0, 0.1) var vertical_sensibility: float = 0.2
 
-@export_range(0.0, 1.0, 0.01) var gamepad_look_sensitivity: float = 0.35
+@export_range(0.0, 720.0, 1.0) var gamepad_look_sensitivity: float = 120.0
 @export var gamepad_look_invert_y: bool = false
 
 var mouse_look_enabled: bool = false
@@ -46,11 +46,11 @@ func _input(event: InputEvent) -> void:
 
 
 #region Gamepad (right stick)
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var look_input: Vector2 = Input.get_vector("look_left", "look_right", "look_down", "look_up")
 	if look_input.length() > 0.1:  # small deadzone
-		var h: float = look_input.x * gamepad_look_sensitivity
-		var v: float = look_input.y * gamepad_look_sensitivity * (1.0 if gamepad_look_invert_y else -1.0)
+		var h: float = look_input.x * gamepad_look_sensitivity * delta
+		var v: float = look_input.y * gamepad_look_sensitivity * delta * (1.0 if gamepad_look_invert_y else -1.0)
 		player.rotate_y(deg_to_rad(-h))
 		cam_root.rotate_x(deg_to_rad(-v))
 		# Limit vertical camera rotation
