@@ -5,12 +5,14 @@ extends RefCounted
 const MAX_VERTICAL_DEVIATION: float = 300.0
 const MIN_VERTICAL_DEVIATION: float = -40.0
 const SKILL_UNLOCK_SCORE_STEP: int = 50
+const MIN_CHUNKS_BETWEEN_SKILLS: int = 5
 
 var _rng: RandomNumberGenerator
 var _all_chunks: Array[ChunkData]
 var _recent_chunk_paths: Array[String] = []
 var _chunks_since_turn: int = 5
 var _last_skill_score_threshold: int = 0
+var _chunks_since_skill_unlock: int = MIN_CHUNKS_BETWEEN_SKILLS
 var _spawned_skills: Dictionary = {}
 
 
@@ -22,6 +24,7 @@ func _init(rng: RandomNumberGenerator, all_chunks: Array[ChunkData]) -> void:
 func reset() -> void:
 	_recent_chunk_paths.clear()
 	_chunks_since_turn = 5
+	_chunks_since_skill_unlock = MIN_CHUNKS_BETWEEN_SKILLS
 	_last_skill_score_threshold = 0
 	_spawned_skills.clear()
 
@@ -34,7 +37,9 @@ func select_chunk_data(
 	var valid_pool: Array[ChunkData] = []
 	var strict_pool: Array[ChunkData] = []
 	var current_y_height: float = target_transform.origin.y
-	var force_skill_unlock: bool = current_score >= _last_skill_score_threshold + SKILL_UNLOCK_SCORE_STEP
+	var force_skill_unlock: bool = (
+		current_score >= _last_skill_score_threshold + SKILL_UNLOCK_SCORE_STEP and _chunks_since_skill_unlock >= MIN_CHUNKS_BETWEEN_SKILLS
+	)
 
 	print("\n==================== Chunk Selection Debug ====================")
 	print("Target Y: ", current_y_height, " | Chunks since turn: ", _chunks_since_turn, " | Last skill score unlock: ", _last_skill_score_threshold)
@@ -107,6 +112,9 @@ func select_chunk_data(
 
 	if chosen_data.unlocks_skill_id != &"":
 		_spawned_skills[chosen_data.unlocks_skill_id] = true
+		_chunks_since_skill_unlock = 0
+	else:
+		_chunks_since_skill_unlock += 1
 
 	print("  ✓ SELECTED: [%s] (is_turn: %s, height_shift: %.1f)" % [chosen_data.scene_path.get_file(), chosen_data.is_turn, chosen_data.height_shift])
 	print("====================================================\n")
@@ -130,23 +138,20 @@ func get_save_state() -> Dictionary:
 	return {
 		"recent_chunk_paths": _recent_chunk_paths.duplicate(),
 		"chunks_since_turn": _chunks_since_turn,
+		"chunks_since_skill_unlock": _chunks_since_skill_unlock,
 		"last_skill_score_threshold": _last_skill_score_threshold,
 		"spawned_skill_ids": _spawned_skills.keys(),
-		"rng_state": _rng.state
+		"rng_state": _rng.state,
 	}
 
 
 func load_save_state(state: Dictionary) -> void:
 	_recent_chunk_paths = state.get("recent_chunk_paths", []).duplicate()
-
 	_chunks_since_turn = state.get("chunks_since_turn", 5)
-
+	_chunks_since_skill_unlock = state.get("chunks_since_skill_unlock", MIN_CHUNKS_BETWEEN_SKILLS)
 	_last_skill_score_threshold = state.get("last_skill_score_threshold", 0)
-
 	_spawned_skills.clear()
-
 	for id: StringName in state.get("spawned_skill_ids", []):
 		_spawned_skills[id] = true
-
 	if state.has("rng_state"):
 		_rng.state = state["rng_state"]
