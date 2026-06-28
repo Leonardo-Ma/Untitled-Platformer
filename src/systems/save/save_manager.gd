@@ -215,7 +215,7 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 	GameEvents.score_updated.emit(data.score)
 	GameEvents.gold_updated.emit(data.gold)
 
-	player.health.current_health = data.player_health
+	player.health.current_health = maxi(data.player_health, 1)
 
 	for id: StringName in data.unlocked_skill_ids:
 		var def: SkillDefinition = SkillRegistry.get_definition(id)
