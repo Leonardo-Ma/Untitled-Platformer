@@ -88,8 +88,19 @@ func _save() -> void:
 	var config: ConfigFile = ConfigFile.new()
 	for action: StringName in REBINDABLE_ACTIONS:
 		var event: InputEventKey = get_keyboard_event(action)
-		if event != null:
-			config.set_value(_SECTION, action, event.keycode)
+		if event == null:
+			continue
+		(
+			config
+			. set_value(
+				_SECTION,
+				action,
+				{
+					&"physical": int(event.physical_keycode),
+					&"logical": int(event.keycode),
+				}
+			)
+		)
 	config.save(_SAVE_PATH)
 
 
@@ -98,10 +109,14 @@ func _load() -> void:
 	if config.load(_SAVE_PATH) != OK:
 		return
 	for action: StringName in REBINDABLE_ACTIONS:
-		var keycode: Variant = config.get_value(_SECTION, action, null)
-		if keycode == null:
+		var raw: Variant = config.get_value(_SECTION, action, null)
+		if raw == null:
 			continue
 		var event: InputEventKey = InputEventKey.new()
-		event.keycode = keycode
+		if raw is Dictionary:
+			event.physical_keycode = (raw.get(&"physical", 0)) as Key
+			event.keycode = (raw.get(&"logical", 0)) as Key
+		elif raw is int:
+			event.keycode = raw as Key
 		_remove_keyboard_bindings(action)
 		InputMap.action_add_event(action, event)
