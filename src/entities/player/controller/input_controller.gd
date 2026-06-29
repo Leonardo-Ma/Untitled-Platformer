@@ -3,6 +3,8 @@ class_name InputController extends Node
 
 signal attack_pressed
 signal return_to_checkpoint_requested
+signal return_hold_started(duration: float)
+signal return_hold_cancelled
 
 const RETURN_HOLD_DURATION: float = 1.5
 
@@ -53,6 +55,9 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("return_to_checkpoint"):
 		if CheckpointManager.has_active_checkpoint():
 			_respawn_timer.start()
+			return_hold_started.emit(RETURN_HOLD_DURATION)
 		get_viewport().set_input_as_handled()
 	elif event.is_action_released("return_to_checkpoint"):
+		if not _respawn_timer.is_stopped():
+			return_hold_cancelled.emit()
 		_respawn_timer.stop()

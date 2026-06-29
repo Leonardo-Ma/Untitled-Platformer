@@ -29,7 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://rafokuj28ues" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/keyboard_k_outline.png" id="22_ulf7a"]
 [ext_resource type="Texture2D" uid="uid://dxarxbxphus2j" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/keyboard_l_outline.png" id="23_58h30"]
 [ext_resource type="Texture2D" uid="uid://bx6r2tioul5ru" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/6_buildings/flag.png" id="23_lb1pd"]
+[ext_resource type="Script" uid="uid://bx8ndl4mu55c6" path="res://src/ui/hud/return_checkpoing_indicator.gd" id="25_air4j"]
 [ext_resource type="Texture2D" uid="uid://btbdty1xbpcap" path="res://src/ui/assets/kenney_input-prompts/flairs_double/flair_arrow_3.png" id="25_gcgkn"]
+[ext_resource type="Texture2D" uid="uid://ckvy8vbccihmw" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/12_misc/loading-dots.png" id="25_lb1pd"]
 [ext_resource type="Texture2D" uid="uid://csssgfxl235ik" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/visible.png" id="27_lb1pd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
@@ -416,6 +418,19 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("22_air4j")
 action = &"return_to_checkpoint"
+
+[node name="ReturnCheckpoingProgress" type="TextureProgressBar" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint/PromptsPanel/Inputs/Select" unique_id=603943047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 4
+radial_initial_angle = 270.0
+nine_patch_stretch = true
+texture_progress = ExtResource("25_lb1pd")
+script = ExtResource("25_air4j")
 
 [node name="InstructionsPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint" unique_id=1445843771]
 custom_minimum_size = Vector2(64, 64)
