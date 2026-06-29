@@ -383,6 +383,37 @@ texture = ExtResource("27_lb1pd")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="ReturnCheckpoint" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer" unique_id=846917595]
+layout_mode = 2
+
+[node name="PromptsPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint" unique_id=717506907]
+layout_mode = 2
+
+[node name="Inputs" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint/PromptsPanel" unique_id=1076326512]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Select" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint/PromptsPanel/Inputs" unique_id=80538652 instance=ExtResource("11_i2hmd")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("22_air4j")
+action = &"return_to_checkpoint"
+
+[node name="InstructionsPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint" unique_id=1445843771]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Instructions" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint/InstructionsPanel" unique_id=1326048615]
+layout_mode = 2
+
+[node name="ReturnCheckpoint" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSideContainer/GamepadPromptsMargin/VBoxContainer/ReturnCheckpoint/InstructionsPanel/Instructions" unique_id=485041610]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("23_lb1pd")
+expand_mode = 3
+stretch_mode = 5
+
 [node name="Skills" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=114191235]
 custom_minimum_size = Vector2(480, 0)
 layout_mode = 2

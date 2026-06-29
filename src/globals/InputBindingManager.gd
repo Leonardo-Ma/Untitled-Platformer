@@ -14,9 +14,10 @@ const REBINDABLE_ACTIONS: Array[StringName] = [
 	&"move_backward",
 	&"jump",
 	&"attack",
-	&"interact",
-	&"ui_accept",
-	&"ui_cancel",
+	#&"interact",
+	#&"ui_accept",
+	#&"ui_cancel",
+	&"return_to_checkpoint",
 	&"teleport",
 	&"feather_fall",
 	&"open_shop",
@@ -109,9 +110,9 @@ func _load() -> void:
 	if config.load(_SAVE_PATH) != OK:
 		return
 	for action: StringName in REBINDABLE_ACTIONS:
-		var raw: Variant = config.get_value(_SECTION, action, null)
-		if raw == null:
+		if not config.has_section_key(_SECTION, action):
 			continue
+		var raw: Variant = config.get_value(_SECTION, action)
 		var event: InputEventKey = InputEventKey.new()
 		if raw is Dictionary:
 			event.physical_keycode = (raw.get(&"physical", 0)) as Key
