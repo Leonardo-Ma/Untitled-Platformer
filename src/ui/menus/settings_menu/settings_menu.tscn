@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://bre2mn436fkul" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/10_editing/outline.png" id="26_6geaa"]
 [ext_resource type="Texture2D" uid="uid://q7hsua5cyk4y" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/10_editing/cursor-diagonal-resize-02.png" id="27_6geaa"]
 [ext_resource type="PackedScene" uid="uid://2hl38t107acd" path="res://src/ui/menus/settings_menu/key_bindings/key_bindings_panel.tscn" id="28_6geaa"]
+[ext_resource type="PackedScene" uid="uid://b8n6uftgem7dx" path="res://src/ui/menus/settings_menu/video/display_slider.tscn" id="28_863by"]
+[ext_resource type="Texture2D" uid="uid://dnlfyowe1upr4" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/4_nature/sun.png" id="28_ha0b3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftg2j"]
 content_margin_top = 12.0
@@ -417,6 +419,8 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="VideoOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=697717083]
+visible = false
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -469,6 +473,27 @@ maximized_icon = ExtResource("25_ha0b3")
 fullscreen_icon = ExtResource("27_6geaa")
 exclusive_fullscreen_icon = ExtResource("10_863by")
 
+[node name="Brightness" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/VideoOptions" unique_id=1274621875]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Brightness" unique_id=679808027]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("28_ha0b3")
+expand_mode = 2
+
+[node name="DisplaySlider" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Brightness" unique_id=663037113 instance=ExtResource("28_863by")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.5
+max_value = 1.5
+step = 0.01
+value = 1.0
+
 [node name="AccessibilityOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1262244019]
 visible = false
 layout_mode = 2
@@ -496,4 +521,5 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="KeyBindingsPanel" parent="RootContainer/SettingsContainer/Tabs" unique_id=600000001 instance=ExtResource("28_6geaa")]
+visible = false
 layout_mode = 2

@@ -10,11 +10,19 @@ const _SECTION_UI: String = "ui"
 
 var resolution: Vector2i = Vector2i(1920, 1080)
 var window_mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_WINDOWED
+
 var volume_global: float = 1.0
 var volume_music: float = 1.0
 var volume_effects: float = 1.0
 var volume_ui: float = 1.0
+
 var hud_visible: bool = true
+
+var environment: Environment = preload("uid://dsshmu8vrps28")
+var brightness: float = 1.0
+var contrast: float = 1.0
+var saturation: float = 1.0
+var vsync_mode: DisplayServer.VSyncMode = DisplayServer.VSYNC_DISABLED
 
 var _config: ConfigFile = ConfigFile.new()
 
@@ -32,6 +40,10 @@ func save() -> void:
 	_config.set_value(_SECTION_AUDIO, "volume_effects", volume_effects)
 	_config.set_value(_SECTION_AUDIO, "volume_ui", volume_ui)
 	_config.set_value(_SECTION_UI, "hud_visible", hud_visible)
+	_config.set_value(_SECTION_VIDEO, "brightness", brightness)
+	_config.set_value(_SECTION_VIDEO, "contrast", contrast)
+	_config.set_value(_SECTION_VIDEO, "saturation", saturation)
+	_config.set_value(_SECTION_VIDEO, "vsync_mode", vsync_mode)
 	_config.save(_CONFIG_PATH)
 
 
@@ -46,6 +58,10 @@ func _load() -> void:
 	volume_effects = _config.get_value(_SECTION_AUDIO, "volume_effects", 1.0)
 	volume_ui = _config.get_value(_SECTION_AUDIO, "volume_ui", 1.0)
 	hud_visible = _config.get_value(_SECTION_UI, "hud_visible", true)
+	brightness = _config.get_value(_SECTION_VIDEO, "brightness", 1.0)
+	contrast = _config.get_value(_SECTION_VIDEO, "contrast", 1.0)
+	saturation = _config.get_value(_SECTION_VIDEO, "saturation", 1.0)
+	vsync_mode = _config.get_value(_SECTION_VIDEO, "vsync_mode", DisplayServer.VSYNC_DISABLED)
 
 
 func _apply() -> void:
@@ -56,3 +72,7 @@ func _apply() -> void:
 	SoundManager.set_category_volume(SoundManager.SoundCategory.MUSIC, linear_to_db(volume_music))
 	SoundManager.set_category_volume(SoundManager.SoundCategory.SFX, linear_to_db(volume_effects))
 	SoundManager.set_category_volume(SoundManager.SoundCategory.UI, linear_to_db(volume_ui))
+	environment.adjustment_brightness = brightness
+	environment.adjustment_contrast = contrast
+	environment.adjustment_saturation = saturation
+	DisplayServer.window_set_vsync_mode(vsync_mode)
