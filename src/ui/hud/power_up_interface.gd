@@ -17,6 +17,7 @@ func _ready() -> void:
 			_powerup_ui_elements[StringName(hbox.name)] = hbox
 
 	GameEvents.status_buff_collected.connect(_on_status_buff_collected)
+	GameEvents.player_respawning.connect(_on_player_respawning)
 	set_process(false)
 
 
@@ -126,3 +127,17 @@ func _on_status_buff_collected(status_effect: StatusEffect, icon: Texture2D) -> 
 		}
 
 	set_process(true)
+
+
+func _on_player_respawning(_duration: float) -> void:
+	for identifier: StringName in _active_trackers:
+		var tracker: Dictionary = _active_trackers[identifier]
+		for key: String in ["tween", "flash_tween"]:
+			if tracker.has(key) and is_instance_valid(tracker[key]):
+				(tracker[key] as Tween).kill()
+		(tracker.node as Control).hide()
+		var icon_node: TextureRect = tracker.node.get_node("PowerUp") as TextureRect
+		if icon_node:
+			icon_node.modulate = Color.WHITE
+	_active_trackers.clear()
+	set_process(false)
