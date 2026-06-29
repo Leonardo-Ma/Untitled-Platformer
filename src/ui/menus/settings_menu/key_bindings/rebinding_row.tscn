@@ -32,13 +32,11 @@ size_flags_horizontal = 3
 icon_alignment = 1
 expand_icon = true
 
-[node name="GamepadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=100006]
+[node name="GamepadIconsContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=100006]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
-expand_mode = 3
-stretch_mode = 5
 
 [node name="ResetButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=100007]
 unique_name_in_owner = true

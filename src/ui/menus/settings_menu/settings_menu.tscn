@@ -521,5 +521,5 @@ metadata/_tab_index = 0
 metadata/_tab_name = ""
 
 [node name="KeyBindingsPanel" parent="RootContainer/SettingsContainer/Tabs" unique_id=600000001 instance=ExtResource("28_6geaa")]
-visible = false
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2

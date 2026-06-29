@@ -11,7 +11,7 @@ var _pulse_tween: Tween
 
 @onready var _label: Label = %ActionLabel
 @onready var _key_button: Button = %KeyButton
-@onready var _gamepad_icon: TextureRect = %GamepadIcon
+@onready var _gamepad_icons: HBoxContainer = %GamepadIconsContainer
 @onready var _reset_button: Button = %ResetButton
 
 
@@ -56,9 +56,16 @@ func _refresh_keyboard() -> void:
 
 
 func _refresh_gamepad() -> void:
+	for child: Node in _gamepad_icons.get_children():
+		_gamepad_icons.remove_child(child)
+		child.free()
 	for event: InputEvent in InputMap.action_get_events(_action):
 		var icon: Texture2D = GamepadIconMap.get_icon_for_event(event)
-		if icon != null:
-			_gamepad_icon.texture = icon
-			return
-	_gamepad_icon.texture = null
+		if icon == null:
+			continue
+		var rect: TextureRect = TextureRect.new()
+		rect.texture = icon
+		rect.custom_minimum_size = Vector2(64, 64)
+		rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		_gamepad_icons.add_child(rect)
