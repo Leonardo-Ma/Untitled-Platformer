@@ -196,9 +196,16 @@ func _build(player: PlayerEntity, slot_index: int, is_auto: bool) -> SaveData:
 	data.player_health = clampi(player.health.current_health, 0, player.health.max_health)
 	data.unlocked_skill_ids = player.skills_controller.get_unlocked_ids()
 
-	if CheckpointManager.has_active_checkpoint():
-		var entrance: Vector3 = LevelChunkManager.get_first_chunk_entrance_position()
-		data.checkpoint_offset_position = CheckpointManager.get_respawn_position() - entrance
+	data.has_checkpoint_position = CheckpointManager.has_active_checkpoint()
+	if data.has_checkpoint_position:
+		var checkpoint: Checkpoint = CheckpointManager.get_active_checkpoint()
+		var chunks: Array[LevelChunk] = LevelChunkManager.get_active_chunks()
+		var idx: int = _find_checkpoint_chunk(checkpoint, chunks)
+		if idx >= 0:
+			data.checkpoint_chunk_index = idx
+			data.checkpoint_local_offset = CheckpointManager.get_respawn_position() - LevelChunkManager.get_chunk_entrance_position(idx)
+		else:
+			data.has_checkpoint_position = false
 
 	var chunk_state: Dictionary = LevelChunkManager.get_save_data()
 	data.active_chunk_paths = chunk_state.get("active_chunk_paths", [])
@@ -208,6 +215,16 @@ func _build(player: PlayerEntity, slot_index: int, is_auto: bool) -> SaveData:
 	data.collected_collectible_positions = _consumed_collectible_positions.duplicate()
 	data.killed_enemy_positions = _killed_enemy_positions.duplicate()
 	return data
+
+
+func _find_checkpoint_chunk(checkpoint: Checkpoint, chunks: Array[LevelChunk]) -> int:
+	for i: int in chunks.size():
+		var node: Node = checkpoint
+		while is_instance_valid(node):
+			if node == chunks[i]:
+				return i
+			node = node.get_parent()
+	return -1
 
 
 func _apply(data: SaveData, player: PlayerEntity) -> void:
@@ -235,10 +252,10 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 		)
 	)
 
-	# Position set after chunk physics settle; also resets death movement state
-	if data.checkpoint_offset_position != Vector3.ZERO:
-		var entrance: Vector3 = LevelChunkManager.get_first_chunk_entrance_position()
-		var restored: Vector3 = entrance + data.checkpoint_offset_position
+	if data.has_checkpoint_position:
+		var safe_index: int = mini(data.checkpoint_chunk_index, LevelChunkManager.get_active_chunks().size() - 1)
+		var entrance: Vector3 = LevelChunkManager.get_chunk_entrance_position(safe_index)
+		var restored: Vector3 = entrance + data.checkpoint_local_offset
 		CheckpointManager.restore_position(restored)
 		_pending_player = player
 		_pending_checkpoint = restored
@@ -249,7 +266,7 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 
 
 func _place_player_at_checkpoint() -> void:
-	if not is_instance_valid(_pending_player) or _pending_checkpoint == Vector3.ZERO:
+	if not is_instance_valid(_pending_player):
 		return
 	await get_tree().process_frame
 	_pending_player.global_position = _pending_checkpoint

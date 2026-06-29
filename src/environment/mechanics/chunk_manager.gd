@@ -246,6 +246,15 @@ func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	return scene.instantiate() as LevelChunk
 
 
+func get_active_chunks() -> Array[LevelChunk]:
+	return _active_chunks
+
+
+func get_chunk_entrance_position(chunk_index: int) -> Vector3:
+	assert(chunk_index >= 0 and chunk_index < _active_chunks.size(), "Chunk index out of range in " + name)
+	return (_active_chunks[chunk_index].get_node("%EntranceTrigger") as Node3D).global_position
+
+
 func get_first_chunk_entrance_position() -> Vector3:
 	print("Entrance empty? ", _active_chunks.is_empty())
 	if _active_chunks.is_empty():

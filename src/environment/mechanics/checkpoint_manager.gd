@@ -32,3 +32,7 @@ func has_active_checkpoint() -> bool:
 func get_respawn_position() -> Vector3:
 	assert(_has_valid_position, "No active checkpoint found. Check if default spawn point defined.")
 	return _respawn_position
+
+
+func get_active_checkpoint() -> Checkpoint:
+	return _active_checkpoint
