@@ -13,7 +13,6 @@ var _recent_chunk_paths: Array[String] = []
 var _chunks_since_turn: int = 5
 var _last_skill_score_threshold: int = 0
 var _chunks_since_skill_unlock: int = MIN_CHUNKS_BETWEEN_SKILLS
-var _spawned_skills: Dictionary = {}
 
 
 func _init(rng: RandomNumberGenerator, all_chunks: Array[ChunkData]) -> void:
@@ -26,7 +25,6 @@ func reset() -> void:
 	_chunks_since_turn = 5
 	_chunks_since_skill_unlock = MIN_CHUNKS_BETWEEN_SKILLS
 	_last_skill_score_threshold = 0
-	_spawned_skills.clear()
 
 
 func select_chunk_data(
@@ -34,15 +32,23 @@ func select_chunk_data(
 	unlocked_ids: Array[StringName],
 	current_score: int,
 ) -> ChunkData:
-	var valid_pool: Array[ChunkData] = []
-	var strict_pool: Array[ChunkData] = []
-	var current_y_height: float = target_transform.origin.y
+	var current_y: float = target_transform.origin.y
+
+	# Only force unlock when there are skills the player doesn't yet have
+	var has_unlockable_skill: bool = _all_chunks.any(
+		func(d: ChunkData) -> bool: return d.unlocks_skill_id != &"" and not unlocked_ids.has(d.unlocks_skill_id)
+	)
 	var force_skill_unlock: bool = (
-		current_score >= _last_skill_score_threshold + SKILL_UNLOCK_SCORE_STEP and _chunks_since_skill_unlock >= MIN_CHUNKS_BETWEEN_SKILLS
+		has_unlockable_skill
+		and current_score >= _last_skill_score_threshold + SKILL_UNLOCK_SCORE_STEP
+		and _chunks_since_skill_unlock >= MIN_CHUNKS_BETWEEN_SKILLS
 	)
 
+	var valid_pool: Array[ChunkData] = []
+	var strict_pool: Array[ChunkData] = []
+
 	print("\n==================== Chunk Selection Debug ====================")
-	print("Target Y: ", current_y_height, " | Chunks since turn: ", _chunks_since_turn, " | Last skill score unlock: ", _last_skill_score_threshold)
+	print("Target Y: ", current_y, " | Chunks since turn: ", _chunks_since_turn, " | Last skill score unlock: ", _last_skill_score_threshold)
 	print("Force skill unlock: ", force_skill_unlock)
 	print("Recent paths: ", _recent_chunk_paths)
 
@@ -51,16 +57,16 @@ func select_chunk_data(
 		if data.unlocks_skill_id != &"":
 			if not force_skill_unlock:
 				continue
-			if unlocked_ids.has(data.unlocks_skill_id) or _spawned_skills.has(data.unlocks_skill_id):
+			# Only re-offer if player still doesn't have it (allows re-spawning missed unlocks)
+			if unlocked_ids.has(data.unlocks_skill_id):
 				continue
 		else:
 			if force_skill_unlock:
 				continue
 
 		# --------------- required skills check ---------------
-		var missing: Array[StringName] = data.required_skill_ids.filter(func(id: StringName) -> bool: return not unlocked_ids.has(id))
-		if not missing.is_empty():
-			print("  ✗ REJECTED [%s]: missing %s" % [data.scene_path.get_file(), missing])
+		var missing: bool = data.required_skill_ids.any(func(id: StringName) -> bool: return not unlocked_ids.has(id))
+		if missing:
 			continue
 
 		# Prevent back-to-back turns
@@ -70,11 +76,9 @@ func select_chunk_data(
 		valid_pool.push_back(data)
 
 		# Prevent level from going too high or too low
-		if current_y_height + data.height_shift > MAX_VERTICAL_DEVIATION and data.height_shift > 0:
-			print("  ✗ STRICT-REJECTED [%s]: would exceed MAX_VERTICAL_DEVIATION" % data.scene_path.get_file())
+		if current_y + data.height_shift > MAX_VERTICAL_DEVIATION and data.height_shift > 0:
 			continue
-		if current_y_height + data.height_shift < MIN_VERTICAL_DEVIATION and data.height_shift < 0:
-			print("  ✗ STRICT-REJECTED [%s]: would exceed MIN_VERTICAL_DEVIATION" % data.scene_path.get_file())
+		if current_y + data.height_shift < MIN_VERTICAL_DEVIATION and data.height_shift < 0:
 			continue
 
 		strict_pool.push_back(data)
@@ -82,21 +86,21 @@ func select_chunk_data(
 	print("Pool sizes → valid: %d, strict: %d, total available: %d" % [valid_pool.size(), strict_pool.size(), _all_chunks.size()])
 
 	# Soft fallbacks
-	if strict_pool.size() > 0:
+	if not strict_pool.is_empty():
 		print("  → Using STRICT pool")
 		valid_pool = strict_pool
-	elif valid_pool.size() == 0:
+	elif valid_pool.is_empty():
 		print("  → EMERGENCY FALLBACK: using all basic chunks")
 		valid_pool = _all_chunks.filter(func(d: ChunkData) -> bool: return d.unlocks_skill_id == &"")
 		# If everything fails
-		if valid_pool.size() == 0:
+		if valid_pool.is_empty():
 			valid_pool = _all_chunks
 	else:
 		print("  → Using BASIC valid pool (some chunks may violate vertical/AABB)")
 
 	# Avoid recent chunks
 	var non_recent: Array[ChunkData] = valid_pool.filter(func(d: ChunkData) -> bool: return not d.scene_path in _recent_chunk_paths)
-	if non_recent.size() > 0:
+	if not non_recent.is_empty():
 		print("  → Filtered out recent chunks, %d remain" % non_recent.size())
 		valid_pool = non_recent
 	else:
@@ -104,34 +108,30 @@ func select_chunk_data(
 		var non_last: Array[ChunkData] = valid_pool.filter(
 			func(d: ChunkData) -> bool: return _recent_chunk_paths.is_empty() or d.scene_path != _recent_chunk_paths.back()
 		)
-		if non_last.size() > 0:
+		if not non_last.is_empty():
 			valid_pool = non_last
 
-	var random_idx: int = _rng.randi_range(0, valid_pool.size() - 1)
-	var chosen_data: ChunkData = valid_pool[random_idx]
+	var chosen: ChunkData = valid_pool[_rng.randi_range(0, valid_pool.size() - 1)]
 
-	if chosen_data.unlocks_skill_id != &"":
-		_spawned_skills[chosen_data.unlocks_skill_id] = true
+	if chosen.unlocks_skill_id != &"":
 		_chunks_since_skill_unlock = 0
+		_last_skill_score_threshold += SKILL_UNLOCK_SCORE_STEP
 	else:
 		_chunks_since_skill_unlock += 1
 
-	print("  ✓ SELECTED: [%s] (is_turn: %s, height_shift: %.1f)" % [chosen_data.scene_path.get_file(), chosen_data.is_turn, chosen_data.height_shift])
+	print("  ✓ SELECTED: [%s] (is_turn: %s, height_shift: %.1f)" % [chosen.scene_path.get_file(), chosen.is_turn, chosen.height_shift])
 	print("====================================================\n")
 
-	if force_skill_unlock:
-		_last_skill_score_threshold += SKILL_UNLOCK_SCORE_STEP
-
-	_recent_chunk_paths.push_back(chosen_data.scene_path)
-	if _recent_chunk_paths.size() > 5:
-		_recent_chunk_paths.pop_front()
-
-	if chosen_data.is_turn:
+	if chosen.is_turn:
 		_chunks_since_turn = 0
 	else:
 		_chunks_since_turn += 1
 
-	return chosen_data
+	_recent_chunk_paths.push_back(chosen.scene_path)
+	if _recent_chunk_paths.size() > 5:
+		_recent_chunk_paths.pop_front()
+
+	return chosen
 
 
 func get_save_state() -> Dictionary:
@@ -140,7 +140,6 @@ func get_save_state() -> Dictionary:
 		"chunks_since_turn": _chunks_since_turn,
 		"chunks_since_skill_unlock": _chunks_since_skill_unlock,
 		"last_skill_score_threshold": _last_skill_score_threshold,
-		"spawned_skill_ids": _spawned_skills.keys(),
 		"rng_state": _rng.state,
 	}
 
@@ -150,8 +149,5 @@ func load_save_state(state: Dictionary) -> void:
 	_chunks_since_turn = state.get("chunks_since_turn", 5)
 	_chunks_since_skill_unlock = state.get("chunks_since_skill_unlock", MIN_CHUNKS_BETWEEN_SKILLS)
 	_last_skill_score_threshold = state.get("last_skill_score_threshold", 0)
-	_spawned_skills.clear()
-	for id: StringName in state.get("spawned_skill_ids", []):
-		_spawned_skills[id] = true
 	if state.has("rng_state"):
 		_rng.state = state["rng_state"]
