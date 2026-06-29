@@ -197,7 +197,8 @@ func _build(player: PlayerEntity, slot_index: int, is_auto: bool) -> SaveData:
 	data.unlocked_skill_ids = player.skills_controller.get_unlocked_ids()
 
 	if CheckpointManager.has_active_checkpoint():
-		data.checkpoint_position = CheckpointManager.get_respawn_position()
+		var entrance: Vector3 = LevelChunkManager.get_first_chunk_entrance_position()
+		data.checkpoint_offset_position = CheckpointManager.get_respawn_position() - entrance
 
 	var chunk_state: Dictionary = LevelChunkManager.get_save_data()
 	data.active_chunk_paths = chunk_state.get("active_chunk_paths", [])
@@ -235,9 +236,12 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 	)
 
 	# Position set after chunk physics settle; also resets death movement state
-	if data.checkpoint_position != Vector3.ZERO:
+	if data.checkpoint_offset_position != Vector3.ZERO:
+		var entrance: Vector3 = LevelChunkManager.get_first_chunk_entrance_position()
+		var restored: Vector3 = entrance + data.checkpoint_offset_position
+		CheckpointManager.restore_position(restored)
 		_pending_player = player
-		_pending_checkpoint = data.checkpoint_position
+		_pending_checkpoint = restored
 		_place_player_at_checkpoint.call_deferred()
 
 	_disable_killed_enemies.call_deferred()
@@ -247,6 +251,7 @@ func _apply(data: SaveData, player: PlayerEntity) -> void:
 func _place_player_at_checkpoint() -> void:
 	if not is_instance_valid(_pending_player) or _pending_checkpoint == Vector3.ZERO:
 		return
+	await get_tree().process_frame
 	_pending_player.global_position = _pending_checkpoint
 	_pending_player.velocity = Vector3.ZERO
 	_pending_player.movement_controller.movement_enabled = true

@@ -24,7 +24,6 @@ const LEVEL_COMPLETE_SOUNDS: Array[AudioStream] = [
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _all_chunks: Array[ChunkData] = []
 var _active_chunks: Array[LevelChunk] = []
-var _chunk_pool: Dictionary = {}  # Key: String (scene_path), Value: Array[LevelChunk]
 var _chunk_selector: ChunkSelector
 var _chunk_exit_connections: Dictionary = {}
 
@@ -160,6 +159,7 @@ func _align_chunk_to_transform(chunk: LevelChunk, target_transform: Transform3D)
 	# Snap position and maintain the chunk native rotation
 	var rel_entrance: Transform3D = chunk.global_transform.affine_inverse() * entrance_node.global_transform
 	chunk.global_transform = target_transform * rel_entrance.affine_inverse()
+	_sync_chunk_spawn_positions(chunk)
 
 
 func _setup_chunk_trigger(chunk: LevelChunk) -> void:
@@ -216,21 +216,10 @@ func recycle_oldest_chunk() -> void:
 
 
 func _pool_chunk(chunk: LevelChunk) -> void:
-	# Disable processing and hide the chunk to save performance
 	_disconnect_chunk_trigger(chunk)
-	chunk.process_mode = Node.PROCESS_MODE_DISABLED
-	chunk.visible = false
 	if chunk.has_meta("scored"):
 		chunk.remove_meta("scored")
-
-	if chunk.get_parent() != null:
-		chunk.get_parent().remove_child(chunk)
-
-	# Keep a reference to its original scene path to fetch it later
-	var path: String = chunk.scene_file_path
-	if not _chunk_pool.has(path):
-		_chunk_pool[path] = []
-	_chunk_pool[path].push_back(chunk)
+	chunk.queue_free()
 
 
 func _disconnect_chunk_trigger(chunk: LevelChunk) -> void:
@@ -248,16 +237,21 @@ func _disconnect_chunk_trigger(chunk: LevelChunk) -> void:
 func _get_random_valid_chunk(target_transform: Transform3D) -> LevelChunk:
 	var unlocked_ids: Array[StringName] = _get_player_skills()
 	var chosen_data: ChunkData = _chunk_selector.select_chunk_data(target_transform, unlocked_ids, GameEvents.score)
-
-	if _chunk_pool.has(chosen_data.scene_path) and not _chunk_pool[chosen_data.scene_path].is_empty():
-		return _chunk_pool[chosen_data.scene_path].pop_back()
-	var scene: PackedScene
 	var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(chosen_data.scene_path)
+	var scene: PackedScene
 	if load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		scene = ResourceLoader.load_threaded_get(chosen_data.scene_path) as PackedScene
 	else:
 		scene = load(chosen_data.scene_path) as PackedScene
 	return scene.instantiate() as LevelChunk
+
+
+func get_first_chunk_entrance_position() -> Vector3:
+	print("Entrance empty? ", _active_chunks.is_empty())
+	if _active_chunks.is_empty():
+		return Vector3.ZERO
+	print("Entrance position:", (_active_chunks[0].get_node("%EntranceTrigger") as Area3D).global_position)
+	return (_active_chunks[0].get_node("%EntranceTrigger") as Area3D).global_position
 
 
 func get_save_data() -> Dictionary:
@@ -275,6 +269,15 @@ func get_save_data() -> Dictionary:
 		"scored_indices": scored_indices,
 		"selector_state": _chunk_selector.get_save_state(),
 	}
+
+
+## Records spawn positions for collectibles and enemies after chunk alignment
+func _sync_chunk_spawn_positions(chunk: LevelChunk) -> void:
+	for node: Node in chunk.find_children("*", "", true, false):
+		if node is Collectible:
+			(node as Collectible).spawn_position = node.global_position
+		elif node is AggressiveEntity:
+			node.spawn_position = node.global_position
 
 
 func load_save_data(
@@ -297,18 +300,14 @@ func load_save_data(
 	for i: int in active_chunk_paths.size():
 		var path: String = active_chunk_paths[i]
 
-		var chunk: LevelChunk
-		if _chunk_pool.has(path) and not _chunk_pool[path].is_empty():
-			chunk = _chunk_pool[path].pop_back() as LevelChunk
+		var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(path)
+		var scene: PackedScene
+		if load_status == ResourceLoader.THREAD_LOAD_LOADED:
+			scene = ResourceLoader.load_threaded_get(path) as PackedScene
 		else:
-			var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(path)
-			var scene: PackedScene
-			if load_status == ResourceLoader.THREAD_LOAD_LOADED:
-				scene = ResourceLoader.load_threaded_get(path) as PackedScene
-			else:
-				scene = load(path) as PackedScene
-			assert(scene != null, "ChunkManager: chunk scene not found '%s'" % path)
-			chunk = scene.instantiate() as LevelChunk
+			scene = load(path) as PackedScene
+		assert(scene != null, "ChunkManager: chunk scene not found '%s'" % path)
+		var chunk: LevelChunk = scene.instantiate() as LevelChunk
 
 		if chunk.get_parent() != null:
 			chunk.get_parent().remove_child(chunk)
