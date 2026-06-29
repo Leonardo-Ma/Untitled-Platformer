@@ -8,7 +8,8 @@ const MULTI_JUMP_SOUNDS: Array[AudioStream] = [
 	preload("uid://bb1w0acj8f3i1"),  # jump_short.wav
 ]
 
-var extra_jump_velocity: float = 12.0
+## Used for air jumps; scales with upgrades
+@export_range(0.5, 1.5, 0.05) var jump_velocity_multiplier: float = 1.0
 var jump_fov_increase: float = 8.0
 var jump_fov_duration: float = 0.2
 
@@ -55,7 +56,8 @@ func _execute_extra_jump() -> void:
 	_jumps_remaining -= 1
 	charges_updated.emit(_jumps_remaining)
 
-	skills_controller.movement_controller.jump(extra_jump_velocity, skills_controller.entity)
+	var jump_vel: float = skills_controller.entity.movement.jump_velocity * jump_velocity_multiplier
+	skills_controller.movement_controller.jump(jump_vel, skills_controller.entity)
 	_frame_of_last_jump = Engine.get_physics_frames()
 
 	_play_jump_feedback()
