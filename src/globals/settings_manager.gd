@@ -72,6 +72,7 @@ func _apply() -> void:
 	SoundManager.set_category_volume(SoundManager.SoundCategory.MUSIC, linear_to_db(volume_music))
 	SoundManager.set_category_volume(SoundManager.SoundCategory.SFX, linear_to_db(volume_effects))
 	SoundManager.set_category_volume(SoundManager.SoundCategory.UI, linear_to_db(volume_ui))
+	environment.adjustment_enabled = true
 	environment.adjustment_brightness = brightness
 	environment.adjustment_contrast = contrast
 	environment.adjustment_saturation = saturation
