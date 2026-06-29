@@ -6,11 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://src/icons/16x16/star.png" id="3_ndnj2"]
 [ext_resource type="Script" uid="uid://ckmipf2d40cqd" path="res://src/ui/hud/gold.gd" id="5_4u0hr"]
 [ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://src/icons/16x16/coins.png" id="6_d5ccl"]
-[ext_resource type="Script" uid="uid://dwoc2bj38ubx2" path="res://src/ui/hud/collectibles_interface.gd" id="6_l3ger"]
 [ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/skills_interface.gd" id="7_8stm2"]
 [ext_resource type="PackedScene" uid="uid://4dnhjq8r5f03" path="res://src/ui/hud/powerup.tscn" id="7_qtkbr"]
 [ext_resource type="Script" uid="uid://cb1h0wlra5gti" path="res://src/ui/hud/power_up_interface.gd" id="7_raafm"]
-[ext_resource type="PackedScene" uid="uid://ied3ddlblq1x" path="res://src/ui/hud/collectible.tscn" id="8_1rhup"]
 [ext_resource type="PackedScene" uid="uid://dc4emcvac7toq" path="res://src/ui/prompt_icon.tscn" id="11_i2hmd"]
 [ext_resource type="Texture2D" uid="uid://bfcny5u3eltby" path="res://src/ui/assets/kenney_input-prompts/generic_double/generic_joystick_horizontal.png" id="12_g2kha"]
 [ext_resource type="Texture2D" uid="uid://bgf4oeuykl8jh" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_left.png" id="12_tvn8q"]
@@ -147,26 +145,6 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
-
-[node name="Collectibles" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer" unique_id=1290539515]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("6_l3ger")
-
-[node name="CollectiblesContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer/Collectibles" unique_id=1670828236]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 10
-
-[node name="Collectible1" parent="MarginContainer/HBoxContainer/LeftSideContainer/Collectibles/CollectiblesContainer" unique_id=482959666 instance=ExtResource("8_1rhup")]
-layout_mode = 2
-
-[node name="Collectible2" parent="MarginContainer/HBoxContainer/LeftSideContainer/Collectibles/CollectiblesContainer" unique_id=2063211370 instance=ExtResource("8_1rhup")]
-layout_mode = 2
-
-[node name="Collectible3" parent="MarginContainer/HBoxContainer/LeftSideContainer/Collectibles/CollectiblesContainer" unique_id=1375961723 instance=ExtResource("8_1rhup")]
-layout_mode = 2
 
 [node name="PowerUps" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSideContainer" unique_id=1788304339]
 unique_name_in_owner = true
