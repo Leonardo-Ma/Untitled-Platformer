@@ -10,14 +10,8 @@ func _ready() -> void:
 func _on_value_changed(new_value: float) -> void:
 	SettingsManager.camera_fov = new_value
 	SettingsManager.save()
-	_apply_to_active_player(new_value)
+	SettingsManager.apply_camera()
 
 
 func _on_settings_reset() -> void:
 	value = SettingsManager.camera_fov
-
-
-func _apply_to_active_player(fov: float) -> void:
-	var players: Array[Node] = get_tree().get_nodes_in_group(Groups.PLAYERS)
-	assert(players.size() > 0, "Player missing to change FOV setting.")
-	(players[0] as PlayerEntity).skills_controller.set_base_fov(fov)
