@@ -17,11 +17,16 @@ var mouse_look_enabled: bool = false
 
 @onready var cam_root: Node3D = $"."
 @onready var player: CharacterBody3D = $".."
+@onready var _spring_arm: SpringArm3D = $SpringArm3D
+@onready var _camera: Camera3D = $SpringArm3D/Camera3D
 
 
 func _ready() -> void:
 	refresh_sensitivity_from_settings()
+	refresh_camera_from_settings()
 	SettingsManager.settings_reset.connect(refresh_sensitivity_from_settings)
+	SettingsManager.settings_reset.connect(refresh_camera_from_settings)
+	SettingsManager.camera_settings_changed.connect(refresh_camera_from_settings)
 
 
 ## Call after settings changes
@@ -29,6 +34,13 @@ func refresh_sensitivity_from_settings() -> void:
 	horizontal_sensibility = SettingsManager.mouse_sensitivity_horizontal
 	vertical_sensibility = SettingsManager.mouse_sensitivity_vertical
 	gamepad_look_sensitivity = SettingsManager.gamepad_sensitivity
+
+
+## Call after camera settings changes (FOV, spring arm distance, gamepad invert)
+func refresh_camera_from_settings() -> void:
+	_camera.fov = SettingsManager.camera_fov
+	_spring_arm.spring_length = SettingsManager.camera_distance
+	gamepad_look_invert_y = SettingsManager.gamepad_invert_y
 
 
 #region Keyboard and mouse

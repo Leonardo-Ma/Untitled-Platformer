@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2hl38t107acd"]
 
 [ext_resource type="Script" uid="uid://hbi1r0khsj42" path="res://src/ui/menus/settings_menu/key_bindings/key_bindings_panel.gd" id="1_kbp"]
-[ext_resource type="PackedScene" path="res://src/ui/menus/settings_menu/key_bindings/rebinding_row.tscn" id="2_kbp"]
+[ext_resource type="PackedScene" uid="uid://di80ffb0v6qrw" path="res://src/ui/menus/settings_menu/key_bindings/rebinding_row.tscn" id="2_kbp"]
 
 [node name="KeyBindingsPanel" type="VBoxContainer" unique_id=200001]
 size_flags_vertical = 3

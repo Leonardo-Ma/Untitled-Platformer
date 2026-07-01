@@ -37,14 +37,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 
-[node name="GrayscaleOverlay" type="ColorRect" parent="." unique_id=1185040414]
+[node name="GrayscaleOverlay" type="CanvasLayer" parent="." unique_id=569608881]
+layer = 100
+visible = false
+script = ExtResource("3_b3qka")
+
+[node name="GrayscaleRect" type="ColorRect" parent="GrayscaleOverlay" unique_id=1185040414]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_tacig")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_b3qka")

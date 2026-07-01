@@ -7,7 +7,7 @@
 [ext_resource type="ButtonGroup" uid="uid://ctkeu7278wn6a" path="res://src/ui/menus/settings_menu/settings_button_group.tres" id="5_b1okk"]
 [ext_resource type="Script" uid="uid://dpc6wcewh3ft" path="res://src/ui/menus/settings_menu/audio/volume_slider.gd" id="5_nap5k"]
 [ext_resource type="Texture2D" uid="uid://bcak65oijluxt" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/volume.png" id="7_6geaa"]
-[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="7_8i7sm"]
+[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/grab_focus_on_visible.tscn" id="7_8i7sm"]
 [ext_resource type="Script" uid="uid://djxnnbvmilpar" path="res://src/ui/menus/close_menu_button.gd" id="8_jw1je"]
 [ext_resource type="Texture2D" uid="uid://cbxbqyffu50mm" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/camera.png" id="9_6geaa"]
 [ext_resource type="Script" uid="uid://cbn2pmfg88g7l" path="res://src/ui/menus/settings_menu/video/resolution_option.gd" id="9_nxapy"]
@@ -40,6 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://boj68sx67cn8w" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/fast_forward.png" id="30_4qpmk"]
 [ext_resource type="Texture2D" uid="uid://brg0kodgamwf7" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/dark-mode.png" id="30_27c6e"]
 [ext_resource type="Script" uid="uid://xhi2l4chhesc" path="res://src/ui/menus/settings_menu/accessibility/grayscale_toggle.gd" id="32_8tp0o"]
+[ext_resource type="Texture2D" uid="uid://bkufsmjm825nk" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/10_editing/undo.png" id="41_4qpmk"]
+[ext_resource type="Script" uid="uid://c0x7j8wi6hylp" path="res://src/ui/menus/settings_menu/reset_settings_button.gd" id="42_u56sa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftg2j"]
 content_margin_top = 12.0
@@ -94,7 +96,8 @@ layout_mode = 2
 layout_mode = 2
 script = ExtResource("3_bx78x")
 tabs = [NodePath("TabMarginContainer/TabContainer/GameplayTab"), NodePath("TabMarginContainer/TabContainer/AudioTab"), NodePath("TabMarginContainer/TabContainer/HUDTab"), NodePath("TabMarginContainer/TabContainer/CameraTab"), NodePath("TabMarginContainer/TabContainer/VideoTab"), NodePath("TabMarginContainer/TabContainer/AccessibilityTab"), NodePath("TabMarginContainer/TabContainer/CreditsTab"), NodePath("TabMarginContainer/TabContainer/KeyBindingsTab"), NodePath("TabMarginContainer/TabContainer/StatisticsTab")]
-panels = [NodePath("Tabs/GameplayOptions"), NodePath("Tabs/AudioOptions"), NodePath("Tabs/HudOptions"), NodePath("Tabs/CameraOptions"), NodePath("Tabs/VideoOptions"), NodePath("Tabs/AccessibilityOptions"), NodePath("Tabs/Credits"), NodePath("Tabs/KeyBindingsPanel"), NodePath("Tabs/Statistics")]
+panels = [NodePath("VBoxContainer/Tabs/GameplayOptions"), NodePath("VBoxContainer/Tabs/AudioOptions"), NodePath("VBoxContainer/Tabs/HudOptions"), NodePath("VBoxContainer/Tabs/CameraOptions"), NodePath("VBoxContainer/Tabs/VideoOptions"), NodePath("VBoxContainer/Tabs/AccessibilityOptions"), NodePath("VBoxContainer/Tabs/Credits"), NodePath("VBoxContainer/Tabs/KeyBindingsPanel"), NodePath("VBoxContainer/Tabs/Statistics")]
+section_map = Array[int]([0, 1, 2, 3, 4, 5, 0, 0, 0])
 
 [node name="TabMarginContainer" type="MarginContainer" parent="RootContainer/SettingsContainer" unique_id=1464652048]
 layout_mode = 2
@@ -274,12 +277,16 @@ script = ExtResource("8_jw1je")
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Tabs" type="BoxContainer" parent="RootContainer/SettingsContainer" unique_id=1012683938]
+[node name="VBoxContainer" type="VBoxContainer" parent="RootContainer/SettingsContainer" unique_id=2114265077]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tabs" type="BoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer" unique_id=1012683938]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="GameplayOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1001225224]
+[node name="GameplayOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=1001225224]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 6
@@ -288,7 +295,7 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="AudioOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1811562513]
+[node name="AudioOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=1811562513]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -297,39 +304,39 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="GlobalVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/AudioOptions" unique_id=2028058448]
+[node name="GlobalVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions" unique_id=2028058448]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/GlobalVolume" unique_id=977982703]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/GlobalVolume" unique_id=977982703]
 layout_mode = 2
 texture = ExtResource("7_6geaa")
 expand_mode = 2
 
-[node name="GlobalVolumeSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/GlobalVolume" unique_id=90230376]
+[node name="GlobalVolumeSlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/GlobalVolume" unique_id=90230376]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_neighbor_top = NodePath("../../../../../TabMarginContainer/TabContainer/AudioTab")
 focus_neighbor_bottom = NodePath("../../MusicVolume/MusicSlider")
 focus_next = NodePath("../../MusicVolume/MusicSlider")
-focus_previous = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_previous = NodePath("../../../../../TabMarginContainer/TabContainer/AudioTab")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 1
 
-[node name="SliderNumber" type="Label" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/GlobalVolume" unique_id=1437650310]
+[node name="SliderNumber" type="Label" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/GlobalVolume" unique_id=1437650310]
 layout_mode = 2
 
-[node name="MusicVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/AudioOptions" unique_id=1678858717]
+[node name="MusicVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions" unique_id=1678858717]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/MusicVolume" unique_id=1948026632]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/MusicVolume" unique_id=1948026632]
 layout_mode = 2
 texture = ExtResource("20_6geaa")
 expand_mode = 2
 
-[node name="MusicSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/MusicVolume" unique_id=1941083232]
+[node name="MusicSlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/MusicVolume" unique_id=1941083232]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -342,15 +349,15 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 2
 
-[node name="EffectsVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/AudioOptions" unique_id=430440307]
+[node name="EffectsVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions" unique_id=430440307]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/EffectsVolume" unique_id=350975670]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/EffectsVolume" unique_id=350975670]
 layout_mode = 2
 texture = ExtResource("21_6geaa")
 expand_mode = 2
 
-[node name="EffectsSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/EffectsVolume" unique_id=425235765]
+[node name="EffectsSlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/EffectsVolume" unique_id=425235765]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -363,28 +370,28 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 3
 
-[node name="UIVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/AudioOptions" unique_id=1533792080]
+[node name="UIVolume" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions" unique_id=1533792080]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/UIVolume" unique_id=383704298]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/UIVolume" unique_id=383704298]
 layout_mode = 2
 texture = ExtResource("10_863by")
 expand_mode = 2
 
-[node name="UISlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/AudioOptions/UIVolume" unique_id=56946327]
+[node name="UISlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AudioOptions/UIVolume" unique_id=56946327]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../EffectsVolume/EffectsSlider")
-focus_neighbor_bottom = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
-focus_next = NodePath("../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_neighbor_bottom = NodePath("../../../../../TabMarginContainer/TabContainer/AudioTab")
+focus_next = NodePath("../../../../../TabMarginContainer/TabContainer/AudioTab")
 focus_previous = NodePath("../../EffectsVolume/EffectsSlider")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ftg2j")
 script = ExtResource("5_nap5k")
 category = 5
 
-[node name="HudOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1253832284]
+[node name="HudOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=1253832284]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -393,12 +400,12 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs/HudOptions" unique_id=1115121776]
+[node name="VBoxContainer" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/HudOptions" unique_id=1115121776]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="CheckButton" type="CheckButton" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer" unique_id=1057472892 node_paths=PackedStringArray("preview_hud")]
+[node name="CheckButton" type="CheckButton" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/HudOptions/VBoxContainer" unique_id=1057472892 node_paths=PackedStringArray("preview_hud")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 icon = ExtResource("22_863by")
@@ -406,31 +413,31 @@ expand_icon = true
 script = ExtResource("21_lcw02")
 preview_hud = NodePath("../BoxContainer/HUD")
 
-[node name="BoxContainer" type="BoxContainer" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer" unique_id=886567556]
+[node name="BoxContainer" type="BoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/HudOptions/VBoxContainer" unique_id=886567556]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HUD" parent="RootContainer/SettingsContainer/Tabs/HudOptions/VBoxContainer/BoxContainer" unique_id=1333227325 instance=ExtResource("20_1ltwp")]
+[node name="HUD" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/HudOptions/VBoxContainer/BoxContainer" unique_id=1333227325 instance=ExtResource("20_1ltwp")]
 layout_mode = 2
 
-[node name="CameraOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=412193868]
+[node name="CameraOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=412193868]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="FOV" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/CameraOptions" unique_id=1772714822]
+[node name="FOV" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions" unique_id=1772714822]
 layout_mode = 2
 
-[node name="FOVIcon" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/FOV" unique_id=1048582388]
+[node name="FOVIcon" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/FOV" unique_id=1048582388]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("25_s445j")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="FOVSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/FOV" unique_id=1768547499]
+[node name="FOVSlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/FOV" unique_id=1768547499]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -441,20 +448,20 @@ max_value = 110.0
 value = 50.0
 script = ExtResource("25_l2uj7")
 
-[node name="FOVSliderNumber" type="Label" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/FOV" unique_id=1059771985]
+[node name="FOVSliderNumber" type="Label" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/FOV" unique_id=1059771985]
 layout_mode = 2
 
-[node name="CameraDistance" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/CameraOptions" unique_id=2044699645]
+[node name="CameraDistance" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions" unique_id=2044699645]
 layout_mode = 2
 
-[node name="CamDistanceIcon" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/CameraDistance" unique_id=1836024639]
+[node name="CamDistanceIcon" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/CameraDistance" unique_id=1836024639]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("27_qmcbu")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="CamDistanceSlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/CameraDistance" unique_id=918271903]
+[node name="CamDistanceSlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/CameraDistance" unique_id=918271903]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -466,27 +473,27 @@ step = 0.1
 value = 1.5
 script = ExtResource("27_shv1y")
 
-[node name="CamDistanceNumber" type="Label" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/CameraDistance" unique_id=2101679102]
+[node name="CamDistanceNumber" type="Label" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/CameraDistance" unique_id=2101679102]
 layout_mode = 2
 
-[node name="MouseSensitivity" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/CameraOptions" unique_id=942196597]
+[node name="MouseSensitivity" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions" unique_id=942196597]
 layout_mode = 2
 
-[node name="MouseSensitivityIcon" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=192685747 instance=ExtResource("28_7a06q")]
+[node name="MouseSensitivityIcon" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=192685747 instance=ExtResource("28_7a06q")]
 layout_mode = 2
 texture = ExtResource("13_6geaa")
 action = &"look_left"
 prefer_axis = true
 keyb_texture_override = ExtResource("29_7a06q")
 
-[node name="MouseSensitivityIcon2" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=1362566501]
+[node name="MouseSensitivityIcon2" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=1362566501]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("30_4qpmk")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MouseSensitivitySlider" type="HSlider" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=1056038527]
+[node name="MouseSensitivitySlider" type="HSlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=1056038527]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -498,10 +505,10 @@ step = 0.01
 value = 0.05
 script = ExtResource("29_fbymy")
 
-[node name="MouseSensitivityNumber" type="Label" parent="RootContainer/SettingsContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=1533446038]
+[node name="MouseSensitivityNumber" type="Label" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/CameraOptions/MouseSensitivity" unique_id=1533446038]
 layout_mode = 2
 
-[node name="VideoOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=697717083]
+[node name="VideoOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=697717083]
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -510,43 +517,43 @@ size_flags_vertical = 3
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="Resolution" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/VideoOptions" unique_id=1126040003]
+[node name="Resolution" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions" unique_id=1126040003]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Resolution" unique_id=1926409826]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions/Resolution" unique_id=1926409826]
 layout_mode = 2
 texture = ExtResource("10_863by")
 expand_mode = 2
 
-[node name="ResolutionOption" type="OptionButton" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Resolution" unique_id=1724809319]
+[node name="ResolutionOption" type="OptionButton" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions/Resolution" unique_id=1724809319]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_neighbor_top = NodePath("../../../../../TabMarginContainer/TabContainer/VideoTab")
 focus_neighbor_bottom = NodePath("../../FullScreen/FullScreenOption")
 focus_next = NodePath("../../FullScreen/FullScreenOption")
-focus_previous = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_previous = NodePath("../../../../../TabMarginContainer/TabContainer/VideoTab")
 theme_override_font_sizes/font_size = 32
 script = ExtResource("9_nxapy")
 
-[node name="FullScreen" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/VideoOptions" unique_id=244008932]
+[node name="FullScreen" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions" unique_id=244008932]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/FullScreen" unique_id=533257910]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions/FullScreen" unique_id=533257910]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("25_ha0b3")
 expand_mode = 2
 
-[node name="FullScreenOption" type="OptionButton" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/FullScreen" unique_id=929539239]
+[node name="FullScreenOption" type="OptionButton" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions/FullScreen" unique_id=929539239]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../../Resolution/ResolutionOption")
-focus_neighbor_bottom = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
-focus_next = NodePath("../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_neighbor_bottom = NodePath("../../../../../TabMarginContainer/TabContainer/VideoTab")
+focus_next = NodePath("../../../../../TabMarginContainer/TabContainer/VideoTab")
 focus_previous = NodePath("../../Resolution/ResolutionOption")
 theme = SubResource("Theme_4yx6g")
 theme_override_constants/icon_max_width = 80
@@ -556,18 +563,18 @@ maximized_icon = ExtResource("25_ha0b3")
 fullscreen_icon = ExtResource("27_6geaa")
 exclusive_fullscreen_icon = ExtResource("10_863by")
 
-[node name="Brightness" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/VideoOptions" unique_id=1274621875]
+[node name="Brightness" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions" unique_id=1274621875]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Brightness" unique_id=679808027]
+[node name="TextureRect" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions/Brightness" unique_id=679808027]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("28_ha0b3")
 expand_mode = 2
 
-[node name="DisplaySlider" parent="RootContainer/SettingsContainer/Tabs/VideoOptions/Brightness" unique_id=663037113 instance=ExtResource("28_863by")]
+[node name="DisplaySlider" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/VideoOptions/Brightness" unique_id=663037113 instance=ExtResource("28_863by")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -577,7 +584,7 @@ max_value = 1.5
 step = 0.01
 value = 1.0
 
-[node name="AccessibilityOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=1262244019]
+[node name="AccessibilityOptions" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=1262244019]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -585,22 +592,22 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="Grayscale" type="HBoxContainer" parent="RootContainer/SettingsContainer/Tabs/AccessibilityOptions" unique_id=803547591]
+[node name="Grayscale" type="HBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AccessibilityOptions" unique_id=803547591]
 layout_mode = 2
 
-[node name="GrayScaleIcon" type="TextureRect" parent="RootContainer/SettingsContainer/Tabs/AccessibilityOptions/Grayscale" unique_id=407152748]
+[node name="GrayScaleIcon" type="TextureRect" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AccessibilityOptions/Grayscale" unique_id=407152748]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("30_27c6e")
 expand_mode = 3
 
-[node name="GrayscaleToggle" type="CheckButton" parent="RootContainer/SettingsContainer/Tabs/AccessibilityOptions/Grayscale" unique_id=580662627]
+[node name="GrayscaleToggle" type="CheckButton" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs/AccessibilityOptions/Grayscale" unique_id=580662627]
 custom_minimum_size = Vector2(40, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 script = ExtResource("32_8tp0o")
 
-[node name="Credits" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=48341008]
+[node name="Credits" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=48341008]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -609,7 +616,7 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="Statistics" type="VBoxContainer" parent="RootContainer/SettingsContainer/Tabs" unique_id=347035709]
+[node name="Statistics" type="VBoxContainer" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=347035709]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -618,7 +625,19 @@ theme_override_constants/separation = 40
 metadata/_tab_index = 0
 metadata/_tab_name = ""
 
-[node name="KeyBindingsPanel" parent="RootContainer/SettingsContainer/Tabs" unique_id=600000001 instance=ExtResource("28_6geaa")]
+[node name="KeyBindingsPanel" parent="RootContainer/SettingsContainer/VBoxContainer/Tabs" unique_id=600000001 instance=ExtResource("28_6geaa")]
 visible = false
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
+
+[node name="ResetSettingsButton" type="TextureButton" parent="RootContainer/SettingsContainer/VBoxContainer" unique_id=1519789857 node_paths=PackedStringArray("tabs_controller")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("41_4qpmk")
+texture_focused = ExtResource("17_6geaa")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("42_u56sa")
+tabs_controller = NodePath("../..")

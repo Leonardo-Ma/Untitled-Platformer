@@ -8,6 +8,15 @@ signal audio_settings_changed
 
 signal settings_reset
 
+enum SettingsSection {
+	NONE,
+	AUDIO,
+	HUD,
+	CAMERA,
+	VIDEO,
+	ACCESSIBILITY,
+}
+
 const _CONFIG_PATH: String = "user://settings.cfg"
 
 const _SECTION_VIDEO: String = "video"
@@ -16,24 +25,41 @@ const _SECTION_UI: String = "ui"
 const _SECTION_CAMERA: String = "camera"
 const _SECTION_ACCESSIBILITY: String = "accessibility"
 
-## Hardcoded project defaults, used by reset_to_default()
-## Defaults must mirror the var declarations above
+## Hardcoded project defaults, grouped by SettingsSection, used by reset_to_default()
+## Each inner key must mirror an existing var declaration above
 const _DEFAULTS: Dictionary = {
-	&"volume_global": 1.0,
-	&"volume_music": 1.0,
-	&"volume_effects": 1.0,
-	&"volume_ui": 1.0,
-	&"hud_visible": true,
-	&"brightness": 1.0,
-	&"contrast": 1.0,
-	&"saturation": 1.0,
-	&"vsync_mode": DisplayServer.VSYNC_DISABLED,
-	&"grayscale_enabled": false,
-	&"camera_fov": 75.0,
-	&"camera_distance": 3.0,
-	&"mouse_sensitivity_horizontal": 0.2,
-	&"mouse_sensitivity_vertical": 0.2,
-	&"gamepad_sensitivity": 120.0,
+	SettingsSection.AUDIO:
+	{
+		&"volume_global": 1.0,
+		&"volume_music": 1.0,
+		&"volume_effects": 1.0,
+		&"volume_ui": 1.0,
+	},
+	SettingsSection.HUD:
+	{
+		&"hud_visible": true,
+	},
+	SettingsSection.CAMERA:
+	{
+		&"camera_fov": 75.0,
+		&"camera_distance": 3.0,
+		&"mouse_sensitivity_horizontal": 0.2,
+		&"mouse_sensitivity_vertical": 0.2,
+		&"gamepad_sensitivity": 120.0,
+		&"gamepad_invert_y": false,
+	},
+	SettingsSection.VIDEO:
+	{
+		&"brightness": 1.0,
+		&"contrast": 1.0,
+		&"saturation": 1.0,
+		&"vsync_mode": DisplayServer.VSYNC_DISABLED,
+		&"window_mode": DisplayServer.WINDOW_MODE_WINDOWED,
+	},
+	SettingsSection.ACCESSIBILITY:
+	{
+		&"grayscale_enabled": false,
+	},
 }
 
 var resolution: Vector2i = Vector2i(1920, 1080)
@@ -160,23 +186,14 @@ func _load() -> void:
 	gamepad_invert_y = _config.get_value(_SECTION_CAMERA, "gamepad_invert_y", false)
 
 
-## Resets every setting back to hardcoded project default
-func reset_to_default() -> void:
-	volume_global = _DEFAULTS[&"volume_global"]
-	volume_music = _DEFAULTS[&"volume_music"]
-	volume_effects = _DEFAULTS[&"volume_effects"]
-	volume_ui = _DEFAULTS[&"volume_ui"]
-	hud_visible = _DEFAULTS[&"hud_visible"]
-	brightness = _DEFAULTS[&"brightness"]
-	contrast = _DEFAULTS[&"contrast"]
-	saturation = _DEFAULTS[&"saturation"]
-	vsync_mode = _DEFAULTS[&"vsync_mode"]
-	grayscale_enabled = _DEFAULTS[&"grayscale_enabled"]
-	camera_fov = _DEFAULTS[&"camera_fov"]
-	camera_distance = _DEFAULTS[&"camera_distance"]
-	mouse_sensitivity_horizontal = _DEFAULTS[&"mouse_sensitivity_horizontal"]
-	mouse_sensitivity_vertical = _DEFAULTS[&"mouse_sensitivity_vertical"]
-	gamepad_sensitivity = _DEFAULTS[&"gamepad_sensitivity"]
+## Resets settings for [param section] to hardcoded default
+## Resets every section if section is [constant SettingsSection.NONE]
+func reset_to_default(section: SettingsSection = SettingsSection.NONE) -> void:
+	var sections_to_reset: Array = _DEFAULTS.keys() if section == SettingsSection.NONE else [section]
+	for target_section: SettingsSection in sections_to_reset:
+		assert(_DEFAULTS.has(target_section), "SettingsManager: no defaults for section " + str(target_section))
+		for key: StringName in _DEFAULTS[target_section]:
+			set(key, _DEFAULTS[target_section][key])
 	apply_all()
 	save()
 	settings_reset.emit()

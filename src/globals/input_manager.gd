@@ -12,7 +12,7 @@ enum Device {
 }
 
 const AXIS_DEAD_ZONE: float = 0.4
-const DEVICE_SWITCH_DELAY: float = 0.4
+const DEVICE_SWITCH_DELAY: float = 0.2
 
 var active_device: Device = Device.KEYBOARD_MOUSE
 var _pending_device: Device = Device.KEYBOARD_MOUSE

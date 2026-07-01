@@ -22,8 +22,10 @@ func setup(action: StringName, display_name: String) -> void:
 	_reset_button.pressed.connect(func() -> void: reset_requested.emit(_action))
 	GamepadIconMap.map_changed.connect(_refresh_gamepad)
 	InputBindingManager.binding_changed.connect(_on_binding_changed)
+	InputManager.device_changed.connect(_on_device_changed)
 	_refresh_keyboard()
 	_refresh_gamepad()
+	_update_gamepad_visibility()
 
 
 func set_listening(active: bool) -> void:
@@ -46,6 +48,15 @@ func _on_binding_changed(action: StringName) -> void:
 		_refresh_keyboard()
 
 
+func _on_device_changed(_device: InputManager.Device) -> void:
+	_update_gamepad_visibility()
+	_refresh_gamepad()
+
+
+func _update_gamepad_visibility() -> void:
+	_gamepad_icons.visible = InputManager.is_gamepad_active()
+
+
 func _refresh_keyboard() -> void:
 	var event: InputEventKey = InputBindingManager.get_keyboard_event(_action)
 	if event == null:
@@ -59,6 +70,8 @@ func _refresh_gamepad() -> void:
 	for child: Node in _gamepad_icons.get_children():
 		_gamepad_icons.remove_child(child)
 		child.free()
+	if not InputManager.is_gamepad_active():
+		return
 	for event: InputEvent in InputMap.action_get_events(_action):
 		var icon: Texture2D = GamepadIconMap.get_icon_for_event(event)
 		if icon == null:

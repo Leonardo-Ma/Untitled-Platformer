@@ -1,0 +1,21 @@
+## Resets settings for the currently visible tab's section back to default
+extends TextureButton
+
+@export var tabs_controller: OptionsTabController
+
+var _current_section: SettingsManager.SettingsSection = SettingsManager.SettingsSection.NONE
+
+
+func _ready() -> void:
+	assert(tabs_controller != null, "ResetSettingsButton: tabs_controller not assigned in " + name)
+	pressed.connect(_on_pressed)
+	tabs_controller.active_section_changed.connect(_on_active_section_changed)
+
+
+func _on_active_section_changed(section: SettingsManager.SettingsSection) -> void:
+	_current_section = section
+	disabled = section == SettingsManager.SettingsSection.NONE
+
+
+func _on_pressed() -> void:
+	SettingsManager.reset_to_default(_current_section)
