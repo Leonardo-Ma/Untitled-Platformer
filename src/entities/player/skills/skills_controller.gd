@@ -16,9 +16,10 @@ var _skills: Dictionary = {}
 
 
 func _ready() -> void:
-	base_fov = camera.fov
+	base_fov = SettingsManager.camera_fov
 	movement_controller.landed.connect(_on_landed)
 	_initialize_from_entity()
+	SettingsManager.camera_settings_changed.connect(_on_camera_settings_changed)
 
 
 func _physics_process(_delta: float) -> void:
@@ -83,3 +84,7 @@ func _initialize_from_entity() -> void:
 func _on_landed() -> void:
 	for skill: BaseSkill in _skills.values():
 		skill.on_landed()
+
+
+func _on_camera_settings_changed() -> void:
+	base_fov = SettingsManager.camera_fov
