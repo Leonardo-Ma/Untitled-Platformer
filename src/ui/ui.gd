@@ -73,5 +73,12 @@ func show_settings() -> void:
 	_menus.show_settings()
 
 
+func show_achievements() -> void:
+	_menus.visible = true
+	_menus.show_achievements()
+	_hud.visible = false
+	_overlays.visible = false
+
+
 func set_hud_visible(is_visible: bool) -> void:
 	_hud.visible = is_visible

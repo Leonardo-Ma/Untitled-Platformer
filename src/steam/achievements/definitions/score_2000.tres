@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AchievementDefinition" format=3 uid="uid://b8cy72edy7g6p"]
+
+[ext_resource type="Texture2D" uid="uid://cfhe3dcb3b7u3" path="res://src/art_assets/achievements/2000_score_locked.png" id="1_ti41r"]
+[ext_resource type="Texture2D" uid="uid://6sauw5kmpcaf" path="res://src/art_assets/achievements/2000_score_unlocked.png" id="2_tgymw"]
+[ext_resource type="Script" uid="uid://b2cu8elnnkiw1" path="res://src/steam/achievements/achievement_definition.gd" id="3_lyvin"]
+
+[resource]
+script = ExtResource("3_lyvin")
+key = &"score_2000"
+steam_api_name = "ACH_SCORE_2000"
+display_name = "2.000!"
+description = "Expert!"
+icon_locked = ExtResource("1_ti41r")
+icon_unlocked = ExtResource("2_tgymw")
+unlock_threshold = 2000
+metadata/_custom_type_script = "uid://b2cu8elnnkiw1"

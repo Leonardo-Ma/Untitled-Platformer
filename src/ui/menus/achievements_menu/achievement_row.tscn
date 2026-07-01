@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://brjg0yqiwbib4"]
+
+[ext_resource type="Script" uid="uid://be20exb0y0dm2" path="res://src/ui/menus/achievements_menu/achievement_row.gd" id="1_ajrxx"]
+[ext_resource type="Texture2D" uid="uid://c38n7tbohbvyk" path="res://src/ui/assets/game_logo_no_background.png" id="2_qf6my"]
+
+[node name="AchievementRow" type="MarginContainer" unique_id=970538032]
+custom_minimum_size = Vector2(300, 60)
+offset_right = 313.0
+offset_bottom = 23.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_ajrxx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1731523872]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1922352748]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=1426600585]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1560232332]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "EXAMPLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1625609370]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "EXAMPLE"
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1921146503]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_qf6my")
+expand_mode = 1
+stretch_mode = 5

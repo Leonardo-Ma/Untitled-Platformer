@@ -9,6 +9,7 @@ enum State {
 	PLAYING,
 	PAUSED,
 	SETTINGS,
+	ACHIEVEMENTS,
 }
 
 var hud_visible: bool = true
@@ -66,6 +67,13 @@ func open_settings() -> void:
 	_set_state(State.SETTINGS)
 
 
+func open_achievements() -> void:
+	assert(_ui != null, "UIManager: No UIView registered in " + name)
+	_pre_change_scene_state = _state
+	_set_state(State.ACHIEVEMENTS)
+
+
+## Pop settings, achievements as they are a stack (can only show and hide)
 func close_menu() -> void:
 	assert(_ui != null, "UIManager: no UIView registered in " + name)
 	_set_state(_pre_change_scene_state)
@@ -104,3 +112,5 @@ func _set_state(state: State) -> void:
 			_ui.show_pause_menu()
 		State.SETTINGS:
 			_ui.show_settings()
+		State.ACHIEVEMENTS:
+			_ui.show_achievements()

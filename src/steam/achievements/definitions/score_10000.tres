@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AchievementDefinition" format=3 uid="uid://c285pwbysem8r"]
+
+[ext_resource type="Texture2D" uid="uid://bsq2rm7g5sph7" path="res://src/art_assets/achievements/10000_score_locked.png" id="1_rcxsd"]
+[ext_resource type="Texture2D" uid="uid://br8dm5m41yfv6" path="res://src/art_assets/achievements/10000_score_unlocked.png" id="2_65xry"]
+[ext_resource type="Script" uid="uid://b2cu8elnnkiw1" path="res://src/steam/achievements/achievement_definition.gd" id="3_40h62"]
+
+[resource]
+script = ExtResource("3_40h62")
+key = &"score_10000"
+steam_api_name = "ACH_SCORE_10000"
+display_name = "10.000!"
+description = "Master!"
+icon_locked = ExtResource("1_rcxsd")
+icon_unlocked = ExtResource("2_65xry")
+unlock_threshold = 10000
+metadata/_custom_type_script = "uid://b2cu8elnnkiw1"

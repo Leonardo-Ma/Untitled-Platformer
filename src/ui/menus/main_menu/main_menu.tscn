@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cqgd6g3oujuj" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/play.png" id="4_rq6ct"]
 [ext_resource type="Texture2D" uid="uid://pfmkppm3ecuw" path="res://src/ui/assets/fantasy_ui_borders/PNG/Double/Border/panel-border-010.png" id="5_n5ore"]
 [ext_resource type="Script" uid="uid://u2p8jay56jmx" path="res://src/ui/menus/open_settings.gd" id="6_30lnw"]
-[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="6_l674l"]
+[ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/grab_focus_on_visible.tscn" id="6_l674l"]
 [ext_resource type="PackedScene" uid="uid://bq1ecmltuj6nk" path="res://src/ui/menus/version_label.tscn" id="8_fpg57"]
 [ext_resource type="Texture2D" uid="uid://cluw1pjw0m0g0" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/settings.png" id="8_rq6ct"]
 [ext_resource type="Texture2D" uid="uid://7p2j8n842i0a" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/cross.png" id="10_rq6ct"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://bx4ijaov68u63" path="res://src/ui/assets/kenney_input-prompts/sticks/stick_left.png" id="19_ua5hf"]
 [ext_resource type="Texture2D" uid="uid://bgf4oeuykl8jh" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_left.png" id="20_rq6ct"]
 [ext_resource type="Texture2D" uid="uid://r8ac5it4c01m" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/tick.png" id="22_rq6ct"]
+[ext_resource type="Texture2D" uid="uid://b33inr4y306ek" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/1_game/trophy.png" id="23_ewdsk"]
+[ext_resource type="Script" uid="uid://dib4grxkxaany" path="res://src/ui/menus/main_menu/open_achievements.gd" id="23_mt6gl"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mt6gl"]
 
@@ -76,12 +78,6 @@ modulate = Color(0, 0.36078432, 0, 0.7137255)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_left = NodePath("../QuitDesktop")
-focus_neighbor_top = NodePath("../QuitDesktop")
-focus_neighbor_right = NodePath("../Settings")
-focus_neighbor_bottom = NodePath("../Settings")
-focus_next = NodePath("../Settings")
-focus_previous = NodePath("../QuitDesktop")
 texture_normal = ExtResource("4_rq6ct")
 texture_focused = ExtResource("5_n5ore")
 ignore_texture_size = true
@@ -97,12 +93,6 @@ modulate = Color(0, 0, 0, 0.4)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_left = NodePath("../NewGame")
-focus_neighbor_top = NodePath("../NewGame")
-focus_neighbor_right = NodePath("../QuitDesktop")
-focus_neighbor_bottom = NodePath("../QuitDesktop")
-focus_next = NodePath("../QuitDesktop")
-focus_previous = NodePath("../NewGame")
 texture_normal = ExtResource("8_rq6ct")
 texture_focused = ExtResource("5_n5ore")
 ignore_texture_size = true
@@ -115,12 +105,6 @@ modulate = Color(0.6745098, 0, 0, 0.9411765)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_left = NodePath("../Settings")
-focus_neighbor_top = NodePath("../Settings")
-focus_neighbor_right = NodePath("../NewGame")
-focus_neighbor_bottom = NodePath("../NewGame")
-focus_next = NodePath("../NewGame")
-focus_previous = NodePath("../Settings")
 texture_normal = ExtResource("10_rq6ct")
 texture_focused = ExtResource("5_n5ore")
 ignore_texture_size = true
@@ -257,3 +241,30 @@ size_flags_horizontal = 3
 texture = ExtResource("22_rq6ct")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="AchievementsMargin" type="MarginContainer" parent="." unique_id=330617178]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="OpenAchievements" type="TextureButton" parent="AchievementsMargin" unique_id=789477557]
+modulate = Color(0.807596, 0.566473, 0, 0.9411765)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("23_ewdsk")
+texture_focused = ExtResource("5_n5ore")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("23_mt6gl")
