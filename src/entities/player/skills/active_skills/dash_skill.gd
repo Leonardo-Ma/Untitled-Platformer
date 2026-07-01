@@ -59,7 +59,6 @@ func process_input() -> void:
 
 
 func _start_dash(action_dir: String) -> void:
-	var body: CharacterBody3D = skills_controller.entity
 	skills_controller.is_sliding = true
 	_dash_timer = dash_duration
 
@@ -82,6 +81,9 @@ func _start_dash(action_dir: String) -> void:
 		_:
 			assert(false, "Dash direction didn't match options")
 
-	var forward: Vector3 = (body.transform.basis * Vector3(input_vec.x, 0, input_vec.y)).normalized()
+	var camera_basis: Basis = skills_controller.camera.global_transform.basis
+	var forward: Vector3 = camera_basis * Vector3(input_vec.x, 0, input_vec.y)
+	forward.y = 0.0
+	forward = forward.normalized()
 	_dash_direction = forward * skills_controller.movement_controller.current_speed * dash_velocity_multiplier
 	skills_controller.movement_controller.disable_movement(dash_duration)
