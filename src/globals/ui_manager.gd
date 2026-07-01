@@ -15,8 +15,8 @@ var hud_visible: bool = true
 
 var _ui: UIView
 var _state: State = State.MAIN_MENU
-## Tracks which state to return to when closing settings.
-var _pre_settings_state: State = State.MAIN_MENU
+## Tracks which state to return to when closing a menu
+var _pre_change_scene_state: State = State.MAIN_MENU
 
 
 func register_ui(ui: UIView) -> void:
@@ -60,19 +60,15 @@ func close_save_menu() -> void:
 #endregion
 
 
-#region Settings menu
 func open_settings() -> void:
 	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_pre_settings_state = _state
+	_pre_change_scene_state = _state
 	_set_state(State.SETTINGS)
 
 
-func close_settings() -> void:
+func close_menu() -> void:
 	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_set_state(_pre_settings_state)
-
-
-#endregion
+	_set_state(_pre_change_scene_state)
 
 
 func set_hud_visible(visible: bool) -> void:

@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dpc6wcewh3ft" path="res://src/ui/menus/settings_menu/audio/volume_slider.gd" id="5_nap5k"]
 [ext_resource type="Texture2D" uid="uid://bcak65oijluxt" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/volume.png" id="7_6geaa"]
 [ext_resource type="PackedScene" uid="uid://b6ednpu0kwboc" path="res://src/ui/helpers/focus_on_visible.tscn" id="7_8i7sm"]
-[ext_resource type="Script" uid="uid://djxnnbvmilpar" path="res://src/ui/menus/settings_menu/close_settings.gd" id="8_jw1je"]
+[ext_resource type="Script" uid="uid://djxnnbvmilpar" path="res://src/ui/menus/close_menu_button.gd" id="8_jw1je"]
 [ext_resource type="Texture2D" uid="uid://cbxbqyffu50mm" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/camera.png" id="9_6geaa"]
 [ext_resource type="Script" uid="uid://cbn2pmfg88g7l" path="res://src/ui/menus/settings_menu/video/resolution_option.gd" id="9_nxapy"]
 [ext_resource type="Texture2D" uid="uid://bkg1s07hgwn6s" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/display.png" id="10_863by"]

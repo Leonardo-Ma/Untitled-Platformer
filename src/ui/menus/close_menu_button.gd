@@ -10,4 +10,4 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	UIManager.close_settings()
+	UIManager.close_menu()
