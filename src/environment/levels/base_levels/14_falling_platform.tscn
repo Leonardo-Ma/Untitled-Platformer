@@ -142,6 +142,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 156)
 
 [node name="HexagonOrangePlatform30" parent="." unique_id=1118931932 instance=ExtResource("5_gbj1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 156)
-
-[node name="HexagonOrangePlatform22" parent="." unique_id=1871454227 instance=ExtResource("5_gbj1j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 105)
