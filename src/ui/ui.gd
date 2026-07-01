@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if UIManager.is_in_main_menu():
 		return
 	if UIManager.is_in_settings():
-		UIManager.close_settings()
+		UIManager.close_menu()
 		get_viewport().set_input_as_handled()
 		return
 	if not PauseManager.is_paused():

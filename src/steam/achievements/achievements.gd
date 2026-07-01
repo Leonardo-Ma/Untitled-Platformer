@@ -72,7 +72,7 @@ func get_description(key: StringName) -> String:
 
 func get_icon(key: StringName, unlocked: bool) -> Texture2D:
 	var definition: AchievementDefinition = _get_definition(key)
-	if get_steam_icon(key):
+	if Steam.isSteamRunning():
 		return get_steam_icon(key)
 	return definition.icon_unlocked if unlocked else definition.icon_locked
 
