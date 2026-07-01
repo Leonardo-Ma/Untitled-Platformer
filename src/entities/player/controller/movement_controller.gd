@@ -17,9 +17,12 @@ const DEADZONE: float = 0.3  # deadzone to prevent drift
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_speed: float = 0.0
 var movement_enabled: bool = true
+
 var coyote_timer: float = 0.0
 var disable_timer: float = 0.0
+
 var _was_on_floor: bool = false
+var _external_force: Vector3 = Vector3.ZERO
 
 
 ## This is executed by entity's _physics_process
@@ -31,6 +34,7 @@ func move(body: CharacterBody3D, delta: float) -> void:
 
 	movement_logic(body)
 	jump_air_logic(body, delta)
+	_apply_external_force(body)
 
 
 func disable_movement(duration: float) -> void:
@@ -114,3 +118,14 @@ func jump_air_logic(body: CharacterBody3D, delta: float) -> void:
 func jump(velocity_y: float, body: CharacterBody3D) -> void:
 	body.velocity.y = velocity_y
 	coyote_timer = 0.0
+
+
+## Called by external systems (wind, hazards...) to add continuous push force this frame
+func add_external_force(force: Vector3) -> void:
+	_external_force += force
+
+
+func _apply_external_force(body: CharacterBody3D) -> void:
+	if _external_force != Vector3.ZERO:
+		body.velocity += _external_force
+		_external_force = Vector3.ZERO

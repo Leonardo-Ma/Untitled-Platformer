@@ -6,6 +6,8 @@ extends Node
 
 signal movement_direction_changed(direction: Vector2, speed_factor: float)
 
+var _external_force: Vector3 = Vector3.ZERO
+
 var _disable_timer: float = 0.0
 
 @onready var _navigation_agent: NavigationAgent3D = %NavigationAgent3D
@@ -62,7 +64,7 @@ func stop() -> void:
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_physics_processing() or _disable_timer > 0.0:
 		return
-	_character_owner.velocity = safe_velocity
+	_character_owner.velocity = safe_velocity + _external_force
 	_character_owner.move_and_slide()
 	# NPCs using navigation typically move forward locally.
 	movement_direction_changed.emit(Vector2(0, 1), 1.0)
@@ -71,3 +73,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 func _on_navigation_agent_3d_target_reached() -> void:
 	_character_owner.velocity = Vector3.ZERO
 	movement_direction_changed.emit(Vector2.ZERO, 0.0)
+
+
+func add_external_force(force: Vector3) -> void:
+	_external_force += force

@@ -1,0 +1,37 @@
+## Continuous directional wind push for bodies inside its area, push direction is local +Z
+class_name WindTube
+extends Area3D
+
+@export_range(1.0, 50.0, 0.5, "suffix:m/s²") var wind_force: float = 15.0
+
+var _bodies_inside: Array[CharacterBody3D] = []
+
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
+
+func _physics_process(delta: float) -> void:
+	if _bodies_inside.is_empty():
+		return
+	var wind_direction: Vector3 = global_transform.basis.z.normalized()
+	for body: CharacterBody3D in _bodies_inside.duplicate():
+		if not is_instance_valid(body):
+			_bodies_inside.erase(body)
+			continue
+		var force: Vector3 = wind_direction * wind_force * delta
+		if body is PlayerEntity:
+			body.movement_controller.add_external_force(force)
+		elif body is AggressiveEntity:
+			body.navigation_controller.add_external_force(force)
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		_bodies_inside.append(body)
+
+
+func _on_body_exited(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		_bodies_inside.erase(body)
