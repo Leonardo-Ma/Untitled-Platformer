@@ -17,15 +17,15 @@ func _ready() -> void:
 	value_changed.connect(_on_value_changed)
 
 
-func _on_value_changed(v: float) -> void:
+func _on_value_changed(value: float) -> void:
 	match property:
 		DisplayProperty.BRIGHTNESS:
-			SettingsManager.brightness = v
+			SettingsManager.brightness = value
 		DisplayProperty.CONTRAST:
-			SettingsManager.contrast = v
+			SettingsManager.contrast = value
 		DisplayProperty.SATURATION:
-			SettingsManager.saturation = v
-	SettingsManager._apply()
+			SettingsManager.saturation = value
+	SettingsManager.apply_display()
 	SettingsManager.save()
 
 

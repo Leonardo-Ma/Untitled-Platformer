@@ -1,21 +1,34 @@
 # https://www.youtube.com/watch?v=EP5AYllgHy8 Godot 4.0 Third Person Controller Tutorial ( 2023 )
 # https://www.youtube.com/watch?v=JlgZtOFMdfc&t=611s GDQuest - 3D TUTORIAL: Make a Smooth 3D Character Controller in Godot 4
+class_name CameraController
 extends Node3D
 
 signal capture_mouse_requested
 signal release_mouse_requested
 
-@export_group("Camera")
-@export_range(0.0, 1.0, 0.1) var horizontal_sensibility: float = 0.2
-@export_range(0.0, 1.0, 0.1) var vertical_sensibility: float = 0.2
-
-@export_range(0.0, 720.0, 1.0) var gamepad_look_sensitivity: float = 120.0
 @export var gamepad_look_invert_y: bool = false
+
+var horizontal_sensibility: float = 0.2
+var vertical_sensibility: float = 0.2
+
+var gamepad_look_sensitivity: float = 120.0
 
 var mouse_look_enabled: bool = false
 
 @onready var cam_root: Node3D = $"."
 @onready var player: CharacterBody3D = $".."
+
+
+func _ready() -> void:
+	refresh_sensitivity_from_settings()
+	SettingsManager.settings_reset.connect(refresh_sensitivity_from_settings)
+
+
+## Call after settings changes
+func refresh_sensitivity_from_settings() -> void:
+	horizontal_sensibility = SettingsManager.mouse_sensitivity_horizontal
+	vertical_sensibility = SettingsManager.mouse_sensitivity_vertical
+	gamepad_look_sensitivity = SettingsManager.gamepad_sensitivity
 
 
 #region Keyboard and mouse

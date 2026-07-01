@@ -8,8 +8,8 @@ const MULTI_JUMP_SOUNDS: Array[AudioStream] = [
 	preload("uid://bb1w0acj8f3i1"),  # jump_short.wav
 ]
 
-## Used for air jumps; scales with upgrades
-@export_range(0.5, 1.5, 0.05) var jump_velocity_multiplier: float = 1.0
+## Used for air jumps
+var jump_velocity_multiplier: float = 1.5
 var jump_fov_increase: float = 8.0
 var jump_fov_duration: float = 0.2
 
