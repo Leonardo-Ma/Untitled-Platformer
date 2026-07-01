@@ -27,8 +27,9 @@ buses/default_bus_layout="uid://plxel2xf671u"
 [autoload]
 
 SettingsManager="*uid://caq4tmrxugaw7"
-SaveManager="*uid://bld73yeq5e54m"
 SteamWorks="*uid://bj75q73hkheqo"
+SteamCloudSave="*uid://cvg7ryuxfkyuu"
+SaveManager="*uid://bld73yeq5e54m"
 Achievements="*uid://mcfcqnskwnjw"
 GamepadIconMap="*uid://cxhhtlg0sgl0q"
 InputBindingManager="*uid://dogtu7flgoe45"
@@ -43,6 +44,7 @@ LevelChunkManager="*uid://qsxf8ht6hmse"
 CheckpointManager="*uid://cimfiv457vauf"
 TestGoapConsistency="*res://tests/goap.gd"
 TestAudio="*uid://cxi4v122jd7b6"
+TestSettingsDefaults="*uid://cieb4svyd710l"
 
 [debug]
 

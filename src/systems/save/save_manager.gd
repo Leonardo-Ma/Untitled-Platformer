@@ -26,6 +26,7 @@ var _pending_checkpoint: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(SAVE_DIR)
+	_sync_cloud_saves()
 	_next_auto_slot = _find_next_auto_slot()
 
 	_auto_timer = Timer.new()
@@ -181,6 +182,7 @@ func _write_slot(slot_index: int, is_auto: bool, player: PlayerEntity) -> bool:
 
 	print_debug("Saved slot ", slot_index)
 	save_changed.emit(slot_index)
+	SteamCloudSave.upload(_cloud_filename(slot_index), base)
 	return true
 
 
@@ -349,3 +351,14 @@ func _find_next_auto_slot() -> int:
 			oldest_timestamp = data.save_timestamp
 			oldest_index = i
 	return oldest_index
+
+
+func _sync_cloud_saves() -> void:
+	for i: int in range(TOTAL_SLOTS):
+		var cloud_name: String = _cloud_filename(i)
+		if SteamCloudSave.remote_is_newer(cloud_name, _slot_path(i)):
+			SteamCloudSave.download(cloud_name, _slot_path(i))
+
+
+func _cloud_filename(slot_index: int) -> String:
+	return "slot_%d.tres" % slot_index
