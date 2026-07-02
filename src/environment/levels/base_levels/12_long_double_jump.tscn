@@ -32,7 +32,7 @@ transform = Transform3D(0.044172764, 0.21272726, -1.9881654, 0.79390913, 1.82330
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 34)
 
 [node name="HexagonGrassPlatform6" parent="." unique_id=1720102324 instance=ExtResource("5_wpoxf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 9, 34)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 8, 36)
 
 [node name="HexagonGrassPlatform7" parent="." unique_id=216931312 instance=ExtResource("5_wpoxf")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 27, 14, 62)
