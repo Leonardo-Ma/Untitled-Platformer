@@ -1,14 +1,23 @@
-class_name Trampoline
+class_name Spring
 extends StaticBody3D
+
+const SPRING_SOUNDS: Array[AudioStream] = [
+	preload("uid://dxdpladlbrraw"),  # spring_02.ogg
+	preload("uid://b6p7rnol78xjj"),  # spring_03.ogg
+	preload("uid://cxvum5o603r50"),  # spring_06.ogg
+	preload("uid://cvrybl1fud1p"),  # spring_07.ogg
+]
 
 @export_range(5.0, 30.0, 0.5, "suffix:m/s") var launch_velocity: float = 18.0
 @export_range(0.05, 0.5, 0.01, "suffix:s") var squash_duration: float = 0.15
 
-@onready var _mesh: MeshInstance3D = $MeshInstance3D
+@onready var _mesh: Node3D = $Visual
 @onready var _surface: Area3D = $Surface
 
 
 func _ready() -> void:
+	assert(_mesh, "Mesh not properly set for " + name)
+	assert(_surface, "Surface not properly set for " + name)
 	_surface.body_entered.connect(_on_surface_entered)
 
 
@@ -19,6 +28,7 @@ func _on_surface_entered(body: Node3D) -> void:
 		return
 	char_body.velocity.y = launch_velocity
 	_play_squash()
+	SoundManager.play_sound(SPRING_SOUNDS.pick_random() as AudioStream, SoundManager.SoundCategory.SFX, body.global_position)
 
 
 func _play_squash() -> void:

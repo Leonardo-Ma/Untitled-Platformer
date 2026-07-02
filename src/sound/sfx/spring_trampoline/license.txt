@@ -1,0 +1,6 @@
+100 CC0 SFX
+https://opengameart.org/content/100-cc0-sfx
+author: rubberduck
+https://opengameart.org/users/rubberduck
+license: CC0 - Public domain
+https://creativecommons.org/publicdomain/zero/1.0/
