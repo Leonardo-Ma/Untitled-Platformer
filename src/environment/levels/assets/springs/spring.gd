@@ -8,7 +8,7 @@ const SPRING_SOUNDS: Array[AudioStream] = [
 	preload("uid://cvrybl1fud1p"),  # spring_07.ogg
 ]
 
-@export_range(5.0, 30.0, 0.5, "suffix:m/s") var launch_velocity: float = 18.0
+@export_range(5.0, 50.0, 0.5, "suffix:m/s") var launch_velocity: float = 18.0
 @export_range(0.05, 0.5, 0.01, "suffix:s") var squash_duration: float = 0.15
 
 @onready var _mesh: Node3D = $Visual
