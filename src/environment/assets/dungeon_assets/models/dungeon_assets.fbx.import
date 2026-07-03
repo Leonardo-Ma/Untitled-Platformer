@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0q7r5ljj3e3s"
-path="res://.godot/imported/power_blue.gltf-3e4cea32ff2eb350e36da0083dd41a14.scn"
+uid="uid://dvf7fdwkno2tb"
+path="res://.godot/imported/dungeon_assets.fbx-8a564610003d5c9e4e4cd3c246847999.scn"
 
 [deps]
 
-source_file="res://src/environment/kaykit_platformer/power_blue.gltf"
-dest_files=["res://.godot/imported/power_blue.gltf-3e4cea32ff2eb350e36da0083dd41a14.scn"]
+source_file="res://src/environment/assets/dungeon_assets/models/dungeon_assets.fbx"
+dest_files=["res://.godot/imported/dungeon_assets.fbx-8a564610003d5c9e4e4cd3c246847999.scn"]
 
 [params]
 
@@ -32,14 +32,21 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path=""
+import_script/path="uid://bufuiy4e3leva"
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
-gltf/naming_version=2
-gltf/embedded_image_handling=1
-gltf/texture_map_mode=1
+_subresources={
+"nodes": {
+"PATH:tile_003": {
+"physics/mask": 11
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2

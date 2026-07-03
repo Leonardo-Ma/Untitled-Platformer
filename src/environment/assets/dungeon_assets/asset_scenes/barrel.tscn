@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bac4iokysa58j"]
 
-[ext_resource type="ArrayMesh" uid="uid://clxiq3vvpsxql" path="res://src/environment/dungeon_assets/meshes/barrel_001.tres" id="3_h8shr"]
+[ext_resource type="ArrayMesh" uid="uid://clxiq3vvpsxql" path="res://src/environment/assets/dungeon_assets/meshes/barrel_001.tres" id="3_h8shr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cr444"]
 height = 1.4775391
