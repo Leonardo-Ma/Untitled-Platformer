@@ -1,0 +1,42 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://7f3jw4fa6uws"]
+
+[ext_resource type="Texture2D" uid="uid://c3jgn4iaiqy36" path="res://src/environment/assets/kenney_city_kit_roads/models/textures/colormap.png" id="1_5vdyb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xqbu"]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("1_5vdyb")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_egfb0"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.58, 1),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAAADAAQABAADAAIAAQAAAAUABAAFAAAABQAGAAEAAgAHAAQABQAEAAcABwACAAEABwAGAAUAAQAGAAcACAAJAAoACgALAAgACAALAAwACwAKAA0ADQAMAAsADQAKAAkADAAOAAgADgAMAA0ACQAIAA4ADQAPAA4ADgAPAAkACQAPAA0A"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("/////1D4AAD//6/cMvMAAP//r9z//wAA////////AAAAAE8j//8AAAAATyNQ+AAAAAAAADLzAAAAAAAA//8AAP//r9zMDAAA//+v3AAAAAAAAAAAAAAAAAAAAADMDAAAAABPI64HAAAAAE8jAAAAAP////+uBwAA/////wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "road-slant-high-barrier_road-slant-high-barrier"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.58, 1),
+"attribute_data": PackedByteArray("/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwA"),
+"material": SubResource("StandardMaterial3D_2xqbu"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("/////1D4/7///6/cMvP/v///r9z///+//////////78AAAAA////vwAAAAAy8/+/AABPI1D4/78AAE8j////vwAATyNQ+Pf6AAAAADLz9/r//6/cMvP3+v////9Q+Pf6//+v3MwMaMv//6/cAABoywAAAAAAAGjLAAAAAMwMaMsAAE8jAAD//wAAAAAAAP////+v3AAA////////AAD///////+uB/+//////wAA/7///6/cAAD/v///r9zMDP+///+v3MwMHosAAAAAzAweiwAATyOuBx6L/////64HHosAAE8jAABoy/////8AAGjL/////64HaMsAAE8jrgdoywAAAADMDP+/AAAAAAAA/78AAE8jAAD/vwAATyOuB/+//////1D4aMv///////9oywAATyP//2jLAABPI1D4aMsAAAAA//9oy///r9z//2jL//+v3DLzaMsAAAAAMvNoy///r9z//wCAAAAAAP//AIAAAE8j//8AgP///////wCA/38AAP9/AAD/fwAA/38AAP9/////f////3////9////cgErx3IBK8dyASvHcgErxnlzBRp5cwUaeXMFGnlzBRv9/////f////3////9/////fwAA/38AAP9/AAD/fwAAbtF+qW7Rfqlu0X6pbtF+qWCjPblgoz25YKM9uWCjPbn/f////3////9/////f///YKM9uWCjPblgoz25YKM9uZ5cwUaeXMFGnlzBRp5cwUb/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_egfb0")

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dv5rl3uuwysj8"]
+
+[ext_resource type="ArrayMesh" uid="uid://c5trk6rk7c7cs" path="res://src/environment/assets/kenney_city_kit_roads/meshes/road_straight.tres" id="1_epj6k"]
+[ext_resource type="ArrayMesh" uid="uid://cmqeta4sbw26m" path="res://src/environment/assets/kenney_city_kit_roads/meshes/road_straight_barrier.tres" id="2_u8rbg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rrip"]
+size = Vector3(1, 0.02, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6sa6n"]
+data = PackedVector3Array(0.5, 0.08, -0.47, -0.5, 0.08, -0.47, -0.5, 0.08, -0.5, -0.5, 0.08, -0.5, 0.5, 0.08, -0.5, 0.5, 0.08, -0.47, -0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0, 0.45, 0.5, 0, 0.45, -0.5, 0, 0.45, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.45, 0.5, 0, -0.45, 0.5, 0, -0.45, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0.45, 0.5, 0, 0.45, 0.5, 0.08, 0.47, 0.5, 0.08, 0.47, -0.5, 0.08, 0.47, -0.5, 0, 0.45, -0.5, 0.08, -0.47, -0.5, 0, -0.45, -0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0.08, -0.5, -0.5, 0.08, -0.47, 0.5, 0.08, 0.47, 0.5, 0.08, 0.5, -0.5, 0.08, 0.5, -0.5, 0.08, 0.5, -0.5, 0.08, 0.47, 0.5, 0.08, 0.47, 0.5, 0.08, 0.47, 0.5, 0, 0.45, 0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0.08, 0.5, 0.5, 0.08, 0.47, 0.5, 0.08, -0.47, 0.5, 0, -0.45, -0.5, 0, -0.45, -0.5, 0, -0.45, -0.5, 0.08, -0.47, 0.5, 0.08, -0.47, 0.5, 0.08, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.45, 0.5, 0, -0.45, 0.5, 0.08, -0.47, 0.5, 0.08, -0.5, -0.5, 0.08, 0.5, -0.5, 0, 0.5, -0.5, 0, 0.45, -0.5, 0, 0.45, -0.5, 0.08, 0.47, -0.5, 0.08, 0.5, -0.5, 0.08, 0.5, 0.5, 0.08, 0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0.08, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.08, -0.5, 0.5, 0.08, -0.5, -0.5, 0.08, -0.5, -0.5, 0, -0.5)
+
+[node name="RoadStraight" type="StaticBody3D" unique_id=961219849]
+transform = Transform3D(-4.371139e-07, 0, -10, 0, 10, 0, 10, 0, -4.371139e-07, 0, 0, 0)
+
+[node name="RoadStraight" type="MeshInstance3D" parent="." unique_id=556871224]
+mesh = ExtResource("1_epj6k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=915635419]
+shape = SubResource("BoxShape3D_5rrip")
+
+[node name="RoadStraightBarrier" type="MeshInstance3D" parent="." unique_id=508614446]
+mesh = ExtResource("2_u8rbg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1161710365]
+shape = SubResource("ConcavePolygonShape3D_6sa6n")

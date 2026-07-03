@@ -4,9 +4,12 @@ extends AggressiveEntity
 @export_category("Skills")
 @export var startup_skill_ids: Array[StringName] = []
 
+@onready var camera_controller: CameraController = %CamRoot
 @onready var movement_controller: MovementController = %MovementController
 @onready var input_controller: InputController = %InputController
 @onready var skills_controller: SkillsController = %SkillsController
+
+@onready var _visual: Node3D = %Visual
 
 
 func _physics_process(delta: float) -> void:
@@ -85,3 +88,44 @@ func _on_return_to_checkpoint_requested() -> void:
 func _on_damaged_vibration(_attack: Attack) -> void:
 	# TODO Change the gamepad index to the actual player gamepad?
 	Input.start_joy_vibration(0, 0.5, 0.5, 0.7)
+
+
+# TODO BUG This is a garbage
+#region Car methods
+## Disable control, collision, combat while driving
+func enter_vehicle() -> void:
+	remove_from_group(Groups.PLAYERS)
+	input_controller.set_process_input(false)
+	input_controller.set_process_unhandled_input(false)
+	skills_controller.set_physics_process(false)
+	set_collision_layer_value(1, false)
+	hurtbox.set_deferred("monitoring", false)
+	hurtbox.set_deferred("monitorable", false)
+	hitbox.set_deferred("monitoring", false)
+	hitbox.set_deferred("monitorable", false)
+	camera_controller.set_active(false)
+	set_physics_process(false)
+	# shrink effect
+	var tween: Tween = create_tween()
+	tween.tween_property(_visual, "scale", Vector3.ONE * 0.001, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.tween_callback(func() -> void: visible = false)
+
+
+## Restores control at exit_position
+func exit_vehicle(exit_position: Vector3) -> void:
+	global_position = exit_position
+	velocity = Vector3.ZERO
+	visible = true
+	_visual.scale = Vector3.ZERO
+	add_to_group(Groups.PLAYERS)
+	set_collision_layer_value(1, true)
+	hurtbox.set_deferred("monitoring", true)
+	hurtbox.set_deferred("monitorable", true)
+	hitbox.set_deferred("monitoring", true)
+	hitbox.set_deferred("monitorable", true)
+	camera_controller.set_active(true)
+	set_physics_process(true)
+	# Grow effect
+	var tween: Tween = create_tween()
+	tween.tween_property(_visual, "scale", Vector3.ONE, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+#endregion

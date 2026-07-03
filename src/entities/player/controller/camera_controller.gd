@@ -43,6 +43,10 @@ func refresh_camera_from_settings() -> void:
 	gamepad_look_invert_y = SettingsManager.gamepad_invert_y
 
 
+func set_active(active: bool) -> void:
+	_camera.current = active
+
+
 #region Keyboard and mouse
 # Handle camera x and y movement
 # TODO Confirm if this should be on _input instead of _unhandled_input or _physics_process
