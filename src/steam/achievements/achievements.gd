@@ -80,7 +80,8 @@ func get_icon(key: StringName, unlocked: bool) -> Texture2D:
 func get_steam_icon(key: StringName) -> Texture2D:
 	var definition: AchievementDefinition = _get_definition(key)
 	var icon_handle: int = Steam.getAchievementIcon(definition.steam_api_name)
-
+	if icon_handle == 0:
+		return null
 	var icon_size: Dictionary = Steam.getImageSize(icon_handle)
 	var icon_buffer: Dictionary = Steam.getImageRGBA(icon_handle)
 
