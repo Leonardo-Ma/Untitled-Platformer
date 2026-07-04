@@ -29,7 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 3, 4, -2)
 
 [node name="Car" parent="." unique_id=977934045 instance=ExtResource("6_0dlys")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.051901817, 2.6, 2.8251863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051901817, 2.873177, 2.8251863)
 
 [node name="Roads" type="Node3D" parent="." unique_id=1685924199]
 

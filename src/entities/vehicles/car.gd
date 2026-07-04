@@ -1,110 +1,106 @@
-class_name Car
-extends CharacterBody3D
+class_name PlayerCar
+extends VehicleBody3D
 
 signal driving_started(player: PlayerEntity)
 signal driving_stopped(player: PlayerEntity)
 
-@export_range(0.1, 1.0, 0.01, "suffix:meters") var wheel_radius: float = 0.35
+@export_range(500.0, 8000.0, 100.0) var max_engine_force: float = 1000.0
+@export_range(5.0, 100.0, 1.0) var brake_force: float = 15.0
+@export_range(0.1, 1.0, 0.01) var max_steering: float = 0.2
+@export_range(1.0, 10.0, 0.1) var steering_speed: float = 1.5
 
-@export_range(1.0, 40.0, 0.5, "suffix:m/s") var drive_speed: float = 12.0
-@export_range(0.5, 10.0, 0.1, "suffix:m/s²") var acceleration: float = 6.0
-@export_range(10.0, 200.0, 1.0, "suffix:deg/s") var turn_speed: float = 90.0
+@export_category("Core")
+@export var health: Health
 
 var is_driven: bool = false
 
 var _driver: PlayerEntity = null
-var _current_speed: float = 0.0
-var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var _steering: float = 0.0
 
 @onready var enter_area: Area3D = %EnterArea
-@onready var camera: Camera3D = %Camera3D
-@onready var _visual: Node3D = %Visual
 
-@onready var _front_left_wheel: MeshInstance3D = %FrontLeftWheel
-@onready var _front_right_wheel: MeshInstance3D = %FrontRightWheel
-@onready var _back_wheels: MeshInstance3D = %BackWheels
+@onready var camera_anchor: Marker3D = %CameraAnchor
+@onready var camera_pivot: Node3D = %CameraPivot
+@onready var camera: Camera3D = %Camera3D
+
+@onready var front_left_wheel: VehicleWheel3D = %FrontLeftWheel
+@onready var front_right_wheel: VehicleWheel3D = %FrontRightWheel
+@onready var back_left_wheel: VehicleWheel3D = %BackLeftWheel
+@onready var back_right_wheel: VehicleWheel3D = %BackRightWheel
 
 
 func _ready() -> void:
 	assert(enter_area != null, "EnterArea missing in " + name)
+	assert(camera_anchor != null, "CameraAnchor missing in " + name)
+	assert(camera_pivot != null, "CameraPivot missing in " + name)
 	assert(camera != null, "Camera3D missing in " + name)
-	assert(_visual != null, "Visual missing in " + name)
 
-	assert(_front_left_wheel != null, "FrontLeftWheel missing in " + name)
-	assert(_front_right_wheel != null, "FrontRightWheel missing in " + name)
-	assert(_back_wheels != null, "BackWheels missing in " + name)
+	assert(front_left_wheel != null, "FrontLeftWheel missing in " + name)
+	assert(front_right_wheel != null, "FrontRightWheel missing in " + name)
+	assert(back_left_wheel != null, "BackLeftWheel missing in " + name)
+	assert(back_right_wheel != null, "BackRightWheel missing in " + name)
 
 	enter_area.body_entered.connect(_on_enter_area_body_entered)
+
 	set_physics_process(false)
 
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y -= _gravity * delta
+	var throttle: float = Input.get_axis("move_backward", "move_forward")
+	var steer: float = Input.get_axis("move_right", "move_left")
 
-	var input_dir: float = Input.get_axis("move_backward", "move_forward")
-	var turn_dir: float = Input.get_axis("move_right", "move_left")
+	_steering = move_toward(
+		_steering,
+		steer * max_steering,
+		steering_speed * delta,
+	)
 
-	_current_speed = move_toward(_current_speed, input_dir * drive_speed, acceleration * delta)
+	steering = _steering
 
-	if absf(_current_speed) > 0.01:
-		rotate_y(deg_to_rad(turn_dir * turn_speed * delta) * signf(_current_speed))
-
-	var forward: Vector3 = -global_transform.basis.z
-	velocity.x = forward.x * _current_speed
-	velocity.z = forward.z * _current_speed
-
-	move_and_slide()
-
-	_spin_wheels(delta)
-
-	var normal: Vector3 = get_floor_normal()
-
-	forward = (forward - normal * forward.dot(normal)).normalized()
-
-	var target_basis: Basis = Basis.looking_at(forward, normal)
-
-	_visual.global_basis = _visual.global_basis.slerp(target_basis, 8.0 * delta)
+	if absf(throttle) > 0.01:
+		engine_force = throttle * max_engine_force
+		brake = 0.0
+	else:
+		engine_force = 0.0
+		brake = brake_force
 
 
-func _spin_wheels(delta: float) -> void:
-	var spin: float = (_current_speed / wheel_radius) * delta
-	_front_left_wheel.rotate_x(spin)
-	_front_right_wheel.rotate_x(spin)
-	_back_wheels.rotate_x(spin)
+func _process(_delta: float) -> void:
+	camera_pivot.global_position = camera_anchor.global_position
 
 
-#region Enter and Exit
 func _on_enter_area_body_entered(body: Node3D) -> void:
 	if is_driven or body is not PlayerEntity:
 		return
-	is_driven = true
 	_driver = body as PlayerEntity
+	_driver.camera_controller.set_active(false)
+
+	is_driven = true
 	_driver.enter_vehicle()
+
 	camera.current = true
 	set_physics_process(true)
-	_play_activation_pop()
+	set_process(true)
 	driving_started.emit(_driver)
 
 
 func exit(exit_position: Vector3) -> void:
 	assert(is_driven, "Car not driven in " + name)
+
 	set_physics_process(false)
-	_current_speed = 0.0
-	velocity = Vector3.ZERO
+	set_process(false)
+
+	engine_force = 0.0
+	brake = brake_force
+	steering = 0.0
+
 	camera.current = false
 
 	var driver: PlayerEntity = _driver
+	_driver.camera_controller.set_active(true)
 	_driver = null
 	is_driven = false
 
 	driver.exit_vehicle(exit_position)
+
 	driving_stopped.emit(driver)
-
-
-func _play_activation_pop() -> void:
-	var tween: Tween = create_tween()
-	var original_scale: Vector3 = _visual.scale
-	tween.tween_property(_visual, "scale", original_scale * 1.15, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(_visual, "scale", original_scale, 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-#endregion

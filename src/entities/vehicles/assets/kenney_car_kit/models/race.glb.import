@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://5s2d4ik3rxyi"
-path="res://.godot/imported/generic.glb-87823fb80c54f74e63dd29d38d425543.scn"
+uid="uid://kyuwgo08oity"
+path="res://.godot/imported/race.glb-7e19bc7f60f79a5ef41d11e438709d1e.scn"
 
 [deps]
 
-source_file="res://src/entities/vehicles/assets/cars_bundle_glb_quaternius/models/generic.glb"
-dest_files=["res://.godot/imported/generic.glb-87823fb80c54f74e63dd29d38d425543.scn"]
+source_file="res://src/entities/vehicles/assets/kenney_car_kit/models/race.glb"
+dest_files=["res://.godot/imported/race.glb-7e19bc7f60f79a5ef41d11e438709d1e.scn"]
 
 [params]
 
