@@ -296,6 +296,8 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1
 unique_name_in_owner = true
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=134077829]
+collision_layer = 0
+collision_mask = 32768
 script = ExtResource("3_u1f61")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=974147913]

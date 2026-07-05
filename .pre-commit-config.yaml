@@ -136,6 +136,12 @@ repos:
         entry: '(position|translation)\s*\+=\s*(?!.*\*\s*delta)(?!.*delta\s*\*)'
         files: \.gd$
 
+      - id: no-code-collision-layer-or-mask
+        name: "ban defining collision layer or mask by code | Fail prone | Do by editor only"
+        language: pygrep
+        entry: (?<!\.)\b(collision_layer|collision_mask)\b\s*=(?!=)\s*
+        files: \.gd$
+
       # Godot 3 syntax
 
       - id: no-godot3-yield

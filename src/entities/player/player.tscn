@@ -508,6 +508,8 @@ script = ExtResource("19_s033l")
 [node name="Hitbox" type="Area3D" parent="." unique_id=58706734]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 32768
+collision_mask = 0
 monitoring = false
 script = ExtResource("5_w2bk0")
 

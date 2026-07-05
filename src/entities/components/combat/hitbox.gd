@@ -5,9 +5,9 @@ class_name Hitbox
 extends Area3D
 
 
-func _init() -> void:
-	collision_layer = 524288  # Layer 20 (It's in bits)
-	collision_mask = 0
+func _ready() -> void:
+	assert(collision_layer == 32768, "Hitbox of " + owner.name + " must be in layer 16")  # It's in bits
+	assert(collision_mask == 0, "Hitbox of " + owner.name + " must not have mask")
 
 
 # TODO Remove this status manager event on damage dealt and swap for respective different type treatment
