@@ -5,45 +5,57 @@ extends Area3D
 ## The distance below the current checkpoint before the player dies
 @export var fall_margin: float = 30.0
 
+@export var target: Node3D
+
 # Store the exact spot the player was born before any checkpoints existed
 var _fallback_spawn: Vector3
 
 
 func _ready() -> void:
+	assert(target != null, "Target missing in " + name)
+
 	body_entered.connect(_on_body_entered)
 	CheckpointManager.checkpoint_activated.connect(_on_checkpoint_activated)
+	GameEvents.controlled_entity_changed.connect(_on_controlled_entity_changed)
+	if GameEvents.controlled_entity != null:
+		_on_controlled_entity_changed(GameEvents.controlled_entity)
 	call_deferred("_initialize_position")
 
 
 func _physics_process(_delta: float) -> void:
-	var player: Node3D = get_tree().get_first_node_in_group(Groups.PLAYERS)
-	if player:
-		# Since it's a BoxShape3D and not infinite, we DO need to update X and Z to cover the player's lateral movements!
-		# The Y position strictly obeys the checkpoint height (it does not move up or down here).
-		global_position.x = player.global_position.x
-		global_position.z = player.global_position.z
+	assert(target != null, "Target missing in " + name)
+
+	global_position.x = target.global_position.x
+	global_position.z = target.global_position.z
 
 
 func _initialize_position() -> void:
-	var player: Node3D = get_tree().get_first_node_in_group(Groups.PLAYERS)
-	if player:
-		_fallback_spawn = player.global_position
-		if CheckpointManager.has_active_checkpoint():
-			global_position.y = CheckpointManager.get_respawn_position().y - fall_margin
-		else:
-			global_position.y = player.global_position.y - fall_margin
+	_fallback_spawn = target.global_position
+
+	if CheckpointManager.has_active_checkpoint():
+		global_position.y = CheckpointManager.get_respawn_position().y - fall_margin
+	else:
+		global_position.y = target.global_position.y - fall_margin
 
 
 func _on_checkpoint_activated(checkpoint_position: Vector3) -> void:
 	global_position.y = checkpoint_position.y - fall_margin
 
 
-func _on_body_entered(body: Node3D) -> void:
-	if body is PlayerEntity:
-		var target: Vector3 = _fallback_spawn
-		if CheckpointManager.has_active_checkpoint():
-			target = CheckpointManager.get_respawn_position()
+func _on_controlled_entity_changed(entity: Node3D) -> void:
+	assert(entity != null, "Controlled entity missing in " + name)
+	target = entity
 
-		body.respawn(2.0, target)
-	else:
-		print_debug("Something wrong here at " + self.name + "'s house.")
+
+func _on_body_entered(body: Node3D) -> void:
+	if body != target:
+		return
+
+	var target_position: Vector3 = _fallback_spawn
+	if CheckpointManager.has_active_checkpoint():
+		target_position = CheckpointManager.get_respawn_position()
+
+	if body is PlayerEntity:
+		(body as PlayerEntity).respawn(2.0, target_position)
+	elif body is PlayerCar:
+		(body as PlayerCar).respawn(2.0, target_position)

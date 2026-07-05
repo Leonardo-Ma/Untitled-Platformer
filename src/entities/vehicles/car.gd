@@ -82,6 +82,8 @@ func _on_enter_area_body_entered(body: Node3D) -> void:
 	set_physics_process(true)
 	set_process(true)
 	driving_started.emit(_driver)
+	GameEvents.set_controlled_entity(self)
+	self.add_to_group(Groups.PLAYERS)
 
 
 func exit(exit_position: Vector3) -> void:
@@ -104,3 +106,20 @@ func exit(exit_position: Vector3) -> void:
 	driver.exit_vehicle(exit_position)
 
 	driving_stopped.emit(driver)
+	self.remove_from_group(Groups.PLAYERS)
+
+
+func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> void:
+	GameEvents.player_respawning.emit(delay)
+
+	# Wait for the screen to fade in
+	await get_tree().create_timer(delay / 2.0).timeout
+
+	global_position = target_position
+	global_rotation = Vector3.ZERO
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+
+	if is_death:
+		health.reset()
+		scale = Vector3.ONE

@@ -16,11 +16,13 @@ signal gold_updated(new_total: int)
 signal collectible_consumed(world_position: Vector3)
 @warning_ignore("unused_signal")
 signal enemy_killed(world_position: Vector3)
+signal controlled_entity_changed(entity: Node3D)
 #endregion
 
 var procedural_seed: int = 0
 var score: int = 0
 var gold: int = 0
+var controlled_entity: Node3D = null
 
 
 func add_score(points: int) -> void:
@@ -48,3 +50,8 @@ func remove_gold(amount: int) -> bool:
 	gold -= amount
 	gold_updated.emit(gold)
 	return true
+
+
+func set_controlled_entity(entity: Node3D) -> void:
+	controlled_entity = entity
+	controlled_entity_changed.emit(entity)

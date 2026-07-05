@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 func _child_ready() -> void:
 	add_to_group(Groups.PLAYERS)
 	GameEvents.player_spawned.emit(self)
+	GameEvents.set_controlled_entity(self)
 
 	input_controller.attack_pressed.connect(_on_attack_pressed)
 	input_controller.return_to_checkpoint_requested.connect(_on_return_to_checkpoint_requested)
@@ -125,6 +126,7 @@ func exit_vehicle(exit_position: Vector3) -> void:
 	hitbox.set_deferred("monitorable", true)
 	camera_controller.set_active(true)
 	set_physics_process(true)
+	GameEvents.set_controlled_entity(self)
 	# Grow effect
 	var tween: Tween = create_tween()
 	tween.tween_property(_visual, "scale", Vector3.ONE, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
