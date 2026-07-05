@@ -153,6 +153,8 @@ script = ExtResource("23_o0y4x")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=998701689]
 unique_name_in_owner = true
+collision_layer = 32768
+collision_mask = 0
 script = ExtResource("24_sx6k8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=186970168]
@@ -162,6 +164,8 @@ disabled = true
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=2035338296]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 32768
 script = ExtResource("25_ljr68")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1446340234]

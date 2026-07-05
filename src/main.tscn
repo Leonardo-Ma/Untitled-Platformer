@@ -118,4 +118,6 @@ transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0.99999976, 6.5044346, 
 transform = Transform3D(-1, 0, -3.1786513e-08, 0, 1, 0, 3.1786513e-08, 0, -1, -1.9327073, -6.6293526, -71.52257)
 movement = SubResource("Resource_sif16")
 
-[node name="FloorLevelBoundary" parent="." unique_id=444006995 instance=ExtResource("16_tb146")]
+[node name="FloorLevelBoundary" parent="." unique_id=444006995 node_paths=PackedStringArray("target") instance=ExtResource("16_tb146")]
+unique_name_in_owner = true
+target = NodePath("../Player")

@@ -262,7 +262,7 @@ buffering/agile_event_flushing=true
 3d_physics/layer_2="Enemy"
 3d_physics/layer_3="Interaction"
 3d_physics/layer_4="World Object"
-3d_physics/layer_20="Hurtbox"
+3d_physics/layer_16="Hurtbox"
 
 [physics]
 
