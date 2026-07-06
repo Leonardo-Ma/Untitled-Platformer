@@ -8,6 +8,7 @@ enum SoundCategory {
 	AMBIENT,
 	UI,
 	VOICE,
+	VEHICLE,
 }
 
 var music: MusicController
@@ -108,6 +109,8 @@ func _get_bus_for_category(category: SoundCategory) -> String:
 			return "UI"
 		SoundCategory.VOICE:
 			return "Voice"
+		SoundCategory.VEHICLE:
+			return "Vehicle"
 		_:
 			assert(false, "SoundManager: unhandled SoundCategory in " + name)
 			return ""

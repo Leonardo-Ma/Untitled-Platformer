@@ -9,6 +9,7 @@ const CATEGORY_LIMITS: Dictionary = {
 	SoundManager.SoundCategory.AMBIENT: 4,
 	SoundManager.SoundCategory.UI: 3,
 	SoundManager.SoundCategory.VOICE: 5,
+	SoundManager.SoundCategory.VEHICLE: 4,
 }
 
 # Audio buses (match these to Audio tab setup)
@@ -18,6 +19,7 @@ const BUSES: Dictionary = {
 	SoundManager.SoundCategory.AMBIENT: "Ambient",
 	SoundManager.SoundCategory.UI: "UI",
 	SoundManager.SoundCategory.VOICE: "Voice",
+	SoundManager.SoundCategory.VEHICLE: "Vehicle",
 }
 
 # Pools: category -> Array of available players
@@ -47,11 +49,11 @@ func _create_player_for_category(category: int) -> Node:
 
 	# Use 3D players for positional sounds
 	match category:
-		SoundManager.SoundCategory.SFX, SoundManager.SoundCategory.AMBIENT, SoundManager.SoundCategory.VOICE:
+		SoundManager.SoundCategory.SFX, SoundManager.SoundCategory.AMBIENT, SoundManager.SoundCategory.VOICE, SoundManager.SoundCategory.VEHICLE:
 			player = AudioStreamPlayer3D.new()
-
 			player.unit_size = 15.0
 			player.max_distance = 200.0
+
 		_:  # MUSIC, UI
 			player = AudioStreamPlayer.new()
 

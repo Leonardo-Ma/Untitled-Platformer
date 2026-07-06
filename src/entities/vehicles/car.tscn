@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b0u7r60i2gn0n" path="res://src/entities/vehicles/assets/kenney_car_kit/models/Textures/colormap.png" id="2_ns0je"]
 [ext_resource type="Script" uid="uid://njkofl5g11k7" path="res://src/entities/components/combat/health.gd" id="2_wx5wo"]
 [ext_resource type="Script" uid="uid://wqopxvagomo6" path="res://src/entities/components/combat/hurtbox.gd" id="3_u1f61"]
+[ext_resource type="AudioStream" uid="uid://cxipnw773t3tw" path="res://src/sound/sfx/car/kenney_starter_kit_racing/engine.ogg" id="5_q6bat"]
+[ext_resource type="Script" uid="uid://dfrhjcfuoev81" path="res://src/sound/helpers/looping_audio_emitter.gd" id="6_mvrra"]
+[ext_resource type="AudioStream" uid="uid://cdcvdombioj0x" path="res://src/sound/sfx/car/kenney_starter_kit_racing/skid.ogg" id="7_mvrra"]
+[ext_resource type="Script" uid="uid://bb5yvqamng321" path="res://src/sound/helpers/vehicle_audio_controller.gd" id="8_cvtp5"]
 
 [sub_resource type="Resource" id="Resource_u1f61"]
 script = ExtResource("2_wx5wo")
@@ -192,7 +196,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lrtn4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_enter"]
-size = Vector3(2.4, 1.6, 4.7343264)
+size = Vector3(4, 2, 4)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1f61"]
 radius = 0.3486328
@@ -277,11 +281,10 @@ skeleton = NodePath("")
 
 [node name="EnterArea" type="Area3D" parent="." unique_id=1684043567]
 unique_name_in_owner = true
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnterArea" unique_id=894658347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.13815928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000005, 1, -0.0009765625)
 shape = SubResource("BoxShape3D_enter")
 
 [node name="CameraAnchor" type="Marker3D" parent="." unique_id=299543940]
@@ -290,7 +293,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.1
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1133770282]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.17944765, 1.8056799, -3.0603652)
+transform = Transform3D(-1, 0, -8.742278e-08, -2.3432364e-08, 0.9634092, 0.268035, 8.4223906e-08, 0.268035, -0.9634092, -0.17944765, 1.8056799, -3.6165721)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1747624805]
 unique_name_in_owner = true
@@ -303,3 +306,20 @@ script = ExtResource("3_u1f61")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=974147913]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.3499743e-13, 0.41627213, -3.609557e-16)
 shape = SubResource("CapsuleShape3D_u1f61")
+
+[node name="VehicleAudioController" type="Node" parent="." unique_id=765360919]
+script = ExtResource("8_cvtp5")
+
+[node name="EngineLoop" type="AudioStreamPlayer3D" parent="VehicleAudioController" unique_id=1014362665]
+stream = ExtResource("5_q6bat")
+unit_size = 20.0
+max_distance = 60.0
+bus = &"Vehicle"
+script = ExtResource("6_mvrra")
+
+[node name="SkidLoop" type="AudioStreamPlayer3D" parent="VehicleAudioController" unique_id=656502249]
+stream = ExtResource("7_mvrra")
+unit_size = 15.0
+max_distance = 40.0
+bus = &"Vehicle"
+script = ExtResource("6_mvrra")
