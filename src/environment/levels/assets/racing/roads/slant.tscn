@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://pn32wlcsdm3y"]
 
-[ext_resource type="ArrayMesh" uid="uid://de27njr77k7rm" path="res://src/environment/assets/kenney_city_kit_roads/meshes/slant.tres" id="1_0helu"]
-[ext_resource type="ArrayMesh" uid="uid://c04nmk5wpfcys" path="res://src/environment/assets/kenney_city_kit_roads/meshes/slant_barrier.tres" id="2_g0oao"]
+[ext_resource type="ArrayMesh" uid="uid://ddnt2i2w2bm1a" path="res://src/environment/assets/kenney_city_kit_roads/meshes/road_slant.tres" id="1_i7gft"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g0oao"]
 points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0.019980421, -0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.019980421, 0.5, 0.5, 0.26999998, -0.5, 0.5, 0, 0.5, 0.5, 0.26999998, 0.5)
@@ -12,18 +11,13 @@ data = PackedVector3Array(0.5, 0.32999998, 0.47, 0.5, 0.32999998, 0.5, -0.5, 0.0
 [node name="RoadSlant" type="StaticBody3D" unique_id=961219849]
 transform = Transform3D(-4.371139e-07, 0, -10, 0, 10, 0, 10, 0, -4.371139e-07, 0, 0, 0)
 
-[node name="Slant" type="MeshInstance3D" parent="." unique_id=1819421722]
-transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0, 0, 0)
-mesh = ExtResource("1_0helu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2100215970]
+[node name="Road" type="CollisionShape3D" parent="." unique_id=2100215970]
 transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_g0oao")
 
-[node name="SlantBarrier" type="MeshInstance3D" parent="." unique_id=700432628]
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
-mesh = ExtResource("2_g0oao")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=89410721]
+[node name="Barrier" type="CollisionShape3D" parent="." unique_id=89410721]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_n1rfd")
+
+[node name="RoadSlant" type="MeshInstance3D" parent="." unique_id=249924713]
+mesh = ExtResource("1_i7gft")

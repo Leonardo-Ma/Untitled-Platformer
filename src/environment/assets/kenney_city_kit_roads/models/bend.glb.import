@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://5p017xas4umv"
-path="res://.godot/imported/road-curve.glb-801cebfe27a4bed41fb23442b4b96aef.scn"
+uid="uid://cbdux3bwvf6lu"
+path="res://.godot/imported/bend.glb-646ad3c6c656848268c43af8dcd9d1f2.scn"
 
 [deps]
 
-source_file="res://src/environment/assets/kenney_city_kit_roads/models/road-curve.glb"
-dest_files=["res://.godot/imported/road-curve.glb-801cebfe27a4bed41fb23442b4b96aef.scn"]
+source_file="res://src/environment/assets/kenney_city_kit_roads/models/bend.glb"
+dest_files=["res://.godot/imported/bend.glb-646ad3c6c656848268c43af8dcd9d1f2.scn"]
 
 [params]
 
@@ -41,5 +41,5 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={}
 gltf/naming_version=2
-gltf/embedded_image_handling=1
+gltf/embedded_image_handling=2
 gltf/texture_map_mode=1
