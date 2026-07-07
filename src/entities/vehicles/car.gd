@@ -3,6 +3,7 @@ extends VehicleBody3D
 
 signal driving_started(player: PlayerEntity)
 signal driving_stopped(player: PlayerEntity)
+signal teleported  # Back to checkpoint for example
 
 @export_range(500.0, 8000.0, 100.0) var max_engine_force: float = 1000.0
 @export_range(5.0, 100.0, 1.0) var brake_force: float = 15.0
@@ -119,6 +120,8 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 	global_rotation = Vector3.ZERO
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
+
+	teleported.emit()
 
 	if is_death:
 		health.reset()

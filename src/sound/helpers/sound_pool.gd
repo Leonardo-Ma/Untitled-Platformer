@@ -45,6 +45,8 @@ func _setup_pools() -> void:
 
 
 func _create_player_for_category(category: int) -> Node:
+	assert(BUSES.has(category), "SoundPool: missing bus in " + name)
+
 	var player: Node
 
 	# Use 3D players for positional sounds

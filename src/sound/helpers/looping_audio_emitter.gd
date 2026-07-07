@@ -15,6 +15,13 @@ var _current_intensity: float = 0.0
 
 
 func _ready() -> void:
+	assert(stream != null, "LoopingAudioEmitter: stream not assigned in " + name)
+	assert(volume_db == 0.0, "LoopingAudioEmitter drives volume_db internally, do not set it in " + name)
+	assert(min_pitch > 0.0, "min_pitch should be 0.0 for  " + name)
+	assert(max_pitch >= min_pitch, "max_pitch should be >= min_pitch for  " + name)
+	assert(max_volume_db >= min_volume_db, "max_volume_db should be >= min_volume_db for  " + name)
+	assert(fade_speed > 0.0, "fade_speed should be 0.0 for " + name)
+
 	stream.loop = true
 	volume_db = min_volume_db
 	pitch_scale = min_pitch
@@ -23,6 +30,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_equal_approx(_current_intensity, _target_intensity):
+		_current_intensity = _target_intensity
 		return
 	_current_intensity = move_toward(_current_intensity, _target_intensity, fade_speed * delta)
 	volume_db = lerp(min_volume_db, max_volume_db, _current_intensity)
