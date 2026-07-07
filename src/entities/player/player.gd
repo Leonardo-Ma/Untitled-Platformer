@@ -118,7 +118,11 @@ func exit_vehicle(exit_position: Vector3) -> void:
 	velocity = Vector3.ZERO
 	visible = true
 	_visual.scale = Vector3.ZERO
+	# TODO Add an entity disable/enable method
 	add_to_group(Groups.PLAYERS)
+	input_controller.set_process_input(true)
+	input_controller.set_process_unhandled_input(true)
+	skills_controller.set_physics_process(true)
 	set_collision_layer_value(1, true)
 	hurtbox.set_deferred("monitoring", true)
 	hurtbox.set_deferred("monitorable", true)

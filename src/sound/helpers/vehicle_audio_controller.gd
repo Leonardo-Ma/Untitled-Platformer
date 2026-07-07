@@ -5,7 +5,7 @@ extends Node
 const SKID_START_SOUNDS: Array[AudioStream] = [preload("uid://cdcvdombioj0x")]  # skid.ogg
 const SKID_INTENSITY_THRESHOLD: float = 0.6
 const SKID_RETRIGGER_COOLDOWN: float = 0.4
-const SUSPENSION_SETTLE_FRAMES: int = 5
+const SUSPENSION_SETTLE_FRAMES: int = 30
 
 ## Max speed used to normalize engine loop intensity
 @export var max_reference_speed: float = 30.0
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_teleported() -> void:
 	_settle_frames_remaining = SUSPENSION_SETTLE_FRAMES
-	_skid_cooldown = 0.0
+	_skid_cooldown = SKID_RETRIGGER_COOLDOWN
 
 
 func _get_emitter(node_name: String) -> LoopingAudioEmitter:

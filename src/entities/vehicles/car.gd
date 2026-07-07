@@ -5,10 +5,10 @@ signal driving_started(player: PlayerEntity)
 signal driving_stopped(player: PlayerEntity)
 signal teleported  # Back to checkpoint for example
 
-@export_range(500.0, 8000.0, 100.0) var max_engine_force: float = 1000.0
-@export_range(5.0, 100.0, 1.0) var brake_force: float = 15.0
-@export_range(0.1, 1.0, 0.01) var max_steering: float = 0.2
-@export_range(1.0, 10.0, 0.1) var steering_speed: float = 1.5
+@export_range(500.0, 8000.0, 100.0) var max_engine_force: float = 1200.0
+@export_range(5.0, 100.0, 1.0) var brake_force: float = 7.0
+@export_range(0.1, 1.0, 0.01) var max_steering: float = 0.1
+@export_range(0.1, 5.0, 0.1) var steering_speed: float = 0.8
 
 @export_category("Core")
 @export var health: Health
@@ -117,7 +117,8 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 	await get_tree().create_timer(delay / 2.0).timeout
 
 	global_position = target_position
-	global_rotation = Vector3.ZERO
+
+	rotation = Vector3.ZERO
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 

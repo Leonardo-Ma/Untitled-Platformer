@@ -86,7 +86,7 @@ func get_best_target_data() -> KnownEntityData:
 
 	var to_remove: Array = []
 
-	for target: CharacterBody3D in known_entities:
+	for target: Node3D in known_entities:
 		if not is_instance_valid(target):
 			to_remove.append(target)
 			continue
@@ -101,7 +101,7 @@ func get_best_target_data() -> KnownEntityData:
 			# Memory expired
 			to_remove.append(target)
 
-	for target: CharacterBody3D in to_remove:
+	for target: Node3D in to_remove:
 		known_entities.erase(target)
 
 	return best_data
