@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmhb7wjnaqbtx"]
 
-[ext_resource type="Script" uid="uid://kgklmrfhql31" path="res://src/environment/levels/assets/springs/spring.gd" id="1_7oidd"]
+[ext_resource type="Script" uid="uid://kgklmrfhql31" path="res://src/environment/levels/assets/interactable/springs/spring.gd" id="1_7oidd"]
 [ext_resource type="PackedScene" uid="uid://cditexkva7aj5" path="res://src/environment/platformer_kit_kenney/individual_assets/spring/spring.glb" id="2_js18o"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_js18o"]

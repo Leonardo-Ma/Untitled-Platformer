@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://c6on7cp5w028m"]
 
-[ext_resource type="Script" uid="uid://c5wj2ygfbsyua" path="res://src/environment/assets/dungeon_assets/asset_scenes/spikes.gd" id="1_1v1el"]
+[ext_resource type="Script" uid="uid://c5wj2ygfbsyua" path="res://src/environment/levels/assets/traps/spikes/spikes.gd" id="1_1v1el"]
 [ext_resource type="Script" uid="uid://cxqsapbic2imr" path="res://src/entities/components/combat/attack.gd" id="2_x7sll"]
 [ext_resource type="Script" uid="uid://csig12422io62" path="res://src/entities/components/combat/hitbox.gd" id="3_fqofb"]
 

@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_cywjj"]
 [ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_3315w"]
 [ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_18t43"]
-[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/static_platforms/grass.tscn" id="4_u6gr7"]
+[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/platforms/static_platforms/grass.tscn" id="4_u6gr7"]
 [ext_resource type="PackedScene" uid="uid://trd7ogx3xpwh" path="res://src/environment/levels/assets/props/arrow_sign.tscn" id="5_8misn"]
 [ext_resource type="PackedScene" uid="uid://c3c0sejgavc7h" path="res://src/entities/vehicles/car.tscn" id="6_0dlys"]
-[ext_resource type="PackedScene" uid="uid://dv5rl3uuwysj8" path="res://src/environment/assets/kenney_city_kit_roads/asset_scenes/road_straight.tscn" id="7_526oo"]
-[ext_resource type="PackedScene" uid="uid://dmxo8at0w472t" path="res://src/environment/assets/kenney_city_kit_roads/asset_scenes/road_slant_high.tscn" id="8_3gyu8"]
-[ext_resource type="PackedScene" uid="uid://bmfux7240i7no" path="res://src/environment/assets/kenney_city_kit_roads/asset_scenes/road_slant_curve.tscn" id="9_8e6y8"]
+[ext_resource type="PackedScene" uid="uid://dv5rl3uuwysj8" path="res://src/environment/levels/assets/racing/roads/road_straight.tscn" id="7_526oo"]
+[ext_resource type="PackedScene" uid="uid://dmxo8at0w472t" path="res://src/environment/levels/assets/racing/roads/road_slant_high.tscn" id="8_3gyu8"]
+[ext_resource type="PackedScene" uid="uid://dtuht3gos28nm" path="res://src/environment/mechanics/car_exit_zone.tscn" id="9_6nfv3"]
+[ext_resource type="PackedScene" uid="uid://bmfux7240i7no" path="res://src/environment/levels/assets/racing/roads/road_slant_curve.tscn" id="9_8e6y8"]
 
 [node name="LongTemplate" type="Node3D" unique_id=1016321493]
 script = ExtResource("1_cywjj")
