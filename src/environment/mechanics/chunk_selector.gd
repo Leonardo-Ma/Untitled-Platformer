@@ -31,6 +31,7 @@ func select_chunk_data(
 	target_transform: Transform3D,
 	unlocked_ids: Array[StringName],
 	current_score: int,
+	required_features: Array[ChunkFeature.Feature] = [],
 ) -> ChunkData:
 	var current_y: float = target_transform.origin.y
 
@@ -63,7 +64,11 @@ func select_chunk_data(
 		else:
 			if force_skill_unlock:
 				continue
-
+		# --------------- tag filtering ---------------
+		if not required_features.is_empty():
+			var missing_feature: bool = required_features.any(func(tag: StringName) -> bool: return not data.tags.has(tag))
+			if missing_feature:
+				continue
 		# --------------- required skills check ---------------
 		var missing: bool = data.required_skill_ids.any(func(id: StringName) -> bool: return not unlocked_ids.has(id))
 		if missing:

@@ -9,9 +9,11 @@ enum Skill { NONE, MULTI_JUMP, DASH, TELEPORT, SLOW_FALL }
 @export var difficulty: Difficulty = Difficulty.EASY
 @export var score_multiplier: float = 1.0
 
+@export_category("Features")
+@export var features: Array[ChunkFeature.Feature] = []
+
 @export_category("Skills")
 @export var unlocks_skill_id: StringName = &""
-
 @export var required_skill_ids: Array[StringName] = []
 
 @onready var exit_trigger: Area3D = %ExitTrigger

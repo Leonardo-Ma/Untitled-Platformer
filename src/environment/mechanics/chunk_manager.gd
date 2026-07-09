@@ -67,6 +67,7 @@ func _load_chunk_metadata_from_disk() -> void:
 								data.is_turn = in_z.angle_to(out_z) > 0.1
 
 								data.scene_path = full_path
+								data.features = chunk.features.duplicate()
 								data.required_skill_ids = chunk.required_skill_ids.duplicate()
 								data.unlocks_skill_id = chunk.unlocks_skill_id
 								data.score_multiplier = chunk.score_multiplier
