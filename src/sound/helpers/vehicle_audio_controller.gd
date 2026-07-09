@@ -31,6 +31,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not _vehicle.is_driven:
+		_engine_loop.update_intensity(0.0)
+		_skid_loop.update_intensity(0.0)
+		return
+
 	if _skid_cooldown > 0.0:
 		_skid_cooldown -= delta
 
@@ -41,8 +46,10 @@ func _physics_process(delta: float) -> void:
 		_was_skidding = false
 		return
 
-	var speed_ratio: float = clampf(_vehicle.linear_velocity.length() / max_reference_speed, 0.0, 1.0)
-	_engine_loop.update_intensity(speed_ratio)
+	#var speed_ratio: float = clampf(_vehicle.linear_velocity.length() / max_reference_speed, 0.0, 1.0)
+	#_engine_loop.update_intensity(speed_ratio)
+	var throttle_ratio: float = absf(_vehicle.engine_force) / _vehicle.max_engine_force
+	_engine_loop.update_intensity(throttle_ratio)
 
 	var lateral_speed: float = absf(_vehicle.linear_velocity.dot(_vehicle.global_transform.basis.x))
 	var slip_ratio: float = clampf((lateral_speed - lateral_slip_threshold) / (lateral_slip_max - lateral_slip_threshold), 0.0, 1.0)
