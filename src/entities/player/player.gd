@@ -41,6 +41,7 @@ func _child_ready() -> void:
 	health.died.connect(movement_controller.disable_movement.bind(5.0))
 
 
+## Receives from input controller, goes to animation controller for attack
 func _on_attack_pressed() -> void:
 	melee_attacked.emit()
 
@@ -63,7 +64,7 @@ func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> 
 	# Wait for the screen to fade in
 	await get_tree().create_timer(delay / 2.0).timeout
 
-	global_position = target_position
+	GameEvents.controlled_entity.global_position = target_position
 
 	if is_death:
 		health.reset()
@@ -87,17 +88,15 @@ func _on_return_to_checkpoint_requested() -> void:
 
 
 func _on_damaged_vibration(_attack: Attack) -> void:
-	# TODO Change the gamepad index to the actual player gamepad?
+	# TODO Change the gamepad index to the current player gamepad?
 	Input.start_joy_vibration(0, 0.5, 0.5, 0.7)
 
 
-# TODO BUG This is a garbage
+# TODO BUG Improve this garbage
 #region Car methods
 ## Disable control, collision, combat while driving
 func enter_vehicle() -> void:
 	remove_from_group(Groups.PLAYERS)
-	input_controller.set_process_input(false)
-	input_controller.set_process_unhandled_input(false)
 	skills_controller.set_physics_process(false)
 	set_collision_layer_value(1, false)
 	hurtbox.set_deferred("monitoring", false)
@@ -120,8 +119,6 @@ func exit_vehicle(exit_position: Vector3) -> void:
 	_visual.scale = Vector3.ZERO
 	# TODO Add an entity disable/enable method
 	add_to_group(Groups.PLAYERS)
-	input_controller.set_process_input(true)
-	input_controller.set_process_unhandled_input(true)
 	skills_controller.set_physics_process(true)
 	set_collision_layer_value(1, true)
 	hurtbox.set_deferred("monitoring", true)

@@ -5,6 +5,7 @@ extends Area3D
 ## The distance below the current checkpoint before the player dies
 @export var fall_margin: float = 30.0
 
+## Entity to be followed for fall boundary tracking; set via controlled_entity_changed
 @export var target: Node3D
 
 # Store the exact spot the player was born before any checkpoints existed
@@ -55,7 +56,5 @@ func _on_body_entered(body: Node3D) -> void:
 	if CheckpointManager.has_active_checkpoint():
 		target_position = CheckpointManager.get_respawn_position()
 
-	if body is PlayerEntity:
-		(body as PlayerEntity).respawn(2.0, target_position)
-	elif body is PlayerCar:
-		(body as PlayerCar).respawn(2.0, target_position)
+	# TODO Check if a check if in group players here is needed
+	body.respawn(2.0, target_position)

@@ -41,7 +41,6 @@ func perform(_actor: Node, _delta: float, _blackboard: Dictionary) -> bool:
 
 	if current_time - _last_attack_time >= int(_attack_cooldown * 1000.0):
 		_actor.melee_attacked.emit()
-		print("attacked")
 		_last_attack_time = current_time
 		return true
 	return false
