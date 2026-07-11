@@ -1,8 +1,8 @@
 class_name LargeDoor
 extends Node3D
 
-const DOOR_OPEN = preload("uid://cx5j2ge2f0m6q")
-const DOOR_CLOSE = preload("uid://diaumdug5gwrg")
+const DOOR_OPEN: AudioStreamWAV = preload("uid://cx5j2ge2f0m6q")
+const DOOR_CLOSE: AudioStreamWAV = preload("uid://diaumdug5gwrg")
 
 @export var _button: Area3D = null
 
