@@ -42,6 +42,8 @@ var _damage_material: StandardMaterial3D
 var _damage_tween: Tween
 var _prev_health: int = 0
 
+@onready var collision_shape: CollisionShape3D = %CollisionShape3D
+
 @onready var hitbox: Hitbox = %Hitbox
 @onready var hurtbox: Hurtbox = %Hurtbox
 @onready var status_manager: StatusManager = %StatusManager
@@ -54,6 +56,7 @@ var _prev_health: int = 0
 
 ## Children should override _child_ready instead of this
 func _ready() -> void:
+	assert(collision_shape.shape != null, "CollisionShape missing in " + name)
 	assert(hitbox, "Hitbox incorrect for " + self.name)
 	assert(hurtbox, "Hurtbox incorrect for " + self.name)
 	assert(status_manager, "Status Manager missing for " + self.name)

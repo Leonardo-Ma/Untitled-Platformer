@@ -10,9 +10,16 @@ extends AggressiveEntity
 @onready var skills_controller: SkillsController = %SkillsController
 
 @onready var _visual: Node3D = %Visual
+@onready var _default_visual_scale: Vector3 = _visual.scale
+
+@onready var _portal_transitioning: bool = false  # Teleport
 
 
 func _physics_process(delta: float) -> void:
+	if _portal_transitioning:  # If mid teleport
+		move_and_slide()
+		return
+
 	movement_controller.move(self, delta)
 	move_and_slide()
 
@@ -92,43 +99,72 @@ func _on_damaged_vibration(_attack: Attack) -> void:
 	Input.start_joy_vibration(0, 0.5, 0.5, 0.7)
 
 
+func entity_enable_disable(toggle: bool) -> void:
+	skills_controller.set_physics_process(toggle)
+	set_collision_layer_value(1, toggle)
+	hurtbox.set_deferred("monitoring", toggle)
+	hurtbox.set_deferred("monitorable", toggle)
+	hitbox.set_deferred("monitoring", toggle)
+	hitbox.set_deferred("monitorable", toggle)
+	camera_controller.set_active(toggle)
+	set_physics_process(toggle)
+	visible = toggle
+
+
 # TODO BUG Improve this garbage
 #region Car methods
 ## Disable control, collision, combat while driving
 func enter_vehicle() -> void:
 	remove_from_group(Groups.PLAYERS)
-	skills_controller.set_physics_process(false)
-	set_collision_layer_value(1, false)
-	hurtbox.set_deferred("monitoring", false)
-	hurtbox.set_deferred("monitorable", false)
-	hitbox.set_deferred("monitoring", false)
-	hitbox.set_deferred("monitorable", false)
-	camera_controller.set_active(false)
-	set_physics_process(false)
 	# shrink effect
 	var tween: Tween = create_tween()
-	tween.tween_property(_visual, "scale", Vector3.ONE * 0.001, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tween.tween_callback(func() -> void: visible = false)
+	tween.tween_property(_visual, "scale", _default_visual_scale * 0.001, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	entity_enable_disable(false)
+	#tween.tween_callback(func() -> void: visible = false)
 
 
 ## Restores control at exit_position
 func exit_vehicle(exit_position: Vector3) -> void:
 	global_position = exit_position
 	velocity = Vector3.ZERO
-	visible = true
 	_visual.scale = Vector3.ZERO
 	# TODO Add an entity disable/enable method
 	add_to_group(Groups.PLAYERS)
-	skills_controller.set_physics_process(true)
-	set_collision_layer_value(1, true)
-	hurtbox.set_deferred("monitoring", true)
-	hurtbox.set_deferred("monitorable", true)
-	hitbox.set_deferred("monitoring", true)
-	hitbox.set_deferred("monitorable", true)
-	camera_controller.set_active(true)
-	set_physics_process(true)
+	entity_enable_disable(true)
 	GameEvents.set_controlled_entity(self)
 	# Grow effect
 	var tween: Tween = create_tween()
-	tween.tween_property(_visual, "scale", Vector3.ONE, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(_visual, "scale", _default_visual_scale, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+#endregion
+
+
+#region Teleport portal
+func begin_portal_transition(source: TeleportPortal, destination: TeleportPortal) -> void:
+	if _portal_transitioning:
+		return
+
+	_portal_transitioning = true
+
+	movement_controller.disable_movement(0.25)
+
+	input_controller.set_process_input(false)
+	input_controller.set_process_unhandled_input(false)
+
+	velocity = source.transform_velocity(velocity)
+
+	var target_transform: Transform3D = destination.get_exit_transform(global_transform)
+	target_transform = destination.find_safe_exit(collision_shape.shape, target_transform)
+
+	await get_tree().physics_frame
+
+	global_transform = target_transform
+
+	await get_tree().physics_frame
+
+	input_controller.set_process_input(true)
+	input_controller.set_process_unhandled_input(true)
+
+	_portal_transitioning = false
 #endregion

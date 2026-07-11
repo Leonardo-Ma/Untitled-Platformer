@@ -203,6 +203,7 @@ movement = SubResource("Resource_qo2tj")
 is_npc = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=680952906]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.542, 0)
 shape = SubResource("CylinderShape3D_wjvoe")
 

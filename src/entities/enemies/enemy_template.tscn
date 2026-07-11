@@ -98,6 +98,7 @@ perception_config = SubResource("Resource_k6n52")
 ai_config = SubResource("Resource_f7hab")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1263244351]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94727004, 0)
 shape = SubResource("CapsuleShape3D_wefi8")
 
