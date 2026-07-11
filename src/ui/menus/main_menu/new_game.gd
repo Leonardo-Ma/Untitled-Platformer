@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	UIManager.open_save_menu()
+	GameStateManager.request_new_game()

@@ -35,4 +35,4 @@ func _on_save_changed(slot_index: int) -> void:
 
 
 func _on_return_pressed() -> void:
-	UIManager.close_save_menu()
+	GameStateManager.request_main_menu()

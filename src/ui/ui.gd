@@ -28,16 +28,24 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if not event.is_action_pressed("ui_cancel"):
 		return
-	if UIManager.is_in_main_menu():
+	if GameStateManager.is_in_state(GameStateManager.GameState.MAIN_MENU):
 		return
-	if UIManager.is_in_settings():
-		UIManager.close_menu()
+	if GameStateManager.is_in_settings():
+		GameStateManager.request_close_settings()
 		get_viewport().set_input_as_handled()
 		return
-	if not PauseManager.is_paused():
-		UIManager.on_game_paused()
+	if (
+		GameStateManager.is_in_state(GameStateManager.GameState.SAVE_MENU)
+		or GameStateManager.is_in_state(GameStateManager.GameState.ACHIEVEMENTS_MENU)
+		or GameStateManager.is_in_state(GameStateManager.GameState.MAIN_MENU_SETTINGS)
+	):
+		GameStateManager.request_close_menu()
+		get_viewport().set_input_as_handled()
+		return
+	if not GameStateManager.is_paused():
+		GameStateManager.request_pause()
 	else:
-		UIManager.on_game_started()
+		GameStateManager.request_resume()
 	get_viewport().set_input_as_handled()
 
 
@@ -76,6 +84,13 @@ func show_settings() -> void:
 func show_achievements() -> void:
 	_menus.visible = true
 	_menus.show_achievements()
+	_hud.visible = false
+	_overlays.visible = false
+
+
+func show_main_menu_settings() -> void:
+	_menus.visible = true
+	_menus.show_main_menu_settings()
 	_hud.visible = false
 	_overlays.visible = false
 

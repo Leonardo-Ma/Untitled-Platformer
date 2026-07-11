@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	UIManager.open_settings()
+	GameStateManager.request_settings()

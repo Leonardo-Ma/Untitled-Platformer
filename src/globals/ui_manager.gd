@@ -1,116 +1,120 @@
-## Transition logic (start, pause, resume)
-## Holds reference to UI view (UI scene onready)
+## View mediator; Shows/hides UI based on GameStateManager signals
+## Registers UIView and forwards GameStateManager signals to it
 ## https://refactoring.guru/design-patterns/mediator
 extends Node
 
-enum State {
-	MAIN_MENU,
-	SAVE_MENU,
-	PLAYING,
-	PAUSED,
-	SETTINGS,
-	ACHIEVEMENTS,
-}
+signal hud_visibility_changed(visible: bool)
 
 var hud_visible: bool = true
 
 var _ui: UIView
-var _state: State = State.MAIN_MENU
-## Tracks which state to return to when closing a menu
-var _pre_change_scene_state: State = State.MAIN_MENU
+
+
+func _ready() -> void:
+	GameStateManager.state_changed.connect(_on_game_state_changed)
+	GameStateManager.settings_opened.connect(_on_settings_opened)
+	GameStateManager.settings_closed.connect(_on_settings_closed)
+	GameStateManager.main_menu_opened.connect(_on_main_menu_opened)
+	GameStateManager.main_menu_closed.connect(_on_main_menu_closed)
+	GameStateManager.gameplay_started.connect(_on_gameplay_started)
+	GameStateManager.gameplay_resumed.connect(_on_gameplay_resumed)
+	GameStateManager.gameplay_paused.connect(_on_gameplay_paused)
+	GameStateManager.quit_requested.connect(_on_quit_requested)
 
 
 func register_ui(ui: UIView) -> void:
+	assert(_ui == null, "UIManager: UIView already registered")
 	_ui = ui
 	hud_visible = SettingsManager.hud_visible
-	_set_state(State.MAIN_MENU)
-	PauseManager.request_pause("main_menu")
-
-
-func on_game_started() -> void:
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	print_debug("Mouse captured by " + name)
-	PauseManager.release_pause("main_menu")
-	PauseManager.release_pause("pause_menu")
-	_set_state(State.PLAYING)
-
-
-func on_game_paused() -> void:
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	PauseManager.request_pause("pause_menu")
-	_set_state(State.PAUSED)
-
-
-func is_playing() -> bool:
-	return _state == State.PLAYING
-
-
-#region Save menu
-func open_save_menu() -> void:
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_set_state(State.SAVE_MENU)
-
-
-func close_save_menu() -> void:
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_set_state(State.MAIN_MENU)
-
-
-#endregion
-
-
-func open_settings() -> void:
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_pre_change_scene_state = _state
-	_set_state(State.SETTINGS)
-
-
-func open_achievements() -> void:
-	assert(_ui != null, "UIManager: No UIView registered in " + name)
-	_pre_change_scene_state = _state
-	_set_state(State.ACHIEVEMENTS)
-
-
-## Pop settings, achievements as they are a stack (can only show and hide)
-func close_menu() -> void:
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_set_state(_pre_change_scene_state)
 
 
 func set_hud_visible(visible: bool) -> void:
 	hud_visible = visible
 	SettingsManager.hud_visible = visible
 	SettingsManager.save()
-	assert(_ui != null, "UIManager: no UIView registered in " + name)
-	_ui.set_hud_visible(visible)
+	hud_visibility_changed.emit(visible)
+	_get_ui().set_hud_visible(visible)
 
 
-#region Getters
-func is_in_main_menu() -> bool:
-	return _state == State.MAIN_MENU
+func show_main_menu() -> void:
+	_get_ui().show_main_menu()
 
 
-func is_in_settings() -> bool:
-	return _state == State.SETTINGS
+func show_gameplay() -> void:
+	_get_ui().show_game()
 
 
-#endregion
+func show_pause_menu() -> void:
+	_get_ui().show_pause_menu()
 
 
-func _set_state(state: State) -> void:
-	_state = state
-	match state:
-		State.MAIN_MENU:
+func show_settings() -> void:
+	_get_ui().show_settings()
+
+
+func show_save_menu() -> void:
+	_get_ui().show_save_menu()
+
+
+func show_achievements() -> void:
+	_get_ui().show_achievements()
+
+
+func show_main_menu_settings() -> void:
+	_get_ui().show_main_menu_settings()
+
+
+func _on_game_state_changed(new_state: GameStateManager.GameState) -> void:
+	match new_state:
+		GameStateManager.GameState.MAIN_MENU:
 			_ui.show_main_menu()
-		State.SAVE_MENU:
-			_ui.show_save_menu()
-		State.PLAYING:
+		GameStateManager.GameState.PLAYING:
 			_ui.show_game()
-		State.PAUSED:
+		GameStateManager.GameState.PAUSED:
 			_ui.show_pause_menu()
-		State.SETTINGS:
+		GameStateManager.GameState.SETTINGS:
 			_ui.show_settings()
-		State.ACHIEVEMENTS:
+		GameStateManager.GameState.SAVE_MENU:
+			_ui.show_save_menu()
+		GameStateManager.GameState.ACHIEVEMENTS_MENU:
 			_ui.show_achievements()
+		GameStateManager.GameState.MAIN_MENU_SETTINGS:
+			_ui.show_main_menu_settings()
+
+
+func _on_settings_opened() -> void:
+	SettingsManager.apply_all()
+
+
+func _on_settings_closed() -> void:
+	pass
+
+
+func _on_main_menu_opened() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _on_main_menu_closed() -> void:
+	pass
+
+
+func _on_gameplay_started() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	print_debug("Mouse captured by UIManager")
+
+
+func _on_gameplay_resumed() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _on_gameplay_paused() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _on_quit_requested() -> void:
+	pass
+
+
+func _get_ui() -> UIView:
+	assert(_ui != null, "UIManager: no UIView registered")
+	return _ui

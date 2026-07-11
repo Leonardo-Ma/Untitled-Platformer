@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	UIManager.open_achievements()
+	GameStateManager.request_achievements_menu()

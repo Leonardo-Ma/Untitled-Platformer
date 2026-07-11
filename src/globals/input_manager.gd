@@ -37,9 +37,9 @@ func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
 		print_debug("Last gamepad disconnected, switching to KEYBOARD_MOUSE")
 
 	# Only pause mid-game — not during menus
-	if UIManager.is_playing():
+	if GameStateManager.is_gameplay_active():
 		push_warning("Game paused due to gamepad disconnect")
-		UIManager.on_game_paused()
+		GameStateManager.request_pause()
 
 
 func _input(event: InputEvent) -> void:

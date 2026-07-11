@@ -26,21 +26,23 @@ buses/default_bus_layout="uid://plxel2xf671u"
 
 [autoload]
 
+Groups="*uid://bwr6mdd41t0pc"
 SettingsManager="*uid://caq4tmrxugaw7"
+GameEvents="*res://src/globals/game_events.gd"
+InputBindingManager="*uid://dogtu7flgoe45"
+GamepadIconMap="*uid://cxhhtlg0sgl0q"
 SteamWorks="*uid://bj75q73hkheqo"
 SteamCloudSave="*uid://cvg7ryuxfkyuu"
-SaveManager="*uid://bld73yeq5e54m"
-Achievements="*uid://mcfcqnskwnjw"
-GamepadIconMap="*uid://cxhhtlg0sgl0q"
-InputBindingManager="*uid://dogtu7flgoe45"
-Groups="*uid://bwr6mdd41t0pc"
-ChunksFeature="*uid://bbh1grksk6rcl"
-InputManager="*uid://dkueywuxvkn4k"
-UIManager="*uid://dbv6ox0nun76t"
 PauseManager="*res://src/globals/pause_manager.gd"
-GameEvents="*res://src/globals/game_events.gd"
-SkillRegistry="*uid://bkcavof5u4wiy"
 SoundManager="*uid://c6aviitsw1wa"
+SaveManager="*uid://bld73yeq5e54m"
+SkillRegistry="*uid://bkcavof5u4wiy"
+GameStateManager="*uid://d0vqp6v2mmbt2"
+UIManager="*uid://dbv6ox0nun76t"
+MusicManager="*uid://cdi31wa6jj2vh"
+InputManager="*uid://dkueywuxvkn4k"
+Achievements="*uid://mcfcqnskwnjw"
+ChunksFeature="*uid://bbh1grksk6rcl"
 LevelChunkManager="*uid://qsxf8ht6hmse"
 CheckpointManager="*uid://cimfiv457vauf"
 TestGoapConsistency="*res://tests/goap.gd"
@@ -150,6 +152,7 @@ move_forward={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":true,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
 ]
 }
 move_backward={
@@ -158,6 +161,7 @@ move_backward={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":true,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
 ]
 }
 jump={

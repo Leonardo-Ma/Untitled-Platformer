@@ -47,3 +47,11 @@ func show_achievements() -> void:
 	_settings_menu.visible = false
 	_save_menu.visible = false
 	_achievements_menu.visible = true
+
+
+func show_main_menu_settings() -> void:
+	_main_menu.visible = false
+	_pause_menu.visible = false
+	_settings_menu.visible = true
+	_save_menu.visible = false
+	_achievements_menu.visible = false

@@ -162,6 +162,12 @@ repos:
         entry: '\.connect\(\s*"'
         files: \.gd$
 
+      - id: no-change-scene
+        name: "ban change_scene_to_file/change_scene_to_packed | bypasses GameStateManager"
+        language: pygrep
+        entry: '(change_scene_to_file|change_scene_to_packed|change_scene)\('
+        files: \.gd$
+
   - repo: https://github.com/qoomon/git-conventional-commits
     rev: f00599350f1d22c14f431b4e458f1076124c0c0d # 2.9.0
     hooks:

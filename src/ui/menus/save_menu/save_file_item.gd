@@ -3,6 +3,7 @@
 class_name SaveFileItem
 extends AspectRatioContainer
 
+@warning_ignore("unused_signal")
 signal item_focused
 
 var _slot_index: int = -1
@@ -74,7 +75,7 @@ func _on_load_pressed() -> void:
 		SaveManager.load_from_slot(_slot_index)
 	else:
 		SaveManager.reset_for_new_game()
-	UIManager.on_game_started()
+	GameStateManager.request_play_from_save()
 
 
 func _on_delete_pressed() -> void:
