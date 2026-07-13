@@ -2,7 +2,7 @@
 class_name SoundPool
 extends Node
 
-# Max simultaneous sounds
+## Max simultaneous sounds
 const CATEGORY_LIMITS: Dictionary = {
 	SoundManager.SoundCategory.MUSIC: 1,
 	SoundManager.SoundCategory.SFX: 10,
@@ -12,7 +12,7 @@ const CATEGORY_LIMITS: Dictionary = {
 	SoundManager.SoundCategory.VEHICLE: 4,
 }
 
-# Audio buses (match these to Audio tab setup)
+## Audio buses (match these to Audio tab setup)
 const BUSES: Dictionary = {
 	SoundManager.SoundCategory.MUSIC: "Music",
 	SoundManager.SoundCategory.SFX: "SFX",
@@ -22,9 +22,9 @@ const BUSES: Dictionary = {
 	SoundManager.SoundCategory.VEHICLE: "Vehicle",
 }
 
-# Pools: category -> Array of available players
+## Pools: category -> Array of available players
 var _pools: Dictionary = {}
-# Active players: category -> Array of currently playing players
+## Active players: category -> Array of currently playing players
 var _active_players: Dictionary = {}
 
 

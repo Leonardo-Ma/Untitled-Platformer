@@ -15,11 +15,9 @@ func _ready() -> void:
 	GameStateManager.settings_opened.connect(_on_settings_opened)
 	GameStateManager.settings_closed.connect(_on_settings_closed)
 	GameStateManager.main_menu_opened.connect(_on_main_menu_opened)
-	GameStateManager.main_menu_closed.connect(_on_main_menu_closed)
 	GameStateManager.gameplay_started.connect(_on_gameplay_started)
 	GameStateManager.gameplay_resumed.connect(_on_gameplay_resumed)
 	GameStateManager.gameplay_paused.connect(_on_gameplay_paused)
-	GameStateManager.quit_requested.connect(_on_quit_requested)
 
 
 func register_ui(ui: UIView) -> void:
@@ -64,7 +62,7 @@ func show_main_menu_settings() -> void:
 	_get_ui().show_main_menu_settings()
 
 
-func _on_game_state_changed(new_state: GameStateManager.GameState) -> void:
+func _on_game_state_changed(new_state: GameStateManager.GameState, _previous_state: GameStateManager.GameState) -> void:
 	match new_state:
 		GameStateManager.GameState.MAIN_MENU:
 			_ui.show_main_menu()
@@ -94,10 +92,6 @@ func _on_main_menu_opened() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
-func _on_main_menu_closed() -> void:
-	pass
-
-
 func _on_gameplay_started() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	print_debug("Mouse captured by UIManager")
@@ -109,10 +103,6 @@ func _on_gameplay_resumed() -> void:
 
 func _on_gameplay_paused() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-
-func _on_quit_requested() -> void:
-	pass
 
 
 func _get_ui() -> UIView:

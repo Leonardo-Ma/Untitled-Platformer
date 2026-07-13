@@ -21,7 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 
-	if event.is_action_pressed("quick_save") and UIManager.is_playing():
+	if event.is_action_pressed("quick_save") and GameStateManager.is_gameplay_active():
 		SaveManager.save_to_quick_slot()
 		get_viewport().set_input_as_handled()
 		return

@@ -21,6 +21,7 @@ func _ready() -> void:
 
 	combat.initialize(pool)
 	music.initialize(pool)
+	_load_volume_settings()
 
 
 func _create_subsystems() -> void:
@@ -37,20 +38,15 @@ func _create_subsystems() -> void:
 	add_child(combat)
 
 
-# ============== PUBLIC API FOR GAME CODE ==============
-
-
-# Basic sound playback
+#region Public API
 func play_sound(sound: AudioStream, category: SoundCategory, position: Vector3 = Vector3.ZERO) -> void:
 	pool.play_sound(sound, category, position)
 
 
-# Combat-specific with priority
 func play_combat_sound(sound: AudioStream, position: Vector3, priority: int = 0) -> void:
 	combat.play_with_priority(sound, position, priority)
 
 
-# Music control
 func play_music(track: AudioStream, fade_duration: float = 1.0) -> void:
 	music.play(track, fade_duration)
 
@@ -63,7 +59,6 @@ func stop_music(fade_duration: float = 1.0) -> void:
 	music.stop(fade_duration)
 
 
-# Volume control
 func set_category_volume(category: SoundCategory, volume_db: float) -> void:
 	var bus_name: String = _get_bus_for_category(category)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), volume_db)
@@ -75,7 +70,6 @@ func get_category_volume(category: SoundCategory) -> float:
 	return AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name))
 
 
-# Global controls
 func mute_all() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 
@@ -88,6 +82,9 @@ func pause_all_sfx(paused: bool) -> void:
 	pool.pause_category(SoundCategory.SFX, paused)
 	pool.pause_category(SoundCategory.AMBIENT, paused)
 	pool.pause_category(SoundCategory.VOICE, paused)
+
+
+#endregion
 
 
 #region Private helpers

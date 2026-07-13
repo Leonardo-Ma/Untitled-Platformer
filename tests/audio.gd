@@ -135,8 +135,8 @@ func _test_music_system() -> void:
 	)
 
 	assert(
-		music.music_library != null,
-		"music.music_library is null",
+		music._music_library != null,
+		"music._music_library is null",
 	)
 
 	assert(

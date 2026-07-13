@@ -10,7 +10,6 @@ signal gameplay_resumed
 signal settings_opened
 signal settings_closed
 signal main_menu_opened
-signal main_menu_closed
 signal quit_requested
 
 enum GameState {
@@ -80,13 +79,11 @@ func _on_state_entered(new_state: GameState, previous_state: GameState) -> void:
 		GameState.MAIN_MENU:
 			UIManager.show_main_menu()
 			PauseManager.request_pause("gameplay")
-			SoundManager.change_music_state(MusicController.MusicState.MAIN_MENU, true)
 			main_menu_opened.emit()
 
 		GameState.PLAYING:
 			UIManager.show_gameplay()
 			PauseManager.release_pause("gameplay")
-			SoundManager.change_music_state(MusicController.MusicState.EXPLORATION, true)
 			gameplay_started.emit()
 			if previous_state == GameState.PAUSED:
 				gameplay_resumed.emit()
