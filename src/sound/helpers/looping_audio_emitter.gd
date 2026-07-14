@@ -4,10 +4,15 @@
 class_name LoopingAudioEmitter
 extends AudioStreamPlayer3D
 
+## Pitch at zero intensity
 @export var min_pitch: float = 0.8
+## Pitch at full intensity
 @export var max_pitch: float = 1.8
+## Volume at zero intensity
 @export var min_volume_db: float = -80.0
+## Volume at full intensity
 @export var max_volume_db: float = 0.0
+## Intensity change per second
 @export var fade_speed: float = 4.0
 
 var _target_intensity: float = 0.0

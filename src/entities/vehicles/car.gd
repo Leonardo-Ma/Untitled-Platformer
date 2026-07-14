@@ -6,25 +6,32 @@ signal driving_started(player: PlayerEntity)
 signal driving_stopped(player: PlayerEntity)
 signal teleported  # Back to checkpoint for example
 
-## Peak engine force at full throttle [br]
-## How fast the car can go [br] Applied per traction wheel
-@export_range(500.0, 8000.0, 100.0) var max_engine_force: float = 1200.0
-# TODO Add a conditional to balance engine force and brake force
+const REENTER_CAR_DELAY: int = 10
+
+#region Tuning
+@export_category("Tuning")
+@export_range(500.0, 8000.0, 100.0) var max_engine_force: float = 1800.0
+## Approximate top speed in m/s
+@export_range(20.0, 120.0, 1.0) var max_speed: float = 75.0
+## Brake force while moving backward
+@export_range(50.0, 500.0, 10.0) var max_brake_force: float = 220.0
 ## Brake force applied when not accelerating
-@export_range(5.0, 100.0, 1.0) var brake_force: float = 7.0
-## How much angle the wheels can turn in radians
-@export_range(0.1, 1.0, 0.01) var max_steering: float = 0.1
-# TODO Add a conditional to balance max steering angle and speed
-## Steering angle change rate
-@export_range(0.1, 5.0, 0.1) var steering_speed: float = 0.8
+@export_range(0.0, 30.0, 1.0) var coast_brake_force: float = 8.0
+## Steering angle at low speed
+@export_range(0.1, 1.0, 0.01) var max_steering: float = 0.28
+@export var reverse_engine_force: float = 1500.0
+@export var reverse_max_speed: float = 20.0
+@export_range(0.5, 5.0, 0.1) var reverse_speed_threshold: float = 1.0
+#endregion
 
 @export_category("Core")
 @export var health: Health
 
 var is_driven: bool = false
 
+var initial_level_position: Transform3D
+
 var _driver: PlayerEntity = null
-var _steering: float = 0.0
 
 @onready var enter_area: Area3D = %EnterArea
 
@@ -40,6 +47,8 @@ var _steering: float = 0.0
 
 
 func _ready() -> void:
+	initial_level_position = global_transform
+
 	assert(enter_area != null, "EnterArea missing in " + name)
 	assert(camera_anchor != null, "CameraAnchor missing in " + name)
 	assert(camera_pivot != null, "CameraPivot missing in " + name)
@@ -56,28 +65,84 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var throttle: float = Input.get_axis("move_backward", "move_forward")
-	var steer: float = Input.get_axis("move_right", "move_left")
+	assert(is_driven, "Car not driven in " + name)
 
-	_steering = move_toward(
-		_steering,
-		steer * max_steering,
-		steering_speed * delta,
+	var forward: bool = Input.is_action_pressed("move_forward")
+	var backward: bool = Input.is_action_pressed("move_backward")
+
+	var speed: float = linear_velocity.length()
+	var forward_speed: float = -global_basis.z.dot(linear_velocity)
+
+	var steering_input: float = (
+		Input
+		. get_axis(
+			"move_right",
+			"move_left",
+		)
 	)
 
-	steering = _steering
+	var steering_scale: float = lerpf(
+		1.0,
+		0.35,
+		clampf(speed / max_speed, 0.0, 1.0),
+	)
 
-	if absf(throttle) > 0.01:
-		engine_force = throttle * max_engine_force
+	steering = steering_input * max_steering * steering_scale
+
+	if forward:
+		var forward_scale: float = clampf(
+			1.0 - forward_speed / max_speed,
+			0.0,
+			1.0,
+		)
+
+		engine_force = max_engine_force * forward_scale
 		brake = 0.0
+
+	elif backward:
+		var reverse_speed: float = maxf(-forward_speed, 0.0)
+		var reverse_scale: float = clampf(
+			1.0 - reverse_speed / reverse_max_speed,
+			0.0,
+			1.0,
+		)
+
+		engine_force = -reverse_engine_force * reverse_scale
+		brake = 0.0
+
 	else:
 		engine_force = 0.0
-		brake = brake_force
+		brake = coast_brake_force
 
-	camera_pivot.global_position = camera_pivot.global_position.lerp(camera_anchor.global_position, delta * 20.0)
-	camera_pivot.global_transform.basis = camera_pivot.global_transform.basis.slerp(camera_anchor.global_transform.basis, delta * 5.0)
+	camera_pivot.global_position = (
+		camera_pivot
+		. global_position
+		. lerp(
+			camera_anchor.global_position,
+			delta * 20.0,
+		)
+	)
+
+	camera_pivot.global_transform.basis = (
+		camera_pivot
+		. global_transform
+		. basis
+		. slerp(
+			camera_anchor.global_transform.basis,
+			delta * 5.0,
+		)
+	)
+
 	var target: Vector3 = global_position + (global_transform.basis.z * 10.0)
-	camera_look_at = camera_look_at.lerp(target, delta * 5.0)
+
+	camera_look_at = (
+		camera_look_at
+		. lerp(
+			target,
+			delta * 5.0,
+		)
+	)
+
 	camera.look_at(camera_look_at)
 
 
@@ -105,9 +170,12 @@ func exit(exit_position: Vector3) -> void:
 	set_physics_process(false)
 	set_process(false)
 
+	# TODO Add animation tween and fade out visual effect
+	rotation = Vector3.ZERO
 	engine_force = 0.0
-	brake = brake_force
-	steering = 0.0
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+	global_transform = initial_level_position
 
 	camera.current = false
 
@@ -116,12 +184,13 @@ func exit(exit_position: Vector3) -> void:
 	_driver = null
 	is_driven = false
 
-	enter_area.set_deferred("monitoring", true)
-
 	driver.exit_vehicle(exit_position)
 
 	driving_stopped.emit(driver)
 	self.remove_from_group(Groups.PLAYERS)
+
+	await get_tree().create_timer(REENTER_CAR_DELAY).timeout
+	enter_area.set_deferred("monitoring", true)
 
 
 func respawn(delay: float, target_position: Vector3, is_death: bool = false) -> void:

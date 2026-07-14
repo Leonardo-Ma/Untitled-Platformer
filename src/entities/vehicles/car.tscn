@@ -15,9 +15,8 @@ max_health = 100
 health_regen = 2.0
 metadata/_custom_type_script = "uid://njkofl5g11k7"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ns0je"]
-radius = 0.3486328
-height = 2.5597725
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvtp5"]
+points = PackedVector3Array(0.6, 0.099934064, 0.16537285, 0.6, 0, 0.16537285, 0.6, 0.099934064, -0.4347304, 0.54996085, 0.38852927, 0.16537285, 0.4498825, 0.14996302, 1.2798862, 0.6, 0, -0.4347304, 0.4498825, 0, 1.2798862, 0.3499217, 0.5360156, -1.2798862, 0.54996085, 0.38852927, 0.06539738, 0.06695378, 0.6325442, -0.10323286, -0.45011747, 0.14996302, 1.2798862, 0.3499217, 0, -1.2300239, 0.3499217, 0.049967032, -1.2798862, -0.45011747, 0, 1.2798862, -0.35003918, 0.5360156, -1.2798862, 0.06695378, 0.6325442, -0.20320833, -0.06707126, 0.6325442, -0.10323286, -0.55007833, 0.38852927, 0.16537285, -0.6, 0.099934064, 0.16537285, -0.35003918, 0, -1.2300239, -0.35003918, 0.049967032, -1.2798862, -0.6, 0, 0.16537285, -0.06707126, 0.6325442, -0.20320833, -0.6, 0.099934064, -0.4347304, -0.55007833, 0.38852927, 0.06539738, -0.6, 0, -0.4347304)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krn8v"]
 resource_name = "colormap"
@@ -196,27 +195,31 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lrtn4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_enter"]
-size = Vector3(4, 2, 4)
+size = Vector3(1.4916992, 1, 2.89563)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1f61"]
-radius = 0.3486328
-height = 2.5597725
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvtp5"]
+size = Vector3(0.7448158, 2.0224, 0.53845215)
 
 [node name="Vehicle" type="VehicleBody3D" unique_id=864995165]
 collision_layer = 8
 collision_mask = 11
-mass = 800.0
+mass = 1200.0
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0, 0.2)
+center_of_mass = Vector3(0, -0.2, -0.15)
 script = ExtResource("1_car")
-brake_force = 30.0
-max_steering = 0.7
-steering_speed = 4.5
+max_speed = 70.0
+max_brake_force = 280.0
+coast_brake_force = 12.0
+max_steering = 0.18
+reverse_max_speed = 36.0
 health = SubResource("Resource_u1f61")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=734047797]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.3499743e-13, 0.41627213, -3.609557e-16)
-shape = SubResource("CapsuleShape3D_ns0je")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1767477172]
+unique_name_in_owner = true
+shape = SubResource("ConvexPolygonShape3D_cvtp5")
+
+[node name="CenterOfMassMarker" type="Node3D" parent="CollisionShape3D" unique_id=1976733627]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.0037555695, 0.10213624, 0.19999999)
 
 [node name="Visual" type="Node3D" parent="." unique_id=723421751]
 unique_name_in_owner = true
@@ -227,15 +230,15 @@ skeleton = NodePath("")
 
 [node name="FrontLeftWheel" type="VehicleWheel3D" parent="." unique_id=768501134]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4755681, 0.3, 0.6398862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43, 0.3, 0.64)
 use_as_traction = true
 use_as_steering = true
 wheel_radius = 0.35
-wheel_friction_slip = 1.6
+wheel_friction_slip = 1.7
 suspension_travel = 0.045
 suspension_stiffness = 90.0
-damping_compression = 2.5
-damping_relaxation = 2.8
+damping_compression = 7.0
+damping_relaxation = 9.0
 
 [node name="FrontLeftWheelMesh" type="MeshInstance3D" parent="FrontLeftWheel" unique_id=150478462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101670206, 0, 5.9604645e-08)
@@ -244,15 +247,15 @@ skeleton = NodePath("")
 
 [node name="FrontRightWheel" type="VehicleWheel3D" parent="." unique_id=1482803122]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4546979, 0.3, 0.6398862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43, 0.3, 0.64)
 use_as_traction = true
 use_as_steering = true
 wheel_radius = 0.35
-wheel_friction_slip = 1.6
+wheel_friction_slip = 1.7
 suspension_travel = 0.045
 suspension_stiffness = 90.0
-damping_compression = 2.5
-damping_relaxation = 2.8
+damping_compression = 7.0
+damping_relaxation = 9.0
 
 [node name="FrontRightWheelMesh" type="MeshInstance3D" parent="FrontRightWheel" unique_id=853364483]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095351726, 0, 5.9604645e-08)
@@ -261,32 +264,33 @@ skeleton = NodePath("")
 
 [node name="BackLeftWheel" type="VehicleWheel3D" parent="." unique_id=837358902]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4816526, 0.3, -0.8801137)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, -0.88)
 use_as_traction = true
 wheel_radius = 0.35
-wheel_friction_slip = 1.2
+wheel_friction_slip = 1.5
 suspension_travel = 0.045
-suspension_stiffness = 70.0
-damping_compression = 2.5
-damping_relaxation = 2.8
+suspension_stiffness = 80.0
+damping_compression = 7.0
+damping_relaxation = 9.0
 
 [node name="BackLeftWheelMesh" type="MeshInstance3D" parent="BackLeftWheel" unique_id=1843625842]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09791914, 0, -5.9604645e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0, 0)
 mesh = SubResource("ArrayMesh_f7okj")
 skeleton = NodePath("")
 
 [node name="BackRightWheel" type="VehicleWheel3D" parent="." unique_id=866159422]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4527875, 0.3, -0.8801137)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, -0.88)
 use_as_traction = true
 wheel_radius = 0.35
-wheel_friction_slip = 1.2
+wheel_friction_slip = 1.5
 suspension_travel = 0.045
-suspension_stiffness = 70.0
-damping_compression = 2.5
-damping_relaxation = 2.8
+suspension_stiffness = 80.0
+damping_compression = 7.0
+damping_relaxation = 9.0
 
 [node name="BackRightWheelMesh" type="MeshInstance3D" parent="BackRightWheel" unique_id=785291287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0, 0)
 mesh = SubResource("ArrayMesh_ktllw")
 skeleton = NodePath("")
 
@@ -295,7 +299,7 @@ unique_name_in_owner = true
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnterArea" unique_id=894658347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000005, 1, -0.0009765625)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024462938, 0.5, -0.038024902)
 shape = SubResource("BoxShape3D_enter")
 
 [node name="CameraAnchor" type="Marker3D" parent="." unique_id=299543940]
@@ -317,12 +321,10 @@ script = ExtResource("3_u1f61")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=974147913]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.3499743e-13, 0.41627213, -3.609557e-16)
-shape = SubResource("CapsuleShape3D_u1f61")
+shape = SubResource("BoxShape3D_cvtp5")
 
-[node name="VehicleAudioController" type="Node" parent="." unique_id=765360919]
+[node name="VehicleAudioController" type="Node3D" parent="." unique_id=765360919]
 script = ExtResource("8_cvtp5")
-lateral_slip_threshold = 1.5
-lateral_slip_max = 6.0
 
 [node name="EngineLoop" type="AudioStreamPlayer3D" parent="VehicleAudioController" unique_id=1014362665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
@@ -331,13 +333,20 @@ unit_size = 78.5
 max_distance = 10000.0
 bus = &"Vehicle"
 script = ExtResource("6_mvrra")
+min_pitch = 0.7
+max_pitch = 1.5
+min_volume_db = -30.0
+max_volume_db = -6.0
+fade_speed = 3.0
 
 [node name="SkidLoop" type="AudioStreamPlayer3D" parent="VehicleAudioController" unique_id=656502249]
 stream = ExtResource("7_mvrra")
-unit_size = 15.0
-max_distance = 40.0
+unit_size = 30.0
+max_distance = 50.0
 bus = &"Vehicle"
 script = ExtResource("6_mvrra")
-
-[node name="CenterOfMassMarker" type="Node3D" parent="." unique_id=1976733627]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+min_pitch = 0.9
+max_pitch = 1.1
+min_volume_db = -60.0
+max_volume_db = -12.0
+fade_speed = 8.0
