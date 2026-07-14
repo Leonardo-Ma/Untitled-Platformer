@@ -4,16 +4,16 @@
 [ext_resource type="Theme" uid="uid://cikfldg8du084" path="res://src/ui/themes/base_theme.tres" id="1_up44w"]
 [ext_resource type="Script" uid="uid://c30uhilu8tn5v" path="res://src/ui/hud/score.gd" id="2_cl4jo"]
 [ext_resource type="Texture2D" uid="uid://b2ggug31fd52y" path="res://src/icons/16x16/star.png" id="3_ndnj2"]
-[ext_resource type="Script" uid="uid://ckmipf2d40cqd" path="res://src/ui/hud/gold.gd" id="5_4u0hr"]
+[ext_resource type="Script" uid="uid://ckmipf2d40cqd" path="res://src/ui/hud/collectibles/gold.gd" id="5_4u0hr"]
 [ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://src/icons/16x16/coins.png" id="6_d5ccl"]
-[ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/skills_interface.gd" id="7_8stm2"]
-[ext_resource type="PackedScene" uid="uid://4dnhjq8r5f03" path="res://src/ui/hud/powerup.tscn" id="7_qtkbr"]
-[ext_resource type="Script" uid="uid://cb1h0wlra5gti" path="res://src/ui/hud/power_up_interface.gd" id="7_raafm"]
+[ext_resource type="Script" uid="uid://n1strmrhwjlu" path="res://src/ui/hud/skills/skills_interface.gd" id="7_8stm2"]
+[ext_resource type="PackedScene" uid="uid://4dnhjq8r5f03" path="res://src/ui/hud/power_ups/powerup.tscn" id="7_qtkbr"]
+[ext_resource type="Script" uid="uid://cb1h0wlra5gti" path="res://src/ui/hud/power_ups/power_up_interface.gd" id="7_raafm"]
 [ext_resource type="PackedScene" uid="uid://dc4emcvac7toq" path="res://src/ui/prompt_icon.tscn" id="11_i2hmd"]
 [ext_resource type="Texture2D" uid="uid://bfcny5u3eltby" path="res://src/ui/assets/kenney_input-prompts/generic_double/generic_joystick_horizontal.png" id="12_g2kha"]
 [ext_resource type="Texture2D" uid="uid://bgf4oeuykl8jh" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/mouse/mouse_left.png" id="12_tvn8q"]
 [ext_resource type="Texture2D" uid="uid://cn5mglaiekqhk" path="res://src/ui/assets/kenney_input-prompts/keyboard_and_mouse_double/keyboard_space_outline.png" id="12_xy2nf"]
-[ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://src/ui/hud/skill.tscn" id="13_gy4ue"]
+[ext_resource type="PackedScene" uid="uid://dih45d4ygmyww" path="res://src/ui/hud/skills/skill.tscn" id="13_gy4ue"]
 [ext_resource type="Texture2D" uid="uid://b0mjdtfcu0v1r" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/3_gear/sword.png" id="15_lb1pd"]
 [ext_resource type="Texture2D" uid="uid://01223baevlix" path="res://src/icons/16x16/jump.png" id="15_ulf7a"]
 [ext_resource type="Texture2D" uid="uid://bx4ijaov68u63" path="res://src/ui/assets/kenney_input-prompts/sticks/stick_left.png" id="16_s7scb"]
@@ -33,6 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://btbdty1xbpcap" path="res://src/ui/assets/kenney_input-prompts/flairs_double/flair_arrow_3.png" id="25_gcgkn"]
 [ext_resource type="Texture2D" uid="uid://ckvy8vbccihmw" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/12_misc/loading-dots.png" id="25_lb1pd"]
 [ext_resource type="Texture2D" uid="uid://csssgfxl235ik" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/visible.png" id="27_lb1pd"]
+[ext_resource type="Script" uid="uid://bsuawdnvruik5" path="res://src/ui/hud/music_player/music_player.gd" id="34_ulf7a"]
+[ext_resource type="Texture2D" uid="uid://cvw72qmip5r4d" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/9_media/music.png" id="35_58h30"]
+[ext_resource type="Texture2D" uid="uid://bhvk4bhxhicuj" path="res://src/ui/assets/neobi_game_icon_pack_1.4_padding_256_white/8_ui/user.png" id="36_u7jpa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y13nm"]
 
@@ -78,7 +81,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="LeftSideContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=2064273424]
-custom_minimum_size = Vector2(364, 0)
+custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 40
@@ -87,7 +90,7 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerHealthbar" type="ProgressBar" parent="MarginContainer/HBoxContainer/LeftSideContainer" unique_id=1575779896]
 unique_name_in_owner = true
 z_index = 1
-custom_minimum_size = Vector2(436, 44)
+custom_minimum_size = Vector2(336, 44)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 2
@@ -483,3 +486,52 @@ layout_mode = 2
 
 [node name="Skill5" parent="MarginContainer/HBoxContainer/Skills/Skills/SkillsContainer" unique_id=1545854112 instance=ExtResource("13_gy4ue")]
 layout_mode = 2
+
+[node name="RightSideContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1899763402]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicPlayerPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/RightSideContainer" unique_id=484157926]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("34_ulf7a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel" unique_id=1207655977]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel/VBoxContainer" unique_id=102472105]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel/VBoxContainer/HBoxContainer" unique_id=447482693]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("35_58h30")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SongTitle" type="Label" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel/VBoxContainer/HBoxContainer" unique_id=533547952]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SONG_TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel/VBoxContainer" unique_id=1228158422]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel/VBoxContainer/HBoxContainer2" unique_id=583479127]
+layout_mode = 2
+texture = ExtResource("36_u7jpa")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SongAuthor" type="Label" parent="MarginContainer/HBoxContainer/RightSideContainer/MusicPlayerPanel/VBoxContainer/HBoxContainer2" unique_id=78882761]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SONG_AUTHOR"
+horizontal_alignment = 1
+vertical_alignment = 1

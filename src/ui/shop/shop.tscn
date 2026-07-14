@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bqw7aicjkv43y" path="res://src/ui/shop/upgrade_card.tscn" id="1_card"]
 [ext_resource type="Script" uid="uid://bs016cootrdqc" path="res://src/ui/shop/shop.gd" id="1_xag5n"]
-[ext_resource type="Script" uid="uid://ckmipf2d40cqd" path="res://src/ui/hud/gold.gd" id="2_rkfl2"]
+[ext_resource type="Script" uid="uid://ckmipf2d40cqd" path="res://src/ui/hud/collectibles/gold.gd" id="2_rkfl2"]
 [ext_resource type="Texture2D" uid="uid://bmdg7sc3tlyrv" path="res://src/icons/16x16/coins.png" id="3_nahsh"]
 
 [node name="Shop" type="Control" unique_id=1103614617]

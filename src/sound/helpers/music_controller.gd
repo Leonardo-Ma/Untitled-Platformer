@@ -3,7 +3,7 @@
 class_name MusicController
 extends Node
 
-signal track_changed(track_name: String)
+signal track_changed(track_name: String, author: String)
 
 enum MusicState {
 	MAIN_MENU,
@@ -20,23 +20,78 @@ const _MUTED_VOLUME_DB: float = -80.0
 var _music_library: Dictionary = {
 	MusicState.MAIN_MENU:
 	{
-		"alley_cat": preload("uid://cni0gxe58qh34"),
-		"mischief_melody": preload("uid://o646wkfcd157"),
-		"seaside_endless_waves": preload("uid://dak2jjcwx0w15"),
+		"alley_cat":
+		{
+			"stream": preload("uid://cni0gxe58qh34"),
+			"song_name": "Alley Cat",
+			"author": "Abstraction",
+		},
+		"mischief_melody":
+		{
+			"stream": preload("uid://o646wkfcd157"),
+			"song_name": "Mischief Melody",
+			"author": "Abstraction",
+		},
+		"seaside_endless_waves":
+		{
+			"stream": preload("uid://dak2jjcwx0w15"),
+			"song_name": "Seaside Endless Waves",
+			"author": "Abstraction",
+		},
 	},
 	MusicState.EXPLORATION:
 	{
-		"start": preload("uid://bxyvub1x8yjhp"),
-		"blossom": preload("uid://cp0si1iqrye43"),
-		"journey": preload("uid://bqcm6jip7ppr1"),
-		"regrowth_wip": preload("uid://dhkwf2sf675tb"),
-		"shop": preload("uid://cewvxcw8hwrj1"),
-		"town": preload("uid://bbdc8a1gy34l"),
+		"start":
+		{
+			"stream": preload("uid://bxyvub1x8yjhp"),
+			"song_name": "Start",
+			"author": "chajamakesmusic",
+		},
+		"blossom":
+		{
+			"stream": preload("uid://cp0si1iqrye43"),
+			"song_name": "Blossom",
+			"author": "chajamakesmusic",
+		},
+		"journey":
+		{
+			"stream": preload("uid://bqcm6jip7ppr1"),
+			"song_name": "Journey",
+			"author": "chajamakesmusic",
+		},
+		"regrowth_wip":
+		{
+			"stream": preload("uid://dhkwf2sf675tb"),
+			"song_name": "Regrowth Wip",
+			"author": "chajamakesmusic",
+		},
+		"shop":
+		{
+			"stream": preload("uid://cewvxcw8hwrj1"),
+			"song_name": "Shop",
+			"author": "chajamakesmusic",
+		},
+		"town":
+		{
+			"stream": preload("uid://bbdc8a1gy34l"),
+			"song_name": "Town",
+			"author": "chajamakesmusic",
+		},
 	},
 	MusicState.RACING:
 	{
-		"never_miss_fire": preload("uid://d03gq72qvxvbv"),
-		"cloak_of_darness_stage_1": preload("uid://cynalefhnsrfh"),
+		"never_miss_fire":
+		{
+			"stream": preload("uid://d03gq72qvxvbv"),
+			"song_name": "Never Miss Fire",
+			"author": "Abstraction",
+		},
+		"cloak_of_darness_stage_1":
+		{
+			"stream": preload("uid://cynalefhnsrfh"),
+			"song_name": "Cloak of Darness",
+			"author": "Abstraction",
+		},
 	},
 	#MusicState.COMBAT: {},
 	#MusicState.NIGHT: {},
@@ -85,10 +140,19 @@ func play(track: AudioStream, fade_duration: float = 1.0, track_key: String = ""
 	if _current_player.stream == track and _current_player.playing:
 		return
 
-	if not track_key.is_empty():
-		track_changed.emit(track_key.capitalize())
+	var display_name: String = track_key
+	var author_name: String = ""
+	if track_key.is_empty():
+		display_name = _track_display_name(track)
+		author_name = _get_track_author(track)
 	else:
-		track_changed.emit(_track_display_name(track))
+		for state_tracks: Dictionary in _music_library.values():
+			if state_tracks.has(track_key):
+				display_name = state_tracks[track_key].get("song_name", track_key.capitalize())
+				author_name = state_tracks[track_key].get("author", "Unknown")
+				break
+
+	track_changed.emit(display_name, author_name)
 
 	if _fade_tween:
 		_fade_tween.kill()
@@ -155,9 +219,12 @@ func change_state(new_state: MusicState, immediate: bool = false, track_key: Str
 	var track: AudioStream
 	if not track_key.is_empty():
 		assert(tracks.has(track_key), "Track key '" + track_key + "' not found in state " + str(new_state) + " in " + name)
-		track = tracks[track_key]
+		track = tracks[track_key]["stream"]
 	else:
-		var track_values: Array = tracks.values()
+		var track_values: Array = []
+		for track_data: Dictionary in tracks.values():
+			track_values.append(track_data["stream"])
+
 		if _current_player.playing and _current_player.stream in track_values:
 			track_values.erase(_current_player.stream)
 		if track_values.is_empty():
@@ -221,6 +288,41 @@ func set_crossfade_duration(duration: float) -> void:
 	_crossfade_duration = duration
 
 
+func get_current_track_name() -> String:
+	if not _current_player.playing:
+		return ""
+	return _track_display_name(_current_player.stream)
+
+
+func get_current_track_author() -> String:
+	if not _current_player.playing:
+		return ""
+
+	for state_tracks: Dictionary in _music_library.values():
+		for key: String in state_tracks:
+			if state_tracks[key]["stream"] == _current_player.stream:
+				return state_tracks[key].get("author", "Unknown")
+
+	return "Unknown"
+
+
+func get_current_track_full_info() -> Dictionary:
+	if not _current_player.playing:
+		return {}
+
+	for state_tracks: Dictionary in _music_library.values():
+		for key: String in state_tracks:
+			if state_tracks[key]["stream"] == _current_player.stream:
+				return {
+					"key": key,
+					"name": state_tracks[key].get("song_name", key),
+					"author": state_tracks[key].get("author", "Unknown"),
+					"state": _current_state
+				}
+
+	return {"error": "Track not found in library"}
+
+
 func on_combat_started() -> void:
 	change_state(MusicState.COMBAT)
 
@@ -253,7 +355,7 @@ func _on_track_finished() -> void:
 	var next_stream: AudioStream = null
 	for state_tracks: Dictionary in _music_library.values():
 		if state_tracks.has(next_key):
-			next_stream = state_tracks[next_key]
+			next_stream = state_tracks[next_key]["stream"]
 			break
 	assert(next_stream != null, "Track '" + next_key + "' not found in library in " + name)
 	play(next_stream, _crossfade_duration, next_key)
@@ -266,8 +368,16 @@ func _on_transition_cooldown_finished() -> void:
 func _track_display_name(track: AudioStream) -> String:
 	for state_tracks: Dictionary in _music_library.values():
 		for key: String in state_tracks:
-			if state_tracks[key] == track:
-				return key.capitalize()
+			if state_tracks[key]["stream"] == track:
+				return state_tracks[key].get("song_name", key.capitalize())
 	assert(false, "Track key not found")
 	return "Error"
+
+
+func _get_track_author(track: AudioStream) -> String:
+	for state_tracks: Dictionary in _music_library.values():
+		for key: String in state_tracks:
+			if state_tracks[key]["stream"] == track:
+				return state_tracks[key].get("author", "Unknown")
+	return "Unknown"
 #endregion
