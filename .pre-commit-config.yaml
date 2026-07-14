@@ -112,6 +112,13 @@ repos:
         entry: 'OS\.execute\s*\('
         files: \.gd$
 
+      - id: no-audio-server-direct
+        name: "ban using AudioServer directly | bypasses SoundManager | use SoundManager"
+        language: pygrep
+        entry: 'AudioServer\.(play_sound_once|play_sound|set_bus_volume_db|get_bus_volume_db)\('
+        files: \.gd$
+        exclude: ^src/sound/|tests/
+
       - id: no-super-ready
         name: "ban super._ready() | fail prone | use @abstract func _child_ready()"
         language: pygrep
