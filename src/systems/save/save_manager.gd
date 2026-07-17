@@ -50,6 +50,8 @@ func reset_for_new_game() -> void:
 	_next_auto_slot = 0
 	GameEvents.score = 0
 	GameEvents.gold = 0
+	GameEvents.easter_eggs_found = 0
+	GameEvents.found_easter_eggs.clear()
 	GameEvents.score_updated.emit(GameEvents.score)
 	GameEvents.gold_updated.emit(GameEvents.gold)
 
@@ -195,6 +197,10 @@ func _build(player: PlayerEntity, slot_index: int, is_auto: bool) -> SaveData:
 
 	data.score = GameEvents.score
 	data.gold = GameEvents.gold
+	data.easter_eggs_found = GameEvents.easter_eggs_found
+	data.found_easter_egg_names = []
+	for egg: StringName in GameEvents.found_easter_eggs.keys():
+		data.found_easter_egg_names.append(egg)
 	data.player_health = clampi(player.health.current_health, 0, player.health.max_health)
 	data.unlocked_skill_ids = player.skills_controller.get_unlocked_ids()
 
@@ -232,6 +238,10 @@ func _find_checkpoint_chunk(checkpoint: Checkpoint, chunks: Array[LevelChunk]) -
 func _apply(data: SaveData, player: PlayerEntity) -> void:
 	GameEvents.score = data.score
 	GameEvents.gold = data.gold
+	GameEvents.easter_eggs_found = data.easter_eggs_found
+	GameEvents.found_easter_eggs.clear()
+	for egg: StringName in data.found_easter_egg_names:
+		GameEvents.found_easter_eggs[egg] = true
 	GameEvents.score_updated.emit(data.score)
 	GameEvents.gold_updated.emit(data.gold)
 

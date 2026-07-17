@@ -25,6 +25,7 @@ func _ready() -> void:
 
 	_load()
 	GameEvents.score_updated.connect(_on_score_updated)
+	GameEvents.easter_egg_found.connect(_on_easter_egg_found)
 	GameEvents.player_spawned.connect(_on_player_spawned)
 	GameEvents.status_buff_collected.connect(func(_e: StatusEffect, _i: Texture2D) -> void: _check_skill_completion())
 
@@ -121,7 +122,7 @@ func _compare_unlock_priority(a: StringName, b: StringName) -> bool:
 
 
 func _get_definition(key: StringName) -> AchievementDefinition:
-	assert(_by_key.has(key), "Achievements: unknown key '%s' in %s" % [key, name])
+	assert(_by_key.has(key), "Achievements: unknown key '%s' in %s" % [key, name] + ". Check AchievementRegistryData list")
 	return _by_key[key]
 
 
@@ -148,11 +149,19 @@ func _on_score_updated(score: int) -> void:
 
 func _check_skill_completion() -> void:
 	var player: PlayerEntity = get_tree().get_first_node_in_group(Groups.PLAYERS) as PlayerEntity
-	if player == null:
-		return
 	var ids: Array[StringName] = player.skills_controller.get_unlocked_ids()
 	if _ALL_SKILL_IDS.all(func(id: StringName) -> bool: return ids.has(id)):
 		unlock(&"all_skills")
+
+
+func _on_easter_egg_found(_easter_egg_name: StringName) -> void:
+	var easter_eggs_found: int = GameEvents.easter_eggs_found
+	if easter_eggs_found >= 1:
+		unlock(&"first_easter_egg")
+	#if easter_eggs_found >= 2:
+	#unlock(&"second_easter_egg")
+	#if easter_eggs_found >= 3:
+	#unlock(&"third_easter_egg")
 
 
 #endregion

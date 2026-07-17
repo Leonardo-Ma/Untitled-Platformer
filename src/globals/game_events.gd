@@ -10,6 +10,8 @@ signal counter_collectible_collected(identifier: StringName, amount: int, icon: 
 signal status_buff_collected(status_effect: StatusEffect, icon: Texture2D)
 signal score_updated(new_score: int)
 @warning_ignore("unused_signal")
+signal easter_egg_found(easter_egg_name: StringName)
+@warning_ignore("unused_signal")
 signal player_respawning(duration: float)
 signal gold_updated(new_total: int)
 @warning_ignore("unused_signal")
@@ -22,7 +24,13 @@ signal controlled_entity_changed(entity: Node3D)
 var procedural_seed: int = 0
 var score: int = 0
 var gold: int = 0
+var easter_eggs_found: int = 0
+var found_easter_eggs: Dictionary = {}
 var controlled_entity: Node3D = null
+
+
+func _ready() -> void:
+	easter_egg_found.connect(_on_easter_egg_found)
 
 
 func add_score(points: int) -> void:
@@ -32,7 +40,6 @@ func add_score(points: int) -> void:
 
 func remove_score(points: int) -> void:
 	score -= points
-	# TODO Improve
 	if score <= 0:
 		score = 0
 	score_updated.emit(score)
@@ -43,7 +50,7 @@ func add_gold(amount: int) -> void:
 	gold_updated.emit(gold)
 
 
-## Returns false if insufficient funds
+## Returns false if insufficient gold
 func remove_gold(amount: int) -> bool:
 	if gold < amount:
 		return false
@@ -55,3 +62,10 @@ func remove_gold(amount: int) -> bool:
 func set_controlled_entity(entity: Node3D) -> void:
 	controlled_entity = entity
 	controlled_entity_changed.emit(entity)
+
+
+func _on_easter_egg_found(easter_egg_name: StringName) -> void:
+	if not found_easter_eggs.has(easter_egg_name):
+		found_easter_eggs[easter_egg_name] = true
+		easter_eggs_found += 1
+		print(easter_eggs_found)
