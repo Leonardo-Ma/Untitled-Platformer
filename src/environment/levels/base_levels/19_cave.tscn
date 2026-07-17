@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://cya52wk4gftwt"]
+
+[ext_resource type="Script" uid="uid://dfapcpf4fli57" path="res://src/environment/levels/templates/template.gd" id="1_de7ky"]
+[ext_resource type="PackedScene" uid="uid://cl6psv388cmbx" path="res://src/environment/levels/entrance_trigger.tscn" id="2_v2fea"]
+[ext_resource type="PackedScene" uid="uid://bfl3xs2wgfl1v" path="res://src/environment/levels/exit_trigger.tscn" id="3_6e1j3"]
+[ext_resource type="PackedScene" uid="uid://0hwlnlpkbsjn" path="res://src/environment/levels/assets/platforms/static_platforms/grass_platform.tscn" id="4_bjhch"]
+[ext_resource type="PackedScene" uid="uid://trd7ogx3xpwh" path="res://src/environment/levels/assets/props/arrow_sign.tscn" id="5_g04di"]
+[ext_resource type="MeshLibrary" uid="uid://b7d7lco4iovry" path="res://src/environment/assets/kenney_cave_kit/mesh_libraries/cave_floors.meshlib" id="6_og7uh"]
+[ext_resource type="MeshLibrary" uid="uid://dbm1usx123dkv" path="res://src/environment/assets/kenney_cave_kit/mesh_libraries/cave_walls.meshlib" id="7_2j6we"]
+[ext_resource type="Script" uid="uid://d1k4xc3spqrwq" path="res://src/environment/levels/assets/caves/enable_darkness.gd" id="10_12cvo"]
+[ext_resource type="Environment" uid="uid://cukvscwyyjgeh" path="res://src/environment/levels/assets/caves/cave_environment.tres" id="11_w2gkj"]
+[ext_resource type="MeshLibrary" uid="uid://ckg0cey8h3jup" path="res://src/environment/assets/kenney_cave_kit/mesh_libraries/cave_props.meshlib" id="12_blxea"]
+[ext_resource type="MeshLibrary" uid="uid://dwdx8xjd6wsq3" path="res://src/environment/assets/kenney_cave_kit/mesh_libraries/cave_rooms_small.meshlib" id="12_raejx"]
+[ext_resource type="MeshLibrary" uid="uid://bvrndis2kl3xm" path="res://src/environment/assets/kenney_cave_kit/mesh_libraries/cave_rooms_large.meshlib" id="13_raejx"]
+[ext_resource type="PackedScene" uid="uid://dy7goxhejncoa" path="res://src/environment/levels/assets/props/torch.tscn" id="13_ynq7h"]
+[ext_resource type="PackedScene" uid="uid://be65x13d4tlnt" path="res://src/environment/levels/assets/collectibles/coins/gold_coin.tscn" id="14_ynq7h"]
+[ext_resource type="PackedScene" uid="uid://bjgye0bmgf8gr" path="res://src/environment/mechanics/easter_egg.tscn" id="15_ykdc8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w2gkj"]
+size = Vector3(176, 186, 50)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4hukf"]
+radius = 0.9526944
+
+[node name="19Cave" type="Node3D" unique_id=1016321493]
+script = ExtResource("1_de7ky")
+score_multiplier = 1.5
+
+[node name="EntranceTrigger" parent="." unique_id=398426260 instance=ExtResource("2_v2fea")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="ExitTrigger" parent="." unique_id=133090523 instance=ExtResource("3_6e1j3")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
+
+[node name="GrassPlatform" parent="." unique_id=537577895 instance=ExtResource("4_bjhch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
+
+[node name="ArrowSign" parent="GrassPlatform" unique_id=975612369 instance=ExtResource("5_g04di")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 3, 4, -2)
+
+[node name="GrassPlatform2" parent="." unique_id=1995932124 instance=ExtResource("4_bjhch")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, -1, 8)
+
+[node name="EnableDarkness" type="Area3D" parent="." unique_id=1987405358]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 11.162539)
+script = ExtResource("10_12cvo")
+cave_environment = ExtResource("11_w2gkj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnableDarkness" unique_id=93477801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 88, 2.2737368e-13)
+shape = SubResource("BoxShape3D_w2gkj")
+
+[node name="RoomsSmallFloor" type="GridMap" parent="." unique_id=2075401892]
+mesh_library = ExtResource("12_raejx")
+cell_size = Vector3(11, 1, 11)
+collision_mask = 11
+data = {
+"cells": PackedInt32Array(65535, 1, 1441798, 0, 1, 1441798, 1, 1, 1048576, 0, 2, 1441792, 1, 2, 1048576, 65535, 2, 0, 65534, 1, 1048576, 65534, 2, 1441792, 65533, 1, 655360, 65533, 2, 1048584, 65533, 3, 0, 65532, 3, 655360, 65532, 2, 655360, 1, 3, 0, 0, 3, 655360, 0, 4, 0, 65531, 3, 655360, 65531, 5, 655366, 65532, 5, 0, 65531, 6, 0, 65530, 6, 655360, 65530, 7, 1441792, 65531, 7, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="RoomsSmallRoof" type="GridMap" parent="." unique_id=1792390108]
+mesh_library = ExtResource("12_raejx")
+cell_size = Vector3(11, 1, 11)
+collision_mask = 11
+data = {
+"cells": PackedInt32Array(589820, 2, 1179648, 589820, 3, 1310726, 589821, 2, 524296, 589821, 3, 1310720, 589822, 2, 131072, 589823, 1, 131078, 589823, 2, 1310720, 524288, 1, 131078, 524288, 2, 131072, 524288, 3, 1179648, 524288, 4, 1310726, 524289, 1, 524288, 524289, 2, 524288, 524289, 3, 1310720, 524289, 4, 131072, 589822, 1, 524288, 589821, 1, 1179648)
+}
+metadata/_editor_floor_ = Vector3(0, 8, 0)
+
+[node name="RoomsLarge" type="GridMap" parent="." unique_id=1819873590]
+mesh_library = ExtResource("13_raejx")
+cell_size = Vector3(20, 1, 20)
+collision_mask = 11
+data = {
+"cells": PackedInt32Array(65535, 2, 655372, 65534, 2, 12, 65533, 2, 655370, 65532, 2, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Floor" type="GridMap" parent="." unique_id=54067683]
+mesh_library = ExtResource("6_og7uh")
+cell_size = Vector3(4, 1, 4)
+collision_mask = 11
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="WallsNorthSouth" type="GridMap" parent="." unique_id=823625883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+mesh_library = ExtResource("7_2j6we")
+cell_size = Vector3(4, 1, 4)
+collision_mask = 11
+data = {
+"cells": PackedInt32Array(1, 2, 1441801, 65522, 14, 1048582, 65522, 15, 6, 65518, 10, 1048590, 65518, 15, 1441804, 65518, 16, 1441805, 65518, 17, 1048588, 65518, 18, 1048585)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="WallsEastWest" type="GridMap" parent="." unique_id=1243316642]
+mesh_library = ExtResource("7_2j6we")
+cell_size = Vector3(4, 1, 4)
+collision_mask = 11
+data = {
+"cells": PackedInt32Array(65526, 10, 655366, 65515, 12, 655374, 65515, 14, 1048589, 65515, 16, 1048589, 65515, 18, 1048589, 65515, 20, 1441806, 65517, 20, 1048590, 65517, 22, 1441806)
+}
+
+[node name="Props" type="GridMap" parent="." unique_id=362753108]
+mesh_library = ExtResource("12_blxea")
+
+[node name="Torches" type="Node3D" parent="." unique_id=1069717325]
+
+[node name="Torch" parent="Torches" unique_id=153820126 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(-86.602554, -50.000008, -5.960465e-06, 0, -1.1920929e-05, 100.00001, -50.00001, 86.60255, 1.0323828e-05, -8.573832, 2.397791, 21.01961)
+
+[node name="Torch2" parent="Torches" unique_id=991325420 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(0, 100.000015, 1.1920931e-05, -6.629455e-13, -1.1920928e-05, 100.00001, 100.000015, 0, 9.094947e-13, 10.320632, 2.397791, 18.369923)
+
+[node name="Torch3" parent="Torches" unique_id=167615452 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(0, 100.000015, 1.1920931e-05, -6.629455e-13, -1.1920928e-05, 100.00001, 100.000015, 0, 9.094947e-13, 21.320633, 2.397791, 28.369923)
+
+[node name="Torch4" parent="Torches" unique_id=102623877 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(-25.881918, -96.5926, -1.1514733e-05, -6.629455e-13, -1.1920927e-05, 100.00001, -96.5926, 25.881918, 3.085364e-06, 0.95611155, 2.397791, 38.326565)
+
+[node name="Torch5" parent="Torches" unique_id=764607170 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(-25.549664, -95.3526, -15.971864, -4.133822, -15.427638, 98.71626, -96.5926, 25.881922, 3.0853646e-06, 0.4149748, 3.2451708, 51.326565)
+
+[node name="Torch6" parent="Torches" unique_id=1354325278 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(-63.732162, -75.68393, -14.496914, -4.133822, -15.427639, 98.71626, -76.948875, 63.513287, 6.7037272, -19.370464, 3.2451708, 51.326565)
+
+[node name="Torch7" parent="Torches" unique_id=1806373405 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(-99.17777, -9.78824, -8.244014, -8.174067, -1.1142101, 99.65917, -9.846748, 99.51361, 0.30494833, -60.301495, 2.9644651, 51.07182)
+
+[node name="Torch8" parent="Torches" unique_id=362315488 instance=ExtResource("13_ynq7h")]
+transform = Transform3D(-100, 1.9073486e-06, 2.9558578e-12, 0, -1.1920929e-05, 100.00001, 0, 100.000015, 1.1920935e-05, -69.92361, 1.7060844, 77.20198)
+
+[node name="Coins" type="Node3D" parent="." unique_id=1783785353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1190472, 0)
+
+[node name="GoldCoin" parent="Coins" unique_id=1971537253 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 2, 29.73388)
+
+[node name="GoldCoin2" parent="Coins" unique_id=1051877876 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 2, 29.73388)
+
+[node name="GoldCoin3" parent="Coins" unique_id=1344515878 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 2, 29.73388)
+
+[node name="GoldCoin4" parent="Coins" unique_id=2025440545 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 2, 30.73388)
+
+[node name="GoldCoin5" parent="Coins" unique_id=1380838397 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 2, 30.73388)
+
+[node name="GoldCoin6" parent="Coins" unique_id=1981317140 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 2, 30.73388)
+
+[node name="GoldCoin7" parent="Coins" unique_id=21622856 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 2, 31.73388)
+
+[node name="GoldCoin8" parent="Coins" unique_id=228349885 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 2, 31.73388)
+
+[node name="GoldCoin9" parent="Coins" unique_id=552423030 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 2, 31.73388)
+
+[node name="GoldCoin10" parent="Coins" unique_id=2136913563 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 2, 77.73388)
+
+[node name="GoldCoin11" parent="Coins" unique_id=179568400 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 77.73388)
+
+[node name="GoldCoin12" parent="Coins" unique_id=2126177287 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 2, 77.73388)
+
+[node name="GoldCoin13" parent="Coins" unique_id=2041259789 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 2, 78.73388)
+
+[node name="GoldCoin14" parent="Coins" unique_id=427392801 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 2, 78.73388)
+
+[node name="GoldCoin15" parent="Coins" unique_id=788560036 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 78.73388)
+
+[node name="GoldCoin16" parent="Coins" unique_id=945754001 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 79.73388)
+
+[node name="GoldCoin17" parent="Coins" unique_id=1293499791 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 2, 79.73388)
+
+[node name="GoldCoin18" parent="Coins" unique_id=1680360338 instance=ExtResource("14_ynq7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 2, 79.73388)
+
+[node name="EasterEgg" parent="." unique_id=1789181794 node_paths=PackedStringArray("collision_shape_3d") instance=ExtResource("15_ykdc8")]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, -69.92361, 1, 75)
+easter_egg_name = &"42"
+collision_shape_3d = NodePath("CollisionShape3D2")
+
+[node name="Label3D" type="Label3D" parent="EasterEgg" unique_id=1984197059]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 0, 0, 0)
+text = "42"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="EasterEgg" unique_id=113210453]
+shape = SubResource("SphereShape3D_4hukf")

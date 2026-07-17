@@ -4,4 +4,11 @@ extends Node
 
 func _ready() -> void:
 	LevelChunkManager.initialize_level()
-	SoundManager.change_music_state(MusicController.MusicState.EXPLORATION, false)
+
+	#var player: PlayerEntity = player_scene.instantiate()
+	#var boundary: FloorLevelBoundary = boundary_scene.instantiate()
+#
+#boundary.target = player
+#
+#world.add_child(player)
+#world.add_child(boundary)
