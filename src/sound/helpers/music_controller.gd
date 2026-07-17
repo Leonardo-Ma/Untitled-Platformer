@@ -337,14 +337,14 @@ func _on_track_finished() -> void:
 	var candidates: Array = []
 	if not tracks.is_empty():
 		for key: String in tracks:
-			if _current_player.stream != tracks[key]:
+			if _current_player.stream != tracks[key]["stream"]:
 				candidates.append(key)
 
 	# Fallback: if current state has no candidates, try any state with tracks
 	if candidates.is_empty():
 		for state_tracks: Dictionary in _music_library.values():
 			for key: String in state_tracks:
-				if _current_player.stream != state_tracks[key]:
+				if _current_player.stream != state_tracks[key]["stream"]:
 					candidates.append(key)
 
 	if candidates.is_empty():

@@ -100,7 +100,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_djfj2")
 
-[node name="Torch_01_01" type="StaticBody3D" unique_id=153820126]
+[node name="Torch" type="StaticBody3D" unique_id=153820126]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 metadata/_edit_group_ = true
 
@@ -115,4 +115,3 @@ skeleton = NodePath("")
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1858661364]
 transform = Transform3D(0.010000001, 0, 0, 0, 0.010000002, -2.220446e-16, 0, 2.220446e-16, 0.010000002, 0, -0.0010038732, 0.002272114)
 light_color = Color(1, 1, 0.40392157, 1)
-omni_range = 12.0
